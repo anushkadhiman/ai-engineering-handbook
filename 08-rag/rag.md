@@ -2,12 +2,10 @@ Retrieval-Augmented Generation (RAG) is an AI framework that improves Large Lang
 How it Works: 
 RAG operates in two main phases: Retrieval (finding relevant information from external sources like databases or documents) and Generation (using that information to produce an accurate answer).
 Key Benefits:
-Accuracy & Reliability: Reduces hallucinations by grounding responses in retrieved, verified data.
-Real-Time Data: Accesses the most current information, which is critical for dynamic, up-to-date content.
-Domain Expertise: Connects LLMs to specialized, private data (e.g., medical or legal records) without needing to retrain the model.
-Use Cases: RAG is used in intelligent chatbots,, search engines, and enterprise AI tools to provide context-aware, trusted information.
-
-
+	Accuracy & Reliability: Reduces hallucinations by grounding responses in retrieved, verified data.
+	Real-Time Data: Accesses the most current information, which is critical for dynamic, up-to-date content.
+	Domain Expertise: Connects LLMs to specialized, private data (e.g., medical or legal records) without needing to retrain the model.
+	Use Cases: RAG is used in intelligent chatbots,, search engines, and enterprise AI tools to provide context-aware, trusted information.
 
 Chunk splitters in RAG break large documents into smaller, manageable, and semantic segments (chunks) to optimize Retrieval-Augmented Generation (RAG) performance. Overlapping, typically 10–20% of the chunk size, ensures that context is not lost at the boundaries, allowing the LLM to understand information spanning across chunks, thus reducing hallucinations and maintaining continuity. 
 Key Chunking Concepts and Strategies
