@@ -43,6 +43,63 @@ Chunk splitters in RAG break large documents into smaller, manageable, and seman
 - **Separator Hierarchy:** Use nested separators (e.g., ["\n\n", "\n", ".", " "]) to respect paragraph and sentence boundaries.
 - **Metadata Integration:** Attach metadata (source, summary) to each chunk to improve retrieval accuracy.
 
+**Character splitting**
+Character splitting breaks text into smaller, fixed-length segments (chunks) based on a specified character count, regardless of content structure. It is the most basic, simple, and rigid form of text chunking, often used in LangChain to divide documents by character length while allowing for optional overlap between segments.
+
+**Method:** Divides text into N-character sized chunks.
+
+**Parameters:**
+
+- **Chunk Size:** Defines the number of characters per chunk (e.g., 50, 100, 1000).
+- **Chunk Overlap:** Determines the number of characters shared between consecutive chunks to maintain context.
+
+**Pros & Cons:** It is easy to implement, but because it is rigid, it does not consider the semantic structure of the text.
+
+**Character and sentence splitting** are essential NLP preprocessing tasks for breaking down text into manageable chunks. Character-based splitting uses fixed lengths for quick, rigid cuts, whereas sentence splitting utilizes linguistic rules (periods, question marks) or AI models to segment text into coherent sentences while handling abbreviations.
+**Delimiter:** Specific characters like \n\n (paragraphs) or . (sentences) used to separate text.
+
+Recursive character splitting is a technique for splitting long text into smaller, meaningful chunks for LLMs, prioritizing structural integrity by recursively splitting on a prioritized list of delimiters (e.g., paragraphs , newlines , spaces , and empty strings ) until the target chunk size is reached. It improves Retrieval-Augmented Generation (RAG) by keeping related text together rather than splitting indiscriminately at a fixed character count.
+How It Works
+• Prioritized Separators: The algorithm attempts to split the text using a list of delimiters, starting with the largest structures (paragraphs) and moving to smaller ones (sentences, words) if the resulting chunks are still too large.
+• Recursive Process: If a chunk is larger than the specified , the splitter recursively applies the next separator in the list to that chunk.
+• Parameters:
+chunk_size: The target maximum length of each chunk.
+chunk_overlap: Number of characters to overlap between chunks, maintaining context.
+separators: The list of characters used for splitting (default is ["\n\n", "\n", " ", ""] )
+
+Benefits
+• Maintains Context: By trying to split at paragraphs or sentences first, it ensures chunks are more coherent than simple character-count splitting.
+• Respects Structure: It keeps related information together as long as possible.
+• Scalable: Effective for breaking down large documents, legal records, or medical reports.
+
+This approach is highly recommended for general text processing to avoid breaking sentences or words in the middle, ensuring better semantic retrieval in AI applications.
+
+#### **TokenTextSplitter**
+
+TokenTextSplitter is a specialized text splitting tool used in Natural Language Processing (NLP) and Retrieval-Augmented Generation (RAG) pipelines, particularly within frameworks like LangChain and LlamaIndex. Unlike character-based splitters that break text at fixed numbers of characters (e.g., spaces or newlines), the TokenTextSplitter divides text based on the exact count of tokens.
+This ensures that text chunks perfectly fit within the token limits (context windows) of specific Large Language Models (LLMs) like GPT-3 or GPT-4.
+
+**Key Features and Functionality**
+**Token-Aware Precision:** It counts tokens using a tokenizer (often tiktoken for OpenAI models, such as cl100k_base), rather than characters.
+**Prevents Truncation Errors:** Because it operates on the same unit as the LLM (tokens), it ensures that chunks do not exceed token limits, preventing information loss.
+**Chunk Overlap:** Like other splitters, it allows for overlapping chunks, which helps maintain context across boundaries.
+**Customizable:** Users can define chunk_size (maximum tokens per chunk) and chunk_overlap.
+
+**How It Works**
+Tokenization: The input text is encoded into tokens using a specific encoding (e.g., cl100k_base for newer OpenAI models).
+Splitting: The tokens are split into chunks based on the defined chunk_size.
+Decoding: The token chunks are decoded back into text.
+Refinement: It may attempt to break at meaningful boundaries (sentences, periods, etc.) if the token count exceeds the limit.
+
+**Use Case: When to Use TokenTextSplitter**
+RAG Applications: When preparing large documents for vector storage to ensure retriever performance.
+LLM Prompting: When feeding text to models with strict input token constraints.
+Summarization: When breaking down a long document into smaller, manageable chunks.
+
+**Comparison with Other Splitters**
+vs. CharacterTextSplitter: CharacterTextSplitter is faster but less precise for model limits.
+vs. RecursiveCharacterTextSplitter: RecursiveCharacterTextSplitter is generally better for keeping paragraphs/sentences together, while TokenTextSplitter is better for strict, hard limits on token counts.
+
 Chunk overlap is an AI text-processing technique where adjacent segments (chunks) of text share a small, common portion of content, preventing loss of context at boundary points. Typically 10–20% of the chunk size, it ensures semantic continuity in RAG (Retrieval-Augmented Generation) applications by maintaining information across cuts.
 Key Aspects of Chunk Overlap:
 Purpose: It preserves context when splitting large documents for LLMs, ensuring that information spanning across boundaries is not lost or misinterpreted.
