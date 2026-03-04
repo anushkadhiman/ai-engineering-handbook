@@ -80,16 +80,16 @@ Positional encodings are a fundamental component of Transformer-based Large Lang
 
 **Key Types of Positional Encoding Methods**
 
-- **Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
-- **Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
-- **Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
-- **Relative Positional Encoding (RPE):** Instead of encoding the absolute position, these methods encode the relative distance between pairs of tokens.
-- **Bias-Based (e.g., T5):** Adds a learnable bias term to the attention scores based on the distance between keys and queries.
-- **ALiBi (Attention with Linear Biases):** Adds a static penalty to attention scores that is proportional to the distance between tokens, enabling robust generalization to unseen lengths.
-- **Rotary Position Embedding (RoPE):** The current standard for modern LLMs (e.g., LLaMA, PaLM, GPT-NeoX), RoPE encodes absolute positions by applying a rotational transformation to the Query and Key vectors in the self-attention mechanism. Advantages: Naturally models relative distances, is computationally efficient, and enables strong extrapolation, allowing models to handle sequences much longer than their training length.
-- **Context Extension:** Techniques like RoPE scaling (e.g., YaRN, NTK-aware interpolation) are used to stretch the effective context window of models.
-- **NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
-- **Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
+**1. Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
+**2. Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
+**3. Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
+**4. Relative Positional Encoding (RPE):** Instead of encoding the absolute position, these methods encode the relative distance between pairs of tokens.
+**5. Bias-Based (e.g., T5):** Adds a learnable bias term to the attention scores based on the distance between keys and queries.
+**6. ALiBi (Attention with Linear Biases):** Adds a static penalty to attention scores that is proportional to the distance between tokens, enabling robust generalization to unseen lengths.
+**7. Rotary Position Embedding (RoPE):** The current standard for modern LLMs (e.g., LLaMA, PaLM, GPT-NeoX), RoPE encodes absolute positions by applying a rotational transformation to the Query and Key vectors in the self-attention mechanism. Advantages: Naturally models relative distances, is computationally efficient, and enables strong extrapolation, allowing models to handle sequences much longer than their training length.
+**8. Context Extension:** Techniques like RoPE scaling (e.g., YaRN, NTK-aware interpolation) are used to stretch the effective context window of models.
+**9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
+**10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
 
 #### **Significance of pre-training and fine-tuning**
 
@@ -154,9 +154,7 @@ Decoder-only models are transformer architecturesâ€”like GPT, Llama, and Geminiâ
 - **Autoregressive Generation:** They generate text one token at a time, where each new token depends on all previous tokens.
 - **Masked Self-Attention:** This mechanism ensures the model cannot "see" future tokens during training or generation, which is crucial for predicting the next word in a sequence.
 - **Components:** The architecture includes token input layers, masked multi-head self-attention, position-wise feed-forward networks, and layer normalization.
-
-**Advantages and Use Cases**
-
+  **Advantages and Use Cases**
 - **Efficiency & Scaling:** Due to their straightforward architecture, they are computationally efficient to train and scale, allowing them to handle vast amounts of data.
 - **Generative Capabilities:** They are the standard for creative writing, code generation, and general text completion.
 - **Prompt-Based Functionality:** They excel at in-context learning and zero-shot tasks; providing a prompt (e.g., "translate to French") is often sufficient for the model to understand the task without specific fine-tuning.
@@ -177,15 +175,11 @@ The training paradigm of Large Language Models (LLMs) consists of a **multi-stag
 - **Parameter-Efficient Fine-Tuning (PEFT):** Techniques like LoRA (Low-Rank Adaptation) are used to update only a subset of parameters, reducing computational costs.
 - **Continual Pre-training (CPT):** An alternative to building from scratch where existing models are updated with new data to reduce training costs.
 - **Retrieval-Augmented Generation (RAG):** An architectural integration that allows models to access external knowledge bases.
-
-**Main Training Approaches**
-
+  **Main Training Approaches**
 - **Pre-training from Scratch (PTFS):** Highest performance but requires massive resources.
 - **Continual Pre-training (CPT):** More cost-effective for model updates.
 - **Parameter-Efficient Fine-Tuning (PEFT):** Focuses on updating fewer parameters, allowing for efficient adaptation.
-
-**Challenges**
-
+  **Challenges**
 - **Resource Intensive:** Training requires substantial computational power and energy.
 - **Data Dependence:** Model quality is strictly limited by the training data.
 - **Bias:** Models can inherit and amplify biases present in the training data.
