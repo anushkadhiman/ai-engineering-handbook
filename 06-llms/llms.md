@@ -72,7 +72,7 @@ Positional encodings are a fundamental component of Transformer-based Large Lang
 - It fundamental component of Transformer-based Large Language Models (LLMs) that inject information about the order of tokens into the model. Because the self-attention mechanism processes tokens in parallel, it lacks an intrinsic notion of sequence order; without positional encodings, "dog bites man" and "man bites dog" would appear identical to the model.
 - It assigns a unique representation to each position in a sequence, allowing the model to distinguish between tokens based on their location, such as attending to the i-th token.
 
-#### **Why Positional Encoding is Essential**
+**Why Positional Encoding is Essential**
 
 1. Order Awareness: Transformers are permutation-invariant; positional encodings provide necessary structural information to understand syntax and sequence.
 2. Handling Long Sequences: They allow the model to understand the distance between tokens, crucial for interpreting long-range dependencies in texts.
@@ -80,16 +80,16 @@ Positional encodings are a fundamental component of Transformer-based Large Lang
 
 **Key Types of Positional Encoding Methods**
 
-**1. Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
-**2. Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
-**3. Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
-**4. Relative Positional Encoding (RPE):** Instead of encoding the absolute position, these methods encode the relative distance between pairs of tokens.
-**5. Bias-Based (e.g., T5):** Adds a learnable bias term to the attention scores based on the distance between keys and queries.
-**6. ALiBi (Attention with Linear Biases):** Adds a static penalty to attention scores that is proportional to the distance between tokens, enabling robust generalization to unseen lengths.
-**7. Rotary Position Embedding (RoPE):** The current standard for modern LLMs (e.g., LLaMA, PaLM, GPT-NeoX), RoPE encodes absolute positions by applying a rotational transformation to the Query and Key vectors in the self-attention mechanism. Advantages: Naturally models relative distances, is computationally efficient, and enables strong extrapolation, allowing models to handle sequences much longer than their training length.
-**8. Context Extension:** Techniques like RoPE scaling (e.g., YaRN, NTK-aware interpolation) are used to stretch the effective context window of models.
-**9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
-**10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
+- **Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
+- **Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
+- **Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
+- **Relative Positional Encoding (RPE):** Instead of encoding the absolute position, these methods encode the relative distance between pairs of tokens.
+- **Bias-Based (e.g., T5):** Adds a learnable bias term to the attention scores based on the distance between keys and queries.
+- **ALiBi (Attention with Linear Biases):** Adds a static penalty to attention scores that is proportional to the distance between tokens, enabling robust generalization to unseen lengths.
+- **Rotary Position Embedding (RoPE):** The current standard for modern LLMs (e.g., LLaMA, PaLM, GPT-NeoX), RoPE encodes absolute positions by applying a rotational transformation to the Query and Key vectors in the self-attention mechanism. Advantages: Naturally models relative distances, is computationally efficient, and enables strong extrapolation, allowing models to handle sequences much longer than their training length.
+- **Context Extension:** Techniques like RoPE scaling (e.g., YaRN, NTK-aware interpolation) are used to stretch the effective context window of models.
+- **NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
+- **Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
 
 #### **Significance of pre-training and fine-tuning**
 
@@ -118,10 +118,12 @@ LLM embeddings are numerical, vector representations of text generated by large 
 **Semantic Representation:** Embeddings map words, phrases, or documents to dense vectors where similar meanings are located closer together in the vector space.
 **Context-Awareness:** Unlike Word2Vec, LLM embeddings change based on surrounding text, providing deeper, situational understanding.
 **Functionality:** They act as a bridge between human language and computer-readable numerical data.
+
 **Key Use Cases:**
 **Semantic Search:** Finding documents that are conceptually similar to a query.
 **RAG (Retrieval-Augmented Generation):** Combining external knowledge with LLMs for more accurate answers.
 **Recommendation Systems:** Personalized content, similarity, and classification.
+
 **Generation and Storage**
 LLMs (e.g., GPT-3, BERT) convert input text into these vectors through their transformer architecture. These embeddings are often stored in specialized databases (vector databases) to allow for fast semantic searching over large datasets. Popular models for generating embeddings include those from OpenAI, as well as open-source alternatives like all-MiniLM.
 **Embeddings vs. Other Representations**
@@ -135,6 +137,7 @@ Key factors include high accuracy on domain-specific data, appropriate context w
 Encoder-only models (e.g., BERT, RoBERTa, DeBERTa) are transformer architectures designed to understand and interpret text by processing input bidirectionally, capturing deep context from both sides of a token. They convert text into numerical embeddings, making them ideal for classification, sentiment analysis, and named entity recognition rather than text generation.
 
 **Key Characteristics and Use Cases:** - **Architecture:** Uses a stack of encoder layers to process input sequences in parallel. - **Bidirectional Context**: Unlike decoder-only models (like GPT) that read left-to-right, encoders analyze the entire context of a sentence simultaneously. - **Primary Function**: These models are "representational," meaning they convert input into high-dimensional vectors (embeddings) to understand meaning.
+
 **Applications:**
 **Text Classification**: Sentiment analysis, spam detection.
 **Sequence Tagging**: Named Entity Recognition (NER), part-of-speech tagging.
@@ -151,7 +154,9 @@ Decoder-only models are transformer architecturesâ€”like GPT, Llama, and Geminiâ
 - **Autoregressive Generation:** They generate text one token at a time, where each new token depends on all previous tokens.
 - **Masked Self-Attention:** This mechanism ensures the model cannot "see" future tokens during training or generation, which is crucial for predicting the next word in a sequence.
 - **Components:** The architecture includes token input layers, masked multi-head self-attention, position-wise feed-forward networks, and layer normalization.
-  **Advantages and Use Cases**
+
+**Advantages and Use Cases**
+
 - **Efficiency & Scaling:** Due to their straightforward architecture, they are computationally efficient to train and scale, allowing them to handle vast amounts of data.
 - **Generative Capabilities:** They are the standard for creative writing, code generation, and general text completion.
 - **Prompt-Based Functionality:** They excel at in-context learning and zero-shot tasks; providing a prompt (e.g., "translate to French") is often sufficient for the model to understand the task without specific fine-tuning.
@@ -172,11 +177,15 @@ The training paradigm of Large Language Models (LLMs) consists of a **multi-stag
 - **Parameter-Efficient Fine-Tuning (PEFT):** Techniques like LoRA (Low-Rank Adaptation) are used to update only a subset of parameters, reducing computational costs.
 - **Continual Pre-training (CPT):** An alternative to building from scratch where existing models are updated with new data to reduce training costs.
 - **Retrieval-Augmented Generation (RAG):** An architectural integration that allows models to access external knowledge bases.
-  **Main Training Approaches**
+
+**Main Training Approaches**
+
 - **Pre-training from Scratch (PTFS):** Highest performance but requires massive resources.
 - **Continual Pre-training (CPT):** More cost-effective for model updates.
 - **Parameter-Efficient Fine-Tuning (PEFT):** Focuses on updating fewer parameters, allowing for efficient adaptation.
-  **Challenges**
+
+**Challenges**
+
 - **Resource Intensive:** Training requires substantial computational power and energy.
 - **Data Dependence:** Model quality is strictly limited by the training data.
 - **Bias:** Models can inherit and amplify biases present in the training data.
