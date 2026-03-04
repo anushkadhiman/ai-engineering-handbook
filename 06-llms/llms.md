@@ -1,4 +1,4 @@
-**What is LLM ?**
+#### **What is LLM ?**
 
 - Advanced AI systems trained on massive datasets to understand, generate, and summarize human language, using transformer architectures to process text via tokens. These models, including OpenAI's GPT-4 and Google's BERT, analyze probability to predict, create content, and power conversational AI.
 
@@ -16,11 +16,12 @@
   - **Data Analysis:** Summarizing large documents and extracting key information.
   - **Programming:** Generating, debugging, and explaining code.
 
-**How do LLM work ?**
+#### **How do LLM work ?**
 
 - It work by using **transformer architectures**— to analyze vast datasets and predict the most likely next word (or token) in a sequence based on probability. They learn to understand _context_, _relationships_, and _language nuances_ through unsupervised training and _attention mechanisms_.
 
-- **Key Components and Processes:**  
+- **Key Components and Processes:**
+
   **Training Data:** Models are trained on massive, diverse datasets (internet text, books, code) to understand language patterns.
   - **Neural Networks & Transformers:** LLMs use neural networks, specifically _transformer_ models, which process entire sentences or paragraphs at once rather than word-by-word, enhancing understanding of _context_.
   - **Tokenization:** Text input is broken down into smaller units called _tokens_ (words or parts of words), which are converted into numerical vectors for processing.  
@@ -31,7 +32,8 @@
   **Pre-training:** The model learns grammar, facts, and reasoning by predicting masked or next words in a huge, unlabeled dataset.
   - **Fine-tuning/RLHF:** The model is further trained on specific datasets or with _Human Feedback_ (_Reinforcement Learning from Human Feedback_) to align its outputs with human intent and safety guidelines.
 
-**Architecture of a transformer model**
+#### **Architecture of a transformer model**
+
 The Transformer model is a neural network architecture for sequential data that uses self-attention mechanisms to process entire sequences in parallel, rather than sequentially like RNNs. Key components include encoder-decoder stacks, multi-head attention, positional encoding, and feed-forward networks, enabling superior context understanding and faster training for tasks like translation and generation.
 
 - **Input Embedding & Positional Encoding:** Converts input tokens into vectors and adds information about the order of words (since there is no recurrence).
@@ -47,32 +49,37 @@ The Transformer model is a neural network architecture for sequential data that 
 - **Decoder-only (e.g., GPT):** Used for generative AI and text generation.
 - **Advanced Structures:** Modern models like Switch Transformer utilize Mixture-of-Experts (MoE) for efficiency.
 
-**Attention mechanisms in Transformer models**
+#### **Attention mechanisms in Transformer models**
 
-- It enable neural networks to dynamically focus on relevant parts of an input sequence, assigning weighted importance to different words to capture context regardless of distance. By computing Query, Key, and Value vectors for each word, the model calculates attention scores via dot products to determine how much focus each token receives.
-- **Core Concepts and Components**
-  - **Self-Attention:** The mechanism enables a token to interact with all other tokens in a sequence, allowing it to gather contextual information from far-away words.
-  - **Q, K, V Vectors:** For each word, three vectors—Query (what I am looking for), Key (what I offer), and Value (what I actually contain)—are learned during training.
-  - **Attention Scores & Scaling:** The model computes the similarity between a Query and all Keys via dot product, then scales these scores to avoid large gradients.
-  - **Softmax:** The scores are passed through a softmax function to produce normalized probabilities (attention weights) that sum to 1.
-  - **Weighted Sum:** These weights are multiplied by the Value vectors to generate the final representation, highlighting crucial information.
+It enable neural networks to dynamically focus on relevant parts of an input sequence, assigning weighted importance to different words to capture context regardless of distance. By computing Query, Key, and Value vectors for each word, the model calculates attention scores via dot products to determine how much focus each token receives.
+
+**Core Concepts and Components**
+
+- **Self-Attention:** The mechanism enables a token to interact with all other tokens in a sequence, allowing it to gather contextual information from far-away words.
+- **Q, K, V Vectors:** For each word, three vectors—Query (what I am looking for), Key (what I offer), and Value (what I actually contain)—are learned during training.
+- **Attention Scores & Scaling:** The model computes the similarity between a Query and all Keys via dot product, then scales these scores to avoid large gradients.
+- **Softmax:** The scores are passed through a softmax function to produce normalized probabilities (attention weights) that sum to 1.
+- **Weighted Sum:** These weights are multiplied by the Value vectors to generate the final representation, highlighting crucial information.
 - **Key Advantages**
   - **Long-Range Dependencies:** Unlike RNNs, Transformers can connect distant tokens directly, improving comprehension of context.
   - **Parallelization:** Because the model doesn't process tokens sequentially, it can process the entire input at once, speeding up training on GPUs.
   - **Contextual Understanding:** The mechanism allows words to have different meanings based on surrounding words, addressing polysemy (e.g., "bank" in "river bank" vs. "bank deposit").
 
-**Positional encodings**
+#### **Positional encodings**
+
 Positional encodings are a fundamental component of Transformer-based Large Language Models (LLMs)
 
 - It fundamental component of Transformer-based Large Language Models (LLMs) that inject information about the order of tokens into the model. Because the self-attention mechanism processes tokens in parallel, it lacks an intrinsic notion of sequence order; without positional encodings, "dog bites man" and "man bites dog" would appear identical to the model.
 - It assigns a unique representation to each position in a sequence, allowing the model to distinguish between tokens based on their location, such as attending to the i-th token.
-  **Why Positional Encoding is Essential**
+
+#### **Why Positional Encoding is Essential**
 
 1. Order Awareness: Transformers are permutation-invariant; positional encodings provide necessary structural information to understand syntax and sequence.
 2. Handling Long Sequences: They allow the model to understand the distance between tokens, crucial for interpreting long-range dependencies in texts.
 3. Overcoming Parallel Processing Limits: They bridge the gap between parallel token processing and sequential language understanding.
 
 **Key Types of Positional Encoding Methods**
+
 **1. Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
 **2. Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
 **3. Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
@@ -84,7 +91,7 @@ Positional encodings are a fundamental component of Transformer-based Large Lang
 **9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
 **10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
 
-**Significance of pre-training and fine-tuning**
+#### **Significance of pre-training and fine-tuning**
 
 Pre-training builds a foundational, versatile Large Language Model (LLM) by training on massive, unlabelled datasets to understand language patterns, while fine-tuning adapts this model to specific tasks or domains using smaller, labeled datasets. Pre-training provides general knowledge, whereas fine-tuning improves accuracy, reduces hallucinations, and optimizes for specialized, task-specific, or conversational outputs.
 
@@ -103,7 +110,8 @@ Pre-training builds a foundational, versatile Large Language Model (LLM) by trai
   **Behavioral Alignment:** Fine-tuning can be used to make models follow instructions, adopt specific tones, and reduce harmful biases.
   **Efficiency:** It requires far less computational power and data than pre-training from scratch, as it builds upon existing knowledge.
 
-**Embeddings**
+#### **Embeddings**
+
 LLM embeddings are numerical, vector representations of text generated by large language models, capturing semantic meaning and context in a high-dimensional space. Unlike older, static word vectors, these embeddings are context-aware and dynamic, allowing for semantic search, retrieval-augmented generation (RAG), and text classification. They enable AI to understand, compare, and cluster text based on meaning, rather than simple keyword matches.
 
 **Key Aspects of LLM Embeddings**
@@ -122,8 +130,10 @@ While older techniques like One-Hot Encoding create sparse, high-dimensional, an
 A good embedding model translates data (text, image, audio) into high-dimensional vectors that capture deep semantic meaning, placing similar concepts close together and dissimilar ones far apart.
 Key factors include high accuracy on domain-specific data, appropriate context window length, robust performance under input changes, and efficiency in terms of latency and dimensionality.
 
-**Encoder-only models**
+#### **Encoder-only models**
+
 Encoder-only models (e.g., BERT, RoBERTa, DeBERTa) are transformer architectures designed to understand and interpret text by processing input bidirectionally, capturing deep context from both sides of a token. They convert text into numerical embeddings, making them ideal for classification, sentiment analysis, and named entity recognition rather than text generation.
+
 **Key Characteristics and Use Cases:** - **Architecture:** Uses a stack of encoder layers to process input sequences in parallel. - **Bidirectional Context**: Unlike decoder-only models (like GPT) that read left-to-right, encoders analyze the entire context of a sentence simultaneously. - **Primary Function**: These models are "representational," meaning they convert input into high-dimensional vectors (embeddings) to understand meaning.
 **Applications:**
 **Text Classification**: Sentiment analysis, spam detection.
@@ -131,7 +141,8 @@ Encoder-only models (e.g., BERT, RoBERTa, DeBERTa) are transformer architectures
 **Semantic Search**: Finding relevant documents based on meaning.
 **Common Examples**: BERT, RoBERTa, ALBERT, DeBERTa, and the updated ModernBERT.
 
-**Decoder-only models**
+#### **Decoder-only models**
+
 Decoder-only models are transformer architectures—like GPT, Llama, and Gemini—that utilize solely decoder blocks to generate text autoregressively. By employing masked self-attention, they predict the next token based only on preceding context. These models excel at generative tasks, are highly efficient to scale, and dominate modern Large Language Models (LLMs).
 
 **Key Characteristics and Components**
@@ -146,7 +157,7 @@ Decoder-only models are transformer architectures—like GPT, Llama, and Gemini�
 - **Prompt-Based Functionality:** They excel at in-context learning and zero-shot tasks; providing a prompt (e.g., "translate to French") is often sufficient for the model to understand the task without specific fine-tuning.
   **Popular Examples:** GPT Family (OpenAI): GPT-3, GPT-4, ChatGPT; Llama (Meta): Llama 2, Llama 3; Gemini (Google); PaLM & Chinchilla.
 
-**The training paradigm of Large Language Models (LLMs)**
+#### **The training paradigm of Large Language Models (LLMs)**
 
 The training paradigm of Large Language Models (LLMs) consists of a **multi-stage process starting with massive-scale self-supervised pre-training on raw text to learn language, followed by supervised fine-tuning (SFT) to follow instructions, and final alignment via Reinforcement Learning from Human Feedback (RLHF).** This approach transforms models from text predictors into helpful, safe AI assistants.
 
@@ -170,7 +181,7 @@ The training paradigm of Large Language Models (LLMs) consists of a **multi-stag
 - **Data Dependence:** Model quality is strictly limited by the training data.
 - **Bias:** Models can inherit and amplify biases present in the training data.
 
-**Applications of LLMs:**
+#### **Applications of LLMs:**
 
 - **Content Generation & Creativity:** Creating blog posts, marketing copy, emails, poetry, and automated news writing.
 - **Customer Service & Virtual Assistants:** Powering chatbots that provide 24/7 support, answer queries, and handle tasks like booking appointments.
@@ -185,7 +196,8 @@ The training paradigm of Large Language Models (LLMs) consists of a **multi-stag
 - **Finance:** Fraud detection and sentiment analysis for market trends.
 - **Media:** Automated content generation and audience engagement.
 
-**Responsible Large Language Model (LLM) development**
+#### **Responsible Large Language Model (LLM) development**
+
 Responsible Large Language Model (LLM) development and usage involves embedding ethical principles—fairness, transparency, privacy, and safety—throughout the entire AI lifecycle to mitigate risks like bias, hallucinations, and misuse. Key practices include using diverse, audited data for training, implementing robust prompt guardrails, adopting retrieval-augmented generation (RAG) for accuracy, and ensuring human-in-the-loop oversight.
 
 **Key Aspects of Responsible LLM Development**
@@ -204,7 +216,8 @@ Responsible Large Language Model (LLM) development and usage involves embedding 
 - **Adaptive Governance:** Implementing agile, flexible governance that can keep pace with evolving technology.
 - **Defensive Prompting:** Building in defensive instructions to prevent "prompt injection" attacks, such as when a user tries to bypass safety filters.
 
-**Tokenization in LLMs**
+#### **Tokenization in LLMs**
+
 Tokenization in LLMs is the crucial process of breaking raw text into smaller units called tokens (words, subwords, or characters) and mapping them to numerical IDs for model processing. It enables models to manage vocabulary efficiently, handle new words, and optimize context windows. Subword tokenization is the industry standard for balancing efficiency and vocabulary size.
 **Key Aspects of LLM Tokenization**
 
@@ -228,7 +241,7 @@ Common algorithms include Byte Pair Encoding (BPE), WordPiece, and Unigram.
 - **Vocabulary Handling:** It allows the model to handle new, rare, or misspelled words by breaking them down into familiar subwords.
 - **Cost and Length:** In API-based models, costs are often calculated based on the number of tokens, making efficient tokenization important for controlling expenses.
 
-**LLM-based text classification**
+#### **LLM-based text classification**
 
 **LLM-based text classification** uses **generative models** to categorize text into predefined labels, surpassing traditional methods by leveraging _contextual understanding_ for _sentiment analysis_, _topic detection_, and _spam filtering_. LLMs enable _zero-shot_, _few-shot_, or _fine-tuned classification_, often requiring less preprocessing and providing justifications, with models like **Gemini** and **Claude** showing high performance.
 
@@ -258,7 +271,7 @@ Common algorithms include Byte Pair Encoding (BPE), WordPiece, and Unigram.
 
 - **Model Selection**: Utilizing advanced models like **_GPT-4_**, **_Claude 3.5 Sonnet_**, or **_Command-R_** for high-performance classification tasks.
 
-**LLM output verification**
+#### **LLM output verification**
 
 **LLM output verification** is the critical process of checking, validating, and sanitizing the text or data generated by Large Language Models to ensure accuracy, safety, and reliability before it reaches the end user or downstream systems. As LLMs can produce hallucinatory, biased, or inconsistent results, this process is essential for building trust in AI applications.
 
@@ -294,7 +307,7 @@ Here are the key approaches to verifying LLM outputs:
 - **Mitigate Insecure Output Handling**: Implement proper encoding and sanitization to prevent _XSS_ (_Cross-Site Scripting_) and other vulnerabilities.
 - **Implement "Smart Retry" Logic**: If validation fails, return the error to the model with context, allowing it to correct its own mistake.
 
-**Semantic search in Large Language Models (LLMs)**
+#### **Semantic search in Large Language Models (LLMs)**
 
 Semantic search in Large Language Models (LLMs) is a technique that retrieves information by understanding the contextual meaning and intent behind a user's query, rather than just matching keywords. It uses vector embeddings to grasp relationships between concepts, enabling it to find relevant results even when different phrasing is used.
 
@@ -326,7 +339,7 @@ Semantic search in Large Language Models (LLMs) is a technique that retrieves in
 
 - **Cross-lingual Capability:** Can match concepts across different languages.
 
-**Multimodal Large Language Models (MLLMs)**
+#### **Multimodal Large Language Models (MLLMs)**
 
 Multimodal Large Language Models (MLLMs) are advanced AI systems that extend traditional LLMs by processing, understanding, and generating content across multiple data types simultaneously, including **text, images, audio, video, and 3D data**. They mimic human-like perception by using specialized encoders to convert diverse inputs into a shared representation, acting as a "**brain**" with sensory modules. Key examples include **_GPT-4V, Gemini, and LLaVA_**.
 
@@ -354,7 +367,7 @@ Multimodal Large Language Models (MLLMs) are advanced AI systems that extend tra
 
 - **Document Understanding:** Analyzing documents that contain both text and visual elements.
 
-**Challenges and Future Directions**
+**Challenges**
 
 Despite rapid progress, MLLMs face significant challenges:
 
