@@ -383,3 +383,25 @@ Despite rapid progress, MLLMs face significant challenges:
 - **Safety and Robustness:** Vulnerable to producing biased or harmful content.
 
 - **Cross-modal Reasoning:** Early-stage development in complex, multi-step logic across data types.
+
+#### Gradient Accumulation
+
+Gradient Accumulation is a technique that allows you to train models with a large "effective" batch size even if your GPU doesn't have enough memory to fit that many samples at once.
+It’s essentially a "buy now, pay later" strategy for memory management.
+
+**How It Works**
+Instead of updating the model's weights after every single batch, you split a large batch into smaller "micro-batches" and sum up the gradients over several steps:
+
+- Forward Pass: Run a micro-batch (e.g., 4 samples) through the model.
+- Calculate Loss & Gradients: Compute the gradients but do not update the weights yet.
+- Accumulate: Add these gradients to a running total (the buffer).
+- Repeat: Do this for steps (the accumulation steps).
+- Step & Reset: Once you've reached your target effective batch size, use the Optimizer to update the weights using the accumulated sum, then clear the buffer.
+
+**Why Use It?**
+Overcoming Hardware Limits: If a batch size of 32 causes an "Out of Memory" (OOM) error, you can use a micro-batch of 4 and an accumulation step of 8 to achieve the same mathematical result.
+**Training Stability:** Larger batch sizes often lead to smoother gradient estimates and better convergence, especially in Large Language Models (LLMs).
+**Cost Efficiency:** It allows you to train sophisticated models on consumer-grade GPUs (like an RTX 3090/4090) rather than needing expensive enterprise clusters.
+
+**The Trade-off: Time**
+While it saves memory, it does not save time. Training will take roughly the same amount of time as it would if you had a massive GPU, because you still have to perform the same number of forward and backward passes.

@@ -54,7 +54,9 @@ Calculation: The model only performs one row of the attention matrix multiplicat
 - Massive speed-up in text generation (latency reduction).
 - Makes long-context generation feasible.
 - Eliminates redundant operations.
-  **Cons**
+
+**Cons**
+
 - Adds complexity to the model's implementation and code.
 - Requires significant VRAM; the cache can grow larger than the model itself.
 - Becomes a memory bandwidth bottleneck as the GPU must constantly load the growing cache.
@@ -363,3 +365,30 @@ llama.cpp is a low-level, high-performance inference engine written in pure C/C+
 - **Model Library:** Instead of hunting for files on Hugging Face, you just type ollama run llama3, and it automatically downloads and starts the model for you.
 - **API by Default:** It automatically sets up a local server that other apps (like Open WebUI or VS Code plugins) can talk to immediately.
 - **Customization:** You can create "Modelfiles" to give your AI specific personalities or system prompts in just a few lines of text.
+
+### Cpu Offloading
+
+Cpu Offloading is a memory management trick that moves model data (weights, gradients, or optimizer states) from the GPU VRAM to the System RAM (CPU) when they aren't actively being used.
+Think of it as using your computer's RAM as an "overflow parking lot" for your graphics card.
+
+**How it Works**
+Modern AI models are often too large to fit entirely on a single GPU. CPU offloading manages this by:
+
+- **Storage:** Keeping the bulk of the model in the much larger (but slower) system memory.
+- **Swapping:** Moving only the specific layer or data needed for the current calculation onto the GPU.
+- **Execution:** Performing the heavy math on the GPU, then moving the results back to the CPU to make room for the next piece.
+
+**When to Use It**
+
+- **Massive Models:** It is the primary way to run 70B+ parameter models on consumer GPUs that only have 8GB or 12GB of VRAM.
+- **Training (Optimizer Offloading):** In tools like DeepSpeed, optimizer states (which take up 2-3x more space than the model itself) are offloaded to the CPU to free up GPU space for larger batch sizes or longer sequences.
+- **Inference:** Using Hugging Face Accelerate, you can load a model that exceeds your VRAM by "mapping" parts of it to the CPU and even the hard drive (disk offloading).
+
+**The Catch: The "Bottleneck"**
+The main downside is speed. Moving data between the GPU and CPU over the PCIe bus is much slower than keeping everything in VRAM. While it prevents "Out of Memory" errors, it can make training or generation significantly slower.
+
+**Popular Implementations**
+
+- **ZeRO-Offload (DeepSpeed):** Specifically designed to offload both optimizer states and gradients to the CPU.
+- **FSDP (Fully Sharded Data Parallel):** A PyTorch technique that supports offloading parameters to the CPU when not in use during the forward/backward pass.
+- **Llama.cpp:** Uses CPU offloading to allow users to run LLMs using a mix of GPU and System RAM, making local AI accessible on standard PCs.
