@@ -91,6 +91,25 @@ Image enhancement in image processing improves digital image quality, contrast, 
 • **Satellite Imagery:** Enhancing aerial photographs for analysis.
 • **Photography & Video:** Improving visual quality and reducing digital noise.
 
+#### Thresholding
+
+Thresholding is a fundamental image segmentation technique that converts grayscale images into binary (black and white) images by separating pixels into foreground and background based on a specific intensity value. Pixels above the threshold become white, while those below become black, crucial for object detection, binarization, and noise reduction.
+
+**Key Concepts and Types**
+
+- **Simple (Global) Thresholding:** A single, fixed threshold value () is applied to the entire image. If , it is assigned the maximum value (foreground); otherwise, it becomes (background).
+- **Adaptive (Local) Thresholding:** The threshold is calculated for smaller regions of the image, allowing for better handling of varying lighting conditions and uneven illumination.
+- **Otsu's Method:** An automatic thresholding technique that finds the optimal value by maximizing the variance between foreground and background pixels, ideal when the image histogram has two distinct peaks.
+
+**Applications**
+
+- **Image Segmentation:** Separating objects from the background.
+- **Optical Character Recognition (OCR):** Converting scanned text documents into binary for character identification.
+- **Medical Imaging:** Segmenting organs or tumors in scans.
+
+**Limitations**
+Simple thresholding struggles with images that have low contrast, noise, or uneven lighting, often requiring advanced adaptive techniques to achieve good results.
+
 ##### Image noise reduction in image processing
 
 Image noise reduction in image processing involves filtering techniques to enhance image quality by reducing undesired noise (e.g., Gaussian, salt-and-pepper). Common techniques include spatial domain filtering like Mean (smoothing), Gaussian (weighted smoothing), Median (salt-and-pepper removal), and Bilateral filters (edge-preserving), as well as advanced methods like Non-Local Means (NLM) and Block Matching 3D (BM3D).
