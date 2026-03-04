@@ -81,14 +81,23 @@ Positional encodings are a fundamental component of Transformer-based Large Lang
 **Key Types of Positional Encoding Methods**
 
 **1. Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
-**2. Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
+
+**2. Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.4
+
 **3. Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
+
 **4. Relative Positional Encoding (RPE):** Instead of encoding the absolute position, these methods encode the relative distance between pairs of tokens.
+
 **5. Bias-Based (e.g., T5):** Adds a learnable bias term to the attention scores based on the distance between keys and queries.
+
 **6. ALiBi (Attention with Linear Biases):** Adds a static penalty to attention scores that is proportional to the distance between tokens, enabling robust generalization to unseen lengths.
+
 **7. Rotary Position Embedding (RoPE):** The current standard for modern LLMs (e.g., LLaMA, PaLM, GPT-NeoX), RoPE encodes absolute positions by applying a rotational transformation to the Query and Key vectors in the self-attention mechanism. Advantages: Naturally models relative distances, is computationally efficient, and enables strong extrapolation, allowing models to handle sequences much longer than their training length.
+
 **8. Context Extension:** Techniques like RoPE scaling (e.g., YaRN, NTK-aware interpolation) are used to stretch the effective context window of models.
+
 **9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
+
 **10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
 
 #### **Significance of pre-training and fine-tuning**
