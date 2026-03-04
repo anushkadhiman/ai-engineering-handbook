@@ -72,7 +72,7 @@ Positional encodings are a fundamental component of Transformer-based Large Lang
 - It fundamental component of Transformer-based Large Language Models (LLMs) that inject information about the order of tokens into the model. Because the self-attention mechanism processes tokens in parallel, it lacks an intrinsic notion of sequence order; without positional encodings, "dog bites man" and "man bites dog" would appear identical to the model.
 - It assigns a unique representation to each position in a sequence, allowing the model to distinguish between tokens based on their location, such as attending to the i-th token.
 
-#### **Why Positional Encoding is Essential**
+**Why Positional Encoding is Essential**
 
 1. Order Awareness: Transformers are permutation-invariant; positional encodings provide necessary structural information to understand syntax and sequence.
 2. Handling Long Sequences: They allow the model to understand the distance between tokens, crucial for interpreting long-range dependencies in texts.
