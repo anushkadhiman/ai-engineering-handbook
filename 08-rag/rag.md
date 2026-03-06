@@ -995,3 +995,32 @@ The process is divided into three main phases: independent encoding, indexing (f
    ColBERTv2: An optimized version that uses quantization and centroids to reduce the massive storage space required to hold billions of token vectors.
    ColPali: A recent multimodal version that uses this same "late interaction" logic for vision-language tasks, matching query tokens against image patches to search through PDFs and charts.
    RAG Pipelines: Often used as a second-stage reranker to provide high-precision results for an LLM after an initial fast retrieval.
+
+#### knowledge graph
+
+A knowledge graph is a structured, network-based representation of information that connects real-world entities (such as people, places, and concepts) through explicitly defined relationships. Unlike traditional databases that store data in rigid tables, knowledge graphs prioritize the connections between data points, transforming raw data into a "network of meaning" that both humans and machines can understand and reason about.
+
+Core Technical Components
+Knowledge graphs are typically built using three primary elements:
+Nodes (Entities): Represent the "things" in a domain, such as a person, product, company, or event.
+Edges (Relationships): The lines connecting nodes that define how they interact (e.g., "Alice works at Company X").
+Labels/Properties: Attributes that provide extra detail about nodes and edges, such as a person's birthdate or a relationship's start date.
+Many knowledge graphs utilize triples—a subject-predicate-object format (e.g., Paris -> isCapitalOf -> France)—to create these connections. This format is foundational to the Resource Description Framework (RDF), a standard for interchanging interconnected data.
+The Role of Ontologies
+An ontology serves as the blueprint or "contract" for a knowledge graph. While a knowledge graph contains actual data instances (the "what is happening"), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the "what does it mean"). For example, in a medical knowledge graph, the ontology defines classes like "Pathogen" and "Drug," while the knowledge graph contains specific instances like "COVID-19" and "Remdesivir".
+Key Benefits
+Grounding AI: Knowledge graphs provide context for Large Language Models (LLMs), significantly reducing hallucinations by grounding AI responses in verified business facts and relationships.
+Breaking Data Silos: They can unify disparate data sources across an organization without needing to replicate or move the original data.
+Advanced Reasoning: Because the data is interconnected, systems can infer new facts that are not explicitly stated by following paths through the graph.
+Enhanced Search: They enable semantic search, allowing engines like Google to understand user intent rather than just matching keywords.
+Real-World Examples
+Organization Knowledge Graph Application
+Google Powers "Knowledge Panels" to provide instant facts about entities and understand query context.
+Amazon Connects products, reviews, and customer behavior to power intelligent recommendation engines.
+LinkedIn Models the global workforce by linking professionals, skills, companies, and schools.
+Healthcare Used by organizations like BenevolentAI to identify existing drugs for new treatments (e.g., COVID-19) by mapping biomedical relationships.
+Finance Used for Fraud Detection by identifying hidden patterns and suspicious networks between accounts and transactions.
+Comparison: Knowledge Graph vs. Graph Database
+While often used together, they serve different purposes:
+Knowledge Graph: A semantic model that captures business meaning and logic (the "what" and "why").
+Graph Database: The infrastructure technology (like Neo4j or FalkorDB) that stores and queries the data (the "how" and "where").

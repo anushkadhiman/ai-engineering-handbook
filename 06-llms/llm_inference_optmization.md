@@ -411,3 +411,27 @@ Best Practices
 Place system instructions, tool definitions, and long reference documents at the beginning. Put user-specific, changing queries at the end.
 Ensure formatting, whitespace, and the order of elements (like tools or few-shot examples) are identical across requests.
 For multi-turn chats, place breakpoints after static instructions or after key conversation turns to maximize reuse.
+
+#### Preference Tuning with DPO
+
+Direct Preference Optimization (DPO) is a stable and efficient alternative to Reinforcement Learning from Human Feedback (RLHF). While RLHF requires training a separate "reward model" and navigating the complexities of PPO (Proximal Policy Optimization), DPO treats preference tuning as a straightforward classification problem.
+
+1. How It Works
+   DPO directly optimizes the language model to satisfy human preferences by comparing pairs of responses:
+   Chosen (
+   ): The response the human preferred.
+   Rejected (
+   ): The response the human disliked.
+   Mechanism: The model is trained to increase the relative log-probability of the chosen response over the rejected response, anchored by a "reference model" (the original model before tuning) to prevent it from drifting too far or becoming nonsensical.
+
+2. Key Benefits
+   Eliminates the Reward Model: You don't need to build and maintain a separate model that "scores" text; the policy model learns the reward implicitly.
+   Lower Hardware Requirements: Because it uses fewer models simultaneously, DPO can often be performed on consumer-grade GPUs using techniques like QLoRA.
+   Better Performance: Recent benchmarks show that DPO-tuned models (like Zephyr-7B) often outperform larger models tuned with traditional RLHF.
+
+3. Implementation Tools
+   TRL (Transformer Reinforcement Learning): The primary Hugging Face library for DPO. It provides a DPOTrainer class that handles the loss calculations and reference model management automatically.
+   Axolotl: A popular configuration-based trainer that supports DPO for various model architectures.
+4. When to Use DPO
+   Use DPO if you have a dataset of A/B preferences and want a stable, cost-effective way to align your model’s "voice" or safety constraints.
+   Stick to RLHF only if you have a very complex reward signal that cannot be easily captured by simple binary comparisons, or if you are training at an extreme scale where the overhead of PPO is less of a bottleneck.

@@ -159,3 +159,70 @@ Embedded Methods: These integrate feature selection directly into the model trai
 Techniques: L1 Regularization (Lasso), which shrinks less important coefficients to zero, and Tree-based Importance (e.g., Random Forest or Gradient Boosting).
 Unsupervised Methods: Used when labels are unavailable, focusing on data structure rather than target correlation.
 Techniques: Principal Component Analysis (PCA), t-SNE, and Autoencoders.
+
+#### What Is Contrastive Learning?
+
+Contrastive learning is a machine learning paradigm that teaches models to understand data by comparing similar and dissimilar samples. Unlike standard supervised learning that maps an input to a specific label (e.g., "this is a cat"), contrastive learning learns an embedding space where related items are pulled together and unrelated items are pushed apart.
+
+1. How It Works: The "Anchor" System
+   The core mechanism typically involves three types of data points:
+   Anchor: A reference data point selected from the dataset.
+   Positive Sample: A data point similar to the anchor (e.g., an augmented version of the same image or a sentence with the same meaning).
+   Negative Sample: A data point dissimilar to the anchor (e.g., a completely different image or a random sentence).
+   The model is trained to minimize the distance between the anchor and the positive sample while maximizing the distance between the anchor and the negative samples in a high-dimensional vector space.
+2. Why It Is Important
+   Self-Supervised Power: It can learn from vast amounts of unlabeled data by creating its own "labels" through data augmentation (e.g., cropping or rotating an image to create a positive pair).
+   Data Efficiency: Once a model learns these robust representations, it can be fine-tuned for specific tasks (like medical diagnosis) using very few labeled examples.
+   Improved Generalization: Models focus on high-level semantic features (the "concept" of an object) rather than low-level pixel noise, making them more robust.
+3. Key Frameworks and Applications
+   CLIP (OpenAI): Connects images and text in a shared space, allowing you to search for images using natural language.
+   SimCLR (Google): A popular framework that uses strong data augmentation and large batch sizes to achieve state-of-the-art visual representations.
+   MoCo (Meta): Uses a "momentum encoder" to maintain a large dictionary of negative samples without requiring massive GPU memory.
+   NLP Tasks: Used for sentence embeddings, machine translation, and text classification by contrasting original text with augmented versions (e.g., via back-translation or word deletion).
+
+#### Data handling in machine learning (ML)
+
+Data handling in machine learning (ML) is the systematic process of preparing raw data for training and evaluating models. It typically consumes up to 80% of a data scientist's time because model performance is directly dependent on data quality (the "garbage in, garbage out" principle).
+
+Core Stages of Data Handling
+Data Collection & Ingestion: Gathering raw data from diverse sources like databases, APIs, CSV files, or real-time streams.
+Data Cleaning: Identifying and resolving issues in raw datasets to ensure consistency and reliability.
+Handling Missing Values: Using methods like deletion (dropping rows/columns) or imputation (filling gaps with the mean, median, mode, or using Scikit-learn's KNNImputer).
+Managing Outliers: Detecting extreme values via visual tools (box plots) or statistical methods (Z-score, IQR) and removing or transforming them.
+Fixing Structural Errors: Standardizing formats, variable types, and removing duplicates.
+Exploratory Data Analysis (EDA): Using statistical and visual tools (scatter plots, histograms) to uncover patterns, trends, and potential biases before modeling.
+Data Transformation & Feature Engineering: Converting cleaned data into a machine-readable format and creating more informative features.
+Feature Scaling: Rescaling numerical data using Normalization (scaling to a 0-1 range) or Standardization (scaling to zero mean and unit variance).
+Categorical Encoding: Converting text labels into numbers using One-Hot Encoding (creating binary columns) or Label Encoding (assigning unique integers).
+Dimensionality Reduction: Reducing the number of features while retaining core information using techniques like Principal Component Analysis (PCA) or t-SNE.
+Data Splitting: Dividing the processed dataset into Training (to teach the model), Validation (to tune hyperparameters), and Testing (to evaluate final performance on unseen data) sets.
+Specialized Handling Scenarios
+Imbalanced Datasets: Addressed using resampling techniques like SMOTE (oversampling the minority class) or Tomek links (undersampling the majority class).
+Large-Scale Data: Requires strategies like Batch Processing (mini-batch gradient descent), Data Sharding, or sampling representative subsets to manage memory constraints.
+Unstructured Data: Text data involves specific steps like tokenization, stopword removal, and word embeddings (e.g., TF-IDF).
+Key Tools & Frameworks
+Data Manipulation: Pandas and NumPy for structured data manipulation in Python.
+Preprocessing Pipelines: Scikit-learn provides Pipelines and ColumnTransformers to automate and ensure consistent application of transformations to both training and test data.
+
+#### Missing value imputation
+
+Missing value imputation is a statistical and machine learning process used to replace missing data points with estimated values to ensure a complete dataset for analysis. This is a critical step in Data Preprocessing because many algorithms (such as those in scikit-learn) cannot handle incomplete datasets, and simply deleting rows can introduce significant bias or lead to a loss of valuable information.
+
+1. Types of Missing Data
+   Understanding why data is missing determines the best imputation strategy:
+   Missing Completely at Random (MCAR): The absence is purely accidental and unrelated to any observed or unobserved data (e.g., a lab sample was dropped).
+   Missing at Random (MAR): The missingness is related to other observed variables but not the missing value itself (e.g., men are less likely to answer questions about emotions).
+   Missing Not at Random (MNAR): The missingness is directly related to the value that is missing (e.g., high-income individuals not reporting their earnings).
+2. Common Imputation Techniques
+   Techniques are broadly categorized into Univariate (using only the column itself) and Multivariate (using relationships between different columns).
+   Univariate Methods
+   Mean/Median/Mode: Replaces blanks with the average, middle, or most frequent value of that column. Best for simple, normally distributed data but can underestimate variance.
+   Constant/Arbitrary Value: Fills missing cells with a specific value like "0" or "Unknown" to flag them as originally missing.
+   Forward/Backward Fill (FFill/BFill): Propagates the last or next known value. Essential for time-series data where sequential order matters.
+   Multivariate Methods
+   K-Nearest Neighbors (KNN): Identifies the "K" most similar rows and imputes values based on those neighbors. It is effective but computationally expensive for large datasets.
+   Multiple Imputation by Chained Equations (MICE): Models each missing variable as a function of others in an iterative process. It accounts for the uncertainty of missing values by creating multiple complete datasets and pooling results.
+   Regression Imputation: Uses other variables as predictors to estimate the missing value through a linear or non-linear model.
+3. Advanced & Deep Learning Approaches
+   MissForest: Uses random forests to predict missing values; it is robust to outliers and works for mixed data types (numerical and categorical).
+   Autoencoders & GANs: Deep learning models like Generative Adversarial Imputation Nets (GAIN) learn the data distribution to generate realistic synthetic values for complex, high-dimensional datasets.
