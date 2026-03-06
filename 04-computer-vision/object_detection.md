@@ -102,3 +102,73 @@ Advantages of YOLOv3:
 • Speed: YOLOv3 is fast and suitable for real-time object detection tasks, making it ideal for applications like video surveillance, autonomous driving, and robotics.
 • High Accuracy: With the use of a deeper network (Darknet-53) and multi-scale predictions, YOLOv3 offers high accuracy in detecting objects of various sizes.
 • Unified Architecture: YOLOv3 performs object detection in a single pass, which simplifies the pipeline compared to traditional methods like R-CNN that require multiple stages.
+
+#### Object tracking
+
+Object tracking is a core computer vision task that involves identifying and following specific entities (such as people, vehicles, or animals) across a sequence of video frames. Unlike object detection, which identifies "what" is in a single frame, tracking maintains a unique identity (ID) for each object to understand "where" it is going over time.
+
+Core Methodologies
+Modern systems generally follow the tracking-by-detection paradigm, which consists of three main stages:
+
+Detection: An algorithm (like YOLO) identifies objects and draws bounding boxes in each frame.
+Motion Prediction: Techniques like the Kalman Filter estimate the object's future position based on its current velocity and trajectory.
+Data Association: New detections are matched to existing tracks using optimization methods like the Hungarian algorithm, often utilizing the Intersection over Union (IoU) metric.
+
+Popular Algorithms
+DeepSORT: An extension of SORT that uses deep learning to extract visual features, allowing it to re-identify objects even after they are temporarily hidden (occluded).
+ByteTrack: A high-performance method that improves tracking by associating almost all detection boxes, including those with low confidence scores, to maintain more coherent trajectories.
+BoT-SORT: Combines motion and appearance information with camera-motion compensation for more robust tracking in complex scenes.
+SiamMask: A specialized tracker that provides pixel-level segmentation masks rather than just bounding boxes.
+
+Key Applications
+Autonomous Vehicles: Tracking pedestrians and other cars to predict potential collisions and plan safe paths.
+Retail Analytics: Monitoring customer flow, measuring "dwell time" in front of displays, and optimizing store layouts.
+Sports Analysis: Calculating ball trajectories, player formations, and biomechanics in real-time.
+Security & Surveillance: Detecting suspicious behavior by following individuals across multiple camera feeds.
+
+#### Kalman filter
+
+The Kalman filter is an optimal estimation algorithm used in computer vision to track objects by combining a mathematical motion model with noisy sensor measurements. It operates in a recursive "predict-correct" loop, meaning it only needs the previous state and current measurement to calculate the new estimate.
+
+The Two-Step Iterative Process
+The filter continuously cycles through these two phases for every video frame:
+Prediction (Time Update):
+State Prediction: The filter projects the object's current position and velocity forward in time using a dynamic model (e.g., constant velocity).
+Covariance Prediction: It estimates the uncertainty of this prediction, often adding "process noise" to account for unpredictable movements like wind or sudden turns.
+Correction (Measurement Update):
+Kalman Gain Calculation: The filter determines how much to trust the new measurement versus its own prediction. If the sensor is highly accurate, the gain shifts more weight to the measurement; if the measurement is noisy, it trusts the prediction more.
+State Update: It refines the predicted position using the actual detected location from an object detector (e.g., YOLO).
+Covariance Update: It updates the uncertainty estimate for the next cycle.
+
+Key Advantages in Computer Vision
+Noise Reduction: It "smooths" erratic detections caused by camera jitter or lighting changes.
+Occlusion Handling: When an object is temporarily hidden (e.g., passing behind a tree), the filter can continue "tracking" by solely relying on its prediction step until the object reappears.
+Efficiency: Because it is recursive and requires very little memory to store previous states, it is ideal for real-time applications.
+
+Limitations
+Linearity: The standard Kalman filter assumes objects move in straight lines at constant speeds. For complex, non-linear motion, variants like the Extended Kalman Filter (EKF) or Unscented Kalman Filter (UKF) are used.
+Gaussian Assumption: It assumes noise follows a normal (Gaussian) distribution. If the noise is non-Gaussian, a Particle Filter may be more effective.
+
+#### DeepSORT (Deep Simple Online and Realtime Tracking)
+
+DeepSORT (Deep Simple Online and Realtime Tracking) is one of the most popular algorithms for Multi-Object Tracking (MOT). It is an evolution of the older SORT algorithm, designed specifically to stop trackers from "forgetting" who an object is when it gets temporarily blocked by something else (occlusion).
+
+The "Secret Sauce": Visual Memory
+The biggest problem with basic tracking (like SORT) is that it only looks at geometry—it assumes that if a box in Frame 1 is close to a box in Frame 2, it must be the same person. If two people cross paths, the boxes overlap, and the tracker often swaps their IDs.
+
+DeepSORT solves this by adding a Deep Appearance Descriptor.
+The Embedding: Every time an object is detected, a specialized neural network (CNN) looks at the pixels inside the box and creates a unique "fingerprint" (a mathematical vector) of that object’s appearance.
+The Re-Identification (Re-ID): The tracker remembers these fingerprints for up to 100 frames. If a person walks behind a tree and disappears, DeepSORT won't just guess where they are; it will wait for someone to come out the other side and check if their new "fingerprint" matches the one it has in its memory.
+
+How the Full Pipeline Works
+DeepSORT operates in four main stages for every single frame of video:
+Detection: An external detector (like YOLOv8) finds all objects and draws boxes around them.
+Estimation: A Kalman Filter predicts where the existing tracked objects should be in the current frame based on their previous speed.
+Matching (The Cascade): The algorithm tries to match the new detections to the old tracks using two criteria:
+Motion Similarity: Are the boxes physically close to each other?
+Appearance Similarity: Do the pixels in the new box look like the "fingerprint" of the old track?
+Track Management: It decides whether to keep a track alive, delete it if the object has been gone too long, or start a brand new ID for a new object.
+
+Pros and Cons
+Pros: Significantly reduces "ID switches" compared to basic trackers; very robust in crowded environments like malls or busy streets.
+Cons: It is slower than basic trackers because it has to run a neural network on every single detected box to get that "fingerprint". It also struggles if the camera itself is moving quickly or if lighting changes drastically.

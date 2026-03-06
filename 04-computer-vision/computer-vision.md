@@ -17,6 +17,30 @@ Computer vision is a field of artificial intelligence (AI) that enables computer
 **Why it Matters**
 Computer vision is transforming industries by automating tasks that previously required human sight, increasing efficiency, enhancing safety, and enabling new, automated AI-driven processes.
 
+#### Computer vision tasks
+
+Computer vision tasks are the specific functions that enable machines to "see" and interpret visual data from images and videos. These tasks range from simple categorization to complex 3D scene reconstruction.
+
+**Core Computer Vision Tasks**
+
+- Image Classification: The most foundational task, where the system assigns a single label to an entire image (e.g., "this is a cat").
+- Object Detection: This task identifies specific objects within an image and locates them by drawing bounding boxes around them.
+- Image Segmentation: A more granular version of detection that outlines the exact pixels belonging to an object. It includes:
+- Semantic Segmentation: Groups all pixels of the same category (e.g., all "car" pixels) without distinguishing between individual cars.
+- Instance Segmentation: Differentiates between individual objects of the same class (e.g., identifying Car A vs. Car B).
+- Panoptic Segmentation: A hybrid approach that identifies both object instances and the overall background.
+- Object Tracking: Used in video analysis to follow a specific object across consecutive frames, maintaining its identity as it moves.
+- Facial Recognition: A specialized form of object recognition focused on identifying or verifying an individual's identity based on their facial features.
+  Pose Estimation: Determines the spatial position and orientation of objects or human body parts, often by tracking key points like joints.
+
+Advanced and Specialized Tasks
+
+- Optical Character Recognition (OCR): Extracts and converts text from images or scanned documents into a machine-readable format.
+- Scene Reconstruction: Computes a 3D model of a real-world object or environment from 2D images or video sequences.
+- Image Generation: Uses generative AI (like GANs) to create new images from text prompts or to transform existing ones.
+- Anomaly Detection: Specifically looks for patterns that deviate from "normal" data, often used for defect detection in manufacturing or spotting health issues in medical scans.
+- Feature Matching: Finds corresponding points or regions across multiple images, which is essential for tasks like creating panoramic photos.
+
 #### Image processing
 
 Image processing involves applying algorithms to digital images to enhance, analyze, or manipulate them for improved quality or data extraction. It treats images as signals or 2D matrices (pixels) to perform tasks like noise reduction, contrast adjustment, segmentation, and compression. Common applications include medical imaging, remote sensing, and computer vision.

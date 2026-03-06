@@ -392,3 +392,22 @@ The main downside is speed. Moving data between the GPU and CPU over the PCIe bu
 - **ZeRO-Offload (DeepSpeed):** Specifically designed to offload both optimizer states and gradients to the CPU.
 - **FSDP (Fully Sharded Data Parallel):** A PyTorch technique that supports offloading parameters to the CPU when not in use during the forward/backward pass.
 - **Llama.cpp:** Uses CPU offloading to allow users to run LLMs using a mix of GPU and System RAM, making local AI accessible on standard PCs.
+
+#### Prompt caching
+
+Prompt caching is a performance optimization technique for Large Language Models (LLMs) that stores the internal state of a model—specifically the Key-Value (KV) tensors—associated with a specific prompt prefix. When you reuse identical content at the beginning of a prompt, the model "remembers" it, skipping redundant computations.
+
+Core Benefits
+Reduced Latency: Can improve response times (Time-to-First-Token) by up to 80-85%.
+Lower Costs: Reduces input token costs by up to 90% for cached segments.
+Predictable Performance: Ensures faster interactions for long contexts like large documents or codebases.
+
+How It Works
+Exact Matching: The system checks if the initial portion (prefix) of your prompt exactly matches a recently cached prefix.
+Cache Hit: If a match is found, the model loads the precomputed internal state and starts generating from where the cache left off.
+Cache Miss: If there is no match (even a single character difference or different JSON key order), the model processes the full prompt and then caches the new prefix.
+
+Best Practices
+Place system instructions, tool definitions, and long reference documents at the beginning. Put user-specific, changing queries at the end.
+Ensure formatting, whitespace, and the order of elements (like tools or few-shot examples) are identical across requests.
+For multi-turn chats, place breakpoints after static instructions or after key conversation turns to maximize reuse.
