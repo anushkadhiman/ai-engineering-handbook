@@ -174,24 +174,25 @@ BF16 has the same range as FP32 but lower precision.
 
 Weight pruning methods reduce the size and computational load of neural networks by identifying and removing redundant or less significant parameters. These methods are generally categorized by their granularity (what is removed) and their timing (when they are applied).
 
-1. Granularity: Structured vs. Unstructured
-   Unstructured Pruning (Fine-Grained): Individual weights are zeroed out based on criteria like low magnitude.
-   Pros: Can achieve extreme sparsity (e.g., 90–99%) with minimal accuracy loss.
-   Cons: Often results in irregular sparse matrices that require specialized hardware or libraries to see real-world speedups.
-   Structured Pruning (Coarse-Grained): Entire structural units are removed, such as neurons, convolutional filters, channels, or even whole layers.
-   Pros: Hardware-friendly; results in dense matrices that immediately accelerate inference on standard CPUs and GPUs without custom software.
-   Cons: More aggressive than unstructured pruning, which can lead to a more significant drop in accuracy if not carefully managed.
-2. Selection Criteria (What to Prune)
-   Magnitude-Based: The most common method; it assumes weights with the smallest absolute values (near-zero) contribute the least to model performance and can be safely removed.
-   Gradient-Based: Evaluates weight importance by their sensitivity to the loss function during training; weights with small gradients are considered less significant for optimization.
-   Activation-Based: Uses a calibration dataset to estimate importance based on which parts of the model activate the most.
-   Movement Pruning: Specifically for transfer learning, this method identifies weights that "shrink" toward zero during fine-tuning on a new task as being less significant than those that grow.
-3. Timing and Process
-   One-Shot Pruning: The model is pruned in a single step after full training, followed by fine-tuning to recover performance.
-   Iterative Pruning: A "prune-train-repeat" cycle that gradually increases sparsity, allowing the model to adapt and recover accuracy at each stage.
-   Train-Time (Dynamic) Pruning: Pruning occurs simultaneously with training, often encouraged by regularization techniques (like L1/L2 penalties) that force weights toward zero.
-   Lottery Ticket Hypothesis: Proposes that large networks contain "winning ticket" subnetworks that can reach the same accuracy as the original when trained from the same initial state.
-   Summary Recommendation
-   For maximum size reduction: Use unstructured iterative magnitude pruning.
-   For immediate hardware acceleration: Use structured filter or channel pruning.
-   To maintain accuracy: Always include a fine-tuning phase after pruning to allow the remaining weights to compensate for the loss of parameters.
+**1. Granularity: Structured vs. Unstructured**
+
+- **Unstructured Pruning (Fine-Grained):** Individual weights are zeroed out based on criteria like low magnitude.
+- Pros: Can achieve extreme sparsity (e.g., 90–99%) with minimal accuracy loss.
+- Cons: Often results in irregular sparse matrices that require specialized hardware or libraries to see real-world speedups.
+- **Structured Pruning (Coarse-Grained):** Entire structural units are removed, such as neurons, convolutional filters, channels, or even whole layers.
+- Pros: Hardware-friendly; results in dense matrices that immediately accelerate inference on standard CPUs and GPUs without custom software.
+- Cons: More aggressive than unstructured pruning, which can lead to a more significant drop in accuracy if not carefully managed.
+
+**2. Selection Criteria (What to Prune)**
+
+- **Magnitude-Based:** The most common method; it assumes weights with the smallest absolute values (near-zero) contribute the least to model performance and can be safely removed.
+- **Gradient-Based:** Evaluates weight importance by their sensitivity to the loss function during training; weights with small gradients are considered less significant for optimization.
+- **Activation-Based:** Uses a calibration dataset to estimate importance based on which parts of the model activate the most.
+- **Movement Pruning:** Specifically for transfer learning, this method identifies weights that "shrink" toward zero during fine-tuning on a new task as being less significant than those that grow.
+
+**3. Timing and Process**
+
+- **One-Shot Pruning:** The model is pruned in a single step after full training, followed by fine-tuning to recover performance.
+- **Iterative Pruning:** A "prune-train-repeat" cycle that gradually increases sparsity, allowing the model to adapt and recover accuracy at each stage.
+- **Train-Time (Dynamic) Pruning:** Pruning occurs simultaneously with training, often encouraged by regularization techniques (like L1/L2 penalties) that force weights toward zero.
+- **Lottery Ticket Hypothesis:** Proposes that large networks contain "winning ticket" subnetworks that can reach the same accuracy as the original when trained from the same initial state.
