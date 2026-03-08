@@ -360,20 +360,23 @@ Deblurring: If you know how an image was blurred (its "blurring function"), you 
 
 In image processing, filtering is used to transform or enhance an image by manipulating its frequency components. The relationship between the visual effect (blurring or sharpening) and the type of filter used (low-pass or high-pass) is foundational to how these techniques work.
 
-1. Low-Pass Filters (Blurring & Smoothing)
-   A Low-Pass Filter (LPF) allows low-frequency components to pass through while attenuating (blocking) high-frequency components.
-   Intuition: High frequencies represent sharp transitions, such as edges, fine details, and noise. By removing them, the image becomes smoother.
-   Effect (Blurring): The result is a blurred or "softened" image where small details are eliminated and the transition between pixel intensities is gradual.
-   Common Filters:
-   Ideal LPF: Perfectly cuts off frequencies above a certain threshold, but often causes "ringing" artifacts.
-   Gaussian Blur: Uses a bell-curve (Gaussian) distribution to provide a more natural, smooth blur without ringing.
-   Box Filter: Replaces each pixel with the average value of its neighbours.
-2. High-Pass Filters (Edge Detection & Sharpening)
-   A High-Pass Filter (HPF) does the opposite: it allows high-frequency components to pass while blocking low-frequency (smooth) regions.
-   Intuition: Since low frequencies represent broad, smooth areas (the "background"), removing them leaves only the sharp changes.
-   Effect (Edge Detection): The output primarily shows the outlines and boundaries of objects, making it essential for computer vision tasks like face detection or structural analysis.
-   Effect (Sharpening): To sharpen an image, you typically take a high-pass filtered version (which contains the details) and add it back to the original image. This enhances fine details and makes edges appear crisper.
-   Common Filters:
-   Ideal HPF: Blocks all frequencies below a threshold.
-   Laplacian Filter: A second-order derivative filter often used specifically for sharpening and edge highlighting.
-   Sobel Filter: A common edge detection filter that calculates the gradient of image intensity
+**1. Low-Pass Filters (Blurring & Smoothing)**
+A Low-Pass Filter (LPF) allows low-frequency components to pass through while attenuating (blocking) high-frequency components.
+Intuition: High frequencies represent sharp transitions, such as edges, fine details, and noise. By removing them, the image becomes smoother.
+Effect (Blurring): The result is a blurred or "softened" image where small details are eliminated and the transition between pixel intensities is gradual.
+Common Filters:
+Ideal LPF: Perfectly cuts off frequencies above a certain threshold, but often causes "ringing" artifacts.
+Gaussian Blur: Uses a bell-curve (Gaussian) distribution to provide a more natural, smooth blur without ringing.
+Box Filter: Replaces each pixel with the average value of its neighbours.
+
+**2. High-Pass Filters (Edge Detection & Sharpening)**
+
+- **A High-Pass Filter (HPF) does the opposite:** it allows high-frequency components to pass while blocking low-frequency (smooth) regions.
+  - **Intuition:** Since low frequencies represent broad, smooth areas (the "background"), removing them leaves only the sharp changes.
+  - **Effect (Edge Detection):** The output primarily shows the outlines and boundaries of objects, making it essential for computer vision tasks like face detection or structural analysis.
+  - **Effect (Sharpening):** To sharpen an image, you typically take a high-pass filtered version (which contains the details) and add it back to the original image. This enhances fine details and makes edges appear crisper.
+
+- **Common Filters:**
+  - **Ideal HPF:** Blocks all frequencies below a threshold.
+  - **Laplacian Filter:** A second-order derivative filter often used specifically for sharpening and edge highlighting.
+  - **Sobel Filter:** A common edge detection filter that calculates the gradient of image intensity
