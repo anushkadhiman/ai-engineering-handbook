@@ -110,7 +110,7 @@ One reason BM25 is so effective is that it can be fine-tuned via two main variab
 
 - **Length Normalization**: Controls how strictly the document length is penalized. It ranges from 0 to 1, with 0.75 as a standard default. If, full normalization is applied; if , length is ignored entirely.
 
-**4. Modern Use Cases**
+**3. Real Use Cases**
 
 - **Search Engines:** Powering internal searches for e-commerce, legal databases, and enterprise systems.
 - **Hybrid Search:** Often paired with Semantic Search (Dense Retrieval) to catch exact keyword matches that AI models sometimes miss.
@@ -145,6 +145,7 @@ The biggest difference is that FastText represents a word as the sum of its char
 Example: For the word apple with
 , the n-grams are: <ap, app, ppl, ple, le>, and the whole word <apple>.
 The final vector for "apple" is the average of all these subword vectors.
+
 **2. Why is this better?**
 This "subword" approach solves the two biggest headaches in NLP:
 
@@ -776,13 +777,14 @@ NLP in social media transforms vast amounts of unstructured user data into actio
 - Mental Health Surveillance: Analyzes linguistic patterns to identify signs of depression, anxiety, or potential crises in users.
 - Customer Service Automation: Powers 24/7 chatbots that resolve routine queries and route complex issues to human agents.
 
-Major Challenges
-Informal Language & Noise: Social media text is rife with slang, abbreviations (e.g., "u" for "you"), misspellings, lack of punctuation, and emoticons, which can confuse traditional NLP models.
-Sarcasm & Ambiguity: Determining the true meaning of a post is difficult when the tone is ironic or sarcastic (e.g., "Great job!" as a complaint).
-Contextual Nuance: Meaning often depends on short, sparse contexts (like a 280-character tweet) or external real-world events that models may not know.
-Multilingualism: Data frequently spans multiple languages or uses code-switching (mixing languages), requiring robust cross-lingual capabilities.
-Data Scalability: The sheer volume and speed of social media data require high-performance architectures to process information in real-time without lag.
-Ethical & Privacy Issues: Handling user-generated data requires strict compliance with regulations (like GDPR) and constant effort to mitigate algorithmic bias.
+**Major Challenges**
+
+- Informal Language & Noise: Social media text is rife with slang, abbreviations (e.g., "u" for "you"), misspellings, lack of punctuation, and emoticons, which can confuse traditional NLP models.
+- Sarcasm & Ambiguity: Determining the true meaning of a post is difficult when the tone is ironic or sarcastic (e.g., "Great job!" as a complaint).
+- Contextual Nuance: Meaning often depends on short, sparse contexts (like a 280-character tweet) or external real-world events that models may not know.
+- Multilingualism: Data frequently spans multiple languages or uses code-switching (mixing languages), requiring robust cross-lingual capabilities.
+- Data Scalability: The sheer volume and speed of social media data require high-performance architectures to process information in real-time without lag.
+- Ethical & Privacy Issues: Handling user-generated data requires strict compliance with regulations (like GDPR) and constant effort to mitigate algorithmic bias.
 
 n e-commerce, NLP bridges the gap between raw data and customer intent, driving both operational efficiency and conversion rates.
 Core Applications
