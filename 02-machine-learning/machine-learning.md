@@ -226,3 +226,49 @@ Missing value imputation is a statistical and machine learning process used to r
 3. Advanced & Deep Learning Approaches
    MissForest: Uses random forests to predict missing values; it is robust to outliers and works for mixed data types (numerical and categorical).
    Autoencoders & GANs: Deep learning models like Generative Adversarial Imputation Nets (GAIN) learn the data distribution to generate realistic synthetic values for complex, high-dimensional datasets.
+
+#### Distributed Training
+
+When a model is too large to fit into the memory (VRAM) of a single GPU, you have crossed from a Data Parallelism requirement (faster training) into a Model Parallelism requirement (memory capacity). The goal is to break the model into pieces or optimize memory usage to allow training to continue.
+Here is a walk-through of the options, starting from the simplest (often insufficient) to advanced techniques, followed by how to choose between them.  
+Options for Distributed Training
+
+1. Memory-Saving Techniques (First Line of Defense) Before splitting the model, try reducing the footprint of the existing model.
+
+• Mixed Precision Training (FP16/BF16): Uses 16-bit floats instead of 32-bit for most operations. It cuts model memory usage almost in half and speeds up computation on modern GPUs.
+• Gradient Checkpointing/Activation Recomputation: Instead of storing all intermediate activations during the forward pass, you recompute them during the backward pass. It trades computation time for memory, allowing much larger models to fit.
+• Gradient Accumulation: Allows training with a large effective batch size by accumulating gradients over multiple steps before doing a single optimizer update, reducing activation memory.
+
+2. ZeRO (Zero Redundancy Optimizer) ZeRO (used in DeepSpeed or PyTorch FSDP) is a powerful, modern technique that shards model states, gradients, and optimizer states across GPUs, rather than replicating them.
+
+• ZeRO Stage 1: Shards optimizer states.
+• ZeRO Stage 2: Shards optimizer states and gradients.
+• ZeRO Stage 3 (FSDP): Shards optimizer states, gradients, and model parameters. This allows training models with hundreds of billions of parameters.
+
+3. Tensor Parallelism (TP) Tensor Parallelism splits individual tensor operations (like matrix multiplication in linear layers or attention blocks) across multiple GPUs.
+
+• How it works: GPU 0 computes half the output, GPU 1 computes the other half, and they communicate to get the final result.
+• When to use: Ideal for huge, dense layers within a transformer model (e.g., Megatron-LM).
+• Requirement: Requires very high bandwidth (e.g., NVLink) between GPUs, usually within the same node.
+
+4. Pipeline Parallelism (PP) Pipeline Parallelism divides the model's layers sequentially across different GPUs.
+
+• How it works: Layers 1-4 on GPU 0, 5-8 on GPU 1, etc. Data flows sequentially through the GPUs.
+• Key Challenge: "Pipeline Bubbles" (idle time). Requires careful micro-batching to keep GPUs busy.
+• When to use: Deep models where layers can be logically split.
+
+5. 3D Parallelism (Hybrid) For models that cannot fit even with TP or PP, you combine all techniques:
+
+• TP: Inside a node (splits layer operations).
+• PP: Across layers (splits model vertically).
+• Data Parallelism (DP): Replicates the entire (distributed) model for higher throughput.
+
+How to Choose Between Them
+The choice depends on the model architecture, available GPU interconnect speed, and the number of GPUs.
+
+Decision Workflow:
+
+1. Start with ZeRO Stage 3 (FSDP): It is generally the easiest way to fit large models in PyTorch without manual layer slicing.
+2. Add Tensor Parallelism (TP) if bandwidth allows: If using H100s/A100s with NVLink, TP is more efficient than PP for transformer models.
+3. Use Pipeline Parallelism (PP) for very deep models: If the model is too deep and PP is needed to partition it, ensure you use micro-batching to eliminate "bubbles".
+4. Profile: Use tools like PyTorch Profiler or DeepSpeed to check if you are limited by bandwidth (Communication bound) or computation speed (Compute bound).
