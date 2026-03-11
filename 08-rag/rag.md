@@ -1,4 +1,4 @@
-# RAG
+### RAG
 
 **Retrieval-Augmented Generation (RAG)** is an AI framework that improves Large Language Model (LLM) accuracy by retrieving data from external, trusted sources before generating a response. Instead of relying solely on pre-trained knowledge, RAG fetches up-to-date, relevant documents to minimize hallucinations, offering a cost-effective alternative to retraining models.
 
@@ -43,7 +43,10 @@ Chunk splitters in RAG break large documents into smaller, manageable, and seman
 - **Separator Hierarchy:** Use nested separators (e.g., ["\n\n", "\n", ".", " "]) to respect paragraph and sentence boundaries.
 - **Metadata Integration:** Attach metadata (source, summary) to each chunk to improve retrieval accuracy.
 
-**Character splitting**
+---
+
+#### Character splitting
+
 Character splitting breaks text into smaller, fixed-length segments (chunks) based on a specified character count, regardless of content structure. It is the most basic, simple, and rigid form of text chunking, often used in LangChain to divide documents by character length while allowing for optional overlap between segments.
 
 **Method:** Divides text into N-character sized chunks.
@@ -58,8 +61,13 @@ Character splitting breaks text into smaller, fixed-length segments (chunks) bas
 **Character and sentence splitting** are essential NLP preprocessing tasks for breaking down text into manageable chunks. Character-based splitting uses fixed lengths for quick, rigid cuts, whereas sentence splitting utilizes linguistic rules (periods, question marks) or AI models to segment text into coherent sentences while handling abbreviations.
 **Delimiter:** Specific characters like \n\n (paragraphs) or . (sentences) used to separate text.
 
+---
+
+#### Recursive character splitting
+
 Recursive character splitting is a technique for splitting long text into smaller, meaningful chunks for LLMs, prioritizing structural integrity by recursively splitting on a prioritized list of delimiters (e.g., paragraphs , newlines , spaces , and empty strings ) until the target chunk size is reached. It improves Retrieval-Augmented Generation (RAG) by keeping related text together rather than splitting indiscriminately at a fixed character count.
-How It Works
+
+**How It Works**
 • Prioritized Separators: The algorithm attempts to split the text using a list of delimiters, starting with the largest structures (paragraphs) and moving to smaller ones (sentences, words) if the resulting chunks are still too large.
 • Recursive Process: If a chunk is larger than the specified , the splitter recursively applies the next separator in the list to that chunk.
 • Parameters:
@@ -67,12 +75,14 @@ chunk_size: The target maximum length of each chunk.
 chunk_overlap: Number of characters to overlap between chunks, maintaining context.
 separators: The list of characters used for splitting (default is ["\n\n", "\n", " ", ""] )
 
-Benefits
+**Benefits**
 • Maintains Context: By trying to split at paragraphs or sentences first, it ensures chunks are more coherent than simple character-count splitting.
 • Respects Structure: It keeps related information together as long as possible.
 • Scalable: Effective for breaking down large documents, legal records, or medical reports.
 
 This approach is highly recommended for general text processing to avoid breaking sentences or words in the middle, ensuring better semantic retrieval in AI applications.
+
+---
 
 #### **TokenTextSplitter**
 
@@ -80,49 +90,68 @@ TokenTextSplitter is a specialized text splitting tool used in Natural Language 
 This ensures that text chunks perfectly fit within the token limits (context windows) of specific Large Language Models (LLMs) like GPT-3 or GPT-4.
 
 **Key Features and Functionality**
-**Token-Aware Precision:** It counts tokens using a tokenizer (often tiktoken for OpenAI models, such as cl100k_base), rather than characters.
-**Prevents Truncation Errors:** Because it operates on the same unit as the LLM (tokens), it ensures that chunks do not exceed token limits, preventing information loss.
-**Chunk Overlap:** Like other splitters, it allows for overlapping chunks, which helps maintain context across boundaries.
-**Customizable:** Users can define chunk_size (maximum tokens per chunk) and chunk_overlap.
+
+- **Token-Aware Precision:** It counts tokens using a tokenizer (often tiktoken for OpenAI models, such as cl100k_base), rather than characters.
+- **Prevents Truncation Errors:** Because it operates on the same unit as the LLM (tokens), it ensures that chunks do not exceed token limits, preventing information loss.
+- **Chunk Overlap:** Like other splitters, it allows for overlapping chunks, which helps maintain context across boundaries.
+- **Customizable:** Users can define chunk_size (maximum tokens per chunk) and chunk_overlap.
 
 **How It Works**
-Tokenization: The input text is encoded into tokens using a specific encoding (e.g., cl100k_base for newer OpenAI models).
-Splitting: The tokens are split into chunks based on the defined chunk_size.
-Decoding: The token chunks are decoded back into text.
-Refinement: It may attempt to break at meaningful boundaries (sentences, periods, etc.) if the token count exceeds the limit.
+
+- Tokenization: The input text is encoded into tokens using a specific encoding (e.g., cl100k_base for newer OpenAI models).
+- Splitting: The tokens are split into chunks based on the defined chunk_size.
+- Decoding: The token chunks are decoded back into text.
+- Refinement: It may attempt to break at meaningful boundaries (sentences, periods, etc.) if the token count exceeds the limit.
 
 **Use Case: When to Use TokenTextSplitter**
-RAG Applications: When preparing large documents for vector storage to ensure retriever performance.
-LLM Prompting: When feeding text to models with strict input token constraints.
-Summarization: When breaking down a long document into smaller, manageable chunks.
+
+- RAG Applications: When preparing large documents for vector storage to ensure retriever performance.
+- LLM Prompting: When feeding text to models with strict input token constraints.
+  Summarization: When breaking down a long document into smaller, manageable chunks.
 
 **Comparison with Other Splitters**
-vs. CharacterTextSplitter: CharacterTextSplitter is faster but less precise for model limits.
-vs. RecursiveCharacterTextSplitter: RecursiveCharacterTextSplitter is generally better for keeping paragraphs/sentences together, while TokenTextSplitter is better for strict, hard limits on token counts.
+
+- vs. CharacterTextSplitter: CharacterTextSplitter is faster but less precise for model limits.
+- vs. RecursiveCharacterTextSplitter: RecursiveCharacterTextSplitter is generally better for keeping paragraphs/sentences together, while TokenTextSplitter is better for strict, hard limits on token counts.
+
+---
+
+#### Chunk overlap
 
 Chunk overlap is an AI text-processing technique where adjacent segments (chunks) of text share a small, common portion of content, preventing loss of context at boundary points. Typically 10–20% of the chunk size, it ensures semantic continuity in RAG (Retrieval-Augmented Generation) applications by maintaining information across cuts.
+
 Key Aspects of Chunk Overlap:
-Purpose: It preserves context when splitting large documents for LLMs, ensuring that information spanning across boundaries is not lost or misinterpreted.
-Mechanism: When breaking down text, a small amount of data from the end of "Chunk A" is included at the start of "Chunk B".
-Recommended Settings: A common starting point is a 512-token chunk size with 128 tokens of overlap (25% overlap).
-Trade-offs: High overlap improves context retention but increases redundancy and computational load.
-Usage: It is essential for text splitting, RAG pipelines, and embedding generation to enhance search accuracy.
+
+- Purpose: It preserves context when splitting large documents for LLMs, ensuring that information spanning across boundaries is not lost or misinterpreted.
+- Mechanism: When breaking down text, a small amount of data from the end of "Chunk A" is included at the start of "Chunk B".
+- Recommended Settings: A common starting point is a 512-token chunk size with 128 tokens of overlap (25% overlap).
+- Trade-offs: High overlap improves context retention but increases redundancy and computational load.
+- Usage: It is essential for text splitting, RAG pipelines, and embedding generation to enhance search accuracy.
+
 Impact on RAG Performance:
-Without Overlap: Semantic meaning can be fractured, making it harder for models to retrieve information located at the edges of chunks.
-With Overlap: Improves semantic search and retrieval accuracy by keeping related information within the same context window.
+
+- Without Overlap: Semantic meaning can be fractured, making it harder for models to retrieve information located at the edges of chunks.
+- With Overlap: Improves semantic search and retrieval accuracy by keeping related information within the same context window.
+
+---
+
+#### Choosing between large and small chunk sizes
 
 Choosing between large and small chunk sizes in Retrieval-Augmented Generation (RAG) involves a trade-off between context retention and retrieval precision. Small chunks (e.g., 128–256 tokens) are best for pinpointing specific facts, while large chunks (e.g., 512–1024+ tokens) are better for understanding broader themes and maintaining semantic coherence.
-Deep Dive: Small Chunk Size
+
+**Small Chunk Size**
 Small chunks are highly granular. They are effective when the user query is very specific and the answer is likely contained in a single paragraph or sentence.
 Pros: High-precision search; the embedding vector closely matches the specific query.
 Cons: The Language Model (LLM) might lack the surrounding context needed to understand the "big picture," leading to fragmented or hallucinated answers.
 Best for: Finding exact answers (e.g., "What is the penalty clause?").
-Deep Dive: Large Chunk Size
+
+**Large Chunk Size**
 Large chunks retain more surrounding information, ensuring the semantic meaning is not lost at the boundary of a cut.
 Pros: Better for understanding, summarization, and retaining context for complex queries.
 Cons: Increased "noise" (irrelevant information) that can confuse the LLM. The embedding might also become too generic ("coarse") to distinguish between similar topics.
 Best for: Summarization, narrative analysis, and finding broad themes.
-Key Considerations for Choosing
+
+**Key Considerations for Choosing**
 Nature of Data: Structured, concise documents (FAQs) prefer smaller chunks. Unstructured, long-form, or complex documents (legal/academic) require larger chunks to maintain context.
 Model Limitations: The chunk size must not exceed the maximum token limit of the embedding model.
 Optimal "Sweet Spot": Many practitioners find that starting around 512 tokens offers a good balance.
@@ -130,7 +159,8 @@ Use Overlap: Regardless of size, using a 10–20% overlap between chunks helps p
 Small-to-Big Strategy: An advanced strategy is to use small chunks for retrieval (high accuracy) but pass the surrounding large chunk to the generator (high context).
 Conclusion: The best approach is often to treat chunk size as a hyperparameter to test, starting with a medium size (e.g., 512) and adjusting based on the precision/context needs of your specific application.
 The optimal chunk size for a RAG system typically ranges between 128 and 512 tokens, with 256–512 tokens being a common, effective baseline for balancing context retention, semantic meaning, and retriever accuracy. Smaller chunks (128–256 tokens) improve accuracy for specific, fact-based queries, while larger chunks (512+ tokens) are better for complex, comprehensive, or summarized information.
-Key Considerations for Chunk Size:
+
+**Key Considerations for Chunk Size:**
 Best Starting Point: 512 tokens is widely considered the best default for general applications.
 Overlap: A 10–20% overlap (e.g., 50–100 tokens) between chunks is recommended to maintain context continuity.
 Small vs. Large: Small chunks improve retrieval accuracy but may lack context; large chunks provide context but may contain noise.
@@ -141,52 +171,82 @@ Hybrid Search: Combining semantic and keyword searches can improve retrieval wit
 Metadata Enhancement: Adding summaries, titles, or headers to chunks improves search relevance.
 Parent-Child Indexing: Using a larger "parent" chunk (e.g., 1400 tokens) for generation and smaller "child" chunks (e.g., 400 tokens) for retrieval is an advanced technique for better performance.
 
-Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generation (RAG) system
+---
+
+#### Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generation (RAG) system
+
 Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generation (RAG) system is crucial for balancing accuracy, latency, and cost. Key considerations include the model's context window size, its ability to follow instructions when grounded in external data, and its cost-effectiveness at scale.
+
 Here are the key considerations when choosing an LLM for a RAG system:
+
 Context Window and Length
-Capacity: The model's context window should be large enough to hold retrieved document chunks, user queries, and chat history. For document-intensive tasks, this might mean 32k to 128k+ tokens.
-"Lost in the Middle" Phenomenon: LLMs sometimes struggle to get information from the middle of long contexts. Choose models that use long contexts well, such as Gemini 1.5 Pro or Claude 3.5 Sonnet.
-Efficient Processing: While some models have massive windows, processing them increases latency and cost. Choose a model that supports enough context without sacrificing speed for real-time applications.
+
+- Capacity: The model's context window should be large enough to hold retrieved document chunks, user queries, and chat history. For document-intensive tasks, this might mean 32k to 128k+ tokens.
+- "Lost in the Middle" Phenomenon: LLMs sometimes struggle to get information from the middle of long contexts. Choose models that use long contexts well, such as Gemini 1.5 Pro or Claude 3.5 Sonnet.
+- Efficient Processing: While some models have massive windows, processing them increases latency and cost. Choose a model that supports enough context without sacrificing speed for real-time applications.
+
 Accuracy and Reasoning Capabilities
-Groundedness and Hallucination Mitigation: The goal of RAG is to minimize hallucinations. Select a model that prioritizes following the provided context over its own pre-trained knowledge.
-Instruction Following: The model should follow strict, customized system prompts, such as "only answer based on the provided text".
-Domain Expertise: For specialized fields (legal, medical, or technical), the model should have pre-trained knowledge relevant to that domain to better understand the retrieved context.
+
+- Groundedness and Hallucination Mitigation: The goal of RAG is to minimize hallucinations. Select a model that prioritizes following the provided context over its own pre-trained knowledge.
+- Instruction Following: The model should follow strict, customized system prompts, such as "only answer based on the provided text".
+- Domain Expertise: For specialized fields (legal, medical, or technical), the model should have pre-trained knowledge relevant to that domain to better understand the retrieved context.
+
 Performance and Latency
-Inference Speed: Low latency is essential for conversational agents (chatbots). Smaller models (7B-14B parameters) can offer faster responses compared to larger models.
-Time to First Token (TTFT): As context length increases, so does TTFT. Ensure the model/infrastructure choice meets the required user experience standards.
-Cost-Effectiveness
-Cost vs. Performance Trade-off: High-end models (e.g., GPT-4o, Claude 3 Opus) are more accurate but also more expensive. For simpler tasks, smaller, faster models (e.g., Llama 3.1 8B, GPT-4o-mini) are often more cost-effective.
-Token Consumption: Consider the total number of tokens processed (input + output). RAG reduces this cost compared to "stuffing" all data, but model selection still affects the price per token.
-Integration and Deployment
+
+- Inference Speed: Low latency is essential for conversational agents (chatbots). Smaller models (7B-14B parameters) can offer faster responses compared to larger models.
+- Time to First Token (TTFT): As context length increases, so does TTFT. Ensure the model/infrastructure choice meets the required user experience standards.
+
+**Cost-Effectiveness**
+
+- Cost vs. Performance Trade-off: High-end models (e.g., GPT-4o, Claude 3 Opus) are more accurate but also more expensive. For simpler tasks, smaller, faster models (e.g., Llama 3.1 8B, GPT-4o-mini) are often more cost-effective.
+- Token Consumption: Consider the total number of tokens processed (input + output). RAG reduces this cost compared to "stuffing" all data, but model selection still affects the price per token.
+
+**Integration and Deployment**
 API vs. Open-Source (Weights):
-Proprietary API (OpenAI, Anthropic): Easier integration, state-of-the-art performance, but higher costs and data privacy concerns.
-Open-Source/Open-Weight (Llama 3, Mistral): Offers maximum flexibility, data privacy, and lower operational costs at high scale, but requires self-hosting infrastructure.
-Function Calling: If the RAG system requires retrieving data from APIs or databases, select a model with strong, proven function-calling capabilities.
-Summary of Top Candidates (as of early 2026)
-Long-Context Tasks (100k+ tokens): Gemini 1.5 Pro (strong for vast data, 1M+ tokens).
-High Reasoning/Accuracy: GPT-4o, Claude 3.5 Sonnet (excellent for complex, nuanced queries).
-Cost-Effective/Low Latency: GPT-4o-mini, Llama 3.1 (70B or 8B).
-Domain-Specific: Cohere (highly customizable for specialized needs).
+
+- Proprietary API (OpenAI, Anthropic): Easier integration, state-of-the-art performance, but higher costs and data privacy concerns.
+  Open-Source/Open-Weight (Llama 3, Mistral): Offers maximum flexibility, data privacy, and lower operational costs at high scale, but requires self-hosting infrastructure.
+- Function Calling: If the RAG system requires retrieving data from APIs or databases, select a model with strong, proven function-calling capabilities.
+  Summary of Top Candidates (as of early 2026)
+- Long-Context Tasks (100k+ tokens): Gemini 1.5 Pro (strong for vast data, 1M+ tokens).
+- High Reasoning/Accuracy: GPT-4o, Claude 3.5 Sonnet (excellent for complex, nuanced queries).
+- Cost-Effective/Low Latency: GPT-4o-mini, Llama 3.1 (70B or 8B).
+  Domain-Specific: Cohere (highly customizable for specialized needs).
+
 Note: RAG systems should be continuously evaluated using metrics like Faithfulness (ensuring the answer is grounded in the retrieved context) and Answer Relevance.
+
 These resources analyze how to select the best Large Language Models (LLMs) for Retrieval-Augmented Generation (RAG) systems, considering factors like context window size, accuracy, and cost.
 
+---
+
+#### Key hyperparameters in a RAG pipeline
+
 Key hyperparameters in a RAG pipeline optimize retrieval and generation, directly impacting accuracy and speed. Key parameters include chunk_size (text amount per chunk), chunk_overlap (maintaining context), top_k (number of retrieved documents), embedding model, and LLM temperature.
+
 Key RAG Hyperparameters:
+
 Ingestion/Chunking Parameters:
-Chunk Size: Determines the number of tokens or characters per chunk, influencing how much context is captured.
-Chunk Overlap: Sets the overlap between consecutive chunks to maintain context between them.
-Chunking Strategy: Defines how text is split (e.g., recursive, sentence-based).
+
+- Chunk Size: Determines the number of tokens or characters per chunk, influencing how much context is captured.
+- Chunk Overlap: Sets the overlap between consecutive chunks to maintain context between them.
+- Chunking Strategy: Defines how text is split (e.g., recursive, sentence-based).
+
 Retrieval Parameters:
-Top-K: Number of relevant documents/chunks retrieved from the vector database.
-Similarity Metric: Method to measure similarity (e.g., Cosine, Euclidean).
-Embedding Model: The model used to convert text into vectors.
+
+- Top-K: Number of relevant documents/chunks retrieved from the vector database.
+- Similarity Metric: Method to measure similarity (e.g., Cosine, Euclidean).
+- Embedding Model: The model used to convert text into vectors.
+
 Generation Parameters:
-Temperature: Controls the randomness of the output (lower for precision, higher for creativity).
-Prompt Template: The structure of instructions given to the LLM.
+
+- Temperature: Controls the randomness of the output (lower for precision, higher for creativity).
+- Prompt Template: The structure of instructions given to the LLM.
+
 Advanced Optimization:
-Reranking Model & Threshold: Re-evaluates top-K results for improved precision.
-Trade-offs: Smaller chunk sizes can improve accuracy but increase computation. Higher top-k values increase context but may introduce noise.
+
+- Reranking Model & Threshold: Re-evaluates top-K results for improved precision.
+- Trade-offs: Smaller chunk sizes can improve accuracy but increase computation.
+- Higher top-k values increase context but may introduce noise.
 
 Reasoning LLMs (e.g., DeepSeek R1, OpenAI o1) enhance RAG by performing autonomous multi-step analysis, self-correction, and handling complex, multi-hop queries, whereas non-reasoning models (e.g., GPT-4o, Claude 3.5 Sonnet) excel in fast, cost-effective retrieval and generation of direct answers. Reasoning models are better for agentic, complex tasks, while non-reasoning models suit simple Q&A.
 Key Differences and Use Cases

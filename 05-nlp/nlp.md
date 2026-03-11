@@ -1,4 +1,4 @@
-#### Word2Vec
+## Word2Vec
 
 Word2Vec is a technique used to map words into high-dimensional numerical vectors (embeddings) so that computers can understand semantic relationships. It works on the principle that words appearing in similar contexts often have similar meanings.
 
@@ -26,7 +26,9 @@ To make training on billions of words efficient, Word2Vec uses two main tricks:
 - **Semantic Proximity:** Words like "Paris" and "Berlin" will be mathematically "close" to each other in the vector space.
 - **Downstream Tasks:** These vectors serve as powerful inputs for Sentiment Analysis, machine translation, and recommendation systems.
 
-#### Continuous Bag of Words (CBOW)
+---
+
+## Continuous Bag of Words (CBOW)
 
 Continuous Bag of Words (CBOW) is an architecture in Word2Vec that predicts a single target word (the center word) based on its surrounding context words.
 
@@ -48,7 +50,9 @@ Context: ["The", "cat", "on", "the"]
 Target: "sat"
 The model learns to associate the combined meaning of "The," "cat," "on," and "the" with the word "sat".
 
-#### tf-idf
+---
+
+## tf-idf
 
 TF-IDF (Term Frequency-Inverse Document Frequency) is a numerical statistic used to rank how "important" a word is to a specific document within a larger collection (corpus).
 While Word2Vec focuses on meaning, TF-IDF focuses on uniqueness.
@@ -69,7 +73,9 @@ If you have 1,000 articles about technology:
 The word "the" will have a high TF but a very low IDF (because it’s in every article), resulting in a low total score.
 The word "blockchain" might appear 20 times in one specific article but only in 5 articles total. This creates a high total score, marking "blockchain" as a key descriptor for that document.
 
-#### Negative Sampling and Hierarchical Softmax
+---
+
+## Negative Sampling and Hierarchical Softmax
 
 Both Negative Sampling and Hierarchical Softmax were designed to solve the same problem: the "Big Vocabulary Bottleneck."
 In a standard neural network, the output layer has one node for every word in your vocabulary (e.g., 100,000 words). Calculating the Softmax for all 100,000 nodes every time you process a single word is computationally expensive and incredibly slow.
@@ -91,7 +97,9 @@ The Process: To calculate the probability of a word, the model doesn't look at a
 
 For a vocabulary of 65,536 words, the model only needs to make 16 binary decisions instead of 65,536 calculations.
 
-#### bm25
+---
+
+## bm25
 
 BM25 (Best Matching 25) is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is widely considered the state-of-the-art for keyword-based (lexical) search and is the default algorithm for Elasticsearch, Lucene, and Solr.
 While it shares the core concepts of TF-IDF, it fixes major flaws to provide more intuitive results.
@@ -116,7 +124,9 @@ One reason BM25 is so effective is that it can be fine-tuned via two main variab
 - **Hybrid Search:** Often paired with Semantic Search (Dense Retrieval) to catch exact keyword matches that AI models sometimes miss.
 - **RAG (Retrieval-Augmented Generation):** Used to retrieve the most relevant chunks of text to provide as context for Large Language Models.
 
-#### GloVe (Global Vectors for Word Representation)
+---
+
+## GloVe (Global Vectors for Word Representation)
 
 GloVe (Global Vectors for Word Representation) is an unsupervised learning algorithm developed at Stanford University for generating word embeddings.
 While Word2Vec is a "predictive" model (predicting neighbors), GloVe is a "count-based" model that looks at the global statistics of the entire dataset at once.
@@ -136,7 +146,9 @@ The ratio of these probabilities helps the model pinpoint that "Ice" is to "Soli
 **3. Why use it?**
 GloVe is famous for its pre-trained vectors. Because it's trained on massive datasets like Wikipedia and Common Crawl, you don't have to train it yourself. You can simply download the vectors and plug them into your model to give it an "instant" understanding of English.
 
-#### fastext
+---
+
+## fastext
 
 FastText, developed by Facebook's AI Research (FAIR) lab, is essentially the "evolution" of Word2Vec. While Word2Vec treats every word as an unbreakable atom, FastText breaks words down into smaller chunks called n-grams.
 
@@ -158,7 +170,9 @@ This "subword" approach solves the two biggest headaches in NLP:
 - Rare Words: Excellent at representing words that only appear once or twice in your text.
 - Language Support: Often the best choice for non-English languages with complex word structures.
 
-#### Document-Term Matrix (DTM)
+---
+
+## Document-Term Matrix (DTM)
 
 A Document-Term Matrix (DTM) in NLP is a mathematical structure representing a corpus, where rows represent documents and columns represent unique terms (words). Each cell contains the count or weight (e.g., TF-IDF) of a term in a document, enabling quantitative analysis of unstructured text data.
 
@@ -196,7 +210,9 @@ Stop words in NLP are common, high-frequency words (e.g., "the," "is," "in," "an
 Original: "The quick brown fox jumps over the lazy dog."
 After Stop Word Removal: "quick brown fox jumps lazy dog."
 
-#### N-gram
+---
+
+## N-gram
 
 An N-gram is a contiguous sequence of
 items (typically words or characters) from a given sample of text or speech. In Natural Language Processing (NLP), an N-gram model is a probabilistic language model that predicts the next item in a sequence based on the previous
@@ -228,7 +244,9 @@ Calculating the probability of a word given its entire preceding history is comp
 3. Storage Limitations: The number of possible N-grams grows exponentially with n, leading to high memory overhead.
 4. Limited Context: Unlike modern Transformers, N-grams cannot capture long-range dependencies because they only "see" the last few words.
 
-#### skipgrams
+---
+
+## skipgrams
 
 skip-grams are a way of looking at pairs of words in a sentence while skipping over some words in between.
 They help NLP models understand context even when words aren't sitting right next to each other.
@@ -253,7 +271,9 @@ By allowing these "skips," the model learns that "cat" and "sat" are related, bu
     As we discussed earlier, ROUGE-S uses skip-bigrams.
     The Benefit: It is much more flexible than BLEU. If a human says "The quick brown fox" and the AI says "The brown fox," a standard bigram count would fail to see a match for "quick" and "fox." A skip-bigram would still find the match ("The", "fox") because it's allowed to skip the word "brown."
 
-#### Data Augmentation in nlp
+---
+
+## Data Augmentation in nlp
 
 In Natural Language Processing (NLP), data augmentation is the practice of artificially increasing the size and diversity of a training dataset by creating modified versions of existing text. Unlike image augmentation (e.g., rotating or flipping), text augmentation is more complex because even minor changes can drastically alter a sentence's meaning or grammatical correctness.
 
@@ -296,7 +316,9 @@ Several open-source libraries simplify the implementation of these techniques:
 - TextAttack: Focused on adversarial attacks and data augmentation for robustness.
 - AugLy: A multi-modal library by Meta for augmenting text, images, and audio.
 
-#### Text extraction and cleaning
+---
+
+## Text extraction and cleaning
 
 In Natural Language Processing (NLP), text extraction and cleanup are the critical first steps used to transform raw, messy data into a structured format suitable for analysis.
 
@@ -344,7 +366,9 @@ Once extracted, text must be "cleaned" to remove noise and standardize variation
 - spaCy: A high-performance library ideal for production-level lemmatization and entity recognition.
 - CleanText: A specialized library that handles multiple cleaning steps (URLs, emails, emojis) in a single command.
 
-#### Unicode Normalization, Spelling Correction, System-Specific Error Correction
+---
+
+## Unicode Normalization, Spelling Correction, System-Specific Error Correction
 
 After text extraction, data must be normalized and corrected to ensure downstream NLP models interpret it accurately and consistently.
 
@@ -379,7 +403,9 @@ Errors often follow predictable patterns based on how the text was generated (e.
 - **ASR Correction (Automatic Speech Recognition):** Fixes phonetic errors (e.g., "sea" instead of "see"). Advanced systems use "N-best" fusion, comparing multiple transcriptions from the speech model to vote on the most likely correct word.
   Domain-Specific Noise: Includes removing platform-specific markers, such as "RT" for retweets on Twitter, or replacing industry jargon and medical abbreviations with full terms.
 
-#### NLP preprocessing
+---
+
+## NLP preprocessing
 
 NLP preprocessing transforms raw, messy text into a structured format to improve model performance and accuracy.
 
@@ -406,7 +432,9 @@ NLP preprocessing transforms raw, messy text into a structured format to improve
 - Parsing: Analyzing the grammatical structure of a sentence to establish relationships between "head" words and their modifiers (Dependency Parsing).
 - Coreference Resolution: Identifying when different words or phrases (like "he" and "John") refer to the same entity in a text.
 
-#### Feature Engineering in NLP
+---
+
+## Feature Engineering in NLP
 
 In NLP, feature engineering is the art of converting text into numerical representations (vectors) that machine learning algorithms can understand. This ranges from simple word counts to complex contextual embeddings.
 
@@ -445,7 +473,9 @@ To avoid "the curse of dimensionality" (too many features for the model to handl
 - Chi-Square Test: Identifies which words have the strongest statistical relationship with the target label.
 - L1 Regularization (Lasso): Naturally pushes the coefficients of less important features to zero during training.
 
-#### One-Hot Encoding and bag of words
+---
+
+## One-Hot Encoding and bag of words
 
 **1. One-Hot Encoding (OHE)**
 OHE represents individual words as binary vectors.
@@ -466,7 +496,9 @@ BoW represents an entire document or sentence by summing up the word counts.
   Using the vocabulary ["cat", "dog", "meets"], the BoW vector is [0, 2, 1].
 - Usage: Great for basic document classification (e.g., spam vs. ham) where the presence of certain words is more important than their sequence.
 
-#### Distributed Representations in nlp
+---
+
+## Distributed Representations in nlp
 
 Unlike One-Hot Encoding or Bag-of-Words, Distributed Representations (also known as Word Embeddings) represent words as dense, low-dimensional, real-valued vectors.
 
@@ -492,7 +524,9 @@ Unlike One-Hot Encoding or Bag-of-Words, Distributed Representations (also known
 - Generalization: Because "hotel" and "motel" have similar vectors, a model trained on "hotel" data can still perform well when it encounters the word "motel" [1].
 - Transfer Learning: You can download Pre-trained Vectors trained on billions of words (Wikipedia, Common Crawl) and plug them into your own smaller models to boost performance.
 
-#### Naive Bayes Classifier in nlp
+---
+
+## Naive Bayes Classifier in nlp
 
 Naive Bayes is a widely used probabilistic machine learning algorithm in Natural Language Processing (NLP), primarily for text classification tasks like spam detection and sentiment analysis. It is based on Bayes' Theorem and makes the "naive" assumption that all features (words) are independent of each other given the class label.
 
@@ -528,7 +562,9 @@ Bayes’ Theorem: It calculates the probability of a class (e.g., "Spam") given 
 - Training: Fitting the model using labeled data (e.g., MultinomialNB().fit(X, y)).
 - Evaluation: Using metrics like accuracy, precision, and F1-score to measure performance.
 
-#### Logistic Regression in nlp
+---
+
+## Logistic Regression in nlp
 
 In Natural Language Processing (NLP), Logistic Regression (LR) is a foundational discriminative machine learning algorithm used for supervised text classification. Unlike generative models like Naive Bayes, LR learns the direct relationship between input features (words) and class labels by optimizing a decision boundary.
 
@@ -555,7 +591,9 @@ In Natural Language Processing (NLP), Logistic Regression (LR) is a foundational
 - Multi-class Tasks: For more than two categories, LR uses Multinomial Logistic Regression (Softmax) or a One-vs-Rest (OvR) strategy.
 - Linearity: LR assumes a linear relationship between features and the log-odds of the class, which may not capture complex semantic nuances as well as deep learning models.
 
-#### Keyphrase extraction
+---
+
+## Keyphrase extraction
 
 Keyphrase extraction is an NLP technique used to automatically identify the most important words or phrases in a document. These phrases serve as a succinct summary, making it easier to index, search, and categorize vast amounts of content.
 
@@ -589,7 +627,9 @@ Several libraries provide easy-to-use implementations of these algorithms:
 - RAKE-NLTK: A common Python implementation of the Rapid Automatic Keyword Extraction algorithm.
 - spaCy: Often used for the initial "Candidate Selection" phase, such as extracting noun chunks.
 
-#### Named Entity Disambiguation (NED) and Named Entity Linking (NEL)
+---
+
+## Named Entity Disambiguation (NED) and Named Entity Linking (NEL)
 
 Named Entity Disambiguation (NED) and Named Entity Linking (NEL) are critical NLP tasks that resolve which specific real-world entity a name refers to in a given context. While often used interchangeably, they represent two halves of a process that turns ambiguous text into structured knowledge.
 
@@ -618,7 +658,9 @@ A typical entity linking system follows three main steps:
 - Hugging Face Transformers: Provides pre-trained models that can be fine-tuned for high-accuracy end-to-end entity linking.
 - Stanford CoreNLP: A robust Java-based suite that can be integrated with disambiguation modules.
 
-#### Relationship Extraction
+---
+
+## Relationship Extraction
 
 Relationship Extraction (RE) is an NLP task that identifies and categorizes semantic connections between entities in text. While Named Entity Recognition (NER) finds "who" or "what," RE discovers "how they are connected".
 
@@ -651,7 +693,9 @@ Relationship Extraction (RE) is an NLP task that identifies and categorizes sema
 - Stanford CoreNLP: Provides a robust Open Information Extraction (OpenIE) implementation.
 - Spark NLP: An enterprise-grade library for high-performance information extraction.
 
-#### Temporal Information Extraction, Event Extraction, Template Filling
+---
+
+## Temporal Information Extraction, Event Extraction, Template Filling
 
 In NLP, these three tasks represent progressively complex levels of structured information extraction (IE) from unstructured text.
 
@@ -683,7 +727,9 @@ These tasks are highly interconnected within an IE pipeline:
 - TIE provides the necessary anchors to place that event correctly in time.
 - Template Filling acts as the final step, taking those extracted events and temporal details to populate a structured database or knowledge graph.
 
-#### Search and Information Retrieval
+---
+
+## Search and Information Retrieval
 
 Information Retrieval (IR) is the science of finding relevant, often unstructured, material from a large collection (corpus) to satisfy a specific user need. While "Search" is the practical application of these techniques (like Google or CTRL+F), IR focuses on the underlying models that organize, rank, and evaluate results based on relevance rather than just exact matches.
 
@@ -710,7 +756,9 @@ Because IR systems deal with subjective relevance, they are measured by how well
 - MRR (Mean Reciprocal Rank): Measures how high the first correct result appears on the list.
 - NDCG (Normalized Discounted Cumulative Gain): Rewards the system for placing highly relevant results at the very top of the list.
 
-#### Topic Modeling
+---
+
+## Topic Modeling
 
 Topic modeling is an unsupervised machine learning technique used to automatically discover hidden thematic structures—or "topics"—within a large collection of unstructured text. Unlike classification, it does not require predefined labels; instead, it identifies patterns of co-occurring words that represent shared themes.
 
@@ -741,7 +789,9 @@ The algorithm assumes that:
 - Model Training: Running an algorithm like LDA or NMF on the processed data.
 - Evaluation: Using metrics like coherence scores (to check if words in a topic are semantically related) or perplexity.
 
-#### Recommender Systems for Textual Data
+---
+
+## Recommender Systems for Textual Data
 
 In recommender systems, textual data (such as product descriptions, reviews, or news articles) is used to overcome the limitations of interaction-only data. These systems leverage Natural Language Processing (NLP) to extract semantic meaning, identify user interests from reviews, and manage "cold-start" scenarios where no historical ratings exist.
 
@@ -764,7 +814,9 @@ In recommender systems, textual data (such as product descriptions, reviews, or 
 - Rank-Aware: MAP (Mean Average Precision) and NDCG (Normalized Discounted Cumulative Gain), which reward systems for placing more relevant items at the very top of the list.
 - Behavioral: Diversity (variety of items), Novelty (unexpected/uncommon items), and Serendipity (pleasant, unexpected discoveries).
 
-#### NLP applications
+---
+
+## NLP applications
 
 NLP in social media transforms vast amounts of unstructured user data into actionable insights for marketing, security, and research.
 
@@ -830,7 +882,9 @@ In these high-stakes sectors, NLP moves beyond simple text analysis into expert-
    Challenges: Archaic language ("legalese"), extremely long documents that exceed standard model token limits, and zero tolerance for error.
    Key Tools: Legal-BERT, Ironclad (Contract Lifecycle Management).
 
-#### End to end NLP pipeline
+---
+
+## End to end NLP pipeline
 
 An end-to-end NLP pipeline transforms raw, unstructured text into structured, actionable insights. While specific steps vary by task, the standard industry workflow follows this sequence:
 
@@ -869,7 +923,9 @@ An end-to-end NLP pipeline transforms raw, unstructured text into structured, ac
 7. Human-in-the-Loop (Optional but Recommended)
    A feedback loop where humans review uncertain model predictions to continuously improve the system through active learning.
 
-#### Tokenizing Texts for different nlp tasks
+---
+
+## Tokenizing Texts for different nlp tasks
 
 Tokenization converts raw text into structured numerical units (tokens) that machine learning models can process. The strategy you choose depends on the specific NLP task and its requirements for granularity or context.
 
@@ -895,7 +951,9 @@ Tokenization converts raw text into structured numerical units (tokens) that mac
    "do", "n't") and punctuation.
    NLTK: Offers a wide range of rule-based tokenizers like word_tokenize and sent_tokenize, ideal for educational use and rapid prototyping.
 
-#### Cross-lingual transfer in NLP
+---
+
+## Cross-lingual transfer in NLP
 
 Cross-lingual transfer in NLP refers to the process of taking a model trained in one or more "source" languages (typically high-resource like English) and applying its knowledge to a different "target" language. This technique is essential for scaling AI to low-resource languages where annotated data is scarce.
 Core Approaches
@@ -915,7 +973,9 @@ Linguistic Distance: Transfer works best between similar languages (e.g., Spanis
 Translation Artifacts: Machine-translated data often contains subtle errors or "translationese" that can bias models.
 Language Bias: Large models often favor high-resource languages, leading to lower accuracy or "fluency errors" in minor languages.
 
-#### Text Summarization Pipelines
+---
+
+## Text Summarization Pipelines
 
 A text summarization pipeline is a structured workflow that automates the condensing of long documents into concise versions. Modern pipelines primarily use Transformer-based models, which categorize summarization into two main types: Extractive and Abstractive.
 

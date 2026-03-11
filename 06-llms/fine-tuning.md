@@ -1,4 +1,4 @@
-### LoRA and QLoRA
+## LoRA and QLoRA
 
 Parameter-Efficient Fine-Tuning (PEFT) that allow you to adapt massive AI models (like LLMs) to specific tasks using a fraction of the memory and compute power required for traditional training.
 

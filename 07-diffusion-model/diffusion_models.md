@@ -1,4 +1,4 @@
-### Diffusion Model
+# Diffusion Model
 
 A diffusion model is a class of generative AI that learns to create high-quality data (like images, audio, or video) by reversing a process of gradual destruction. Inspired by non-equilibrium thermodynamics, it treats data points like molecules that disperse into random noise over time.
 
@@ -21,7 +21,7 @@ Diffusion models have recently overtaken Generative Adversarial Networks (GANs) 
 - **Pros:** They avoid "mode collapse" (where a model repeats the same few outputs), are easier to train than GANs, and capture much more intricate details in complex data distributions.
 - **Cons:** Generating a single image is computationally expensive and slow because the model must run hundreds or thousands of denoising iterations. Techniques like Latent Diffusion (LDMs) and Consistency Models are currently being developed to speed up this process.
 
-#### Mathematical intution
+## Mathematical intution
 
 The intuition behind a diffusion model is to learn how to un-break data. It systematically destroys the structure of an image with noise and then trains a neural network to restore that structure step-by-step.
 
@@ -37,7 +37,7 @@ The model is formulated as a Markov chain—a sequence of steps where each state
 
 ---
 
-#### Variance Schedule
+## Variance Schedule
 
 Variance schedule is the blueprint for how we destroy the data. It defines exactly how much noise is added at each discrete step of the process.
 
@@ -67,7 +67,7 @@ The schedule ensures a smooth transition of information.
 
 ---
 
-#### what are the assumptions
+## what are the assumptions
 
 Diffusion models rely on several key mathematical and structural assumptions to ensure that the complex task of creating data from noise remains solvable.
 
@@ -95,7 +95,7 @@ While not a formal "equation" assumption, diffusion models operate under the Man
 
 ---
 
-#### Time Embedding
+## Time Embedding
 
 In a diffusion model, the network (U-Net) is a multi-tasker. It has to know how to denoise an image that is 99% noise (t=99) and an image that is 1% noise (t=1). Since the weights of the neural network are shared across all steps, we use Time Embeddings to tell the model exactly where it is in the process.
 
@@ -133,7 +133,7 @@ Think of the Time Embedding as a context key. When the U-Net receives a noisy im
 
 ---
 
-#### Controlnet
+## Controlnet
 
 While a standard diffusion model uses a text prompt to guide what an image should contain, a ControlNet allows you to use an image-based spatial condition to guide the structure.
 It is the difference between telling an artist "Paint a man sitting on a chair" and giving that artist a sketch or a pose and saying "Paint exactly this, but make it a man."
@@ -165,7 +165,7 @@ ControlNet is modular. You can download different "weights" depending on what ki
 
 ---
 
-#### Stable Diffusion
+## Stable Diffusion
 
 Stable Diffusion is the speed-optimized evolution of diffusion models. While standard models like DDPM are computationally heavy because they work directly on pixel data, Stable Diffusion performs the entire process in a compressed mathematical space.
 

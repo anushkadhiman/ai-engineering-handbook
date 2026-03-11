@@ -1,4 +1,4 @@
-#### AdamW (Adam with Weight Decay)
+## AdamW (Adam with Weight Decay)
 
 AdamW (Adam with Weight Decay) is a modified version of the popular Adam optimizer, widely considered the de facto standard for training modern deep learning models like Transformers and Large Language Models (LLMs).
 
@@ -23,7 +23,7 @@ Compute Gradient: Calculate the unregularized loss gradient.
 
 ---
 
-#### Decoupled Weight Decay
+## Decoupled Weight Decay
 
 Decoupled Weight Decay is a regularization technique that separates the process of shrinking model weights from the process of updating them based on loss gradients.
 While traditional optimizers often lump these two together, decoupling them ensures that the "penalty" for having large weights remains consistent and predictable, regardless of how fast the model is learning.

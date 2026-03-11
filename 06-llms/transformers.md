@@ -1,4 +1,4 @@
-#### **Architecture of a transformer model**
+# **Architecture of a transformer model**
 
 The Transformer model is a neural network architecture for sequential data that uses self-attention mechanisms to process entire sequences in parallel, rather than sequentially like RNNs. Key components include encoder-decoder stacks, multi-head attention, positional encoding, and feed-forward networks, enabling superior context understanding and faster training for tasks like translation and generation.
 
@@ -12,7 +12,7 @@ The Transformer model is a neural network architecture for sequential data that 
 - **Parallel Processing:** Unlike RNNs, Transformers process all data simultaneously, making them highly efficient on modern hardware.
 - **Contextual Understanding:** Self-attention ensures distant words in a sequence can interact directly, resolving ambiguities. -->
 
-#### **Attention mechanisms in Transformer models**
+## **Attention mechanisms in Transformer models**
 
 It enable neural networks to dynamically focus on relevant parts of an input sequence, assigning weighted importance to different words to capture context regardless of distance. By computing Query, Key, and Value vectors for each word, the model calculates attention scores via dot products to determine how much focus each token receives.
 
@@ -28,7 +28,7 @@ It enable neural networks to dynamically focus on relevant parts of an input seq
   - **Parallelization:** Because the model doesn't process tokens sequentially, it can process the entire input at once, speeding up training on GPUs.
   - **Contextual Understanding:** The mechanism allows words to have different meanings based on surrounding words, addressing polysemy (e.g., "bank" in "river bank" vs. "bank deposit").
 
-#### **Positional encodings**
+## **Positional encodings**
 
 - It is fundamental component of Transformer-based Large Language Models (LLMs) that inject information about the order of tokens into the model. Because the self-attention mechanism processes tokens in parallel, it lacks an intrinsic notion of sequence order; without positional encodings, "dog bites man" and "man bites dog" would appear identical to the model.
 - It assigns a unique representation to each position in a sequence, allowing the model to distinguish between tokens based on their location, such as attending to the i-th token.
@@ -52,7 +52,7 @@ It enable neural networks to dynamically focus on relevant parts of an input seq
 **9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
 **10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
 
-#### BERT (Bidirectional Encoder Representations from Transformers)
+## BERT (Bidirectional Encoder Representations from Transformers)
 
 BERT (Bidirectional Encoder Representations from Transformers) is a groundbreaking machine learning framework for natural language processing developed by Google in 2018. It fundamentally changed how AI understands human language by shifting from sequential processing to a simultaneous, bidirectional approach.
 
@@ -74,7 +74,7 @@ BERT's training involves two primary unsupervised tasks:
 - **Sentiment Analysis:** It can determine if a review is positive or negative by understanding the nuances of language.
 - **Question Answering:** BERT is used to build systems that find specific answers within large bodies of text.
 
-#### Next Sentence Prediction (NSP)
+## Next Sentence Prediction (NSP)
 
 Next Sentence Prediction (NSP) is a core part of BERT's training that **helps the model understand the logical flow between sentences**, rather than just individual words.
 
@@ -94,7 +94,7 @@ NSP teaches the model to recognize "discourse" and coherence, which is critical 
 **The Mechanism**
 To perform this task, BERT uses a special [CLS] token (Classification token) at the start of every input. The model processes the whole pair, and the final output of this [CLS] token is used to make the "Yes/No" binary prediction.
 
-#### RoBERTa and ALBERT
+## RoBERTa and ALBERT
 
 RoBERTa and ALBERT significantly refined BERT's approach after researchers discovered that the original Next Sentence Prediction (NSP) task was surprisingly easy for the AI to "cheat" on.
 
@@ -112,7 +112,7 @@ Google’s ALBERT (A Lite BERT) argued that while BERT's version of NSP was too 
 
 **The Result:** Because both sentences are about the same topic, the model can no longer "cheat" by looking at the subject matter. It is forced to learn much finer-grained logical cues to determine which sentence should naturally come first.
 
-#### Segment Embeddings
+## Segment Embeddings
 
 Segment Embeddings are a specific layer of data added to BERT’s input to help the model distinguish between two different sentences in a single input.
 Since BERT is often fed pairs of sentences at once (like in the Next Sentence Prediction task), it needs more than just a [SEP] divider to keep track of which word belongs to which thought.
@@ -130,7 +130,7 @@ These embeddings are represented as numerical vectors that are mathematically ad
 - **Structural Clarity:** While the [SEP] token acts like a visual "fence" between sentences, Segment Embeddings act like "team jerseys," tagging every word so the model knows exactly which sentence "team" it belongs to throughout the entire deep-learning process.
 - **Task Performance:** For tasks like Question Answering, Segment Embeddings are vital because they help the model differentiate between the Question (Segment A) and the Paragraph containing the answer (Segment B).
 
-#### DistilBERT
+## DistilBERT
 
 DistilBERT is the "lite" version of BERT. It was created by the team at Hugging Face to solve the problem of BERT being too big and slow for everyday apps.
 Think of it as a concentrated version of the original: it keeps about 97% of BERT's performance but is 40% smaller and 60% faster.
@@ -153,7 +153,7 @@ It uses a "Teacher-Student" technique:
 - Use BERT if you need the highest possible accuracy for complex research.
 - Use DistilBERT if you are building a production app where speed and cost matter more than a 2-3% difference in score.
 
-#### Transformers as Feature Extractors
+## Transformers as Feature Extractors
 
 Transformers as feature extractors involves taking a pre-trained Transformer model, "freezing" its weights, and using the numerical representations (embeddings) it produces as input for another model. This technique is a form of transfer learning that leverages the "general knowledge" a model has already gained from massive datasets.
 
@@ -181,7 +181,7 @@ Transformers as feature extractors involves taking a pre-trained Transformer mod
 - Transformer backbones themselves require massive data to be effective initially.
 - Quadratic complexity relative to input length can be memory-intensive.
 
-#### Scaling Transformers
+## Scaling Transformers
 
 Scaling Transformers is the pursuit of better performance by increasing the size of the model, the data, or the compute. This field is governed by "Scaling Laws," which suggest that as you increase these three variables, the model's error (loss) decreases in a highly predictable, logarithmic way.
 

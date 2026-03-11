@@ -1,4 +1,4 @@
-#### Agentic AI
+# Agentic AI
 
 Agentic AI refers to autonomous systems that **use reasoning, planning, and tools to achieve complex, multi-step goals with minimal human intervention.** Unlike reactive generative AI, agentic AI is proactive, capable of taking independent actions, learning from feedback, and collaborating with other agents or humans to optimize workflows.
 
@@ -26,7 +26,7 @@ Agentic AI systems often **use frameworks where an orchestrator agent manages, c
 
 ---
 
-#### Prompt chaining
+## Prompt chaining
 
 Prompt chaining is an AI engineering technique that **breaks complex, multi-step tasks into a sequence of smaller, manageable prompts, where the output of one prompt becomes the input for the next.** This method enhances LLM performance, improves accuracy, enables better control over, and allows for handling tasks that exceed context limits.
 
@@ -53,7 +53,7 @@ Benefits:
 
 ---
 
-#### Routing
+## Routing
 
 Routing is a design pattern **acting as an intelligent traffic controller that classifies user queries and directs them to the most appropriate specialized agent, tool, or workflow**. It optimizes performance and costs by routing complex tasks to advanced models and simple tasks to cheaper ones. Key approaches include LLM-based, rule-based, and semantic (embedding-based) routing.
 
@@ -85,7 +85,7 @@ Routing is a design pattern **acting as an intelligent traffic controller that c
 
 ---
 
-#### Parallelization
+## Parallelization
 
 Parallelization **improves speed and efficiency by running multiple, independent AI agents or tool calls simultaneously rather than sequentially**. A planner or coordinator agent breaks complex tasks into subtasks, which are executed in parallel to reduce latency, often using scatter-gather patterns. Key applications include parallel web research, concurrent code development, and multi-tool API calls.
 
@@ -105,7 +105,7 @@ Parallelization **improves speed and efficiency by running multiple, independent
 
 ---
 
-#### Reflection
+## Reflection
 
 Reflection is a powerful design pattern where **autonomous agents evaluate, critique, and refine their own generated outputs, code, or plans before finalizing them**. By acting as a self-correcting feedback loop—often using a second "critic" agent—this process significantly improves accuracy, reduces errors in complex tasks like coding or writing, and enables higher-quality, multi-step problem solving.
 
@@ -122,7 +122,7 @@ Reflection is a powerful design pattern where **autonomous agents evaluate, crit
 
 ---
 
-#### Tool use (function calling)
+## Tool use (function calling)
 
 Agentic AI function calling enables Large Language Models (LLMs) to act as **autonomous agents by dynamically invoking external tools, APIs, and databases using structured data (JSON)**. Instead of just generating text, **the AI decides which function to call based on user input, executes it, and uses the output for multi-step tasks, such as booking meetings or querying live data**.
 
@@ -148,7 +148,7 @@ Agentic AI function calling enables Large Language Models (LLMs) to act as **aut
 
 ---
 
-#### MCP (Model Context Protocol) vs function calling
+## MCP (Model Context Protocol) vs function calling
 
 MCP (Model Context Protocol) and function calling both enable LLMs to interact with external tools, but differ in approach: Function calling is LLM-driven, vendor-specific, and best for quick, bespoke tasks. MCP is an open-standardized protocol (by Anthropic) that provides a consistent, reusable, and secure framework for connecting AI to data sources, reducing the need for custom integrations.
 
@@ -166,7 +166,7 @@ When to Use Which:
 
 ---
 
-#### Planning
+## Planning
 
 Planning in Agentic AI is **the process where an AI agent breaks down a complex, high-level goal into a sequence of smaller, manageable steps (sub-goals) before execution**. Unlike reactive AI, these agents use reasoning — often driven by Large Language Models (LLMs) — to anticipate future states, utilize external tools, and adjust strategies iteratively, enhancing reliability and efficiency in complex, multi-step tasks.
 
@@ -191,7 +191,7 @@ Planning in Agentic AI is **the process where an AI agent breaks down a complex,
 
 ---
 
-#### Multi-agent system
+## Multi-agent system
 
 Multi-agent systems involve **multiple specialized AI agents collaborating, negotiating, and sharing knowledge to solve complex problems**, often coordinated by an orchestrator to increase efficiency, scalability, and performance.
 
@@ -216,7 +216,7 @@ Multi-agent systems involve **multiple specialized AI agents collaborating, nego
 
 ---
 
-#### Memory Management
+## Memory Management
 
 Agentic AI memory management involves techniques like **short-term, long-term, and semantic storage (e.g., vector databases, knowledge graphs) to enable AI agents to retain context, learn from past interactions, and make informed decisions**. It operates through a **4-stage pipeline—extraction, storage, update, and retrieval—to overcome limited context windows**, ensuring agents are reliable, personalized, and capable of multi-step reasoning.
 
@@ -244,7 +244,7 @@ Agentic AI memory management involves techniques like **short-term, long-term, a
 
 ---
 
-#### Learning and Adaptation
+## Learning and Adaptation
 
 Agentic AI systems use **continuous learning and adaptation to function autonomously in dynamic environments, moving beyond static, predefined rules to improve performance over time**. They employ online learning, memory management, and feedback loops to update knowledge, optimize tool usage, and personalize interactions based on past experiences and real-time data.
 
@@ -266,7 +266,7 @@ These capabilities enable AI to deliver higher proactivity, improved efficiency,
 
 ---
 
-#### Goal Setting and Monitoring
+## Goal Setting and Monitoring
 
 Agentic AI operates by **taking high-level human objectives and autonomously breaking them into smaller, executable tasks to achieve specific outcomes. Through continuous monitoring, these agents track progress against set goals, adjusting strategies and using tools (APIs, software) to overcome obstacles in real-time.**
 
@@ -292,7 +292,7 @@ Agentic AI operates by **taking high-level human objectives and autonomously bre
 
 ---
 
-#### Exceptional Handling
+## Exceptional Handling
 
 Exceptional handling in agentic AI **involves detecting, diagnosing, and mitigating runtime errors (tool failures, API issues) to prevent system crashes and ensure reliability**. Key strategies include automated retries, graceful degradation (using cached data), state rollback, and human-in-the-loop escalation, allowing agents to autonomously recover from failures.
 
@@ -310,7 +310,7 @@ Exceptional handling in agentic AI **involves detecting, diagnosing, and mitigat
 
 ---
 
-#### Resource-aware optimization
+## Resource-aware optimization
 
 Resource-aware optimization in agentic AI involves **autonomous agents dynamically managing computational, financial, and temporal resources to maximize efficiency**. It uses routing mechanisms to match task complexity to the right AI model (e.g., fast models for simple tasks, powerful models for complex ones), minimizing waste and cost.
 
@@ -331,7 +331,7 @@ Resource-aware optimization in agentic AI involves **autonomous agents dynamical
 
 ---
 
-#### Reasoning Techniques
+## Reasoning Techniques
 
 Agentic AI reasoning techniques **enable AI agents to solve complex, multi-step problems autonomously through planning, tool use, reflection, and iterative loops**. Key approaches include ReAct (Reason+Act), Chain-of-Thought (CoT), and Planning, which break down goals and adapt based on observations. These systems enhance reliability by self-correcting and using external tools, acting as "investigators" rather than just predictors.
 
@@ -354,7 +354,7 @@ Agentic AI operates through a, cyclical process rather than a single-shot respon
 
 ---
 
-#### Guardrail and safety techniques
+## Guardrail and safety techniques
 
 Guardrail and safety techniques in Agentic AI are essential, **multi-layered security measures—including input filtering, output moderation, human-in-the-loop (HITL) checks, and structural constraints—designed to ensure AI agents operate within ethical, compliant, and functional boundaries**. These prevent prompt injections, data leaks, and unauthorized actions.
 
@@ -376,7 +376,7 @@ Guardrail and safety techniques in Agentic AI are essential, **multi-layered sec
 
 ---
 
-#### Evaluation and monitoring
+## Evaluation and monitoring
 
 Evaluation and monitoring in Agentic AI involves **continuously assessing autonomous, multi-step workflows for task success, tool accuracy, and safety, rather than just output quality**. Key techniques include "LLM-as-a-Judge" for automated evaluation, tracing agent decisions to identify reasoning errors, and monitoring for drift/hallucinations to ensure reliability in production.
 
@@ -406,7 +406,7 @@ Evaluation goes beyond chatbots, measuring the process of reaching a goal, not j
 **Challenges**
 Evaluating agents is complex because they are dynamic and often multi-turn, meaning one error in an early step can cascade through the entire workflow, making it difficult to pinpoint the root cause of failure.
 
-#### Advanced prompting for agentic AI
+## Advanced prompting for agentic AI
 
 Advanced prompting for agentic AI involves techniques that enable autonomous agents to reason, plan, and use tools to complete complex, multi-step tasks. Key methods include ReAct (reasoning + acting), Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), and Reflexion, which collectively improve accuracy, reduce hallucinations, and allow for autonomous, self-correcting workflows.
 
@@ -478,7 +478,7 @@ Context window overflow (CWO) occurs **when the total tokens in an LLM prompt—
 
 ---
 
-#### Prompt injection
+## Prompt injection
 
 Prompt injection is a security vulnerability where attackers embed malicious, hidden instructions into LLM inputs, overriding original system prompts to force unintended actions. It exploits the inability of LLMs to distinguish between developer commands and user input, leading to data exfiltration, system manipulation, and bypassed security.
 
@@ -502,7 +502,7 @@ Prompt injection is a security vulnerability where attackers embed malicious, hi
 
 ---
 
-#### Designing an AI application for high user traffic
+## Designing an AI application for high user traffic
 
 Designing an AI application for high user traffic requires a architecture that balances rapid, often resource-intensive, AI inference with high availability and low latency. The key to handling massive, concurrent user loads lies in horizontal scaling, asynchronous processing, and aggressive caching.
 
@@ -540,7 +540,7 @@ Here is a comprehensive design and handling strategy for a high-traffic AI app:
 
 ---
 
-#### Managing context between AI agents
+## Managing context between AI agents
 
 Managing context between AI agents involves passing state via shared memory, summarizing previous conversations, or using structured data (JSON/stringified payloads) to hand off relevant information while discarding unnecessary noise. Key techniques include hierarchical summarization, tool-based retrieval for on-demand data, and using specialized, persistent state objects to maintain continuity without overwhelming the context window.
 
@@ -559,7 +559,7 @@ Best Practices
 
 ---
 
-#### Fault-tolerant AI agents
+## Fault-tolerant AI agents
 
 Fault-tolerant AI agents ensure operational continuity and reliability despite failures by utilizing mechanisms like retry policies, model fallbacks, state checkpointing, and sandboxing. These systems, often implemented using frameworks like LangGraph, prevent data loss and inconsistent states during multi-step tasks or API outages. Key strategies include caching, semantic validation, and human-in-the-loop oversight to manage uncertainty and maintain high uptime.
 
@@ -579,7 +579,7 @@ Implementation Considerations
 
 ---
 
-#### Productionizing an AI agent
+## Productionizing an AI agent
 
 Productionizing an AI agent involves moving from a simple prompt-based script to a robust, systems-engineering approach. Success depends on shifting from "thinking in prompts" to "thinking in workflows" that emphasize reliability, observability, and safety.
 
@@ -618,7 +618,7 @@ Productionizing an AI agent involves moving from a simple prompt-based script to
 
 ---
 
-#### create a custom AI agent
+## create a custom AI agent
 
 To create a custom AI agent, I would start by defining a narrow, high-value use case and creating a detailed system prompt for personality and constraints. Next, I would equip the agent with essential tools (e.g., search, API connectors) and relevant knowledge bases. Finally, I would use frameworks like Langchain, Pydantic AI, or Zapier for development, followed by iterative testing to optimize performance and reliability.
 
@@ -639,7 +639,7 @@ Key Considerations
 
 ---
 
-#### Challenges in developing multi-agent systems
+## Challenges in developing multi-agent systems
 
 Developing multi-agent systems (MAS) involves significant challenges, primarily centered around coordination, communication, and managing emergent, often unpredictable, behaviors. Key hurdles include ensuring efficient, secure, and accurate communication between agents, handling high latency and computational costs, and debugging complex, multi-step workflows.
 
@@ -661,7 +661,7 @@ Key Considerations for Mitigation:
 
 ---
 
-#### Challenges of multi ai agents in production
+## Challenges of multi ai agents in production
 
 Multi-AI agent systems in production face significant hurdles, including non-deterministic, unpredictable behaviors, complex orchestration of inter-agent communication, and high latency due to sequential processing. Key challenges include managing shared state and memory, debugging "black box" agent interactions, ensuring data privacy/security, and managing high costs.
 
@@ -684,7 +684,7 @@ Key Considerations for Success
 
 ---
 
-#### Guardrails for agentic systems
+## Guardrails for agentic systems
 
 Guardrails for agentic systems are essential, real-time safety mechanisms designed to manage the risks associated with autonomous, multi-step AI actions. Unlike static AI, agents connect to live systems, APIs, and data, requiring a,layered, "defense-in-depth" approach to prevent unauthorized actions, data exposure, and misuse.
 
@@ -734,7 +734,7 @@ Several tools can be used to implement these guardrails:
 • Open Source/Frameworks: NeMo Guardrails (NVIDIA), Guardrails AI, LlamaGuard (Meta), LangGraph (LangChain).
 • Enterprise Solutions: BigID, HiddenLayer, Cequence.
 
-##### Common mistakes when creating AI agents
+### Common mistakes when creating AI agents
 
 Common mistakes when creating AI agents include tool overload, vague instructions, poor context management (resulting in high token costs), and ignoring data security. Effective agents require clear roles, specialized tools, and robust evaluation to avoid unpredictable, costly, or insecure behavior.
 
@@ -757,7 +757,7 @@ Best Practices:
 
 ---
 
-#### Saving costs in a multi-agent system
+## Saving costs in a multi-agent system
 
 Saving costs in a multi-agent system involves using smaller models for simple tasks and large models for complex reasoning, caching frequent LLM queries, and implementing strict token/budget limits per agent. Additional strategies include using specialized, smaller models for routine tasks, optimizing vector database usage, and monitoring API usage to prevent runaway costs.
 
@@ -781,7 +781,7 @@ Key Takeaway: A well-designed multi-agent system, which assigns specialized, sma
 
 ---
 
-#### Handling user interruptions in a multi-agent system (MAS)
+## Handling user interruptions in a multi-agent system (MAS)
 
 Handling user interruptions in a multi-agent system (MAS) requires a robust orchestration layer that manages state, prioritizes user intent, and allows for rapid context switching. Effective strategies include using "human-in-the-loop" (HITL) checkpoints, implementing dynamic, stateful conversation management, and ensuring agents can pause, resume, or abort tasks mid-execution.
 
@@ -807,7 +807,7 @@ Handling Scenarios
 
 ---
 
-#### Handling infinite loops
+## Handling infinite loops
 
 Handling infinite loops in AI agents involves setting hard limits on iterations (e.g., 5-10 steps), implementing timeout mechanisms, and monitoring state changes to detect, stop, or escalate trapped processes. Key strategies include implementing circuit breakers, logging, and using human-in-the-loop intervention.
 
@@ -827,7 +827,7 @@ Handling infinite loops in AI agents involves setting hard limits on iterations 
 
 ---
 
-#### Deciding whether to change a Large Language Model (LLM) for a specific use case
+## Deciding whether to change a Large Language Model (LLM) for a specific use case
 
 Deciding whether to change a Large Language Model (LLM) for a specific use case requires moving beyond "vibes" (subjective, one-off testing) to a systematic, data-driven evaluation framework. The decision is based on comparing model performance across four key pillars: Accuracy, Quality, Cost, and Latency, ideally using a "golden dataset" of representative, human-labeled examples.
 
@@ -875,7 +875,7 @@ Key Pitfalls to Avoid
 
 ---
 
-#### Pydantic
+## Pydantic
 
 Pydantic is the leading data validation and settings management library for Python, designed to enforce type constraints at runtime
 . It allows developers to define data structures using Python type annotations, ensuring that input data conforms to specific types and constraints, making it an essential tool for building reliable, production-grade applications.
@@ -903,7 +903,7 @@ In summary, Pydantic transforms LLMs from "text generators" into "reliable, type
 
 ---
 
-#### a compound intent orchestrator-subagent architecture
+## a compound intent orchestrator-subagent architecture
 
 In a well-designed orchestrator-subagent architecture, a compound intent—such as "I want to change my address because my latest bill was sent to the wrong place"—is handled by intent decomposition and contextual chaining, rather than simple, binary routing.  
 You do not lose the billing context, provided the system is designed to pass conversation state.
@@ -938,7 +938,7 @@ By utilizing chaining (passing the output of one agent as input to the next) or 
 
 ---
 
-#### Handling a AI Agent that misinterprets a prompt and triggers unintended
+## Handling a AI Agent that misinterprets a prompt and triggers unintended
 
 Handling a AI Agent that misinterprets a prompt and triggers unintended, potentially damaging, or simply wrong actions requires a multi-layered approach combining immediate remediation, user communication, and long-term technical fixes.
 
@@ -980,7 +980,7 @@ Here is a structured framework for handling such a scenario:
 
 ---
 
-#### AI voicebot or chatbot vs human employees
+## AI voicebot or chatbot vs human employees
 
 AI voicebot or chatbot is a strategic move to solve scalability, speed, and 24/7 availability issues that 5 human agents cannot handle, typically resulting in a 30-70% reduction in operating costs. While 5 new people offer human empathy, they cannot work 24/7, handle thousands of queries simultaneously, or maintain consistent service quality across all languages.
 
@@ -1018,7 +1018,7 @@ The most effective strategy is not to choose one over the other, but to use AI t
 
 ---
 
-#### Evaluating Multi-agent systems (MAS) in production
+## Evaluating Multi-agent systems (MAS) in production
 
 Multi-agent systems (MAS) in production require monitoring beyond traditional software metrics (uptime, latency) to include behavioral, economic, and operational metrics. Because MAS often involve multiple LLM calls, tool usage, and interdependent tasks, key performance indicators (KPIs) must focus on reliability, cost-efficiency, and end-to-end task success.
 
@@ -1072,7 +1072,7 @@ Best Practices for Monitoring
 
 ---
 
-#### Memory Management for Long Conversations
+## Memory Management for Long Conversations
 
 Designing a memory system for an AI assistant that handles long, multi-session, and private conversations requires a hybrid approach, separating data by immediacy and importance. A high-performance, privacy-conscious architecture combines a fast short-term memory (STM) (e.g., Redis) for active conversation, a semantic long-term memory (LTM) (e.g., Pinecone/Weaviate) for deep context, and a structured database (e.g., Postgres) for persistent facts.  
 Here is a design based on best practices for performance and security.
@@ -1107,7 +1107,7 @@ By applying these strategies—separating short and long-term memory, using hybr
 
 ---
 
-#### Inference Observability, Metrics, and Fallbacks
+## Inference Observability, Metrics, and Fallbacks
 
 Deploying language models (LLMs) at scale requires moving beyond traditional APM (Application Performance Monitoring) to comprehensive AI observability, covering performance, quality, and semantic accuracy. Key observability signals must be collected across infrastructure and application levels, supplemented by robust fallback strategies—like LLM-to-LLM routing, caching, and graceful degradation—to handle provider outages, high latency, or degraded model performance without impacting the end user.
 I. Essential Observability Signals for LLM Inference

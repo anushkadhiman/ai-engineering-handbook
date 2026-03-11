@@ -1,4 +1,4 @@
-### VLM
+# VLM
 
 VLM stands for Vision-Language Model. It is a type of multimodal artificial intelligence that can simultaneously understand and process both visual (images/video) and textual information.
 
@@ -18,6 +18,8 @@ Unlike traditional AI that handles only one type of data, a VLM bridges the gap 
 - **E-commerce:** Enabling visual search where users can upload a photo to find similar products.
 
 Popular VLMs include GPT-4o (OpenAI), Claude 3.5 Sonnet (Anthropic), Gemini (Google), and open-source models like LLaVA or CLIP.
+
+---
 
 ### CLIP (Contrastive Language-Image Pre-training)
 
@@ -40,7 +42,9 @@ Robustness: Because it learns from diverse web data rather than a narrow dataset
 - **Content Moderation:** Automatically flags inappropriate content by understanding the context of images and descriptions together.
 - **Limitations:** CLIP struggles with abstract or highly specific tasks, such as accurately counting objects in a photo or performing very fine-grained classification (e.g., distinguishing between very similar car models).
 
-#### Swin Transformer
+---
+
+## Swin Transformer
 
 The Swin Transformer (Shifted Window Transformer) is a hierarchical vision backbone developed by Microsoft Research to solve the primary flaw of the original Vision Transformer (ViT): quadratic computational complexity.
 While a standard ViT compares every image patch to every other patch (global attention), Swin introduces two key innovations that make it efficient enough for high-resolution images and dense tasks like object detection.
@@ -51,7 +55,7 @@ Unlike the "flat" structure of ViT, Swin builds feature maps at multiple scales,
 - **Patch Merging:** As the image moves through the network, neighboring patches are merged. This reduces the spatial resolution (the number of tokens) while increasing the feature dimensionality.
 - **Multi-Scale Features:** This allows the model to "see" at various resolutions, making it ideal for detecting objects of different sizes (e.g., a tiny bird vs. a large building).
 
-**2. Shifted Window Attention (The Core Secret)**
+**2. Shifted Window Attention**
 To keep computation manageable, Swin uses Window-based Multi-head Self-Attention (W-MSA):
 Local Windows: The image is divided into non-overlapping windows (typically
 patches). Attention is only computed inside these windows. This reduces complexity from quadratic to linear relative to image size.
@@ -65,7 +69,7 @@ patches). Attention is only computed inside these windows. This reduces complexi
 - **General-Purpose Backbone:** It works "out-of-the-box" for diverse tasks including classification (ImageNet), object detection (COCO), and semantic segmentation (ADE20K).
 - **Inductive Bias:** By re-introducing concepts like locality and hierarchy, it bridges the gap between the flexibility of Transformers and the spatial efficiency of CNNs.
 
-#### Masked Autoencoders (MAE)
+## Masked Autoencoders (MAE)
 
 Masked Autoencoders (MAE), introduced by Meta AI, are a self-supervised method for training Vision Transformers (ViT). Think of it as a "fill-in-the-blank" exercise for images, similar to how BERT works for text.
 
@@ -89,7 +93,9 @@ The core idea is to hide most of an image and force the model to predict what is
 - **Pro:** Scales incredibly well. The bigger the model and the more data you give it, the better it gets.
 - **Con:** It focuses on pixel-level reconstruction. While great for understanding structure, it might lack the high-level semantic "concepts" that a model like CLIP gets from reading text.
 
-#### DETR (DEtection TRansformer)
+---
+
+## DETR (DEtection TRansformer)
 
 DETR (DEtection TRansformer), introduced by Meta AI in 2020, completely changed how AI "sees" objects. Before DETR, object detection was a messy process involving thousands of hand-crafted "anchor boxes" and complex post-processing like Non-Maximum Suppression (NMS) to delete duplicate detections.
 DETR treats object detection as a direct set prediction problem.

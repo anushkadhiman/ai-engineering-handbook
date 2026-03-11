@@ -9,7 +9,7 @@ Computer vision tasks are typically divided based on how they handle "things" (c
 2. **Instance:** Identifies and masks individual objects of interest. Differentiates between separate objects of the same class (e.g., Person 1 vs. Person 2).
 3. **Panoptic:** A hybrid approach that labels every pixel in the scene. Combines semantic (for "stuff" like sky) and instance (for "things" like cars) for holistic scene understanding.
 
-#### Segment Anything Model (SAM)
+## Segment Anything Model (SAM)
 
 The Segment Anything Model (SAM), developed by Meta AI, is a foundational artificial intelligence model designed to "cut out" any object in any image with a single click. Unlike traditional models trained for specific categories (like "cats" or "cars"), SAM is promptable, meaning it can segment objects it has never seen before by following simple user inputs.
 
@@ -30,7 +30,7 @@ Evolution of SAM
 SAM 2: Introduced in July 2024, it adds a memory mechanism to track and segment objects across video frames, even if they are temporarily hidden.
 SAM 3: Announced in late 2025, it focuses on Concept Segmentation, allowing users to find and track every instance of a specific concept (like "every yellow bus") throughout a video using text or example images.
 
-#### SAM 2 (Segment Anything Model 2)
+## SAM 2 (Segment Anything Model 2)
 
 SAM 2 (Segment Anything Model 2), released by Meta AI in July 2024, is the first unified foundation model capable of segmenting and tracking any object across both images and videos in real-time.
 How SAM 2 Works

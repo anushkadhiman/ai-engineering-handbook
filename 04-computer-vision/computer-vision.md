@@ -1,4 +1,4 @@
-### Computer vision
+# Computer vision
 
 Computer vision is a field of artificial intelligence (AI) that enables computers to interpret, analyze, and understand visual information from the world, such as digital images and videos. By leveraging deep learning and neural networks, machines can identify, classify, and react to objects, simulating human visual capabilities.
 
@@ -19,7 +19,7 @@ Computer vision is transforming industries by automating tasks that previously r
 
 ---
 
-#### Computer vision tasks
+## Computer vision tasks
 
 Computer vision tasks are the specific functions that enable machines to "see" and interpret visual data from images and videos. These tasks range from simple categorization to complex 3D scene reconstruction.
 
@@ -45,7 +45,7 @@ Computer vision tasks are the specific functions that enable machines to "see" a
 
 ---
 
-#### Image processing
+## Image processing
 
 Image processing involves applying algorithms to digital images to enhance, analyze, or manipulate them for improved quality or data extraction. It treats images as signals or 2D matrices (pixels) to perform tasks like noise reduction, contrast adjustment, segmentation, and compression. Common applications include medical imaging, remote sensing, and computer vision.
 
@@ -68,7 +68,7 @@ Image processing involves applying algorithms to digital images to enhance, anal
 
 ---
 
-#### Image transformation
+## Image transformation
 
 Image transformation processes, analyzes, and modifies digital images using geometric (spatial) or pixel-level adjustments. Key techniques include rotation, scaling, shearing, translation, and cropping to alter shape, size, or orientation. These operations are crucial for computer vision, image preprocessing, and computer graphics to enhance or correct images.
 
@@ -95,7 +95,7 @@ Image transformation processes, analyzes, and modifies digital images using geom
 
 ---
 
-#### Image enhancement in image processing
+## Image enhancement in image processing
 
 Image enhancement in image processing improves digital image quality, contrast, and clarity for better visual interpretation or analysis without altering intrinsic data. It utilizes spatial domain (direct pixel manipulation) and frequency domain (Fourier transform) techniques to remove noise, sharpen edges, and adjust brightness.
 
@@ -127,7 +127,7 @@ Image enhancement in image processing improves digital image quality, contrast, 
 
 ---
 
-#### Thresholding
+## Thresholding
 
 Thresholding is a fundamental image segmentation technique that converts grayscale images into binary (black and white) images by separating pixels into foreground and background based on a specific intensity value. Pixels above the threshold become white, while those below become black, crucial for object detection, binarization, and noise reduction.
 
@@ -148,7 +148,7 @@ Simple thresholding struggles with images that have low contrast, noise, or unev
 
 ---
 
-#### Image noise reduction in image processing
+## Image noise reduction in image processing
 
 Image noise reduction in image processing involves filtering techniques to enhance image quality by reducing undesired noise (e.g., Gaussian, salt-and-pepper). Common techniques include spatial domain filtering like Mean (smoothing), Gaussian (weighted smoothing), Median (salt-and-pepper removal), and Bilateral filters (edge-preserving), as well as advanced methods like Non-Local Means (NLM) and Block Matching 3D (BM3D).
 
@@ -179,7 +179,7 @@ These methods transform the image to the frequency domain (using Fourier Transfo
 
 ---
 
-#### Morphological operations
+## Morphological operations
 
 Morphological operations are non-linear image processing techniques that probe and transform images based on shapes, using a small template called a structuring element. Primarily used on binary and grayscale images for noise removal, object isolation, and boundary detection, they apply structuring elements to define, alter, or analyze shape, size, and structure.
 
@@ -204,7 +204,7 @@ Morphological operations are non-linear image processing techniques that probe a
 
 ---
 
-#### Feature extraction in computer vision
+## Feature extraction in computer vision
 
 Feature extraction in computer vision is the process of reducing raw image data into smaller, manageable, and informative sets of features (edges, corners, textures, shapes). By transforming high-dimensional pixel data into concise, structured vectors, it enhances the performance, speed, and accuracy of machine learning models for tasks like object recognition, classification, and detection.
 
@@ -237,7 +237,7 @@ Feature extraction methods can be categorized into classical, handcrafted method
 
 ---
 
-#### Edge detection in computer vision
+## Edge detection in computer vision
 
 Edge detection in computer vision identifies sharp intensity changes (boundaries) in images using gradient-based (e.g., Sobel, Prewitt, Roberts) or Laplacian methods, with Canny being the most robust. These techniques are crucial for object detection, image segmentation, and feature extraction by reducing image noise and highlighting structural boundaries.
 
@@ -266,7 +266,7 @@ Edge detection in computer vision identifies sharp intensity changes (boundaries
 
 ---
 
-#### Corner and interest point detection
+## Corner and interest point detection
 
 Corner and interest point detection identifies specific, invariant points in images (e.g., corners, blobs, edges) for tasks like stereo matching, image stitching, and object recognition. Key techniques include the Harris Corner Detector (measures intensity change), Shi-Tomasi, and scale-invariant detectors like SIFT. These methods enhance computational efficiency by focusing on high-information, distinct regions.
 
@@ -290,7 +290,7 @@ Detection generally involves calculating image gradients (using, for example, th
 
 ---
 
-#### Feature descriptors
+## Feature descriptors
 
 Feature descriptors are numerical "fingerprints" (vectors) that represent image regions, keypoints, or textures, enabling computer vision tasks like object recognition, tracking, and image stitching. They encode local information such as gradients, edges, or intensities to ensure invariance to image transformations like scaling, rotation, and lighting changes.
 
@@ -315,7 +315,7 @@ Feature descriptors are numerical "fingerprints" (vectors) that represent image 
 
 ---
 
-#### Direct Fourier Transform (DFT) in image processing
+## Direct Fourier Transform (DFT) in image processing
 
 The Direct Fourier Transform (DFT) in image processing is a mathematical tool used to decompose an image into its constituent sine and cosine components, effectively translating it from the spatial domain (pixels) to the frequency domain (wave patterns).
 
@@ -382,7 +382,7 @@ Image Denoising: After zeroing out the "spikes" representing noise in the freque
 Image Reconstruction: In MRI or CT scans, the raw data is captured in the frequency domain. The IFT is the final step that produces the actual picture the doctor looks at.
 Deblurring: If you know how an image was blurred (its "blurring function"), you can mathematically reverse it in the frequency domain and use the IFT to see the sharpened result.
 
-#### blur, edge detection and sharpening filtering, low-pass and high-pass filters
+## blur, edge detection and sharpening filtering, low-pass and high-pass filters
 
 In image processing, filtering is used to transform or enhance an image by manipulating its frequency components. The relationship between the visual effect (blurring or sharpening) and the type of filter used (low-pass or high-pass) is foundational to how these techniques work.
 

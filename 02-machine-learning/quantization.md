@@ -1,4 +1,4 @@
-### Quantization
+# Quantization
 
 Quantization is an optimization technique that reduces the precision of a model's weights and activations to make it smaller and faster. By converting high-precision numbers (typically 32-bit floating point) into lower-precision formats like 8-bit integers (INT8) or even 4-bit (INT4), you significantly cut down on memory usage and speed up inference, especially on edge devices like smartphones.
 
@@ -29,7 +29,7 @@ Most major frameworks provide built-in support for these workflows:
 
 ---
 
-#### Quantization
+## Quantization
 
 Quantization can be categorized by when it occurs, how it maps values, and its granularity.
 **1. By Timing (When it's applied)**
@@ -64,7 +64,7 @@ Quantization can be categorized by when it occurs, how it maps values, and its g
 
 ---
 
-#### Post‐Training Quantization (PTQ)
+## Post‐Training Quantization (PTQ)
 
 Post-Training Quantization (PTQ) is a model compression technique used to convert a pre-trained, high-precision model (typically 32-bit float) into a lower-precision format (like 8-bit integer) without retraining the original model. It is widely used to reduce model size, speed up inference, and lower power consumption for deployment on edge devices.
 
@@ -89,7 +89,7 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 
 ---
 
-#### Quantization‐Aware Training (QAT)
+## Quantization‐Aware Training (QAT)
 
 Quantization-Aware Training (QAT) is a method where a model is trained or fine-tuned while simulating the effects of low-precision storage (like INT8).
 Unlike Post-Training Quantization (PTQ), which converts a model after it’s finished, QAT introduces quantization errors during the training process so the model can learn to compensate for them.
@@ -120,7 +120,7 @@ Forward Pass: Weights and activations are rounded to low-precision values (e.g.,
 
 ---
 
-#### Mixed Precision Training
+## Mixed Precision Training
 
 Mixed Precision Training is a technique that speeds up deep learning by using both 16-bit (half precision) and 32-bit (single precision) floating-point numbers during the same training session.
 It gives you the best of both worlds: the speed of lower precision and the accuracy of higher precision.
@@ -149,7 +149,7 @@ The Benefit: BF16 is much more stable because it handles large numbers easily, o
 
 ---
 
-#### Weight Pruning Methods
+## Weight Pruning Methods
 
 Weight pruning methods reduce the size and computational load of neural networks by identifying and removing redundant or less significant parameters. These methods are generally categorized by their granularity (what is removed) and their timing (when they are applied).
 
@@ -179,7 +179,7 @@ Weight pruning methods reduce the size and computational load of neural networks
 
 ---
 
-#### Prompt tuning
+## Prompt tuning
 
 Prompt tuning is a parameter-efficient adaptation technique where you keep a large pre-trained model entirely "frozen" and only train a small set of special, continuous vectors called soft prompts.
 Unlike traditional "hard" prompts (actual text you write), soft prompts are high-dimensional vectors that the model learns through training to steer its behavior toward a specific task.
@@ -200,7 +200,7 @@ Unlike traditional "hard" prompts (actual text you write), soft prompts are high
 
 ---
 
-#### Prefix Tuning
+## Prefix Tuning
 
 Prefix Tuning is a parameter-efficient fine-tuning (PEFT) method that adapts large language models to specific tasks by adding a set of trainable, continuous vectors (called a "prefix") to the beginning of the input at every layer of the model.
 While it shares the same goal as prompt tuning—steering a frozen model without retraining all its weights—it is more "expressive" because its influence goes deeper into the model's architecture.

@@ -1,4 +1,4 @@
-#### llm inference optimization techniques
+# LLM Inference Optimization Techniques
 
 LLM inference optimization techniques are generally categorized into model-level, algorithmic, and system-level strategies to overcome the two primary bottlenecks: compute-bound prefill (processing the prompt) and memory-bound decoding (generating tokens one-by-one).
 
@@ -29,7 +29,7 @@ These methods optimize the mathematical operations within the Transformer archit
 - **Pipeline Parallelism:** Splits the model vertically by layers; different GPUs handle different stages of the model.
 - **Expert Parallelism:** In Mixture-of-Experts (MoE) models, only specific "expert" sub-networks are activated per token, improving efficiency.
 
-#### KV Cache (Key-Value Cache)
+## KV Cache (Key-Value Cache)
 
 KV Cache (Key-Value Cache) is an optimization technique used in Transformer-based Large Language Models (LLMs) to accelerate the text generation process. During inference, it stores the intermediate Key and Value vectors of previously processed tokens so they do not need to be recomputed for every new token generated.
 
@@ -84,7 +84,7 @@ PagedAttention treats the GPU memory like a book with pages rather than a single
 
 It is worth noting that while PagedAttention fixes where we store data (memory management), FlashAttention fixes how we compute attention (speed/IO efficiency). Most modern LLM engines use both together to achieve maximum performance.
 
-#### Multi-Query Attention
+## Multi-Query Attention
 
 Multi-Query Attention (MQA) is a variant of the attention mechanism designed specifically to reduce the memory footprint and bandwidth bottlenecks of the KV cache.
 While PagedAttention manages how memory is allocated, MQA changes the architecture of the model to ensure there is less data to store in the first place.
@@ -109,7 +109,7 @@ There is no "free lunch" in AI. By forcing all heads to share the same Keys and 
 - **Cons:** The model loses some "expressive power." In MHA, different heads can focus on different relationships (e.g., one head for grammar, one for logic). In MQA, they are all forced to look at the same compressed representation of the context.
 - **Result:** Small drop in accuracy/perplexity, but massive gains in speed.
 
-#### Grouped-Query Attention
+## Grouped-Query Attention
 
 Grouped-Query Attention (GQA) is the modern standard for attention in large-scale LLMs (like Llama 3, Mistral, and Gemma). It acts as a middle ground that balances the high quality of Multi-Head Attention (MHA) with the extreme speed of Multi-Query Attention (MQA).
 
@@ -131,7 +131,7 @@ GQA divides the many Query heads into a smaller number of Groups. Each group of 
 - They all perform attention against the same and for that group.
 - This effectively averages out the "lookup" information for that group, which empirical studies show is often redundant across all heads anyway.
 
-#### flash attention
+## flash attention
 
 Flash Attention is a fast, memory-efficient, exact attention algorithm that accelerates Transformer training and inference by minimizing memory reads/writes between GPU high-bandwidth memory (HBM) and on-chip SRAM. It uses tiling techniques to compute attention in blocks, reducing complexity from quadratic to linear memory requirements. This allows for significantly longer context windows (up to 4x) and 2-4x faster training for models like GPT-2 and BERT-large.
 
@@ -144,7 +144,7 @@ Flash Attention is a fast, memory-efficient, exact attention algorithm that acce
 - **Applications:** Crucial for LLMs with long context windows and high-resolution image processing in Vision Transformers.
 - **Versions:** FlashAttention-2 is an improved version that further optimizes efficiency.
 
-#### multi head latent attention
+## multi head latent attention
 
 Multi-Head Latent Attention (MLA) is a specialized attention mechanism introduced by DeepSeek (first in DeepSeek-V2) to solve the "memory wall" of the KV cache.
 While GQA (Grouped-Query Attention) reduces cache size by sharing heads, MLA uses low-rank compression to shrink the entire KV space into a small "latent" vector, achieving even greater memory savings without sacrificing model quality.
@@ -177,7 +177,7 @@ To fix this, MLA decouples the attention into two parts:
 - Extremely complex to implement and optimize (requires custom kernels like FlashMLA).
 - Incompatible with standard RoPE; requires the "decoupled" architecture.
 
-#### Continuous Batching
+## Continuous Batching
 
 Continuous Batching (also known as Iteration-level Batching) is an inference scheduling technique that dynamically manages multiple requests at each token generation step.
 While other optimizations like KV Caching or MQA reduce the amount of data processed per token, Continuous Batching ensures the GPU never sits idle by maximizing the number of tokens being generated in every cycle.
@@ -204,7 +204,7 @@ The core innovation, first introduced by the Orca paper (OSDI '22), is changing 
 - Can cause jitter in token delivery speed for active users as new requests join.
 - Extremely memory-intensive; requires robust VRAM management.
 
-#### speculative batching
+## speculative batching
 
 Speculative Batching (or Batch Speculative Decoding) is a high-performance inference technique that combines Speculative Decoding with Batching to maximize GPU utilization.
 While standard speculative decoding speeds up a single request by guessing future tokens, speculative batching allows a system to speed up multiple concurrent requests at once by verifying all their guesses in a single parallel step.
@@ -238,7 +238,7 @@ The process follows a "Propose-Verify-Correct" loop across the entire batch:
 - The "Ragged Tensor" Problem: Requests accept different numbers of tokens, making it hard to keep the batch perfectly aligned in memory.
 - Overhead: Managing two models (draft and target) and synchronizing their KV caches adds significant architectural complexity.
 
-#### Prefix Caching
+## Prefix Caching
 
 Prefix Caching (also known as Prompt Caching) is an optimization that allows different inference requests to reuse the same KV cache if they share an identical starting sequence of tokens.
 While standard KV caching works within a single request to speed up decoding, prefix caching works across different requests to skip the expensive prefill phase for recurring instructions or context.
@@ -269,7 +269,7 @@ Modern frameworks like vLLM use a Radix Tree or a Hash-based system to identify 
 - Requires large amounts of VRAM to store long-term context.
 - Security Risk: Can create "timing side-channels" where an attacker can guess if a prefix was previously used based on response speed.
 
-#### vllm
+## vllm
 
 vLLM (Virtual Large Language Model) is an open-source, high-throughput inference and serving engine for LLMs. Developed by researchers at UC Berkeley, it is designed to run models with significantly higher efficiency and lower costs by solving the "memory wall" of KV caching.
 
@@ -291,7 +291,7 @@ vLLM (Virtual Large Language Model) is an open-source, high-throughput inference
 - Quantization: Supports various compression formats (GPTQ, AWQ, FP8, INT8) to fit larger models into less VRAM.
 - Flexibility: Includes features for Multi-LoRA serving, speculative decoding, and streaming outputs.
 
-#### Knowledge Distillation
+## Knowledge Distillation
 
 Knowledge Distillation is a machine learning technique where a small, compact model (the Student) is trained to reproduce the behavior and performance of a large, complex, pre-trained model (the Teacher).
 
@@ -349,7 +349,7 @@ When training a model like DistilBERT, the "Loss Function" actually looks at two
 - Student Loss: The difference between the Student's hard output and the actual "correct" label (using T=1).
   By balancing these two, the Student learns both the facts (it is a cat) and the logic (it looks a bit like a dog).
 
-#### llama.cpp and Ollama
+## llama.cpp and Ollama
 
 While vLLM is built for high-scale enterprise serving, llama.cpp and Ollama are the kings of the "Local LLM" world, designed to run models on your own laptop or desktop.
 **llama.cpp:**
@@ -393,7 +393,7 @@ The main downside is speed. Moving data between the GPU and CPU over the PCIe bu
 - **FSDP (Fully Sharded Data Parallel):** A PyTorch technique that supports offloading parameters to the CPU when not in use during the forward/backward pass.
 - **Llama.cpp:** Uses CPU offloading to allow users to run LLMs using a mix of GPU and System RAM, making local AI accessible on standard PCs.
 
-#### Prompt caching
+## Prompt caching
 
 Prompt caching is a performance optimization technique for Large Language Models (LLMs) that stores the internal state of a model—specifically the Key-Value (KV) tensors—associated with a specific prompt prefix. When you reuse identical content at the beginning of a prompt, the model "remembers" it, skipping redundant computations.
 
@@ -412,7 +412,7 @@ Place system instructions, tool definitions, and long reference documents at the
 Ensure formatting, whitespace, and the order of elements (like tools or few-shot examples) are identical across requests.
 For multi-turn chats, place breakpoints after static instructions or after key conversation turns to maximize reuse.
 
-#### Preference Tuning with DPO
+## Preference Tuning with DPO
 
 Direct Preference Optimization (DPO) is a stable and efficient alternative to Reinforcement Learning from Human Feedback (RLHF). While RLHF requires training a separate "reward model" and navigating the complexities of PPO (Proximal Policy Optimization), DPO treats preference tuning as a straightforward classification problem.
 
