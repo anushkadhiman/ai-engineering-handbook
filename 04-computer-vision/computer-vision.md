@@ -17,6 +17,8 @@ Computer vision is a field of artificial intelligence (AI) that enables computer
 **Why it Matters**
 Computer vision is transforming industries by automating tasks that previously required human sight, increasing efficiency, enhancing safety, and enabling new, automated AI-driven processes.
 
+---
+
 #### Computer vision tasks
 
 Computer vision tasks are the specific functions that enable machines to "see" and interpret visual data from images and videos. These tasks range from simple categorization to complex 3D scene reconstruction.
@@ -31,9 +33,9 @@ Computer vision tasks are the specific functions that enable machines to "see" a
 - Panoptic Segmentation: A hybrid approach that identifies both object instances and the overall background.
 - Object Tracking: Used in video analysis to follow a specific object across consecutive frames, maintaining its identity as it moves.
 - Facial Recognition: A specialized form of object recognition focused on identifying or verifying an individual's identity based on their facial features.
-  Pose Estimation: Determines the spatial position and orientation of objects or human body parts, often by tracking key points like joints.
+- Pose Estimation: Determines the spatial position and orientation of objects or human body parts, often by tracking key points like joints.
 
-Advanced and Specialized Tasks
+**Advanced and Specialized Tasks**
 
 - Optical Character Recognition (OCR): Extracts and converts text from images or scanned documents into a machine-readable format.
 - Scene Reconstruction: Computes a 3D model of a real-world object or environment from 2D images or video sequences.
@@ -41,24 +43,30 @@ Advanced and Specialized Tasks
 - Anomaly Detection: Specifically looks for patterns that deviate from "normal" data, often used for defect detection in manufacturing or spotting health issues in medical scans.
 - Feature Matching: Finds corresponding points or regions across multiple images, which is essential for tasks like creating panoramic photos.
 
+---
+
 #### Image processing
 
 Image processing involves applying algorithms to digital images to enhance, analyze, or manipulate them for improved quality or data extraction. It treats images as signals or 2D matrices (pixels) to perform tasks like noise reduction, contrast adjustment, segmentation, and compression. Common applications include medical imaging, remote sensing, and computer vision.
 
 **Main Techniques:**
-**Image Enhancement:** Improving visual quality, such as contrast adjustment or brightness correction.
-**Image Restoration:** Removing noise or degradation to recover image quality.
-**Image Segmentation:** Dividing an image into segments or regions to identify objects or features.
-**Image Compression:** Reducing image size for storage and transmission.
-**Image Analysis:** Extracting information, such as detecting patterns or recognizing objects.
+
+- **Image Enhancement:** Improving visual quality, such as contrast adjustment or brightness correction.
+- **Image Restoration:** Removing noise or degradation to recover image quality.
+- **Image Segmentation:** Dividing an image into segments or regions to identify objects or features.
+- **Image Compression:** Reducing image size for storage and transmission.
+- **Image Analysis:** Extracting information, such as detecting patterns or recognizing objects.
 
 **Applications:**
-**Medical Imaging:** X-rays, MRI scans, and ultrasound.
-Satellite/Remote Sensing: Weather prediction and environmental monitoring.
-**Computer Vision:** Industrial inspection, autonomous navigation, and facial recognition.
-**Consumer Software:** Adobe Photoshop, filters, and photo editing.
+
+- **Medical Imaging:** X-rays, MRI scans, and ultrasound.
+- **Satellite/Remote Sensing:** Weather prediction and environmental monitoring.
+- **Computer Vision:** Industrial inspection, autonomous navigation, and facial recognition.
+- **Consumer Software:** Adobe Photoshop, filters, and photo editing.
 
 **Digital image processing (DIP)** is a subfield of signal processing that focuses on manipulating digital images using computers, offering significant advantages over analog methods, such as increased flexibility and precision.
+
+---
 
 #### Image transformation
 
@@ -84,6 +92,8 @@ Image transformation processes, analyzes, and modifies digital images using geom
 - **Image Preprocessing:** Preparing data for machine learning models (e.g., resizing, normalizing).
 - **Image Correction:** Straightening, deskewing, or correcting distortion (e.g., fisheye removal).
 - **Graphic Design:** Creating visual effects, merging images, and applying filters.
+
+---
 
 #### Image enhancement in image processing
 
@@ -115,6 +125,8 @@ Image enhancement in image processing improves digital image quality, contrast, 
 • **Satellite Imagery:** Enhancing aerial photographs for analysis.
 • **Photography & Video:** Improving visual quality and reducing digital noise.
 
+---
+
 #### Thresholding
 
 Thresholding is a fundamental image segmentation technique that converts grayscale images into binary (black and white) images by separating pixels into foreground and background based on a specific intensity value. Pixels above the threshold become white, while those below become black, crucial for object detection, binarization, and noise reduction.
@@ -134,7 +146,9 @@ Thresholding is a fundamental image segmentation technique that converts graysca
 **Limitations**
 Simple thresholding struggles with images that have low contrast, noise, or uneven lighting, often requiring advanced adaptive techniques to achieve good results.
 
-##### Image noise reduction in image processing
+---
+
+#### Image noise reduction in image processing
 
 Image noise reduction in image processing involves filtering techniques to enhance image quality by reducing undesired noise (e.g., Gaussian, salt-and-pepper). Common techniques include spatial domain filtering like Mean (smoothing), Gaussian (weighted smoothing), Median (salt-and-pepper removal), and Bilateral filters (edge-preserving), as well as advanced methods like Non-Local Means (NLM) and Block Matching 3D (BM3D).
 
@@ -163,6 +177,8 @@ These methods transform the image to the frequency domain (using Fourier Transfo
 - **CNN-based models:** Convolutional Neural Networks (CNNs) can learn to remove complex noise patterns by training on noisy-clean image pairs, often outperforming traditional filters, especially with high-density noise.
 - **Noise2Void:** A technique that allows training denoising networks using only noisy images, without needing clean ground-truth data
 
+---
+
 #### Morphological operations
 
 Morphological operations are non-linear image processing techniques that probe and transform images based on shapes, using a small template called a structuring element. Primarily used on binary and grayscale images for noise removal, object isolation, and boundary detection, they apply structuring elements to define, alter, or analyze shape, size, and structure.
@@ -185,6 +201,8 @@ Morphological operations are non-linear image processing techniques that probe a
 - **Object Segmentation:** Separating distinct objects that are barely connected.
 - **Filling Holes:** Closing fills in gaps within an object.
 - **Boundary Detection:** Using erosion or gradient operations to define edges.
+
+---
 
 #### Feature extraction in computer vision
 
@@ -217,6 +235,8 @@ Feature extraction methods can be categorized into classical, handcrafted method
 - **Extraction:** Applying filters (e.g., Canny) or models (e.g., CNNs).
 - **Representation:** Organizing extracted data into feature vectors or maps.
 
+---
+
 #### Edge detection in computer vision
 
 Edge detection in computer vision identifies sharp intensity changes (boundaries) in images using gradient-based (e.g., Sobel, Prewitt, Roberts) or Laplacian methods, with Canny being the most robust. These techniques are crucial for object detection, image segmentation, and feature extraction by reducing image noise and highlighting structural boundaries.
@@ -244,6 +264,8 @@ Edge detection in computer vision identifies sharp intensity changes (boundaries
 - **Thresholding:** Determining which intensity changes are significant enough to be considered edges.
 - **Localization:** Pinpointing the exact edge location, often using non-maximum suppression to create single-pixel wide lines.
 
+---
+
 #### Corner and interest point detection
 
 Corner and interest point detection identifies specific, invariant points in images (e.g., corners, blobs, edges) for tasks like stereo matching, image stitching, and object recognition. Key techniques include the Harris Corner Detector (measures intensity change), Shi-Tomasi, and scale-invariant detectors like SIFT. These methods enhance computational efficiency by focusing on high-information, distinct regions.
@@ -265,6 +287,8 @@ Corner and interest point detection identifies specific, invariant points in ima
 
 **Methodology**
 Detection generally involves calculating image gradients (using, for example, the Sobel filter), determining a corner response function, and applying non-maximum suppression to filter out weak or redundant points.
+
+---
 
 #### Feature descriptors
 
@@ -288,6 +312,8 @@ Feature descriptors are numerical "fingerprints" (vectors) that represent image 
 - **Object Recognition:** Identifying objects regardless of their orientation or size.
 - **Tracking:** Following a feature across frames.
 - **3D Reconstruction:** Building 3D models from 2D images.
+
+---
 
 #### Direct Fourier Transform (DFT) in image processing
 

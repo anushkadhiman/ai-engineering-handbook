@@ -27,42 +27,7 @@ Most major frameworks provide built-in support for these workflows:
 - NVIDIA TensorRT: A high-performance inference SDK that uses symmetric quantization to maximize GPU throughput.
 - Hugging Face: Their bitsandbytes library is the industry standard for loading large models in 8-bit or 4-bit mode with just one line of code.
 
-#### Prompt tuning
-
-Prompt tuning is a parameter-efficient adaptation technique where you keep a large pre-trained model entirely "frozen" and only train a small set of special, continuous vectors called soft prompts.
-Unlike traditional "hard" prompts (actual text you write), soft prompts are high-dimensional vectors that the model learns through training to steer its behavior toward a specific task.
-
-**How It Works**
-
-- **Frozen Backbone:** The billions of weights in the original model remain unchanged, preserving all its general knowledge.
-- **Soft Prompt Addition:** A sequence of "virtual tokens" (soft prompts) is prepended to the input.
-- **Gradient-Based Learning:** During training, the model's error (loss) is backpropagated to update only these soft prompt vectors, not the model itself.
-- **Task Switching:** At inference, you simply "plug in" the small set of learned vectors for the task you want (e.g., sentiment analysis vs. summarization) while using the same base model.
-
-**Why Choose Prompt Tuning?**
-
-- **Massive Efficiency:** You only store and update a few thousand parameters (kilobytes) instead of gigabytes for a full model copy.
-- **Scalability:** Performance often matches full fine-tuning as models get larger (10B+ parameters).
-- **Stability:** Since the base model is frozen, it won't "forget" its original abilities (catastrophic forgetting) during the tuning process.
-  **Low Data Needs:** It can achieve strong results even with relatively small labeled datasets.
-
-#### Prefix Tuning
-
-Prefix Tuning is a parameter-efficient fine-tuning (PEFT) method that adapts large language models to specific tasks by adding a set of trainable, continuous vectors (called a "prefix") to the beginning of the input at every layer of the model.
-While it shares the same goal as prompt tuning—steering a frozen model without retraining all its weights—it is more "expressive" because its influence goes deeper into the model's architecture.
-
-**How It Works**
-
-- **Frozen Backbone:** The original billions of parameters in the pre-trained model remain completely unchanged.
-- **Multi-Layer Injection:** Instead of just adding a "soft prompt" to the input layer, prefix tuning prepends learned vectors to the Key (K) and Value (V) matrices in the self-attention mechanism of every transformer layer.
-- **Virtual Tokens:** The model treats these learned vectors as "virtual tokens." When the model processes your text, it attends to these virtual tokens as if they were part of the input, allowing them to guide the generation process.
-- **Bottleneck MLP:** To make training more stable, the prefix is often generated through a small Multi-Layer Perceptron (MLP) that is discarded after training, leaving only the optimized prefix vectors.
-
-**Why Use It?**
-
-- **Performance:** Achieves results comparable to full fine-tuning while updating less than 1% of the model's total parameters.
-- **Modularity:** You can store different tiny "prefixes" for different tasks (e.g., one for translation, one for summarization) and simply swap them out while using the same base model.
-- **Efficiency:** Drastically reduces the computational and storage costs of maintaining multiple task-specific models.
+---
 
 #### Quantization
 
@@ -97,6 +62,8 @@ Quantization can be categorized by when it occurs, how it maps values, and its g
 - **Integer Quantization:** Converting to INT8 (most common) or INT4.
 - **Float Quantization:** Using lower-precision float formats like FP8, FP4, or specialized types like NormalFloat 4 (NF4) used in QLoRA.
 
+---
+
 #### Post‐Training Quantization (PTQ)
 
 Post-Training Quantization (PTQ) is a model compression technique used to convert a pre-trained, high-precision model (typically 32-bit float) into a lower-precision format (like 8-bit integer) without retraining the original model. It is widely used to reduce model size, speed up inference, and lower power consumption for deployment on edge devices.
@@ -119,6 +86,8 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 
 - **Accuracy Loss:** Because the model wasn't "taught" to handle lower precision, PTQ can cause a drop in accuracy, especially in smaller or more sensitive models.
 - **Calibration Bias:** If the small calibration dataset isn't truly representative of real-world inputs, the pre-calculated ranges might be wrong, leading to poor performance.
+
+---
 
 #### Quantization‐Aware Training (QAT)
 
@@ -149,26 +118,36 @@ Forward Pass: Weights and activations are rounded to low-precision values (e.g.,
 - TensorFlow: The Model Optimization Toolkit provides a simple wrapper to make a model "quantization aware" with a few lines of code.
 - NVIDIA TensorRT: Supports QAT by importing "QDQ" (Quantize/Dequantize) nodes from ONNX models.
 
+---
+
 #### Mixed Precision Training
 
 Mixed Precision Training is a technique that speeds up deep learning by using both 16-bit (half precision) and 32-bit (single precision) floating-point numbers during the same training session.
 It gives you the best of both worlds: the speed of lower precision and the accuracy of higher precision.
 
-**How It Works:** The "Master Weight" Strategy
-The key challenge is that 16-bit floats (FP16) have a very narrow range. If a gradient is too small, it becomes zero (underflow); if too large, it becomes "NaN" (overflow). Mixed precision solves this using three steps:
-**The Half-Precision Pass:** The model performs the heavy math (forward and backward passes) in FP16. This is significantly faster on modern GPUs with NVIDIA Tensor Cores.
-The Master Weights: The optimizer maintains a "master copy" of the weights in FP32. After the FP16 gradients are calculated, they are used to update these high-precision master weights to ensure numerical stability.
-**Loss Scaling:** To prevent small gradients from disappearing (underflow), the loss is multiplied by a large scale factor before backpropagation. It is then scaled back down before the weights are updated.
+- **How It Works:**
+  The key challenge is that 16-bit floats (FP16) have a very narrow range. If a gradient is too small, it becomes zero (underflow); if too large, it becomes "NaN" (overflow).
+
+Mixed precision solves this using three steps:
+
+- **The Half-Precision Pass:** The model performs the heavy math (forward and backward passes) in FP16. This is significantly faster on modern GPUs with NVIDIA Tensor Cores.
+- **The Master Weights:** The optimizer maintains a "master copy" of the weights in FP32. After the FP16 gradients are calculated, they are used to update these high-precision master weights to ensure numerical stability.
+- **Loss Scaling:** To prevent small gradients from disappearing (underflow), the loss is multiplied by a large scale factor before backpropagation. It is then scaled back down before the weights are updated.
 
 **Why Use It?**
-**Faster Training:** You can see speedups of 2x to 5x depending on your hardware and model architecture.
-**Reduced VRAM Usage:** FP16 tensors take up half the memory of FP32, allowing you to double your batch size or train much larger models on the same GPU.
-No Accuracy Loss: When implemented correctly with loss scaling, the final model accuracy is typically identical to full FP32 training.
-**BF16:** The Modern Alternative
-If you are using newer hardware (like NVIDIA A100/H100 or TPU), you likely use BF16 (Brain Floating Point).
-FP16 has a small range but high precision.
-BF16 has the same range as FP32 but lower precision.
-**The Benefit:** BF16 is much more stable because it handles large numbers easily, often making Loss Scaling unnecessary.
+
+- **Faster Training:** You can see speedups of 2x to 5x depending on your hardware and model architecture.
+- **Reduced VRAM Usage:** FP16 tensors take up half the memory of FP32, allowing you to double your batch size or train much larger models on the same GPU.
+- **No Accuracy Loss:** When implemented correctly with loss scaling, the final model accuracy is typically identical to full FP32 training.
+
+**BF16:** If you are using newer hardware (like NVIDIA A100/H100 or TPU), you likely to use BF16 (Brain Floating Point).
+
+- FP16 has a small range but high precision.
+- BF16 has the same range as FP32 but lower precision.
+
+The Benefit: BF16 is much more stable because it handles large numbers easily, often making Loss Scaling unnecessary.
+
+---
 
 #### Weight Pruning Methods
 
@@ -177,11 +156,12 @@ Weight pruning methods reduce the size and computational load of neural networks
 **1. Granularity: Structured vs. Unstructured**
 
 - **Unstructured Pruning (Fine-Grained):** Individual weights are zeroed out based on criteria like low magnitude.
-- Pros: Can achieve extreme sparsity (e.g., 90–99%) with minimal accuracy loss.
-- Cons: Often results in irregular sparse matrices that require specialized hardware or libraries to see real-world speedups.
+  - Pros: Can achieve extreme sparsity (e.g., 90–99%) with minimal accuracy loss.
+  - Cons: Often results in irregular sparse matrices that require specialized hardware or libraries to see real-world speedups.
+
 - **Structured Pruning (Coarse-Grained):** Entire structural units are removed, such as neurons, convolutional filters, channels, or even whole layers.
-- Pros: Hardware-friendly; results in dense matrices that immediately accelerate inference on standard CPUs and GPUs without custom software.
-- Cons: More aggressive than unstructured pruning, which can lead to a more significant drop in accuracy if not carefully managed.
+  - Pros: Hardware-friendly; results in dense matrices that immediately accelerate inference on standard CPUs and GPUs without custom software.
+  - Cons: More aggressive than unstructured pruning, which can lead to a more significant drop in accuracy if not carefully managed.
 
 **2. Selection Criteria (What to Prune)**
 
@@ -196,3 +176,46 @@ Weight pruning methods reduce the size and computational load of neural networks
 - **Iterative Pruning:** A "prune-train-repeat" cycle that gradually increases sparsity, allowing the model to adapt and recover accuracy at each stage.
 - **Train-Time (Dynamic) Pruning:** Pruning occurs simultaneously with training, often encouraged by regularization techniques (like L1/L2 penalties) that force weights toward zero.
 - **Lottery Ticket Hypothesis:** Proposes that large networks contain "winning ticket" subnetworks that can reach the same accuracy as the original when trained from the same initial state.
+
+---
+
+#### Prompt tuning
+
+Prompt tuning is a parameter-efficient adaptation technique where you keep a large pre-trained model entirely "frozen" and only train a small set of special, continuous vectors called soft prompts.
+Unlike traditional "hard" prompts (actual text you write), soft prompts are high-dimensional vectors that the model learns through training to steer its behavior toward a specific task.
+
+**How It Works**
+
+- **Frozen Backbone:** The billions of weights in the original model remain unchanged, preserving all its general knowledge.
+- **Soft Prompt Addition:** A sequence of "virtual tokens" (soft prompts) is prepended to the input.
+- **Gradient-Based Learning:** During training, the model's error (loss) is backpropagated to update only these soft prompt vectors, not the model itself.
+- **Task Switching:** At inference, you simply "plug in" the small set of learned vectors for the task you want (e.g., sentiment analysis vs. summarization) while using the same base model.
+
+**Why Choose Prompt Tuning?**
+
+- **Massive Efficiency:** You only store and update a few thousand parameters (kilobytes) instead of gigabytes for a full model copy.
+- **Scalability:** Performance often matches full fine-tuning as models get larger (10B+ parameters).
+- **Stability:** Since the base model is frozen, it won't "forget" its original abilities (catastrophic forgetting) during the tuning process.
+  **Low Data Needs:** It can achieve strong results even with relatively small labeled datasets.
+
+---
+
+#### Prefix Tuning
+
+Prefix Tuning is a parameter-efficient fine-tuning (PEFT) method that adapts large language models to specific tasks by adding a set of trainable, continuous vectors (called a "prefix") to the beginning of the input at every layer of the model.
+While it shares the same goal as prompt tuning—steering a frozen model without retraining all its weights—it is more "expressive" because its influence goes deeper into the model's architecture.
+
+**How It Works**
+
+- **Frozen Backbone:** The original billions of parameters in the pre-trained model remain completely unchanged.
+- **Multi-Layer Injection:** Instead of just adding a "soft prompt" to the input layer, prefix tuning prepends learned vectors to the Key (K) and Value (V) matrices in the self-attention mechanism of every transformer layer.
+- **Virtual Tokens:** The model treats these learned vectors as "virtual tokens." When the model processes your text, it attends to these virtual tokens as if they were part of the input, allowing them to guide the generation process.
+- **Bottleneck MLP:** To make training more stable, the prefix is often generated through a small Multi-Layer Perceptron (MLP) that is discarded after training, leaving only the optimized prefix vectors.
+
+**Why Use It?**
+
+- **Performance:** Achieves results comparable to full fine-tuning while updating less than 1% of the model's total parameters.
+- **Modularity:** You can store different tiny "prefixes" for different tasks (e.g., one for translation, one for summarization) and simply swap them out while using the same base model.
+- **Efficiency:** Drastically reduces the computational and storage costs of maintaining multiple task-specific models.
+
+---

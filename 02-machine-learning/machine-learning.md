@@ -6,6 +6,8 @@
 - trained using loss minimization
 - generalizes to unseen data
 
+---
+
 2. Applications of Machine Learning
    - Analyzing images of products on a production line to automatically classify them
    - Detecting tumors in brain scans: semantic image segmentation problem
@@ -19,6 +21,8 @@
    - Representing a complex, high-dimensional dataset in a clear and insightful diagram: This is data visualization, often involving dimensionality reduction techniques.
    - Recommending a product that a client may be interested in, based on past purchases: This is a recommender system.
 
+---
+
 3. Types of Machine Learning Systems
    - Supervised Learning: The model is trained on labeled data (input-output pairs) to make predictions.
    - Unsupervised Learning: The model identifies patterns and structures in unlabeled data without predefined outcomes.
@@ -26,22 +30,32 @@
    - Self-supervised learning: This is a subset of unsupervised learning creates its own supervisory signals (labels) from unlabeled data by solving "pretext tasks" like predicting missing parts.
    - Reinforcement Learning: An agent learns to make decisions through trial and error by interacting with an environment and receiving rewards or penalties.
 
+---
+
 4. Supervised Learning
    - Classification: Predicts a discrete category or class label. Examples: Detecting spam in emails, medical diagnosis, and image recognition.
    - Regression: Predicts a continuous numerical value. Examples: Forecasting stock prices, predicting house prices, and weather forecasting.
+
+---
 
 5. Unsupervised Learning
    - Clustering: Groups similar data points into clusters based on shared attributes. Examples: Customer segmentation for marketing, social network analysis, and image compression.
    - Dimensionality Reduction: Reduces the number of features in a dataset while preserving essential information to make the data more manageable and easier to visualize. Examples: Data visualization, and reducing genetic variables in bioinformatics.
    - Association: Discovers rules that describe large portions of the data. Examples: Market basket analysis to identify products frequently bought together, like purchasing bread and butter.
 
+---
+
 6. Batch learning and Online learning
    - Batch learning trains models on the entire dataset at once, making it ideal for stable, offline data, but it requires full retraining for updates.
    - Online learning trains incrementally on data streams (individually or mini-batches), allowing for real-time adaptation, lower memory usage, and continuous improvement without retraining from scratch. However, susceptible to "catastrophic interference" (forgetting old patterns); harder to maintain.
 
+---
+
 7. Instance based vs Model based learning
    - Instance-based learning (e.g.,k-NN) memorizes training data and makes predictions based on similarity to new inputs, functioning as "lazy" learning, ideal for small, dynamic datasets.
    - Model-based learning (e.g., linear regression) trains a model to generalize patterns from data, resulting in faster, more efficient predictions for large, static datasets.
+
+---
 
 8. Main Challenges of Machine Learning
    - Data Issues: Poor quality, insufficient data, or lack of diversity causing bias.
@@ -51,16 +65,22 @@
    - Data Security and Privacy: Protecting sensitive data used for training.
    - Feature Engineering: The time-intensive process of selecting relevant data features.
 
+---
+
 9. Training, Testing and Validation dataset
    - data is divided into three distinct sets, each serving a specific purpose in building and evaluating a reliable model; helps ensure the model generalizes well to new, unseen data and prevents common issues like overfitting.
    - Training Set: the largest portion of the dataset, the model uses to learn patterns and relationships. During training, the algorithm repeatedly adjusts its internal parameters (like weights in a neural network) to minimize errors based on this data. A diverse training set is crucial for effective learning.
    - Validation Set: used during the model development phase to provide an unbiased evaluation of the model's performance while fine-tuning its hyperparameters (e.g., the learning rate or number of layers), helping in model selection and serving as an early stopping signal to prevent overfitting to the training data.
    - Test Set: This is a completely separate, "held-out" portion of the data used only once at the very end of the process to assess the final, tuned model's performance on truly unseen data; provides the most reliable estimate of the model's real-world generalization ability.
 
+---
+
 10. Hyperparameter Tuning and Model Selection
     - are critical steps for building robust machine learning models by identifying the best algorithm and optimizing settings that control the learning process. Selection involves comparing models (e.g., SVM, Random Forest) via cross-validation, while tuning adjusts parameters like learning rate or regularization to minimize error, prevent overfitting, and improve performance.
     - For model selection: Evaluate models based on performance metrics (e.g., accuracy, precision, F1-score, AUC-ROC); use cross-validation (e.g., k-fold) to avoid overfitting and ensure generalization; balance model complexity with interpretability and avoid choosing a model that is too simple (underfitting) or too complex (overfitting).
     - For Hyperparameter Tuning: Use techniques like Grid Search: Exhaustively searches through a predefined subset of hyperparameters; Random Search: Randomly samples combinations of hyperparameters, often faster than grid search; Bayesian Optimization: A probabilistic model to find the best hyperparameters, often more efficient than grid/random search.
+
+---
 
 11. What is end-to-end machine learning (ML) project?
     - Problem Definition and Planning:
@@ -81,6 +101,8 @@
       Monitoring and Maintenance: Continuously track the model's performance in production to detect issues like data or model drift. Use feedback loops to trigger model retraining as needed.
       Automation (CI/CD/CT): Implement continuous integration, delivery, and training pipelines to automate the workflow and ensure reproducibility and efficiency.
 
+---
+
 12. Classification in machine learning:
     - a supervised learning technique that categorizes input data into predefined classes or labels based on training examples. By learning relationships between input features and target outcomes, models predict categorical labels for new data, such as distinguishing "spam" from "not spam".
     - Types of Classification:
@@ -90,6 +112,9 @@
       Ordinal: Classes have a specific order or rank
     - Common Classification Algorithms: Logistic Regression (used for binary classification), Decision Trees, Random Forest, Support Vector Machines (SVM), K-Nearest Neighbors (KNN), Naive Bayes
     - Real-World Applications: Spam Detection: Filtering emails; Healthcare: Disease diagnosis or patient risk identification; Image Recognition: Identifying objects in photos; Fraud Detection: Identifying fraudulent bank transactions; Sentiment Analysis: Determining if text is positive, negative, or neutral.
+
+---
+
 13. Performance metrics in machine learning:
     - are quantitative measures used to evaluate, compare, and optimize model effectiveness, ensuring they generalize well to new data.
     - Key metrics include accuracy, precision, recall, and F1-score for classification, and mean squared error (MSE) or root mean squared error (RMSE) for regression.
@@ -105,6 +130,9 @@
       Mean Squared Error (MSE): Average of the squared differences, heavily punishing large errors.
       Root Mean Squared Error (RMSE): The square root of MSE, providing error in the same unit as the target variable.
     - Choosing the Right Metric: Balanced Data: Accuracy is often sufficient; Imbalanced Data: Use Precision, Recall, F1-Score, or AUC-ROC; Regression: Use RMSE or MAE based on whether large errors need to be heavily penalized (RMSE) or not (MAE).
+
+---
+
 14. Precision-Recall Curve:
     - It visualizes the trade-off between precision (exactness) and recall (completeness) for binary classifiers at various decision thresholds. As the threshold changes, increasing precision typically lowers recall (fewer false positives, more false negatives), and vice versa. It is crucial for imbalanced datasets, where a higher curve towards the top-right indicates superior model performance.
     - Axes: Recall is typically plotted on the x-axis, and Precision is on the y-axis.
@@ -115,6 +143,9 @@
     - Model Comparison: It allows for comparing different models to see which offers a better balance for specific requirements.
     - Threshold Optimization: It helps visualize the impact of changing the decision threshold on the trade-off between false positives and false negatives.
     - Performance Visualization: The curve provides a comprehensive view of performance, especially when accuracy is misleading due to class imbalance.
+
+---
+
 15. ROC curve:
     - A Receiver Operating Characteristic (ROC) curve is a graphical plot that illustrates the diagnostic ability of a binary classifier across all threshold levels. It plots the True Positive Rate (Sensitivity) on the y-axis against the False Positive Rate (1 - Specificity) on the x-axis, providing a comprehensive visualization of the trade-off between sensitivity and specificity.
     - Ideal Performance: The curve should bend towards the top-left corner, indicating high sensitivity and low false positive rate.
@@ -123,6 +154,8 @@
     - Threshold Independence: The ROC curve shows performance across all possible classification thresholds.
     - Applications: Commonly used in machine learning for binary classification, medical diagnostics, and signal detection.
     - An AUC of 1.0 represents a perfect model, while an AUC of 0.5 indicates a model that performs no better than random
+
+---
 
 16. Error analysis
     - is the systematic process of examining and understanding the errors made by a machine learning model to identify patterns, diagnose root causes, and develop a strategic plan for improvement. It shifts focus from aggregate performance metrics (like overall accuracy) to specific instances of failure to ensure robust and reliable model performance, especially in real-world production environments.
@@ -145,22 +178,30 @@
       3. Model Interpretability (LIME/SHAP): Techniques used to understand which features most influenced a specific prediction, helping to diagnose individual errors.
       4. Counterfactual Analysis: Generating synthetic adversarial examples to test the model's robustness and identify vulnerabilities.
 
-#### Feature selection
+---
 
-Feature selection is a critical preprocessing step in machine learning that involves choosing a relevant subset of original features to build a model. Unlike feature extraction, which creates new variables through transformation, feature selection keeps a subset of the existing ones to improve accuracy, reduce training time, and enhance model interpretability.
+17. Feature selection
+
+- Feature selection is a critical preprocessing step in machine learning that involves choosing a relevant subset of original features to build a model. Unlike feature extraction, which creates new variables through transformation, feature selection keeps a subset of the existing ones to improve accuracy, reduce training time, and enhance model interpretability.
+
 Core Feature Selection Methods
 Methods are generally categorized into three supervised groups and various unsupervised techniques:
-Filter Methods: These evaluate features based on their intrinsic properties (like correlation or variance) independently of any machine learning algorithm.
-Univariate Examples: Chi-Square test (categorical data), ANOVA (numerical input/categorical output), and Information Gain.
-Multivariate Examples: Minimal Redundancy Maximal Relevance (mRMR) and Correlation-based Feature Selection (CFS).
-Wrapper Methods: These use a specific model to evaluate subsets of features by training and testing iteratively.
-Techniques: Forward Selection (adding features one-by-one), Backward Elimination (removing features), and Recursive Feature Elimination (RFE).
-Embedded Methods: These integrate feature selection directly into the model training process.
-Techniques: L1 Regularization (Lasso), which shrinks less important coefficients to zero, and Tree-based Importance (e.g., Random Forest or Gradient Boosting).
-Unsupervised Methods: Used when labels are unavailable, focusing on data structure rather than target correlation.
-Techniques: Principal Component Analysis (PCA), t-SNE, and Autoencoders.
 
-#### What Is Contrastive Learning?
+- Filter Methods: These evaluate features based on their intrinsic properties (like correlation or variance) independently of any machine learning algorithm.
+  - Univariate Examples: Chi-Square test (categorical data), ANOVA (numerical input/categorical output), and Information Gain.
+  - Multivariate Examples: Minimal Redundancy Maximal Relevance (mRMR) and Correlation-based Feature Selection (CFS).
+
+- Wrapper Methods: These use a specific model to evaluate subsets of features by training and testing iteratively.
+  Techniques: Forward Selection (adding features one-by-one), Backward Elimination (removing features), and Recursive Feature Elimination (RFE).
+- Embedded Methods: These integrate feature selection directly into the model training process.
+  Techniques: L1 Regularization (Lasso), which shrinks less important coefficients to zero, and Tree-based Importance (e.g., Random Forest or Gradient Boosting).
+
+- Unsupervised Methods: Used when labels are unavailable, focusing on data structure rather than target correlation.
+  Techniques: Principal Component Analysis (PCA), t-SNE, and Autoencoders.
+
+---
+
+18. What Is Contrastive Learning?
 
 Contrastive learning is a machine learning paradigm that teaches models to understand data by comparing similar and dissimilar samples. Unlike standard supervised learning that maps an input to a specific label (e.g., "this is a cat"), contrastive learning learns an embedding space where related items are pulled together and unrelated items are pushed apart.
 
@@ -170,41 +211,52 @@ Contrastive learning is a machine learning paradigm that teaches models to under
    Positive Sample: A data point similar to the anchor (e.g., an augmented version of the same image or a sentence with the same meaning).
    Negative Sample: A data point dissimilar to the anchor (e.g., a completely different image or a random sentence).
    The model is trained to minimize the distance between the anchor and the positive sample while maximizing the distance between the anchor and the negative samples in a high-dimensional vector space.
+
 2. Why It Is Important
    Self-Supervised Power: It can learn from vast amounts of unlabeled data by creating its own "labels" through data augmentation (e.g., cropping or rotating an image to create a positive pair).
    Data Efficiency: Once a model learns these robust representations, it can be fine-tuned for specific tasks (like medical diagnosis) using very few labeled examples.
    Improved Generalization: Models focus on high-level semantic features (the "concept" of an object) rather than low-level pixel noise, making them more robust.
+
 3. Key Frameworks and Applications
    CLIP (OpenAI): Connects images and text in a shared space, allowing you to search for images using natural language.
    SimCLR (Google): A popular framework that uses strong data augmentation and large batch sizes to achieve state-of-the-art visual representations.
    MoCo (Meta): Uses a "momentum encoder" to maintain a large dictionary of negative samples without requiring massive GPU memory.
    NLP Tasks: Used for sentence embeddings, machine translation, and text classification by contrasting original text with augmented versions (e.g., via back-translation or word deletion).
 
-#### Data handling in machine learning (ML)
+---
+
+19. Data handling in machine learning (ML)
 
 Data handling in machine learning (ML) is the systematic process of preparing raw data for training and evaluating models. It typically consumes up to 80% of a data scientist's time because model performance is directly dependent on data quality (the "garbage in, garbage out" principle).
 
 Core Stages of Data Handling
-Data Collection & Ingestion: Gathering raw data from diverse sources like databases, APIs, CSV files, or real-time streams.
-Data Cleaning: Identifying and resolving issues in raw datasets to ensure consistency and reliability.
-Handling Missing Values: Using methods like deletion (dropping rows/columns) or imputation (filling gaps with the mean, median, mode, or using Scikit-learn's KNNImputer).
-Managing Outliers: Detecting extreme values via visual tools (box plots) or statistical methods (Z-score, IQR) and removing or transforming them.
-Fixing Structural Errors: Standardizing formats, variable types, and removing duplicates.
-Exploratory Data Analysis (EDA): Using statistical and visual tools (scatter plots, histograms) to uncover patterns, trends, and potential biases before modeling.
-Data Transformation & Feature Engineering: Converting cleaned data into a machine-readable format and creating more informative features.
-Feature Scaling: Rescaling numerical data using Normalization (scaling to a 0-1 range) or Standardization (scaling to zero mean and unit variance).
-Categorical Encoding: Converting text labels into numbers using One-Hot Encoding (creating binary columns) or Label Encoding (assigning unique integers).
-Dimensionality Reduction: Reducing the number of features while retaining core information using techniques like Principal Component Analysis (PCA) or t-SNE.
-Data Splitting: Dividing the processed dataset into Training (to teach the model), Validation (to tune hyperparameters), and Testing (to evaluate final performance on unseen data) sets.
-Specialized Handling Scenarios
-Imbalanced Datasets: Addressed using resampling techniques like SMOTE (oversampling the minority class) or Tomek links (undersampling the majority class).
-Large-Scale Data: Requires strategies like Batch Processing (mini-batch gradient descent), Data Sharding, or sampling representative subsets to manage memory constraints.
-Unstructured Data: Text data involves specific steps like tokenization, stopword removal, and word embeddings (e.g., TF-IDF).
-Key Tools & Frameworks
-Data Manipulation: Pandas and NumPy for structured data manipulation in Python.
-Preprocessing Pipelines: Scikit-learn provides Pipelines and ColumnTransformers to automate and ensure consistent application of transformations to both training and test data.
 
-#### Missing value imputation
+- Data Collection & Ingestion: Gathering raw data from diverse sources like databases, APIs, CSV files, or real-time streams.
+- Data Cleaning: Identifying and resolving issues in raw datasets to ensure consistency and reliability.
+- Handling Missing Values: Using methods like deletion (dropping rows/columns) or imputation (filling gaps with the mean, median, mode, or using Scikit-learn's KNNImputer).
+- Managing Outliers: Detecting extreme values via visual tools (box plots) or statistical methods (Z-score, IQR) and removing or transforming them.
+- Fixing Structural Errors: Standardizing formats, variable types, and removing duplicates.
+- Exploratory Data Analysis (EDA): Using statistical and visual tools (scatter plots, histograms) to uncover patterns, trends, and potential biases before modeling.
+- Data Transformation & Feature Engineering: Converting cleaned data into a machine-readable format and creating more informative features.
+- Feature Scaling: Rescaling numerical data using Normalization (scaling to a 0-1 range) or - Standardization (scaling to zero mean and unit variance).
+- Categorical Encoding: Converting text labels into numbers using One-Hot Encoding (creating binary columns) or Label Encoding (assigning unique integers).
+- Dimensionality Reduction: Reducing the number of features while retaining core information using techniques like Principal Component Analysis (PCA) or t-SNE.
+- Data Splitting: Dividing the processed dataset into Training (to teach the model), Validation (to tune hyperparameters), and Testing (to evaluate final performance on unseen data) sets.
+
+Specialized Handling Scenarios
+
+- Imbalanced Datasets: Addressed using resampling techniques like SMOTE (oversampling the minority class) or Tomek links (undersampling the majority class).
+- Large-Scale Data: Requires strategies like Batch Processing (mini-batch gradient descent), Data Sharding, or sampling representative subsets to manage memory constraints.
+- Unstructured Data: Text data involves specific steps like tokenization, stopword removal, and word embeddings (e.g., TF-IDF).
+
+Key Tools & Frameworks
+
+- Data Manipulation: Pandas and NumPy for structured data manipulation in Python.
+- Preprocessing Pipelines: Scikit-learn provides Pipelines and ColumnTransformers to automate and ensure consistent application of transformations to both training and test data.
+
+---
+
+20. Missing value imputation
 
 Missing value imputation is a statistical and machine learning process used to replace missing data points with estimated values to ensure a complete dataset for analysis. This is a critical step in Data Preprocessing because many algorithms (such as those in scikit-learn) cannot handle incomplete datasets, and simply deleting rows can introduce significant bias or lead to a loss of valuable information.
 
@@ -227,7 +279,9 @@ Missing value imputation is a statistical and machine learning process used to r
    MissForest: Uses random forests to predict missing values; it is robust to outliers and works for mixed data types (numerical and categorical).
    Autoencoders & GANs: Deep learning models like Generative Adversarial Imputation Nets (GAIN) learn the data distribution to generate realistic synthetic values for complex, high-dimensional datasets.
 
-#### Distributed Training
+---
+
+21. Distributed Training
 
 When a model is too large to fit into the memory (VRAM) of a single GPU, you have crossed from a Data Parallelism requirement (faster training) into a Model Parallelism requirement (memory capacity). The goal is to break the model into pieces or optimize memory usage to allow training to continue.
 Here is a walk-through of the options, starting from the simplest (often insufficient) to advanced techniques, followed by how to choose between them.  

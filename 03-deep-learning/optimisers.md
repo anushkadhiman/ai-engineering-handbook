@@ -21,6 +21,8 @@ Compute Gradient: Calculate the unregularized loss gradient.
 - **Bias Correction:** Adjust moments to account for their zero-initialization.
 - **Decoupled Update:** Subtract the adaptive gradient step and the direct weight decay term from the current weight.
 
+---
+
 #### Decoupled Weight Decay
 
 Decoupled Weight Decay is a regularization technique that separates the process of shrinking model weights from the process of updating them based on loss gradients.
@@ -33,20 +35,7 @@ In many textbooks, "L2 Regularization" and "Weight Decay" are used interchangeab
 **Decoupled Weight Decay:** You ignore the loss function for a moment and simply subtract a small fraction of the weight directly during the update step. This ensures the decay happens at a constant rate, independent of the gradients or adaptive moments.
 
 **2. Why "Decoupling" Matters**
-**Consistent Regularization:** In models with varied gradient scales (like Transformers), decoupling ensures every parameter is regularized equally.
-**Easier Tuning:** Because weight decay and learning rate are separated, you can change your learning rate without unintentionally making your regularization stronger or weaker.
-**Better Generalization:** Research shows that decoupling allows adaptive optimizers (like AdamW) to perform as well as, or better than, standard SGD on complex tasks like image classification and language modeling.
 
-**3. The Mathematical View**
-The update rule for a weight
-with decoupled weight decay looks like this:
-
-Where:
-
-is the learning rate.
-
-is the gradient-based step (momentum, etc.).
-
-is the weight decay coefficient.
-Notice that the decay term
-is subtracted outside the main gradient update calculation.
+- **Consistent Regularization:** In models with varied gradient scales (like Transformers), decoupling ensures every parameter is regularized equally.
+- **Easier Tuning:** Because weight decay and learning rate are separated, you can change your learning rate without unintentionally making your regularization stronger or weaker.
+- **Better Generalization:** Research shows that decoupling allows adaptive optimizers (like AdamW) to perform as well as, or better than, standard SGD on complex tasks like image classification and language modeling.
