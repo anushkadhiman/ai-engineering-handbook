@@ -1,3 +1,57 @@
+#### **Architecture of a transformer model**
+
+The Transformer model is a neural network architecture for sequential data that uses self-attention mechanisms to process entire sequences in parallel, rather than sequentially like RNNs. Key components include encoder-decoder stacks, multi-head attention, positional encoding, and feed-forward networks, enabling superior context understanding and faster training for tasks like translation and generation.
+
+<!-- **Key components**
+- **Input Embedding & Positional Encoding:** Converts input tokens into vectors and adds information about the order of words (since there is no recurrence).
+- **Encoder Stack**: Processes the input sequence to build a high-level representation. It consists of layers with multi-head self-attention and position-wise feed-forward networks.
+- **Decoder Stack:** Generates the output sequence, using masked self-attention to prevent looking at future tokens, and encoder-decoder attention to focus on relevant input parts.
+- **Multi-Head Self-Attention:** Allows the model to weigh the importance of different words in a sentence relative to others, capturing complex relationships.
+- **Feed-Forward Networks:** Applied to each position individually for further processing.
+- **Layer Normalization & Residual Connections:** Applied around each sub-layer to stabilize training.
+- **Parallel Processing:** Unlike RNNs, Transformers process all data simultaneously, making them highly efficient on modern hardware.
+- **Contextual Understanding:** Self-attention ensures distant words in a sequence can interact directly, resolving ambiguities. -->
+
+#### **Attention mechanisms in Transformer models**
+
+It enable neural networks to dynamically focus on relevant parts of an input sequence, assigning weighted importance to different words to capture context regardless of distance. By computing Query, Key, and Value vectors for each word, the model calculates attention scores via dot products to determine how much focus each token receives.
+
+**Core Concepts and Components**
+
+- **Self-Attention:** The mechanism enables a token to interact with all other tokens in a sequence, allowing it to gather contextual information from far-away words.
+- **Q, K, V Vectors:** For each word, three vectors—Query (what I am looking for), Key (what I offer), and Value (what I actually contain)—are learned during training.
+- **Attention Scores & Scaling:** The model computes the similarity between a Query and all Keys via dot product, then scales these scores to avoid large gradients.
+- **Softmax:** The scores are passed through a softmax function to produce normalized probabilities (attention weights) that sum to 1.
+- **Weighted Sum:** These weights are multiplied by the Value vectors to generate the final representation, highlighting crucial information.
+- **Key Advantages**
+  - **Long-Range Dependencies:** Unlike RNNs, Transformers can connect distant tokens directly, improving comprehension of context.
+  - **Parallelization:** Because the model doesn't process tokens sequentially, it can process the entire input at once, speeding up training on GPUs.
+  - **Contextual Understanding:** The mechanism allows words to have different meanings based on surrounding words, addressing polysemy (e.g., "bank" in "river bank" vs. "bank deposit").
+
+#### **Positional encodings**
+
+- It is fundamental component of Transformer-based Large Language Models (LLMs) that inject information about the order of tokens into the model. Because the self-attention mechanism processes tokens in parallel, it lacks an intrinsic notion of sequence order; without positional encodings, "dog bites man" and "man bites dog" would appear identical to the model.
+- It assigns a unique representation to each position in a sequence, allowing the model to distinguish between tokens based on their location, such as attending to the i-th token.
+
+**Why Positional Encoding is Essential**
+
+**1. Order Awareness:** Transformers are permutation-invariant; positional encodings provide necessary structural information to understand syntax and sequence.
+**2. Handling Long Sequences:** They allow the model to understand the distance between tokens, crucial for interpreting long-range dependencies in texts.
+**3. Overcoming Parallel Processing Limits:** They bridge the gap between parallel token processing and sequential language understanding.
+
+**Key Types of Positional Encoding Methods**
+
+**1. Absolute Positional Encoding (APE):** Each position is assigned a specific, fixed, or learned vector that is added to the token embedding.
+**2. Sinusoidal (Original Transformer):** Uses fixed sine/cosine functions of different frequencies to generate unique vectors, allowing for potential extrapolation to unseen lengths.
+**3. Learned:** Treats positions as trainable parameters, which performs well on training lengths but struggles to extrapolate to longer sequences.
+**4. Relative Positional Encoding (RPE):** Instead of encoding the absolute position, these methods encode the relative distance between pairs of tokens.
+**5. Bias-Based (e.g., T5):** Adds a learnable bias term to the attention scores based on the distance between keys and queries.
+**6. ALiBi (Attention with Linear Biases):** Adds a static penalty to attention scores that is proportional to the distance between tokens, enabling robust generalization to unseen lengths.
+**7. Rotary Position Embedding (RoPE):** The current standard for modern LLMs (e.g., LLaMA, PaLM, GPT-NeoX), RoPE encodes absolute positions by applying a rotational transformation to the Query and Key vectors in the self-attention mechanism. Advantages: Naturally models relative distances, is computationally efficient, and enables strong extrapolation, allowing models to handle sequences much longer than their training length.
+**8. Context Extension:** Techniques like RoPE scaling (e.g., YaRN, NTK-aware interpolation) are used to stretch the effective context window of models.
+**9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
+**10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
+
 #### BERT (Bidirectional Encoder Representations from Transformers)
 
 BERT (Bidirectional Encoder Representations from Transformers) is a groundbreaking machine learning framework for natural language processing developed by Google in 2018. It fundamentally changed how AI understands human language by shifting from sequential processing to a simultaneous, bidirectional approach.
@@ -22,7 +76,7 @@ BERT's training involves two primary unsupervised tasks:
 
 #### Next Sentence Prediction (NSP)
 
-Next Sentence Prediction (NSP) is a core part of BERT's training that helps the model understand the logical flow between sentences, rather than just individual words.
+Next Sentence Prediction (NSP) is a core part of BERT's training that **helps the model understand the logical flow between sentences**, rather than just individual words.
 
 **How It Works**
 During pre-training, BERT is shown pairs of sentences (Sentence A and Sentence B) and must predict if Sentence B actually followed Sentence A in the original text.

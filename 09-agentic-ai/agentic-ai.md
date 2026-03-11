@@ -1,7 +1,8 @@
 #### Agentic AI
 
-Agentic AI refers to autonomous systems that use reasoning, planning, and tools to achieve complex, multi-step goals with minimal human intervention. Unlike reactive generative AI, agentic AI is proactive, capable of taking independent actions, learning from feedback, and collaborating with other agents or humans to optimize workflows.
-Agentic AI systems often use frameworks where an orchestrator agent manages, coordinates, and assigns tasks to specialized agents, acting as a virtual team.
+Agentic AI refers to autonomous systems that **use reasoning, planning, and tools to achieve complex, multi-step goals with minimal human intervention.** Unlike reactive generative AI, agentic AI is proactive, capable of taking independent actions, learning from feedback, and collaborating with other agents or humans to optimize workflows.
+
+Agentic AI systems often **use frameworks where an orchestrator agent manages, coordinates, and assigns tasks to specialized agents**, acting as a virtual team.
 
 **Key Characteristics and Components**
 
@@ -23,11 +24,14 @@ Agentic AI systems often use frameworks where an orchestrator agent manages, coo
 - **Customer Service:** Providing personalized, proactive support.
 - **Personal Assistance:** Planning, booking, and managing complex schedules.
 
+---
+
 #### Prompt chaining
 
-Prompt chaining is an AI engineering technique that breaks complex, multi-step tasks into a sequence of smaller, manageable prompts, where the output of one prompt becomes the input for the next. This method enhances LLM performance, improves accuracy, enables better control over, and allows for handling tasks that exceed context limits.
+Prompt chaining is an AI engineering technique that **breaks complex, multi-step tasks into a sequence of smaller, manageable prompts, where the output of one prompt becomes the input for the next.** This method enhances LLM performance, improves accuracy, enables better control over, and allows for handling tasks that exceed context limits.
 
-**How it Works:** It operates like an assembly line, passing intermediate results forward to build a final, higher-quality output, often used for summarizing, drafting, and refining content.
+**How it Works:** It operates **like an assembly line, passing intermediate results forward to build a final, higher-quality output**, often used for summarizing, drafting, and refining content.
+
 Benefits:
 
 - **Improved Accuracy:** Reduces hallucinations by guiding the model through logical, step-by-step reasoning.
@@ -47,14 +51,17 @@ Benefits:
 **Step 2:** "Based on this summary, list the 3 main takeaways."
 **Step 3:** "Draft a social media post based on these takeaways".
 
+---
+
 #### Routing
 
-Routing is a design pattern acting as an intelligent traffic controller that classifies user queries and directs them to the most appropriate specialized agent, tool, or workflow. It optimizes performance and costs by routing complex tasks to advanced models and simple tasks to cheaper ones. Key approaches include LLM-based, rule-based, and semantic (embedding-based) routing.
+Routing is a design pattern **acting as an intelligent traffic controller that classifies user queries and directs them to the most appropriate specialized agent, tool, or workflow**. It optimizes performance and costs by routing complex tasks to advanced models and simple tasks to cheaper ones. Key approaches include LLM-based, rule-based, and semantic (embedding-based) routing.
 
-**Definition & Purpose:** Routing acts as a decision layer that determines the best path for a request, enhancing system scalability, efficiency, and accuracy. It moves beyond rigid, linear execution to dynamic, context-aware handling.
-Approaches to Routing:
+**Definition & Purpose:** **Routing acts as a decision layer that determines the best path for a request**, enhancing system scalability, efficiency, and accuracy. It moves beyond rigid, linear execution to dynamic, context-aware handling.
 
-- **LLM-based:** Uses an LLM to analyze intent and context for dynamic routing, often using Patronus AI's approach.
+**Approaches to Routing:**
+
+- **LLM-based:** Uses an LLM to analyze intent and context for dynamic routing.
 - **Rule-based:** Uses predefined logic, such as if/else statements, for simple, predictable routing.
 - **Semantic (Embedding-based):** Calculates the cosine similarity between the query embedding and pre-computed route descriptions to select the best handler, as explained in this article.
 
@@ -63,8 +70,6 @@ Approaches to Routing:
 - **Single-agent routing:** Directs a request to one specialized agent.
 - **Multi-agent routing:** Directs to one of many agents.
 - **Hierarchical routing:** A top-level router delegates tasks to sub-agents.
-
-**Implementation Frameworks:** Common tools for building routing systems include LangGraph, LlamaIndex, SmolAgents, Botpress, and PraisonAI.
 
 **Benefits:**
 
@@ -78,9 +83,11 @@ Approaches to Routing:
 - **Task Decomposition:** Breaking down complex user requests into smaller, manageable sub-tasks.
 - **Intent Classification:** Identifying the user's intent to determine the proper response or action.
 
+---
+
 #### Parallelization
 
-Parallelization improves speed and efficiency by running multiple, independent AI agents or tool calls simultaneously rather than sequentially. A planner or coordinator agent breaks complex tasks into subtasks, which are executed in parallel to reduce latency, often using scatter-gather patterns. Key applications include parallel web research, concurrent code development, and multi-tool API calls.
+Parallelization **improves speed and efficiency by running multiple, independent AI agents or tool calls simultaneously rather than sequentially**. A planner or coordinator agent breaks complex tasks into subtasks, which are executed in parallel to reduce latency, often using scatter-gather patterns. Key applications include parallel web research, concurrent code development, and multi-tool API calls.
 
 **Key Aspects of Parallelization**
 
@@ -96,9 +103,11 @@ Parallelization improves speed and efficiency by running multiple, independent A
 - **Improved Resource Utilization:** Better utilization of computational resources, leading to higher efficiency and better handling of concurrent requests.
 - **Fault Tolerance & Voting:** Running multiple agents for the same task to compare results, which increases robustness.
 
+---
+
 #### Reflection
 
-Reflection is a powerful design pattern where autonomous agents evaluate, critique, and refine their own generated outputs, code, or plans before finalizing them. By acting as a self-correcting feedback loop—often using a second "critic" agent—this process significantly improves accuracy, reduces errors in complex tasks like coding or writing, and enables higher-quality, multi-step problem solving.
+Reflection is a powerful design pattern where **autonomous agents evaluate, critique, and refine their own generated outputs, code, or plans before finalizing them**. By acting as a self-correcting feedback loop—often using a second "critic" agent—this process significantly improves accuracy, reduces errors in complex tasks like coding or writing, and enables higher-quality, multi-step problem solving.
 
 - **The Process:** Instead of simply generating a final answer, an agent produces an initial output, reviews it for errors or weaknesses, and regenerates a better version.
 - **"System 2" Thinking:** This approach mimics human critical thinking, allowing models to move beyond immediate, reactive, or "System 1" responses to more considered, methodical reasoning.
@@ -111,12 +120,13 @@ Reflection is a powerful design pattern where autonomous agents evaluate, critiq
 - **Applications:** Highly effective for writing, code generation, data analysis, and complex planning.
 - **Benefits & Trade-offs:** While it increases accuracy (e.g., boosting SQL query success rates), it requires more compute time and cost due to multiple iterations.
 
+---
+
 #### Tool use (function calling)
 
-Agentic AI function calling enables Large Language Models (LLMs) to act as autonomous agents by dynamically invoking external tools, APIs, and databases using structured data (JSON). Instead of just generating text, the AI decides which function to call based on user input, executes it, and uses the output for multi-step tasks, such as booking meetings or querying live data.
+Agentic AI function calling enables Large Language Models (LLMs) to act as **autonomous agents by dynamically invoking external tools, APIs, and databases using structured data (JSON)**. Instead of just generating text, **the AI decides which function to call based on user input, executes it, and uses the output for multi-step tasks, such as booking meetings or querying live data**.
 
-**Dynamic Decision-Making:** Agents analyze natural language, identify the need for external information, and select the appropriate tool.
-
+- **Dynamic Decision-Making:** Agents analyze natural language, identify the need for external information, and select the appropriate tool.
 - **Structured Output (JSON):** The model translates user requests into precise, machine-readable JSON objects that specify tool names and parameters.
 - **Actionable Intelligence:** Function calling moves AI from passive reasoning to active, real-world execution (e.g., sending emails, updating databases).
 - **Multi-Step Workflows:** Agents can orchestrate complex, sequential operations, such as checking a calendar, finding a meeting spot, and booking it.
@@ -136,9 +146,29 @@ Agentic AI function calling enables Large Language Models (LLMs) to act as auton
 - **Strong Typing:** Use specific data types (strings, integers, enums) for parameters to reduce errors.
 - **Validation:** Implement guardrails to validate function outputs before taking critical actions.
 
+---
+
+#### MCP (Model Context Protocol) vs function calling
+
+MCP (Model Context Protocol) and function calling both enable LLMs to interact with external tools, but differ in approach: Function calling is LLM-driven, vendor-specific, and best for quick, bespoke tasks. MCP is an open-standardized protocol (by Anthropic) that provides a consistent, reusable, and secure framework for connecting AI to data sources, reducing the need for custom integrations.
+
+**Key Comparisons:**
+
+- Approach: Function calling is direct; the LLM decides which function to use from a provided list. MCP acts as an intermediate layer, where an MCP server provides tools, and a client helps the LLM discover and use them.
+- Flexibility: Function calling is often tightly coupled with specific LLM providers (e.g., OpenAI). MCP is designed to be model-agnostic, allowing tools to be shared across different AI applications.
+- Scalability: MCP is better for complex, enterprise-level environments needing standardization.
+- Implementation: Function calling requires manual setup of each tool and API. MCP simplifies this by enabling developers to build, test, and share tools in a standard format.
+
+When to Use Which:
+
+- Function Calling: Ideal for simple, fast implementations with one or two tools, particularly within a single provider's ecosystem.
+- MCP: Recommended for complex systems, multi-tool environments, and when you need a secure, reusable, and standard way to connect LLMs to data.
+
+---
+
 #### Planning
 
-Planning in Agentic AI is the process where an AI agent breaks down a complex, high-level goal into a sequence of smaller, manageable steps (sub-goals) before execution. Unlike reactive AI, these agents use reasoning—often driven by Large Language Models (LLMs)—to anticipate future states, utilize external tools, and adjust strategies iteratively, enhancing reliability and efficiency in complex, multi-step tasks.
+Planning in Agentic AI is **the process where an AI agent breaks down a complex, high-level goal into a sequence of smaller, manageable steps (sub-goals) before execution**. Unlike reactive AI, these agents use reasoning — often driven by Large Language Models (LLMs) — to anticipate future states, utilize external tools, and adjust strategies iteratively, enhancing reliability and efficiency in complex, multi-step tasks.
 
 **Key Components and Approaches in Planning**
 
@@ -159,9 +189,11 @@ Planning in Agentic AI is the process where an AI agent breaks down a complex, h
 - **High Adaptability:** Agents can update their plans when they receive new, unexpected information.
 - **Independence:** Reduces the need for constant human supervision in long-running tasks.
 
+---
+
 #### Multi-agent system
 
-Multi-agent systems involve multiple specialized AI agents collaborating, negotiating, and sharing knowledge to solve complex problems, often coordinated by an orchestrator to increase efficiency, scalability, and performance.
+Multi-agent systems involve **multiple specialized AI agents collaborating, negotiating, and sharing knowledge to solve complex problems**, often coordinated by an orchestrator to increase efficiency, scalability, and performance.
 
 **Key Components of Agentic Multi-Agent Systems**
 
@@ -182,9 +214,11 @@ Multi-agent systems involve multiple specialized AI agents collaborating, negoti
 - **Negotiation & Transactions:** Using different agents to represent buy and sell sides in a market simulation.
 - **Data Analysis & Decision Making:** Specialized agents gathering, analyzing, and reporting on data from multiple, disparate, and unstructured sources.
 
+---
+
 #### Memory Management
 
-Agentic AI memory management involves techniques like short-term, long-term, and semantic storage (e.g., vector databases, knowledge graphs) to enable AI agents to retain context, learn from past interactions, and make informed decisions. It operates through a 4-stage pipeline—extraction, storage, update, and retrieval—to overcome limited context windows, ensuring agents are reliable, personalized, and capable of multi-step reasoning.
+Agentic AI memory management involves techniques like **short-term, long-term, and semantic storage (e.g., vector databases, knowledge graphs) to enable AI agents to retain context, learn from past interactions, and make informed decisions**. It operates through a **4-stage pipeline—extraction, storage, update, and retrieval—to overcome limited context windows**, ensuring agents are reliable, personalized, and capable of multi-step reasoning.
 
 **Key Components of Agentic Memory**
 
@@ -208,11 +242,11 @@ Agentic AI memory management involves techniques like short-term, long-term, and
 - **Improved Decision Making:** Learning from past mistakes and successes, enabling reflection loops.
 - **Scalability:** Enabling agents to operate effectively on large datasets.
 
+---
+
 #### Learning and Adaptation
 
-Agentic AI systems use continuous learning and adaptation to function autonomously in dynamic environments, moving beyond static, predefined rules to improve performance over time. They employ online learning, memory management, and feedback loops to update knowledge, optimize tool usage, and personalize interactions based on past experiences and real-time data.
-
-**Continuous & Online Learning:** Agents do not rely on static models but continuously update their strategies and knowledge bases. Techniques like incremental learning allow them to integrate new information without forgetting previous knowledge.
+Agentic AI systems use **continuous learning and adaptation to function autonomously in dynamic environments, moving beyond static, predefined rules to improve performance over time**. They employ online learning, memory management, and feedback loops to update knowledge, optimize tool usage, and personalize interactions based on past experiences and real-time data.
 
 **Mechanisms for Adaptation:**
 
@@ -230,9 +264,11 @@ Agentic AI systems use continuous learning and adaptation to function autonomous
 **Benefits:**
 These capabilities enable AI to deliver higher proactivity, improved efficiency, and better handling of complex, changing tasks. For instance, an e-commerce agent can analyze customer behavior in real-time to adjust recommendations, or an educational agent can personalize learning paths.
 
+---
+
 #### Goal Setting and Monitoring
 
-Agentic AI operates by taking high-level human objectives and autonomously breaking them into smaller, executable tasks to achieve specific outcomes. Through continuous monitoring, these agents track progress against set goals, adjusting strategies and using tools (APIs, software) to overcome obstacles in real-time.
+Agentic AI operates by **taking high-level human objectives and autonomously breaking them into smaller, executable tasks to achieve specific outcomes. Through continuous monitoring, these agents track progress against set goals, adjusting strategies and using tools (APIs, software) to overcome obstacles in real-time.**
 
 **Goal Setting**
 
@@ -254,9 +290,11 @@ Agentic AI operates by taking high-level human objectives and autonomously break
 - **Project Management:** An agent tracks milestones, identifies bottlenecks, and adjusts timelines based on real-time project data.
 - **Logistics:** An agent optimizes routes and schedules to ensure on-time delivery while adhering to fuel cost constraints.
 
+---
+
 #### Exceptional Handling
 
-Exceptional handling in agentic AI involves detecting, diagnosing, and mitigating runtime errors (tool failures, API issues) to prevent system crashes and ensure reliability. Key strategies include automated retries, graceful degradation (using cached data), state rollback, and human-in-the-loop escalation, allowing agents to autonomously recover from failures.
+Exceptional handling in agentic AI **involves detecting, diagnosing, and mitigating runtime errors (tool failures, API issues) to prevent system crashes and ensure reliability**. Key strategies include automated retries, graceful degradation (using cached data), state rollback, and human-in-the-loop escalation, allowing agents to autonomously recover from failures.
 
 - **Proactive Detection & Diagnosis:** Modern agents don't just fail; they identify the root cause of an error (e.g., ConnectionTimeoutException) and classify it to determine the appropriate response.
 - **Self-Correction & Retries:** Agents can autonomously attempt to fix issues, such as retrying a failed tool call or adapting their plan if a step fails.
@@ -270,9 +308,11 @@ Exceptional handling in agentic AI involves detecting, diagnosing, and mitigatin
 - **Customer Service Bot:** If a backend database is down, the agent detects the API error and notifies the user to try again later instead of crashing.
 - **Automated Trading:** If a trade fails due to "market closed," the bot logs the error and adjusts its strategy, rather than repeatedly attempting the same action.
 
+---
+
 #### Resource-aware optimization
 
-Resource-aware optimization in agentic AI involves autonomous agents dynamically managing computational, financial, and temporal resources to maximize efficiency. It uses routing mechanisms to match task complexity to the right AI model (e.g., fast models for simple tasks, powerful models for complex ones), minimizing waste and cost.
+Resource-aware optimization in agentic AI involves **autonomous agents dynamically managing computational, financial, and temporal resources to maximize efficiency**. It uses routing mechanisms to match task complexity to the right AI model (e.g., fast models for simple tasks, powerful models for complex ones), minimizing waste and cost.
 
 **Key Concepts in Resource-Aware Agentic AI:**
 
@@ -289,9 +329,11 @@ Resource-aware optimization in agentic AI involves autonomous agents dynamically
 - **Healthcare:** Predicting patient surges to optimize staff schedules and bed allocation.
 - **Network Optimization:** Managing RAN (Radio Access Network) configurations for improved performance.
 
+---
+
 #### Reasoning Techniques
 
-Agentic AI reasoning techniques enable AI agents to solve complex, multi-step problems autonomously through planning, tool use, reflection, and iterative loops. Key approaches include ReAct (Reason+Act), Chain-of-Thought (CoT), and Planning, which break down goals and adapt based on observations. These systems enhance reliability by self-correcting and using external tools, acting as "investigators" rather than just predictors.
+Agentic AI reasoning techniques **enable AI agents to solve complex, multi-step problems autonomously through planning, tool use, reflection, and iterative loops**. Key approaches include ReAct (Reason+Act), Chain-of-Thought (CoT), and Planning, which break down goals and adapt based on observations. These systems enhance reliability by self-correcting and using external tools, acting as "investigators" rather than just predictors.
 
 **Key Agentic Reasoning Techniques:**
 
@@ -310,9 +352,11 @@ Agentic AI operates through a, cyclical process rather than a single-shot respon
 - **Act:** Execute tools to retrieve data.
 - **Adapt:** Refine the plan based on observations.
 
+---
+
 #### Guardrail and safety techniques
 
-Guardrail and safety techniques in Agentic AI are essential, multi-layered security measures—including input filtering, output moderation, human-in-the-loop (HITL) checks, and structural constraints—designed to ensure AI agents operate within ethical, compliant, and functional boundaries. These prevent prompt injections, data leaks, and unauthorized actions.
+Guardrail and safety techniques in Agentic AI are essential, **multi-layered security measures—including input filtering, output moderation, human-in-the-loop (HITL) checks, and structural constraints—designed to ensure AI agents operate within ethical, compliant, and functional boundaries**. These prevent prompt injections, data leaks, and unauthorized actions.
 
 **Key Agentic AI Guardrail Techniques**
 
@@ -330,11 +374,14 @@ Guardrail and safety techniques in Agentic AI are essential, multi-layered secur
 - **Collaborative Development:** Involve legal, security, and data teams to align guardrails with business and regulatory risks.
 - **Continuous Evaluation:** Use red teaming to test and refine agent safety, ensuring the system can adapt to new security threats.
 
+---
+
 #### Evaluation and monitoring
 
-Evaluation and monitoring in Agentic AI involves continuously assessing autonomous, multi-step workflows for task success, tool accuracy, and safety, rather than just output quality. Key techniques include "LLM-as-a-Judge" for automated evaluation, tracing agent decisions to identify reasoning errors, and monitoring for drift/hallucinations to ensure reliability in production.
+Evaluation and monitoring in Agentic AI involves **continuously assessing autonomous, multi-step workflows for task success, tool accuracy, and safety, rather than just output quality**. Key techniques include "LLM-as-a-Judge" for automated evaluation, tracing agent decisions to identify reasoning errors, and monitoring for drift/hallucinations to ensure reliability in production.
 
 **Key Evaluation Metrics**
+
 Evaluation goes beyond chatbots, measuring the process of reaching a goal, not just the final text.
 
 - **Task Success Rate:** Does the agent achieve the final objective?
@@ -359,70 +406,77 @@ Evaluation goes beyond chatbots, measuring the process of reaching a goal, not j
 **Challenges**
 Evaluating agents is complex because they are dynamic and often multi-turn, meaning one error in an early step can cascade through the entire workflow, making it difficult to pinpoint the root cause of failure.
 
+#### Advanced prompting for agentic AI
+
 Advanced prompting for agentic AI involves techniques that enable autonomous agents to reason, plan, and use tools to complete complex, multi-step tasks. Key methods include ReAct (reasoning + acting), Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), and Reflexion, which collectively improve accuracy, reduce hallucinations, and allow for autonomous, self-correcting workflows.
 
-Key Advanced Prompting Techniques
-ReAct (Reasoning and Acting): Combines, in a prompt, the agent's reasoning process with action steps (e.g., using a calculator, searching the web, running code) to solve problems.
-Chain-of-Thought (CoT): Prompts the model to break down complex problems into smaller, logical, step-by-step reasoning steps before providing the final answer.
-Tree-of-Thoughts (ToT): Extends CoT by exploring multiple reasoning paths (branches) at each step, evaluating them, and selecting the best path for complex, non-linear planning.
-Reflexion (Self-Reflection): Asks the model to critique and rewrite its own outputs, allowing for self-correction and reduction of errors without human intervention.
-RAG (Retrieval-Augmented Generation): Prompts the agent to retrieve external, up-to-date documents to ground its answers, reducing hallucinations.
-Meta Prompting: Instructs the AI to analyze the query first, and then suggest its own best method or structure for solving the task.
-Prompt Chaining: Breaks a complex workflow into smaller, sequential prompts, where the output of one step becomes the input for the next.
-Few-Shot Prompting: Provides 1–5 examples in the prompt to teach the agent specific formats, styles, or logic, improving consistency in task execution.
+**Key Advanced Prompting Techniques**
 
-Structural Approaches for Agentic Prompts
-Dynamic Prompting: Adapts prompts automatically using templates, user context, or metadata.
-Negative Prompting: Explicitly tells the AI what to avoid, which is crucial for safety and accuracy in sensitive tasks.
+- **ReAct (Reasoning and Acting):** Combines, in a prompt, the agent's reasoning process with action steps (e.g., using a calculator, searching the web, running code) to solve problems.
+- **Chain-of-Thought (CoT):** Prompts the model to break down complex problems into smaller, logical, step-by-step reasoning steps before providing the final answer.
+- **Tree-of-Thoughts (ToT):** Extends CoT by exploring multiple reasoning paths (branches) at each step, evaluating them, and selecting the best path for complex, non-linear planning.
+- **Reflexion (Self-Reflection):** Asks the model to critique and rewrite its own outputs, allowing for self-correction and reduction of errors without human intervention.
+- **RAG (Retrieval-Augmented Generation):** Prompts the agent to retrieve external, up-to-date documents to ground its answers, reducing hallucinations.
+- **Meta Prompting:** Instructs the AI to analyze the query first, and then suggest its own best method or structure for solving the task.
+- **Prompt Chaining:** Breaks a complex workflow into smaller, sequential prompts, where the output of one step becomes the input for the next.
+- **Few-Shot Prompting:** Provides 1–5 examples in the prompt to teach the agent specific formats, styles, or logic, improving consistency in task execution.
 
-Benefits of Advanced Prompting in Agentic AI
-Improved Accuracy: Reduces errors and hallucinations through structured reasoning.
-Autonomous Workflow: Enables agents to handle multi-step, complex, and unpredictable tasks independently.
-Explainability: Provides a clear trace of the agent's thought process and reasoning steps.
-Tool Usage: Allows agents to interact with external tools and APIs for real-time data.
+**Structural Approaches for Agentic Prompts**
+
+- **Dynamic Prompting:** Adapts prompts automatically using templates, user context, or metadata.
+- **Negative Prompting:** Explicitly tells the AI what to avoid, which is crucial for safety and accuracy in sensitive tasks.
+
+**Benefits of Advanced Prompting in Agentic AI**
+
+- **Improved Accuracy:** Reduces errors and hallucinations through structured reasoning.
+- **Autonomous Workflow:** Enables agents to handle multi-step, complex, and unpredictable tasks independently.
+- **Explainability:** Provides a clear trace of the agent's thought process and reasoning steps.
+- **Tool Usage:** Allows agents to interact with external tools and APIs for real-time data.
 
 ### Context drift
 
-Context drift is the gradual degradation of an AI model's accuracy and relevance during long, multi-turn conversations or tasks, where it loses track of original user intent, constraints, or topic. As context windows fill up, the AI may start relying on inaccurate assumptions, leading to inconsistent, contradictory, or off-topic, and sometimes nonsensical, responses.
+Context drift is the **gradual degradation of an AI model's accuracy and relevance during long, multi-turn conversations or tasks, where it loses track of original user intent, constraints, or topic.** **As context windows fill up, the AI may start relying on inaccurate assumptions**, leading to inconsistent, contradictory, or off-topic, and sometimes nonsensical, responses.
 
 **Key Aspects of Context Drift**
 
-- Memory Loss: As the conversation lengthens, earlier instructions, user constraints, or critical details are "forgotten" or deprioritized, leading to contradictions.
-- Topic/Goal Misalignment: The AI slowly shifts away from the original intent, such as changing a coding task from "Python optimization" to "C++ restructuring" without prompting.
-- Compounding Errors: Small, initial inaccuracies compound over time, leading to significant deviations, similar to a navigation system that is 1 degree off.
-- Passive Adoption of Suboptimal Content: The AI may start adapting to its own previously generated, suboptimal, or incorrect output, reinforcing the drift.
+- **Memory Loss:** As the conversation lengthens, earlier instructions, user constraints, or critical details are "forgotten" or deprioritized, leading to contradictions.
+- **Topic/Goal Misalignment**: The AI slowly shifts away from the original intent, such as changing a coding task from "Python optimization" to "C++ restructuring" without prompting.
+- **Compounding Errors**: Small, initial inaccuracies compound over time, leading to significant deviations, similar to a navigation system that is 1 degree off.
+- **Passive Adoption of Suboptimal Content**: The AI may start adapting to its own previously generated, suboptimal, or incorrect output, reinforcing the drift.
 
 **Causes and Scenarios**
 
-- Limited Context Windows: Models have a finite capacity to remember previous, which, when exceeded, causes early conversation details to be dropped.
-- Long-Form/Multi-Turn Interaction: Complex, multi-step, or extended interactions increase the likelihood of drift.
-- Parallel Agents: Using multiple AI agents simultaneously often leads to conflicting contexts, where each agent works off a slightly different, diverging set of assumptions.
-- Ambiguous User Prompts: Vague instructions or lack of, or, frequent, context resetting, makes it easier for the model to veer off track.
+- **Limited Context Windows**: Models have a finite capacity to remember previous, which, when exceeded, causes early conversation details to be dropped.
+- **Long-Form/Multi-Turn Interaction**: Complex, multi-step, or extended interactions increase the likelihood of drift.
+- **Parallel Agents**: Using multiple AI agents simultaneously often leads to conflicting contexts, where each agent works off a slightly different, diverging set of assumptions.
+- **Ambiguous User Prompts**: Vague instructions or lack of, or, frequent, context resetting, makes it easier for the model to veer off track.
 
 **Mitigation Strategies**
 
-- Prompt Engineering/Hygiene: Periodically restate core objectives and constraints in the prompt to "remind" the AI of the original task.
-- Modularization: Break long tasks into smaller, independent chunks to prevent long-term dependency issues.
-- Context Resetting: Manually clearing the session and starting a new chat when the AI's output becomes irrelevant or chaotic.
-- Externalizing Memory: Using external tools, like vector databases, to store and recall relevant information outside the model's immediate context window.
+- **Prompt Engineering/Hygiene**: Periodically restate core objectives and constraints in the prompt to "remind" the AI of the original task.
+- **Modularization**: Break long tasks into smaller, independent chunks to prevent long-term dependency issues.
+- **Context Resetting**: Manually clearing the session and starting a new chat when the AI's output becomes irrelevant or chaotic.
+- **Externalizing Memory**: Using external tools, like vector databases, to store and recall relevant information outside the model's immediate context window.
 
 ### Context window overflow
 
-Context window overflow (CWO) occurs when the total tokens in an LLM prompt—input, system instructions, and RAG data—exceed the model's capacity. This causes lost information, incoherent responses, and application failures. It is a memory limitation issue prevalent in long, multi-step tasks or RAG systems.
+Context window overflow (CWO) occurs **when the total tokens in an LLM prompt—input, system instructions, and RAG data—exceed the model's capacity**. This** causes lost information, incoherent responses, and application failures**. It is a **memory limitation issue prevalent in long, multi-step tasks or RAG systems.**
 
 **Causes of Context Overflow**
 
-• Excessive Input: Passing very long documents or large amounts of RAG (Retrieval-Augmented Generation) data.
-• Long Conversation History: Chatbots that do not summarize or prune past interactions.
-• System/Tool Prompts: Large, complex instructions that consume too many tokens before user input is processed.
+- **Excessive Input**: Passing very long documents or large amounts of RAG (Retrieval-Augmented Generation) data.
+- **Long Conversation History**: Chatbots that do not summarize or prune past interactions.
+- **System/Tool Prompts**: Large, complex instructions that consume too many tokens before user input is processed.
 
 **Solutions and Mitigation Techniques**
 
-• Vector Search/RAG: Instead of feeding all data, use vector search to retrieve only the top relevant chunks.
-• Context Compression: Implement summarization for older conversation parts.
-• Chunking: Break down large documents into smaller segments (e.g., 500-800 tokens) before insertion.
-• Dynamic Context Management: Use tools that intelligently filter information and remove less essential, older data from the prompt.
-• Streaming and Monitoring: Monitor token usage and implement streaming to manage long outputs.
+- **Vector Search/RAG:** Instead of feeding all data, use vector search to retrieve only the top relevant chunks.
+- **Context Compression:** Implement summarization for older conversation parts.
+- **Chunking:** Break down large documents into smaller segments (e.g., 500-800 tokens) before insertion.
+- **Dynamic Context Management:** Use tools that intelligently filter information and remove less essential, older data from the prompt.
+- **Streaming and Monitoring:** Monitor token usage and implement streaming to manage long outputs.
+
+---
 
 #### Prompt injection
 
@@ -445,6 +499,8 @@ Prompt injection is a security vulnerability where attackers embed malicious, hi
   - Sanitization: Cleaning input to remove potentially malicious tokens.
   - Monitoring: Logging and analyzing interactions for anomalies.
   - Context Separation: Attempting to separate system instructions from user inputs, though this is challenging.
+
+---
 
 #### Designing an AI application for high user traffic
 
@@ -482,6 +538,8 @@ Here is a comprehensive design and handling strategy for a high-traffic AI app:
 • Real-time Observability: Implement monitoring with Prometheus and Grafana or Datadog to track key metrics: Token Usage, Latency (TTFT - Time To First Token), and Error Rates.
 • Automatic Retraining/Fine-tuning: Monitor for "model drift" (accuracy loss over time) and automate retraining pipelines to keep the AI model relevant.
 
+---
+
 #### Managing context between AI agents
 
 Managing context between AI agents involves passing state via shared memory, summarizing previous conversations, or using structured data (JSON/stringified payloads) to hand off relevant information while discarding unnecessary noise. Key techniques include hierarchical summarization, tool-based retrieval for on-demand data, and using specialized, persistent state objects to maintain continuity without overwhelming the context window.
@@ -498,6 +556,8 @@ Best Practices
 • Divide and Conquer: Break complex, long-running tasks into smaller, focused tasks where each agent operates on a minimal, relevant subset of the total context.
 • Avoid "Pattern Overfitting": When passing histories, introduce slight variations in prompting to prevent agents from becoming too accustomed to a specific, potentially incorrect, pattern.
 • Maintain Continuity: Use consistent identifiers for the task, such as a session ID, to link the context across different agent interactions.
+
+---
 
 #### Fault-tolerant AI agents
 
@@ -516,6 +576,8 @@ Implementation Considerations
 • State Management: Agents should have schema-validated, persistent state to maintain consistency, especially when dealing with complex, multi-step workflows.
 • Monitoring & Observability: Detailed logs and traces are necessary to understand failures, particularly in complex agent loops.
 • Structural Reliability: Using structured concurrency and frameworks like Jido helps manage tasks and ensure they do not run uncontrollably, which can waste resources.
+
+---
 
 #### Productionizing an AI agent
 
@@ -554,6 +616,8 @@ Productionizing an AI agent involves moving from a simple prompt-based script to
 - Containerization: Use Docker and Kubernetes for scalable, portable deployments.
 - Standard Protocols: Leverage the Model Context Protocol (MCP) to standardize how agents discover and connect to your existing business systems securely.
 
+---
+
 #### create a custom AI agent
 
 To create a custom AI agent, I would start by defining a narrow, high-value use case and creating a detailed system prompt for personality and constraints. Next, I would equip the agent with essential tools (e.g., search, API connectors) and relevant knowledge bases. Finally, I would use frameworks like Langchain, Pydantic AI, or Zapier for development, followed by iterative testing to optimize performance and reliability.
@@ -572,6 +636,8 @@ Key Considerations
 • Security: Implement proper authentication and permission management, especially if the agent has access to sensitive data or can act on your behalf.
 • Iterative Design: Start with a simple version and add complexity, such as specialized knowledge or multiple tools, only when necessary.
 • Evaluation: Set up performance benchmarks to ensure the agent meets accuracy targets before full implementation.
+
+---
 
 #### Challenges in developing multi-agent systems
 
@@ -593,6 +659,8 @@ Key Considerations for Mitigation:
 • Durable Execution: Implementing mechanisms that allow agents to resume from errors rather than restarting from scratch is essential for long-running workflows.
 • Rigorous Testing: Due to the non-deterministic nature of MAS, specialized, intensive testing and monitoring are required to ensure stability.
 
+---
+
 #### Challenges of multi ai agents in production
 
 Multi-AI agent systems in production face significant hurdles, including non-deterministic, unpredictable behaviors, complex orchestration of inter-agent communication, and high latency due to sequential processing. Key challenges include managing shared state and memory, debugging "black box" agent interactions, ensuring data privacy/security, and managing high costs.
@@ -613,6 +681,8 @@ Key Considerations for Success
 • Rigorous Testing: Due to "regression invisibility," small changes in one agent can break the entire system.
 • Governance and Monitoring: Daily, active management and human oversight are necessary.
 • Start Simple: It is often better to use a single, highly capable agent or a hierarchical structure before moving to a fully distributed multi-agent system.
+
+---
 
 #### Guardrails for agentic systems
 
@@ -685,6 +755,8 @@ Best Practices:
 • Test rigorously with realistic, varied scenarios.
 • Keep agents specialized rather than trying to make a "jack-of-all-trades".
 
+---
+
 #### Saving costs in a multi-agent system
 
 Saving costs in a multi-agent system involves using smaller models for simple tasks and large models for complex reasoning, caching frequent LLM queries, and implementing strict token/budget limits per agent. Additional strategies include using specialized, smaller models for routine tasks, optimizing vector database usage, and monitoring API usage to prevent runaway costs.
@@ -706,6 +778,8 @@ Techniques to Reduce API/Token Usage:
 • Memory Quantization: Use quantization techniques (e.g., INT8/INT4) for K/V storage to reduce memory and bandwidth usage.
 
 Key Takeaway: A well-designed multi-agent system, which assigns specialized, smaller models for simpler tasks, can significantly reduce costs (sometimes by over 90%) compared to a single, large model approach.
+
+---
 
 #### Handling user interruptions in a multi-agent system (MAS)
 
@@ -731,6 +805,8 @@ Handling Scenarios
 • If the user wants to cancel: The system calls to clear the current task stack and reset to a base state.
 • If the user is rude/aggressive: The agent acknowledges the interruption but maintains its "turn" to wrap up essential information before yielding.
 
+---
+
 #### Handling infinite loops
 
 Handling infinite loops in AI agents involves setting hard limits on iterations (e.g., 5-10 steps), implementing timeout mechanisms, and monitoring state changes to detect, stop, or escalate trapped processes. Key strategies include implementing circuit breakers, logging, and using human-in-the-loop intervention.
@@ -748,6 +824,8 @@ Handling infinite loops in AI agents involves setting hard limits on iterations 
 **Common Causes**
 
 - Agents often get stuck due to misinterpreting tasks.
+
+---
 
 #### Deciding whether to change a Large Language Model (LLM) for a specific use case
 
@@ -795,6 +873,8 @@ Key Pitfalls to Avoid
 • Neglecting Consistency: A model that is "smarter" but unpredictable can be worse than a consistent, less capable model.
 • Ignoring Task-Specific Data: General-purpose models might perform worse than smaller, fine-tuned, or domain-specialized models.
 
+---
+
 #### Pydantic
 
 Pydantic is the leading data validation and settings management library for Python, designed to enforce type constraints at runtime
@@ -820,6 +900,8 @@ Production AI systems—particularly those using Large Language Models (LLMs)—
 5. Reliability at Scale: Many modern AI frameworks (FastAPI, LangChain, LlamaIndex, Instructor) rely on Pydantic, making it indispensable for ensuring data integrity across complex, multi-step agentic workflows.
 
 In summary, Pydantic transforms LLMs from "text generators" into "reliable, typed, and structured software components".
+
+---
 
 #### a compound intent orchestrator-subagent architecture
 
@@ -853,6 +935,8 @@ Context is not lost if the architecture supports Persistent State Management. In
 • Sub-agent Tool Access: The specialized agent is designed to query the necessary databases (e.g., Billing API) to verify the context before finalizing the update.
 
 By utilizing chaining (passing the output of one agent as input to the next) or parallelization (routing to a "Troubleshooter" agent equipped with multiple tools), the system ensures the final outcome is accurate and context-aware.
+
+---
 
 #### Handling a AI Agent that misinterprets a prompt and triggers unintended
 
@@ -894,6 +978,8 @@ Here is a structured framework for handling such a scenario:
 • Continuous Monitoring: Use automated evaluation frameworks to monitor production traffic for "drift" or declining accuracy.
 • Build Self-Correcting Agents: Implement logic where the agent can recognize its own mistake (via self-reflection or validation checks) and attempt a different, correct strategy.
 
+---
+
 #### AI voicebot or chatbot vs human employees
 
 AI voicebot or chatbot is a strategic move to solve scalability, speed, and 24/7 availability issues that 5 human agents cannot handle, typically resulting in a 30-70% reduction in operating costs. While 5 new people offer human empathy, they cannot work 24/7, handle thousands of queries simultaneously, or maintain consistent service quality across all languages.
@@ -929,6 +1015,8 @@ Here is a breakdown of why an AI investment often outperforms human employees:
 
 The Hybrid Model
 The most effective strategy is not to choose one over the other, but to use AI to filter out 70-80% of routine inquiries, allowing the 5 new (or existing) staff to act as high-value, empathetic problem-solvers for the remaining 20% of complex cases.
+
+---
 
 #### Evaluating Multi-agent systems (MAS) in production
 
@@ -982,6 +1070,8 @@ Best Practices for Monitoring
 • Use "LLM-as-a-Judge": Use a more capable, specialized LLM to evaluate the outputs and intermediate reasoning steps of your production agents.
 • Set Alerting on Symptoms: Alert when task success drops below a threshold (e.g., &lt;90%) rather than just when an individual API call fails.
 
+---
+
 #### Memory Management for Long Conversations
 
 Designing a memory system for an AI assistant that handles long, multi-session, and private conversations requires a hybrid approach, separating data by immediacy and importance. A high-performance, privacy-conscious architecture combines a fast short-term memory (STM) (e.g., Redis) for active conversation, a semantic long-term memory (LTM) (e.g., Pinecone/Weaviate) for deep context, and a structured database (e.g., Postgres) for persistent facts.  
@@ -1014,6 +1104,8 @@ Here is a design based on best practices for performance and security.
 • Recency-Weighted Aging: In the vector store, add a timestamp metadata field. When retrieving, use a scoring function that combines semantic similarity with a time-decay factor, prioritizing recent information over outdated context.
 
 By applying these strategies—separating short and long-term memory, using hybrid search for precision, and extracting facts rather than storing raw text—the assistant remains fast, accurate, and secure.
+
+---
 
 #### Inference Observability, Metrics, and Fallbacks
 
