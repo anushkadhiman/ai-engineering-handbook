@@ -1,4 +1,4 @@
-### RAG
+# RAG
 
 **Retrieval-Augmented Generation (RAG)** is an AI framework that improves Large Language Model (LLM) accuracy by retrieving data from external, trusted sources before generating a response. Instead of relying solely on pre-trained knowledge, RAG fetches up-to-date, relevant documents to minimize hallucinations, offering a cost-effective alternative to retraining models.
 
@@ -15,7 +15,9 @@ RAG operates in two main phases:
 - Domain Expertise: Connects LLMs to specialized, private data (e.g., medical or legal records) without needing to retrain the model.
 - Use Cases: RAG is used in intelligent chatbots,, search engines, and enterprise AI tools to provide context-aware, trusted information.
 
-#### **Chunk splitters in RAG**
+---
+
+## **Chunk splitters in RAG**
 
 Chunk splitters in RAG break large documents into smaller, manageable, and semantic segments (chunks) to optimize Retrieval-Augmented Generation (RAG) performance. Overlapping, typically 10–20% of the chunk size, ensures that context is not lost at the boundaries, allowing the LLM to understand information spanning across chunks, thus reducing hallucinations and maintaining continuity.
 
@@ -45,7 +47,7 @@ Chunk splitters in RAG break large documents into smaller, manageable, and seman
 
 ---
 
-#### Character splitting
+## Character splitting
 
 Character splitting breaks text into smaller, fixed-length segments (chunks) based on a specified character count, regardless of content structure. It is the most basic, simple, and rigid form of text chunking, often used in LangChain to divide documents by character length while allowing for optional overlap between segments.
 
@@ -63,7 +65,7 @@ Character splitting breaks text into smaller, fixed-length segments (chunks) bas
 
 ---
 
-#### Recursive character splitting
+## Recursive character splitting
 
 Recursive character splitting is a technique for splitting long text into smaller, meaningful chunks for LLMs, prioritizing structural integrity by recursively splitting on a prioritized list of delimiters (e.g., paragraphs , newlines , spaces , and empty strings ) until the target chunk size is reached. It improves Retrieval-Augmented Generation (RAG) by keeping related text together rather than splitting indiscriminately at a fixed character count.
 
@@ -84,7 +86,7 @@ This approach is highly recommended for general text processing to avoid breakin
 
 ---
 
-#### **TokenTextSplitter**
+## **TokenTextSplitter**
 
 TokenTextSplitter is a specialized text splitting tool used in Natural Language Processing (NLP) and Retrieval-Augmented Generation (RAG) pipelines, particularly within frameworks like LangChain and LlamaIndex. Unlike character-based splitters that break text at fixed numbers of characters (e.g., spaces or newlines), the TokenTextSplitter divides text based on the exact count of tokens.
 This ensures that text chunks perfectly fit within the token limits (context windows) of specific Large Language Models (LLMs) like GPT-3 or GPT-4.
@@ -116,11 +118,11 @@ This ensures that text chunks perfectly fit within the token limits (context win
 
 ---
 
-#### Chunk overlap
+## Chunk overlap
 
 Chunk overlap is an AI text-processing technique where adjacent segments (chunks) of text share a small, common portion of content, preventing loss of context at boundary points. Typically 10–20% of the chunk size, it ensures semantic continuity in RAG (Retrieval-Augmented Generation) applications by maintaining information across cuts.
 
-Key Aspects of Chunk Overlap:
+**Key Aspects of Chunk Overlap:**
 
 - Purpose: It preserves context when splitting large documents for LLMs, ensuring that information spanning across boundaries is not lost or misinterpreted.
 - Mechanism: When breaking down text, a small amount of data from the end of "Chunk A" is included at the start of "Chunk B".
@@ -128,14 +130,14 @@ Key Aspects of Chunk Overlap:
 - Trade-offs: High overlap improves context retention but increases redundancy and computational load.
 - Usage: It is essential for text splitting, RAG pipelines, and embedding generation to enhance search accuracy.
 
-Impact on RAG Performance:
+**Impact on RAG Performance:**
 
 - Without Overlap: Semantic meaning can be fractured, making it harder for models to retrieve information located at the edges of chunks.
 - With Overlap: Improves semantic search and retrieval accuracy by keeping related information within the same context window.
 
 ---
 
-#### Choosing between large and small chunk sizes
+## Choosing between large and small chunk sizes
 
 Choosing between large and small chunk sizes in Retrieval-Augmented Generation (RAG) involves a trade-off between context retention and retrieval precision. Small chunks (e.g., 128–256 tokens) are best for pinpointing specific facts, while large chunks (e.g., 512–1024+ tokens) are better for understanding broader themes and maintaining semantic coherence.
 
@@ -173,7 +175,9 @@ Parent-Child Indexing: Using a larger "parent" chunk (e.g., 1400 tokens) for gen
 
 ---
 
-#### Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generation (RAG) system
+---
+
+## Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generation (RAG) system
 
 Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generation (RAG) system is crucial for balancing accuracy, latency, and cost. Key considerations include the model's context window size, its ability to follow instructions when grounded in external data, and its cost-effectiveness at scale.
 
@@ -219,7 +223,9 @@ These resources analyze how to select the best Large Language Models (LLMs) for 
 
 ---
 
-#### Key hyperparameters in a RAG pipeline
+---
+
+## Key hyperparameters in a RAG pipeline
 
 Key hyperparameters in a RAG pipeline optimize retrieval and generation, directly impacting accuracy and speed. Key parameters include chunk_size (text amount per chunk), chunk_overlap (maintaining context), top_k (number of retrieved documents), embedding model, and LLM temperature.
 
@@ -977,7 +983,9 @@ Here are the most effective strategies to upgrade your retrieval pipeline:
 4. Continuous Evaluation
    RAGAS / Arize Phoenix: Use frameworks like RAGAS to measure Faithfulness (no hallucinations) and Relevance (did the retriever find the right info?). You cannot improve what you don't measure.
 
-#### graphrag
+---
+
+## graphrag
 
 GraphRAG (Graph-based Retrieval-Augmented Generation) is an evolution of RAG that uses a Knowledge Graph (KG) instead of, or alongside, a traditional vector database.
 While standard RAG is great at finding specific "needles in a haystack," GraphRAG excels at global reasoning—answering questions like "What are the main themes in this 1,000-page document?" or "How is Person A connected to Company B?"
@@ -997,7 +1005,9 @@ Neo4j + LangChain: A common pairing where Neo4j acts as the graph store and Lang
 FalkorDB: A high-performance graph database specifically optimized for LLM memory and RAG.
 LlamaIndex: Offers robust "Knowledge Graph Index" capabilities to turn documents into triplets (Subject-Predicate-Object).
 
-#### Synthetic Dataset Generation using RAG
+---
+
+## Synthetic Dataset Generation using RAG
 
 Synthetic dataset generation for Retrieval-Augmented Generation (RAG) is the process of using Large Language Models (LLMs) to automatically create "golden" datasets (question-answer-context triplets) from a raw knowledge base. This is primarily used to evaluate and benchmark RAG systems when real-world user data is scarce or sensitive.
 
@@ -1031,7 +1041,9 @@ Scalability: Generate thousands of test cases in minutes. Self-Enhancement Bias:
 Privacy: Allows testing on synthetic versions of sensitive data without exposing PII. Lack of Nuance: May miss "human" edge cases or conversational quirks of actual users.
 Component Isolation: Allows testing the retriever and generator separately to find where failures occur. Quality Dependency: The dataset is only as good as the LLM and the prompt engineering used to create it.
 
-#### Late interaction models
+---
+
+## Late interaction models
 
 Late interaction models (most notably ColBERT) are a middle-ground architecture in information retrieval that combine the efficiency of bi-encoders with the precision of cross-encoders.
 Unlike standard models that collapse an entire document into a single vector, late interaction models preserve a distinct vector for every token (word or sub-word) until the final matching stage.
@@ -1056,7 +1068,9 @@ The process is divided into three main phases: independent encoding, indexing (f
    ColPali: A recent multimodal version that uses this same "late interaction" logic for vision-language tasks, matching query tokens against image patches to search through PDFs and charts.
    RAG Pipelines: Often used as a second-stage reranker to provide high-precision results for an LLM after an initial fast retrieval.
 
-#### knowledge graph
+---
+
+## knowledge graph
 
 A knowledge graph is a structured, network-based representation of information that connects real-world entities (such as people, places, and concepts) through explicitly defined relationships. Unlike traditional databases that store data in rigid tables, knowledge graphs prioritize the connections between data points, transforming raw data into a "network of meaning" that both humans and machines can understand and reason about.
 
@@ -1085,7 +1099,9 @@ While often used together, they serve different purposes:
 Knowledge Graph: A semantic model that captures business meaning and logic (the "what" and "why").
 Graph Database: The infrastructure technology (like Neo4j or FalkorDB) that stores and queries the data (the "how" and "where").
 
-#### Hierarchical Navigable Small World (HNSW)
+---
+
+## Hierarchical Navigable Small World (HNSW)
 
 Hierarchical Navigable Small World (HNSW) is a top-performing, graph-based algorithm for fast approximate nearest neighbor (ANN) search in high-dimensional vector databases, providing high recall and low latency. It organizes data into a multi-layered, graph structure where top layers allow rapid, long-distance navigation, and lower layers enable fine-grained, precise searching.
 
@@ -1109,7 +1125,9 @@ Common Use Cases:
 • Recommendation Systems: Finding similar products or content.
 • Image/Video Search: Identifying similar visual content.
 
-#### making retrieval faster from vector databases
+---
+
+## making retrieval faster from vector databases
 
 To make retrieval faster from vector databases, you can focus on optimizing indexing strategies, using data compression techniques, and improving system architecture and hardware.  
 Indexing and Algorithm Optimization
@@ -1139,7 +1157,9 @@ Infrastructure and Scaling
 • Monitor and benchmark: Continuously monitor key performance indicators (like query latency, throughput, and recall) and use benchmarking tools (such as VectorDBBench or on GitHub
 ) to identify bottlenecks and fine-tune your configuration.
 
-#### If your RAG system retrieves good context but provides bad answers
+---
+
+## If your RAG system retrieves good context but provides bad answers
 
 If your RAG system retrieves good context but provides bad answers, the issue lies in the generation (LLM) phase rather than retrieval. Key causes include poor prompt engineering, context overloading (too much noise), hallucination, or using stale/inconsistent data that the model cannot correctly synthesize.
 
@@ -1168,7 +1188,9 @@ Actionable Fixes:
 • Add Citations: Force the model to cite which document/chunk it used, which reduces hallucinations.
 • Review Chunking Strategy: Ensure your chunks contain cohesive, complete thoughts.
 
-#### Reducing AI response latency from 3-4 seconds to under 500ms
+---
+
+## Reducing AI response latency from 3-4 seconds to under 500ms
 
 Reducing AI response latency from 3-4 seconds to under 500ms requires a multi-layered approach that addresses both model generation time and infrastructure efficiency.
 
