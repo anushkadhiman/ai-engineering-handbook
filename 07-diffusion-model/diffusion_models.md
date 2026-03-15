@@ -180,9 +180,10 @@ The biggest bottleneck in image generation is the sheer number of pixels (e.g., 
 **The Three Key Components**
 
 Stable Diffusion is like a three-part orchestra:
-**CLIP Text Encoder:** This takes your prompt (e.g., "a cat in a space suit") and turns it into a mathematical vector (embedding) that the U-Net can understand. It acts as the director.
-**U-Net (The Denoiser):** This is the "brain." It receives the noisy latents and the text embedding. Guided by the text, it predicts the noise to remove at each step.
-**VAE (The Translator):** As mentioned above, it handles the compression from pixels to latents and back again.
+
+- **CLIP Text Encoder:** This takes your prompt (e.g., "a cat in a space suit") and turns it into a mathematical vector (embedding) that the U-Net can understand. It acts as the director.
+- **U-Net (The Denoiser):** This is the "brain." It receives the noisy latents and the text embedding. Guided by the text, it predicts the noise to remove at each step.
+- **VAE (The Translator):** As mentioned above, it handles the compression from pixels to latents and back again.
 
 **Conditioning & Cross-Attention**
 How does the model actually "see" your text? It uses a mechanism called Cross-Attention.

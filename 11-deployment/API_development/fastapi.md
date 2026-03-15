@@ -18,9 +18,62 @@ FastAPI achieves its high performance and reliability by leveraging three main t
 - **Security:** It provides integrated support for OAuth2 with JWT tokens, HTTP Basic authentication, and API keys.
 
 **Why to Choose It**
-FastAPI is frequently preferred over older frameworks like Flask or Django for API-first development because it requires less boilerplate code, reduces human-induced errors by roughly 40%, and accelerates feature development by 200–300%. It is used in production by major companies, including Netflix, Uber, Microsoft, and Cisco.
+FastAPI is frequently preferred over older frameworks like Flask or Django for API-first development because it requires less boilerplate code, reduces human-induced errors by roughly 40%, and accelerates feature development by 200–300%.
+
+## Working with path and query fastapi
+
+In FastAPI, path parameters are used to identify specific resources as part of the URL path, while query parameters are used to filter or configure the response. FastAPI automatically handles data validation and conversion based on Python type hints for both.
+
+**Path Parameters**
+Path parameters define dynamic parts of the URL and are always required. They are specified in the path operation decorator using curly braces {}.
+
+```
+from fastapi import FastAPI
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+
+```
+
+- In this example, /items/123 would pass the integer 123 to the item_id argument.
+- FastAPI uses the type hint (int in this case) for automatic data validation, returning a 422 error if the type does not match.
+- Order matters for path operations; fixed paths like /users/me must be declared before dynamic paths like /users/{user_id}.
+
+**Query Parameters**
+Query parameters are optional and appended to the URL after a question mark ? (e.g., /items/?skip=0&limit=10). They are declared as function parameters that are not part of the path.
+
+```
+from typing import Optional
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/")
+async def read_itemss(skip: int = 0, limit: int = 10):
+    return {"skip": skip, "limit": limit}
+```
+
+- In this example, skip and limit are optional with default values of 0 and 10, respectively.
+- To make a query parameter mandatory without a default value, simply don't assign a value or use the Query class.
 
 ---
+
+## Request and Response models fastapi
+
+In FastAPI, Pydantic models are used to define the structure and enforce validation for both incoming request bodies and outgoing response data. This integration automatically generates API documentation (OpenAPI schema), validates data at runtime, and ensures consistent data formats.
+
+**Request Models**
+To declare a request body, define a Pydantic model and use it as a type hint for a function parameter in your path operation.
+
+- **Automatic Validation:** FastAPI automatically validates the incoming JSON data against the model's schema. If validation fails, a 422 Unprocessable Entity error is returned.
+- **Documentation:** The schema is used to generate automatic, interactive API documentation in the built-in Swagger UI.
+
+**Response Models**
+To define the structure of the data your API will send back, you use the response_model parameter in the path operation decorator. This ensures the API returns consistent data, hides sensitive fields, and improves documentation.
+
+- **Data Filtering:** Only fields defined in the response_model will be included in the final JSON response, automatically filtering out any extra or sensitive data (e.g., passwords).
+- **Data Serialization:** FastAPI uses Pydantic to serialize the data to JSON efficiently, providing performance benefits.
 
 ## How does FastAPI compare to Flask and Django?
 
@@ -67,19 +120,20 @@ In FastAPI, Pydantic serves as the core engine for all data handling, including 
 - **BaseModel:** The standard class used to define the shape and validation rules of your data models.
 - **Field:** A utility to add extra validation constraints (like max_length or regex) and metadata (like descriptions) for the documentation.
 - **Custom Validators:** Decorators like @field_validator allow you to implement complex business logic validation that simple type hints cannot cover.
-- **BaseSettings:** Often used alongside FastAPI to manage application configuration and environment variables with full type safety.
+- **BaseSettings:** Often used alongside FastAPI to mansage application configuration and environment variables with full type safety.
 
 **Dependency Injection (DI)**
 Dependency Injection is a pattern where a function "asks" for what it needs rather than creating it internally. In FastAPI, this is done via the Depends() function.
 
-- Why use it? It allows you to share logic (like database sessions, security checks, or common parameters) across different routes without repeating code.
+- **Why use it?** It allows you to share logic (like database sessions, security checks, or common parameters) across different routes without repeating code.
 
-- Example: If five routes need a database connection, you create one "dependency" function and inject it into those routes.
+- **Example:** If five routes need a database connection, you create one "dependency" function and inject it into those routes.
 
-- Bonus: It makes testing easy because you can "override" a dependency with a mock version during tests.
+- It makes testing easy because you can "override" a dependency with a mock version during tests.
 
 **async def vs. def**
 This determines how FastAPI handles the "waiting" time during a request.
 
-- async def (Asynchronous): Use this for I/O-bound tasks (e.g., calling a database, fetching data from another API, or reading a file). It tells the server: "I'm going to be waiting for data; feel free to handle other requests while I wait."
-- def (Synchronous): Use this for CPU-bound tasks (e.g., complex math, image processing) or if you are using a library that doesn't support async. FastAPI will run these in a separate thread pool so they don't block the main event loop.
+- **async def (Asynchronous):** Use this for I/O-bound tasks (e.g., calling a database, fetching data from another API, or reading a file). It tells the server: "I'm going to be waiting for data; feel free to handle other requests while I wait."
+
+- **def (Synchronous):** Use this for CPU-bound tasks (e.g., complex math, image processing) or if you are using a library that doesn't support async. FastAPI will run these in a separate thread pool so they don't block the main event loop.
