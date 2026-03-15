@@ -406,9 +406,11 @@ Evaluation goes beyond chatbots, measuring the process of reaching a goal, not j
 **Challenges**
 Evaluating agents is complex because they are dynamic and often multi-turn, meaning one error in an early step can cascade through the entire workflow, making it difficult to pinpoint the root cause of failure.
 
+---
+
 ## Advanced prompting for agentic AI
 
-Advanced prompting for agentic AI involves techniques that enable autonomous agents to reason, plan, and use tools to complete complex, multi-step tasks. Key methods include ReAct (reasoning + acting), Chain-of-Thought (CoT), Tree-of-Thoughts (ToT), and Reflexion, which collectively improve accuracy, reduce hallucinations, and allow for autonomous, self-correcting workflows.
+Advanced prompting for agentic AI involves techniques that enable autonomous agents to reason, plan, and use tools to complete complex, multi-step tasks.
 
 **Key Advanced Prompting Techniques**
 
@@ -432,6 +434,8 @@ Advanced prompting for agentic AI involves techniques that enable autonomous age
 - **Autonomous Workflow:** Enables agents to handle multi-step, complex, and unpredictable tasks independently.
 - **Explainability:** Provides a clear trace of the agent's thought process and reasoning steps.
 - **Tool Usage:** Allows agents to interact with external tools and APIs for real-time data.
+
+---
 
 ### Context drift
 
@@ -457,6 +461,8 @@ Context drift is the **gradual degradation of an AI model's accuracy and relevan
 - **Modularization**: Break long tasks into smaller, independent chunks to prevent long-term dependency issues.
 - **Context Resetting**: Manually clearing the session and starting a new chat when the AI's output becomes irrelevant or chaotic.
 - **Externalizing Memory**: Using external tools, like vector databases, to store and recall relevant information outside the model's immediate context window.
+
+---
 
 ### Context window overflow
 
@@ -485,17 +491,17 @@ Prompt injection is a security vulnerability where attackers embed malicious, hi
 **Key Aspects of Context/Prompt Injection:**
 
 - Mechanism: Attacks bypass security by mixing user-provided input with trusted system instructions, tricking the model into following the user's "new" rules.
-- Types of Injection:
+- **Types of Injection:**
   - Direct Injection: Explicit, malicious prompts given directly to the AI.
   - Indirect Injection: Hidden commands in external data, such as websites, documents, or emails, which the LLM processes.
 
-- Impact and Risks:
+- **Impact and Risks:**
   - Data Leakage: Accessing confidential information.
   - Action Manipulation: Forcing the AI to perform unauthorized actions or bypass authentication.
   - Content Fraud: Spreading misinformation or generating biased outputs.
   - Tool/API Hijacking: Forcing agents to use external tools inappropriately.
 
-- Defense Measures:
+- **Defense Measures:**
   - Sanitization: Cleaning input to remove potentially malicious tokens.
   - Monitoring: Logging and analyzing interactions for anomalies.
   - Context Separation: Attempting to separate system instructions from user inputs, though this is challenging.
