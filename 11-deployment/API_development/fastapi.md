@@ -1,139 +1,366 @@
 # FastAPI
 
-FastAPI is a modern, high-performance Python web framework specifically designed for building RESTful APIs quickly and efficiently. Created by Sebastián Ramírez in 2018, it is built on top of standard Python type hints and is widely considered one of the fastest Python frameworks available, with performance comparable to Node.js and Go.
+FastAPI is a modern, high-performance **Python web framework** designed for building **RESTful APIs** quickly and efficiently. Created by **Sebastián Ramírez** in **2018**, it is built on standard **Python type hints** and delivers performance comparable to **Node.js** and **Go**.
 
 **Core Components**
-FastAPI achieves its high performance and reliability by leveraging three main technologies:
+FastAPI achieves its performance and reliability by leveraging three main technologies:
 
-- **Starlette:** A lightweight ASGI (Asynchronous Server Gateway Interface) framework that provides powerful asynchronous capabilities, allowing the handling of multiple concurrent requests.
-- **Pydantic:** A data validation library that uses Python type annotations to validate, serialize, and deserialize data automatically.
-- **Uvicorn:** A lightning-fast ASGI server used to load and serve your FastAPI applications.
+- **Starlette:** A lightweight ASGI framework that provides powerful async capabilities for handling concurrent requests.
+- **Pydantic:** A data validation library that uses type annotations to validate, serialize, and deserialize data.
+- **Uvicorn:** A lightning-fast ASGI server used to serve FastAPI applications.
 
 **Key Features**
 
-- **Automatic Documentation:** It automatically generates interactive API documentation using Swagger UI (accessible at /docs) and ReDoc (at /redoc) based on the OpenAPI standard.
-- **Built-in Data Validation:** By using Pydantic models, the framework automatically validates incoming request data and provides clear error messages (typically a 422 Unprocessable Entity status) if the data is invalid.
-- **Asynchronous Support:** It natively supports async and await syntax, making it ideal for I/O-bound tasks like database queries or external API calls.
-- **Dependency Injection:** A built-in Dependency Injection system allows you to manage reusable components like database sessions or security logic easily.
-- **Security:** It provides integrated support for OAuth2 with JWT tokens, HTTP Basic authentication, and API keys.
+- **Automatic documentation:** Generates interactive API docs via **Swagger UI** (`/docs`) and **ReDoc** (`/redoc`) using the OpenAPI standard.
+- **Built-in data validation:** Pydantic models validate requests and return clear errors (commonly **422 Unprocessable Entity**).
+- **Asynchronous support:** Native `async`/`await` support for I/O-bound tasks like DB calls and external APIs.
+- **Dependency injection:** Built-in DI for reusable components such as DB sessions or security logic.
+- **Security:** Integrated support for **OAuth2**, **JWT**, **HTTP Basic**, and **API Keys**.
 
-**Why to Choose It**
-FastAPI is frequently preferred over older frameworks like Flask or Django for API-first development because it requires less boilerplate code, reduces human-induced errors by roughly 40%, and accelerates feature development by 200–300%.
+**Why Choose FastAPI**
+FastAPI is often preferred over older frameworks like Flask or Django for API-first development because it:
 
-## Working with path and query fastapi
-
-In FastAPI, path parameters are used to identify specific resources as part of the URL path, while query parameters are used to filter or configure the response. FastAPI automatically handles data validation and conversion based on Python type hints for both.
-
-**Path Parameters**
-Path parameters define dynamic parts of the URL and are always required. They are specified in the path operation decorator using curly braces {}.
-
-```
-from fastapi import FastAPI
-
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    return {"item_id": item_id}
-
-```
-
-- In this example, /items/123 would pass the integer 123 to the item_id argument.
-- FastAPI uses the type hint (int in this case) for automatic data validation, returning a 422 error if the type does not match.
-- Order matters for path operations; fixed paths like /users/me must be declared before dynamic paths like /users/{user_id}.
-
-**Query Parameters**
-Query parameters are optional and appended to the URL after a question mark ? (e.g., /items/?skip=0&limit=10). They are declared as function parameters that are not part of the path.
-
-```
-from typing import Optional
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/items/")
-async def read_itemss(skip: int = 0, limit: int = 10):
-    return {"skip": skip, "limit": limit}
-```
-
-- In this example, skip and limit are optional with default values of 0 and 10, respectively.
-- To make a query parameter mandatory without a default value, simply don't assign a value or use the Query class.
+- Requires less boilerplate.
+- Reduces human-induced errors.
+- Speeds up feature development.
 
 ---
 
-## Request and Response models fastapi
+## Routing and Request Handling
 
-In FastAPI, Pydantic models are used to define the structure and enforce validation for both incoming request bodies and outgoing response data. This integration automatically generates API documentation (OpenAPI schema), validates data at runtime, and ensures consistent data formats.
+FastAPI routing maps URLs to Python functions using **path operation decorators**, while request handling uses type hints for automatic parsing, validation, and serialization.
+
+### Routing in FastAPI
+
+- **Path operation decorators:** Define routes with `@app.get()`, `@app.post()`, `@app.put()`, `@app.delete()`, etc.
+- **Path parameters:** Dynamic URL segments become typed function arguments (e.g., `item_id: int`).
+- **APIRouter for modularity:** Organize routes into modules with `APIRouter` and include them using `app.include_router()`.
+
+### Request Handling in FastAPI
+
+- **Query parameters:** Parsed automatically from the URL based on type hints.
+- **Request body:** JSON bodies are validated against Pydantic models.
+- **Headers and cookies:** Declare them explicitly with `Header` and `Cookie`.
+- **Dependency injection:** Dependencies are resolved automatically and injected into endpoints.
+
+### Request Lifecycle
+
+1. **URL parsing and method identification.**
+2. **Path and query parameter extraction.**
+3. **Body deserialization and validation** (raises `RequestValidationError` on failure).
+4. **Function execution** with validated inputs.
+5. **Response generation** and serialization (e.g., JSON).
+
+---
+
+## Defining Routes and HTTP Methods
+
+API routes are defined with **path operation decorators** applied to standard Python functions. The decorator specifies both the **HTTP method** and the **URL path**.
+
+**Core Concepts**
+
+- **Route path:** The endpoint URL (e.g., `/items/`).
+- **HTTP method:** The action on the resource.
+- **Path operation function:** The function that handles the request.
+
+**Common HTTP Methods**
+
+- **GET:** Retrieve data.
+- **POST:** Create new data.
+- **PUT:** Update existing data.
+- **DELETE:** Remove data.
+
+---
+
+## Path Parameters
+
+Path parameters define dynamic parts of a URL and map them to function arguments.
+
+**Key Concepts**
+
+- **Syntax:** Use `{}` in the path string (e.g., `@app.get("/items/{item_id}")`).
+- **Automatic type conversion:** Converts to annotated types (e.g., `int`, `float`, `bool`).
+- **Required by default:** Always required because they are part of the URL path.
+- **Editor support:** Type hints improve autocomplete and static checks.
+
+**Advanced Features**
+
+- **Numeric validations:** Use `Path` for constraints like min/max.
+- **Enums:** Restrict to specific values with Python `Enum` types.
+- **Annotated syntax:** Use `Annotated` for clearer metadata and defaults.
+
+---
+
+## Query Parameters
+
+Query parameters provide optional values and filtering capabilities. They are inferred from function parameters not declared as path parameters.
+
+**How to Use Query Parameters**
+
+- **Declaration:** Add parameters to the function signature (e.g., `q: str | None = None`).
+- **Location:** Appear after `?` in the URL (e.g., `.../items/foo?needy=sooooneedy`).
+- **Type hinting:** Enables automatic conversion and validation (e.g., `limit: int`).
+
+**Required vs. Optional**
+
+- **Optional parameters:** Provide a default value, commonly `None` (e.g., `q: str | None = None`).
+- **Required parameters:** Omit a default value for non-path params (e.g., `needy: str`).
+
+**Advanced Usage**
+
+- **Extra validation:** Use `Query()` for constraints and metadata.
+- **Lists:** Accept lists with `list[str]` types (e.g., `items: list[str] | None = Query(None)`).
+- **Pydantic models:** Group related query params into a model for reuse.
+
+---
+
+## Request and Response Models
+
+FastAPI uses **Pydantic models** to define request and response shapes. This drives **validation**, **serialization**, and **automatic OpenAPI docs**.
 
 **Request Models**
-To declare a request body, define a Pydantic model and use it as a type hint for a function parameter in your path operation.
 
-- **Automatic Validation:** FastAPI automatically validates the incoming JSON data against the model's schema. If validation fails, a 422 Unprocessable Entity error is returned.
-- **Documentation:** The schema is used to generate automatic, interactive API documentation in the built-in Swagger UI.
+- **Automatic validation:** Invalid data returns **422 Unprocessable Entity**.
+- **Documentation:** Models generate schemas used by Swagger UI.
 
 **Response Models**
-To define the structure of the data your API will send back, you use the response_model parameter in the path operation decorator. This ensures the API returns consistent data, hides sensitive fields, and improves documentation.
 
-- **Data Filtering:** Only fields defined in the response_model will be included in the final JSON response, automatically filtering out any extra or sensitive data (e.g., passwords).
-- **Data Serialization:** FastAPI uses Pydantic to serialize the data to JSON efficiently, providing performance benefits.
-
-## How does FastAPI compare to Flask and Django?
-
-Choosing between FastAPI, Flask, and Django depends primarily on your project's scope, performance needs, and desired level of control.
-
-- Django is the "batteries-included" choice for complex, full-stack enterprise applications.
-- Flask is the lightweight "micro-framework" for simple projects or when you want total architectural freedom.
-- FastAPI is the high-performance modern standard for building asynchronous APIs and microservices.
-
-**1. Django**
-Django is a monolithic framework that provides almost everything out of the box, including its own ORM (database layer), Admin Interface, Authentication system, and Security protections against SQL injection and CSRF.
-
-- Best for: Large teams or projects with tight deadlines where "reinventing the wheel" is a waste of time.
-- Cons: Can be overkill for small tasks; its rigid structure offers less flexibility.
-
-**2. Flask**
-Flask is a WSGI-based micro-framework that only provides the bare essentials (routing and request handling). You must choose and integrate your own libraries for databases or authentication.
-
-- Best for: Developers who want total control over their stack or are building small, single-purpose tools.
-- Cons: Scaling large projects can become messy without a strictly enforced structure; security and validation are manual tasks.
-
-**3. FastAPI**
-FastAPI leverages ASGI and Python type hints to offer performance comparable to Node.js and Go. It automatically generates interactive documentation and handles data validation using Pydantic.
-
-- Best for: Real-time applications, high-concurrency microservices, and serving Machine Learning models.
-- Cons: Newer ecosystem with fewer third-party plugins compared to Django; primarily focused on APIs rather than traditional server-side rendered websites.
+- **Data filtering:** Only fields in `response_model` are returned (e.g., hides passwords).
+- **Data serialization:** Pydantic efficiently serializes objects to JSON.
 
 ---
 
-## What is the role of Pydantic in FastAPI?
+## Status Codes and HTTP Exceptions
 
-In FastAPI, Pydantic serves as the core engine for all data handling, including validation, serialization, and schema generation. It bridges the gap between raw web data (like JSON) and structured Python objects using standard type hints.
+FastAPI uses standard **HTTP status codes** and **HTTPException** for error signaling.
+
+**Status Code Classes**
+
+- **1xx Informational:** Request received, continuing process.
+- **2xx Success:** Request succeeded.
+- **3xx Redirection:** Further action required.
+- **4xx Client Error:** Invalid request or unauthorized access.
+- **5xx Server Error:** Server failed to fulfill a valid request.
+
+**Common Status Codes**
+
+- **200 OK**
+- **201 Created**
+- **204 No Content**
+- **400 Bad Request**
+- **401 Unauthorized**
+- **403 Forbidden**
+- **404 Not Found**
+- **422 Unprocessable Entity**
+- **500 Internal Server Error**
+
+**Using HTTPException**
+
+- Raise `HTTPException` to return an error response with a JSON `detail` message.
+- Use `fastapi.status` constants like `status.HTTP_404_NOT_FOUND`.
+
+---
+
+## FastAPI vs Flask vs Django
+
+Framework choice depends on scope, performance needs, and architectural preferences.
+
+**Django**
+
+- **Best for:** Large, full-stack applications needing built-in ORM, admin, auth, and security.
+- **Tradeoffs:** Rigid structure; overkill for small projects.
+
+**Flask**
+
+- **Best for:** Small apps or teams needing full architectural freedom.
+- **Tradeoffs:** Manual validation, security, and scaling patterns.
+
+**FastAPI**
+
+- **Best for:** High-concurrency APIs, microservices, and ML model serving.
+- **Tradeoffs:** Newer ecosystem; fewer third-party plugins than Django.
+
+---
+
+## Role of Pydantic in FastAPI
+
+Pydantic is the core engine for **validation**, **serialization**, and **schema generation**.
 
 **Core Responsibilities**
 
-- **Data Validation & Integrity:** Pydantic ensures that incoming request data (from JSON, query parameters, etc.) matches the defined structure and types. If the data is invalid, it automatically generates a clear 422 Unprocessable Entity error for the client.
-- **Data Parsing & Coercion:** It doesn't just check types; it converts data to the correct format. For example, if a field is defined as an int but a string "123" is received, Pydantic automatically converts it into a Python integer.
-- **Serialization (Data Shaping):** When returning data, Pydantic converts complex Python objects (like database models) back into JSON. Using a response_model ensures that only the fields defined in the model are sent to the client, effectively filtering out sensitive data.
-- **Automatic Documentation:** Pydantic models can emit JSON Schemas, which FastAPI uses to automatically generate interactive Swagger UI and ReDoc documentation. This ensures your
-  API docs stay perfectly in sync with your code.
+- **Data validation and integrity:** Ensures incoming data matches the schema.
+- **Data parsing and coercion:** Converts values to the correct types (e.g., "123" to `int`).
+- **Serialization:** Shapes outgoing JSON and filters fields.
+- **Automatic documentation:** Generates JSON Schema for Swagger UI and ReDoc.
 
 **Key Features Used by FastAPI**
 
-- **BaseModel:** The standard class used to define the shape and validation rules of your data models.
-- **Field:** A utility to add extra validation constraints (like max_length or regex) and metadata (like descriptions) for the documentation.
-- **Custom Validators:** Decorators like @field_validator allow you to implement complex business logic validation that simple type hints cannot cover.
-- **BaseSettings:** Often used alongside FastAPI to mansage application configuration and environment variables with full type safety.
+- **BaseModel** for schemas.
+- **Field** for constraints and metadata.
+- **Custom validators** via `@field_validator`.
+- **BaseSettings** for configuration management.
+
+---
+
+## Dependency Injection and Concurrency
 
 **Dependency Injection (DI)**
-Dependency Injection is a pattern where a function "asks" for what it needs rather than creating it internally. In FastAPI, this is done via the Depends() function.
 
-- **Why use it?** It allows you to share logic (like database sessions, security checks, or common parameters) across different routes without repeating code.
+- **Purpose:** Share logic like DB sessions or security checks across routes.
+- **Mechanism:** Use `Depends()` or `Security()`.
+- **Testing:** Dependencies can be overridden with mocks.
 
-- **Example:** If five routes need a database connection, you create one "dependency" function and inject it into those routes.
+**async def vs def**
 
-- It makes testing easy because you can "override" a dependency with a mock version during tests.
+- **async def:** Use for I/O-bound work (DB, APIs, file access).
+- **def:** Use for CPU-bound work or synchronous libraries.
 
-**async def vs. def**
-This determines how FastAPI handles the "waiting" time during a request.
+---
 
-- **async def (Asynchronous):** Use this for I/O-bound tasks (e.g., calling a database, fetching data from another API, or reading a file). It tells the server: "I'm going to be waiting for data; feel free to handle other requests while I wait."
+## Asynchronous Programming in FastAPI
 
-- **def (Synchronous):** Use this for CPU-bound tasks (e.g., complex math, image processing) or if you are using a library that doesn't support async. FastAPI will run these in a separate thread pool so they don't block the main event loop.
+Asynchronous programming uses `async`/`await` to handle many concurrent requests efficiently.
+
+**Key Concepts**
+
+- **async def:** Declares an asynchronous function.
+- **await:** Yields control while waiting for I/O.
+- **I/O-bound operations:** Ideal for async (network, disk, DB).
+- **Event loop:** Manages and schedules async tasks.
+
+**When to Use async**
+
+- Database queries with async drivers.
+- External API calls using an async client like HTTPX.
+- Asynchronous file handling with `aiofiles`.
+
+**When to Use def**
+
+- CPU-intensive calculations.
+- Blocking libraries that do not support async.
+
+---
+
+## Database Integration
+
+FastAPI works with **SQL** and **NoSQL** databases using ORMs or drivers.
+
+**SQL Databases (Recommended: SQLModel)**
+
+- **Tools:** SQLModel, SQLAlchemy, asyncpg, pymysql.
+- **Typical flow:** Install dependencies, define models, create an engine, manage sessions with DI, implement CRUD.
+
+**NoSQL Databases (Example: MongoDB)**
+
+- **Tools:** PyMongo, motor.
+- **Typical flow:** Install driver, connect client, perform CRUD with driver methods.
+
+**Best Practices**
+
+- Use **async drivers** to avoid blocking the event loop.
+- Manage DB sessions with **dependency injection**.
+- Store credentials in **environment variables** or `BaseSettings`.
+- Use a **separate test database** for automated testing.
+
+---
+
+## Security and Authentication
+
+FastAPI provides utilities in `fastapi.security` for common auth patterns.
+
+**Security Tools**
+
+- **OAuth2:** Includes helpers for password and authorization code flows.
+- **API Keys:** `APIKeyQuery`, `APIKeyHeader`, `APIKeyCookie`.
+- **HTTP Basic and Digest:** `HTTPBasic`, `HTTPDigest`.
+- **OpenID Connect:** `OpenIdConnect`.
+
+**Implementation Notes**
+
+- Use **Depends()** or **Security()** for integration with DI and docs.
+- Use **passlib** for password hashing and **secrets** for safe comparisons.
+
+**Best Practices**
+
+- Enforce **HTTPS** in production.
+- Add **custom exception handlers** to avoid data leaks.
+- Keep dependencies **up to date** for security fixes.
+
+---
+
+## Automatic Interactive API Documentation
+
+FastAPI generates OpenAPI docs automatically with no extra setup.
+
+**How It Works**
+
+- **OpenAPI schema:** Generated from type hints and Pydantic models.
+- **Swagger UI:** Available at `/docs`.
+- **ReDoc:** Available at `/redoc`.
+
+**Benefits**
+
+- **Synchronization:** Docs stay in sync with code.
+- **Interactivity:** Test endpoints directly in the browser.
+
+**Customization**
+
+- Add app metadata like title, description, and version.
+- Group endpoints with **tags**.
+- Hide or move documentation routes.
+
+---
+
+## Organizing Code with API Routers
+
+Break large applications into modules for clarity and scale.
+
+**Key Concepts**
+
+- **Modularization:** Separate concerns into modules (models, services, routes).
+- **API routers:** Group related endpoints with `APIRouter`.
+- **Main app:** Include routers in a central application instance.
+
+**Benefits**
+
+- Cleaner codebase.
+- Easier maintenance and testing.
+- Improved reuse and scalability.
+
+---
+
+## Background Tasks and WebSockets
+
+FastAPI supports background tasks and real-time communication.
+
+**WebSockets**
+
+- Install with `pip install websockets`.
+- Define endpoints with `@app.websocket()` and `websocket.accept()`.
+- Use a connection manager to track and broadcast to clients.
+
+**Background Tasks**
+
+- Inject `BackgroundTasks` and schedule work with `.add_task()`.
+- Use `asyncio.create_task()` for periodic background work.
+
+---
+
+## Testing and Deploying FastAPI
+
+### Testing
+
+- **Local run:** `uvicorn main:app --reload`.
+- **Manual testing:** Use Swagger UI (`/docs`) or ReDoc (`/redoc`).
+- **Automated testing:** Use `pytest` for integration and unit tests.
+
+### Deployment
+
+- **Containerize:** Build a Docker image with a `Dockerfile` and dependencies.
+- **Deploy:** Push to GitHub and connect to a platform like **Cloud Run**, **Azure App Service**, or **Heroku**.
+- **Run command:** Use `uvicorn main:app --host 0.0.0.0` or Gunicorn with Uvicorn workers.
+- **Secrets:** Configure environment variables securely in the platform dashboard.
+
+---
+
+**Reference:** https://fastapi.tiangolo.com/
