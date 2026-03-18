@@ -1,16 +1,24 @@
-# **Architecture of a transformer model**
+# **Transformer model**
 
 The Transformer model is a neural network architecture for sequential data that uses self-attention mechanisms to process entire sequences in parallel, rather than sequentially like RNNs. Key components include encoder-decoder stacks, multi-head attention, positional encoding, and feed-forward networks, enabling superior context understanding and faster training for tasks like translation and generation.
 
-<!-- **Key components**
-- **Input Embedding & Positional Encoding:** Converts input tokens into vectors and adds information about the order of words (since there is no recurrence).
-- **Encoder Stack**: Processes the input sequence to build a high-level representation. It consists of layers with multi-head self-attention and position-wise feed-forward networks.
-- **Decoder Stack:** Generates the output sequence, using masked self-attention to prevent looking at future tokens, and encoder-decoder attention to focus on relevant input parts.
-- **Multi-Head Self-Attention:** Allows the model to weigh the importance of different words in a sentence relative to others, capturing complex relationships.
-- **Feed-Forward Networks:** Applied to each position individually for further processing.
-- **Layer Normalization & Residual Connections:** Applied around each sub-layer to stabilize training.
-- **Parallel Processing:** Unlike RNNs, Transformers process all data simultaneously, making them highly efficient on modern hardware.
-- **Contextual Understanding:** Self-attention ensures distant words in a sequence can interact directly, resolving ambiguities. -->
+**Core Structural Blocks**
+The original architecture is a "sequence-to-sequence" model consisting of two primary stacks:
+
+- **Encoder Stack:** Processes the input sequence (e.g., an English sentence) into a "context vector"—a high-dimensional, compressed representation that captures the meaning and relationships of all tokens.
+- **Decoder Stack:** Takes the encoder's output and, one token at a time, generates the output sequence (e.g., a French translation), using previous outputs to inform the next prediction.
+
+**Key Internal Components**
+Within each encoder and decoder layer, several sub-layers perform specific mathematical transformations:
+
+- Self-Attention Mechanism: The most critical feature, allowing the model to weigh the importance of every word in a sequence relative to every other word. It uses three vectors—Query (Q), Key (K), and Value (V)—to determine context dynamically.
+- Multi-Head Attention: Runs several self-attention operations in parallel, allowing the model to capture different types of relationships simultaneously (e.g., grammar in one head and semantic meaning in another).
+- Positional Encoding: Since Transformers process all words at once, they lack an inherent sense of word order. Positional encodings (often using sine and cosine functions) are added to the input embeddings to inject information about each token's position.
+- Feed-Forward Networks (FFN): Each attention output is passed through a position-wise fully connected network, adding non-linear transformation power to refine the representations of each token independently.
+- Layer Normalization & Residual Connections: These "shortcut" connections add the original input of a layer back to its output, helping to stabilize training, speed up convergence, and prevent vanishing gradient problems in deep models.
+- Masked Self-Attention: Specifically used in the decoder to ensure the model only looks at previous tokens when predicting the next one, preventing it from "cheating" by seeing future tokens during training.
+
+---
 
 ## **Attention mechanisms in Transformer models**
 
@@ -27,6 +35,8 @@ It enable neural networks to dynamically focus on relevant parts of an input seq
   - **Long-Range Dependencies:** Unlike RNNs, Transformers can connect distant tokens directly, improving comprehension of context.
   - **Parallelization:** Because the model doesn't process tokens sequentially, it can process the entire input at once, speeding up training on GPUs.
   - **Contextual Understanding:** The mechanism allows words to have different meanings based on surrounding words, addressing polysemy (e.g., "bank" in "river bank" vs. "bank deposit").
+
+---
 
 ## **Positional encodings**
 
@@ -52,6 +62,8 @@ It enable neural networks to dynamically focus on relevant parts of an input seq
 **9. NoPE (No Positional Encoding):** Some research suggests that modern decoder-only LLMs might implicitly learn order from causal masking, allowing them to function without explicit positional encodings, though this is still a developing area.
 **10. Contextual Position Encoding (CoPE):** Emerging methods that allow positions to be conditioned on context (e.g., counting only nouns or specific words rather than just token positions).
 
+---
+
 ## BERT (Bidirectional Encoder Representations from Transformers)
 
 BERT (Bidirectional Encoder Representations from Transformers) is a groundbreaking machine learning framework for natural language processing developed by Google in 2018. It fundamentally changed how AI understands human language by shifting from sequential processing to a simultaneous, bidirectional approach.
@@ -74,6 +86,8 @@ BERT's training involves two primary unsupervised tasks:
 - **Sentiment Analysis:** It can determine if a review is positive or negative by understanding the nuances of language.
 - **Question Answering:** BERT is used to build systems that find specific answers within large bodies of text.
 
+---
+
 ## Next Sentence Prediction (NSP)
 
 Next Sentence Prediction (NSP) is a core part of BERT's training that **helps the model understand the logical flow between sentences**, rather than just individual words.
@@ -94,6 +108,8 @@ NSP teaches the model to recognize "discourse" and coherence, which is critical 
 **The Mechanism**
 To perform this task, BERT uses a special [CLS] token (Classification token) at the start of every input. The model processes the whole pair, and the final output of this [CLS] token is used to make the "Yes/No" binary prediction.
 
+---
+
 ## RoBERTa and ALBERT
 
 RoBERTa and ALBERT significantly refined BERT's approach after researchers discovered that the original Next Sentence Prediction (NSP) task was surprisingly easy for the AI to "cheat" on.
@@ -112,6 +128,8 @@ Google’s ALBERT (A Lite BERT) argued that while BERT's version of NSP was too 
 
 **The Result:** Because both sentences are about the same topic, the model can no longer "cheat" by looking at the subject matter. It is forced to learn much finer-grained logical cues to determine which sentence should naturally come first.
 
+---
+
 ## Segment Embeddings
 
 Segment Embeddings are a specific layer of data added to BERT’s input to help the model distinguish between two different sentences in a single input.
@@ -129,6 +147,8 @@ These embeddings are represented as numerical vectors that are mathematically ad
 - **Sentence Identity:** Without them, the model might struggle to realize that a pronoun in Sentence B (like "it") should be linked back to a noun in Sentence A.
 - **Structural Clarity:** While the [SEP] token acts like a visual "fence" between sentences, Segment Embeddings act like "team jerseys," tagging every word so the model knows exactly which sentence "team" it belongs to throughout the entire deep-learning process.
 - **Task Performance:** For tasks like Question Answering, Segment Embeddings are vital because they help the model differentiate between the Question (Segment A) and the Paragraph containing the answer (Segment B).
+
+---
 
 ## DistilBERT
 
@@ -152,6 +172,8 @@ It uses a "Teacher-Student" technique:
 
 - Use BERT if you need the highest possible accuracy for complex research.
 - Use DistilBERT if you are building a production app where speed and cost matter more than a 2-3% difference in score.
+
+---
 
 ## Transformers as Feature Extractors
 
@@ -180,6 +202,8 @@ Transformers as feature extractors involves taking a pre-trained Transformer mod
 - Performance may be slightly lower than a fully fine-tuned model.
 - Transformer backbones themselves require massive data to be effective initially.
 - Quadratic complexity relative to input length can be memory-intensive.
+
+---
 
 ## Scaling Transformers
 
@@ -213,3 +237,17 @@ Simply making a model bigger can lead to instability or hardware bottlenecks. En
 
 **5. Emerging Trend: "Scaling Down"**
 While the frontier moves toward "Trillion-parameter" models, there is a massive counter-movement toward Small Language Models (SLMs) like Microsoft’s Phi-3. These use high-quality, textbook-grade data to achieve the reasoning capabilities of much larger models at a fraction of the size.
+
+---
+
+## T5
+
+## GPT
+
+## GPT 2
+
+## DeepSeek
+
+## LLAMA
+
+## Mixture of Experts

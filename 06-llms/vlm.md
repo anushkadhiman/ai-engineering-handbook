@@ -1,4 +1,4 @@
-# VLM
+# Vision-Language Model
 
 VLM stands for Vision-Language Model. It is a type of multimodal artificial intelligence that can simultaneously understand and process both visual (images/video) and textual information.
 
@@ -68,6 +68,8 @@ patches). Attention is only computed inside these windows. This reduces complexi
 - **Scalability:** It can process high-resolution images (like 1024px) that would crash a standard ViT.
 - **General-Purpose Backbone:** It works "out-of-the-box" for diverse tasks including classification (ImageNet), object detection (COCO), and semantic segmentation (ADE20K).
 - **Inductive Bias:** By re-introducing concepts like locality and hierarchy, it bridges the gap between the flexibility of Transformers and the spatial efficiency of CNNs.
+
+---
 
 ## Masked Autoencoders (MAE)
 
