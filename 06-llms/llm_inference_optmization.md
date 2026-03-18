@@ -29,6 +29,8 @@ These methods optimize the mathematical operations within the Transformer archit
 - **Pipeline Parallelism:** Splits the model vertically by layers; different GPUs handle different stages of the model.
 - **Expert Parallelism:** In Mixture-of-Experts (MoE) models, only specific "expert" sub-networks are activated per token, improving efficiency.
 
+---
+
 ## KV Cache (Key-Value Cache)
 
 KV Cache (Key-Value Cache) is an optimization technique used in Transformer-based Large Language Models (LLMs) to accelerate the text generation process. During inference, it stores the intermediate Key and Value vectors of previously processed tokens so they do not need to be recomputed for every new token generated.
@@ -61,6 +63,8 @@ Calculation: The model only performs one row of the attention matrix multiplicat
 - Requires significant VRAM; the cache can grow larger than the model itself.
 - Becomes a memory bandwidth bottleneck as the GPU must constantly load the growing cache.
 
+---
+
 **PagedAttention**
 PagedAttention is a memory management algorithm designed to solve the biggest problem with KV caches: memory fragmentation and waste. It was introduced by the team behind vLLM and is inspired by how operating systems handle virtual memory.
 
@@ -83,6 +87,8 @@ PagedAttention treats the GPU memory like a book with pages rather than a single
 - **Efficient Sharing:** For complex tasks like Parallel Sampling (generating five different endings to one prompt) or Beam Search, PagedAttention allows multiple requests to "point" to the same physical memory blocks for the initial prompt, saving massive amounts of space.
 
 It is worth noting that while PagedAttention fixes where we store data (memory management), FlashAttention fixes how we compute attention (speed/IO efficiency). Most modern LLM engines use both together to achieve maximum performance.
+
+---
 
 ## Multi-Query Attention
 
@@ -109,6 +115,8 @@ There is no "free lunch" in AI. By forcing all heads to share the same Keys and 
 - **Cons:** The model loses some "expressive power." In MHA, different heads can focus on different relationships (e.g., one head for grammar, one for logic). In MQA, they are all forced to look at the same compressed representation of the context.
 - **Result:** Small drop in accuracy/perplexity, but massive gains in speed.
 
+---
+
 ## Grouped-Query Attention
 
 Grouped-Query Attention (GQA) is the modern standard for attention in large-scale LLMs (like Llama 3, Mistral, and Gemma). It acts as a middle ground that balances the high quality of Multi-Head Attention (MHA) with the extreme speed of Multi-Query Attention (MQA).
@@ -131,16 +139,19 @@ GQA divides the many Query heads into a smaller number of Groups. Each group of 
 - They all perform attention against the same and for that group.
 - This effectively averages out the "lookup" information for that group, which empirical studies show is often redundant across all heads anyway.
 
-## multi head latent attention
+---
+
+## Multi-Head Latent Attention
 
 Multi-Head Latent Attention (MLA) is a specialized attention mechanism introduced by DeepSeek (first in DeepSeek-V2) to solve the "memory wall" of the KV cache.
 While GQA (Grouped-Query Attention) reduces cache size by sharing heads, MLA uses low-rank compression to shrink the entire KV space into a small "latent" vector, achieving even greater memory savings without sacrificing model quality.
 
 **The Core Innovation: Low-Rank Compression**
 In standard attention, every token’s Key (K) and Value (V) are stored as large vectors. In MLA, these are compressed into a single, much smaller latent vector ().
-**Compression:** A "down-projection" matrix () turns the high-dimensional hidden state into a small latent vector ().
-**Decompression:** During the attention calculation, this latent vector is "up-projected" back into the full Key and Value heads only when needed.
-**Result:** You only cache the compressed latent vector, which is often 90%+ smaller than a standard KV cache.
+
+- **Compression:** A "down-projection" matrix () turns the high-dimensional hidden state into a small latent vector ().
+- **Decompression:** During the attention calculation, this latent vector is "up-projected" back into the full Key and Value heads only when needed.
+- **Result:** You only cache the compressed latent vector, which is often 90%+ smaller than a standard KV cache.
 
 **Mathematical Intuition & The "Absorption Trick"**
 
@@ -163,6 +174,8 @@ To fix this, MLA decouples the attention into two parts:
 - Higher computational (FLOP) cost during the "prefill" phase.
 - Extremely complex to implement and optimize (requires custom kernels like FlashMLA).
 - Incompatible with standard RoPE; requires the "decoupled" architecture.
+
+---
 
 ## Continuous Batching
 
@@ -191,7 +204,9 @@ The core innovation, first introduced by the Orca paper (OSDI '22), is changing 
 - Can cause jitter in token delivery speed for active users as new requests join.
 - Extremely memory-intensive; requires robust VRAM management.
 
-## speculative batching
+---
+
+## Speculative Batching
 
 Speculative Batching (or Batch Speculative Decoding) is a high-performance inference technique that combines Speculative Decoding with Batching to maximize GPU utilization.
 While standard speculative decoding speeds up a single request by guessing future tokens, speculative batching allows a system to speed up multiple concurrent requests at once by verifying all their guesses in a single parallel step.
@@ -225,6 +240,8 @@ The process follows a "Propose-Verify-Correct" loop across the entire batch:
 - The "Ragged Tensor" Problem: Requests accept different numbers of tokens, making it hard to keep the batch perfectly aligned in memory.
 - Overhead: Managing two models (draft and target) and synchronizing their KV caches adds significant architectural complexity.
 
+---
+
 ## Prefix Caching
 
 Prefix Caching (also known as Prompt Caching) is an optimization that allows different inference requests to reuse the same KV cache if they share an identical starting sequence of tokens.
@@ -256,6 +273,8 @@ Modern frameworks like vLLM use a Radix Tree or a Hash-based system to identify 
 - Requires large amounts of VRAM to store long-term context.
 - Security Risk: Can create "timing side-channels" where an attacker can guess if a prefix was previously used based on response speed.
 
+---
+
 ## vllm
 
 vLLM (Virtual Large Language Model) is an open-source, high-throughput inference and serving engine for LLMs. Developed by researchers at UC Berkeley, it is designed to run models with significantly higher efficiency and lower costs by solving the "memory wall" of KV caching.
@@ -277,6 +296,8 @@ vLLM (Virtual Large Language Model) is an open-source, high-throughput inference
 - OpenAI-Compatible API: Provides a drop-in REST server that matches the OpenAI API schema, making it easy to integrate with existing tools like LangChain.
 - Quantization: Supports various compression formats (GPTQ, AWQ, FP8, INT8) to fit larger models into less VRAM.
 - Flexibility: Includes features for Multi-LoRA serving, speculative decoding, and streaming outputs.
+
+---
 
 ## Knowledge Distillation
 
@@ -304,10 +325,12 @@ Cat: 0.999
 Dog: 0.001
 Car: 0.000001
 This is a Hard Target. It’s very "peaky" and hides the relationship between categories.
+
 A Soft Target "flattens" those numbers. It looks like this:
 Cat: 0.70
 Dog: 0.25
 Car: 0.05
+
 By looking at these Soft Targets, the Student model learns that a cat is kind of like a dog (both have fur/ears) but nothing like a car. This "hidden" similarity is the Dark Knowledge that makes the Student smarter.
 
 **What is Temperature (T)?**
@@ -320,13 +343,14 @@ Temperature is the "knob" you turn to create those Soft Targets. It’s a value 
 **Why use Temperature?**
 
 - If the Student only sees the "Hard" 0.999 Cat result, it learns to be a copycat but doesn't understand why the Teacher made that choice. By raising the Temperature, we force the Teacher to reveal its internal uncertainty. This uncertainty is exactly what the Student needs to learn the nuances of language or images with fewer parameters.
-- In Knowledge Distillation, we divide every logit () by the Temperature () before applying the exponential
-  How the value of T changes the result:
-- When T=1 : The formula is identical to the standard Softmax.
-- When T>1 (e.g., T=5): The differences between the scores are "shrunk."
-- Using our example (z (cat) = 10, z (dog)=5):
-- Instead of 10 and 5, the math now uses 2 and 1.
-- is only about 2.7 times larger than .
+- In Knowledge Distillation, we divide every logit by the Temperature (T) before applying the exponential.
+- How the value of T changes the result:
+  - When T=1 : The formula is identical to the standard Softmax.
+  - When T>1 (e.g., T=5): The differences between the scores are "shrunk."
+  - Using our example (z (cat) = 10, z (dog)=5):
+  - Instead of 10 and 5, the math now uses 2 and 1.
+  - is only about 2.7 times larger than .
+
 - The Result: The "Dog" class now has a much higher probability (a Soft Target), allowing the Student to see that the Teacher thought it was "almost a dog."
 
 **The Training Loop**
@@ -339,6 +363,7 @@ When training a model like DistilBERT, the "Loss Function" actually looks at two
 ## llama.cpp and Ollama
 
 While vLLM is built for high-scale enterprise serving, llama.cpp and Ollama are the kings of the "Local LLM" world, designed to run models on your own laptop or desktop.
+
 **llama.cpp:**
 llama.cpp is a low-level, high-performance inference engine written in pure C/C++. It is the "brain" that many other local AI tools use under the hood.
 
@@ -352,6 +377,8 @@ llama.cpp is a low-level, high-performance inference engine written in pure C/C+
 - **Model Library:** Instead of hunting for files on Hugging Face, you just type ollama run llama3, and it automatically downloads and starts the model for you.
 - **API by Default:** It automatically sets up a local server that other apps (like Open WebUI or VS Code plugins) can talk to immediately.
 - **Customization:** You can create "Modelfiles" to give your AI specific personalities or system prompts in just a few lines of text.
+
+---
 
 ### Cpu Offloading
 

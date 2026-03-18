@@ -746,11 +746,11 @@ Modern LLM frameworks (like Hugging Face and LangChain) use Jinja2 to programmat
 
 ## Post-processing Large Language Model (LLM) output
 
-Post-processing Large Language Model (LLM) output is the critical "final mile" of an AI workflow. It transforms raw, probabilistic strings into deterministic, machine-readable data that your application can actually use.
+Post-processing Large Language Model (LLM) output is the critical part of an AI workflow. It transforms raw, probabilistic strings into deterministic, machine-readable data that your application can actually use.
 Depending on your goal, you can post-process at the logit level (during generation) or the text level (after generation).
 
 **1. Logit-Level Post-Processing (Constrained Generation)**
-These techniques manipulate the model's raw probability scores (logits) before the final word is even chosen. This ensures the output is "born" correct.
+These techniques manipulate the model's raw probability scores (logits) before the final word is even chosen. This ensures the output is correct.
 
 - **Logit Bias:** Artificially increasing or decreasing the probability of specific tokens.
 - **Temperature & Sampling:** Adjusting temperature (randomness), top-p (nucleus sampling), or top-k to control creativity vs. precision.
@@ -762,7 +762,7 @@ Once the LLM finishes responding, you treat the string as a raw material to be c
 
 - **Output Parsing:** Converting strings into Python objects or JSON using libraries like Pydantic or the LangChain Output Parsers.
 - **Automatic Repair:** Using tools like json_repair to fix missing brackets or trailing commas in malformed LLM responses.
-- **Validation & Retries:** Passing the output through a "Validator" (often another LLM or a schema checker). If it fails, you programmatically prompt the model to "fix" its own mistake.
+- **Validation & Retries:** Passing the output through a Validator (often another LLM or a schema checker). If it fails, you programmatically prompt the model to fix its own mistake.
 - **Semantic Splitting:** Using a Semantic Router to group and split long outputs based on topic similarity rather than character count.
 
 **3. Essential Tools & Frameworks**
