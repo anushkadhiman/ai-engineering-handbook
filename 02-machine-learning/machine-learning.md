@@ -31,7 +31,7 @@
 - **Supervised Learning**: The model is trained on labeled data (input-output pairs) to make predictions.
 - **Unsupervised Learning**: The model identifies patterns and structures in unlabeled data without predefined outcomes.
 - **Semi-Supervised Learning**: This approach uses a small amount of labeled data in combination with a large amount of unlabeled data.
-- **Self-supervised learning**: This is a subset of unsupervised learning creates its own supervisory signals (labels) from unlabeled data by solving "pretext tasks" like predicting missing parts.
+- **Self-supervised learning**: This is a subset of unsupervised learning creates its own supervisory signals (labels) from unlabeled data by solving pretext tasks like predicting missing parts.
 - **Reinforcement Learning**: An agent learns to make decisions through trial and error by interacting with an environment and receiving rewards or penalties.
 
 ---
@@ -54,13 +54,13 @@
 ## Batch learning and Online learning
 
 - **Batch learning** trains models on the entire dataset at once, making it ideal for stable, offline data, but it requires full retraining for updates.
-- **Online learning** trains incrementally on data streams (individually or mini-batches), allowing for real-time adaptation, lower memory usage, and continuous improvement without retraining from scratch. However, susceptible to "catastrophic interference" (forgetting old patterns); harder to maintain.
+- **Online learning** trains incrementally on data streams (individually or mini-batches), allowing for real-time adaptation, lower memory usage, and continuous improvement without retraining from scratch. However, susceptible to catastrophic interference (forgetting old patterns); harder to maintain.
 
 ---
 
 ## Instance based vs Model based learning
 
-- **Instance-based learning** (e.g., k-NN) memorizes training data and makes predictions based on similarity to new inputs, functioning as "lazy" learning, ideal for small, dynamic datasets.
+- **Instance-based learning** (e.g., k-NN) memorizes training data and makes predictions based on similarity to new inputs, functioning as lazy learning, ideal for small, dynamic datasets.
 - **Model-based learning** (e.g., linear regression) trains a model to generalize patterns from data, resulting in faster, more efficient predictions for large, static datasets.
 
 ---
@@ -70,7 +70,7 @@
 - **Data Issues**: Poor quality, insufficient data, or lack of diversity causing bias.
 - **Overfitting/Underfitting**: Models either failing to learn patterns (underfitting) or memorizing noise (overfitting), leading to poor performance on new data.
 - **Scalability and Resources**: High computational costs and difficulty scaling models for large, real-time datasets.
-- **Interpretability**: Difficulty in explaining how complex "black box" models make decisions, crucial for trust in industries like healthcare.
+- **Interpretability**: Difficulty in explaining how complex black box models make decisions, crucial for trust in industries like healthcare.
 - **Data Security and Privacy**: Protecting sensitive data used for training.
 - **Feature Engineering**: The time-intensive process of selecting relevant data features.
 
@@ -82,7 +82,7 @@ Data is divided into three distinct sets, each serving a specific purpose in bui
 
 - **Training Set**: the largest portion of the dataset, the model uses to learn patterns and relationships. During training, the algorithm repeatedly adjusts its internal parameters (like weights in a neural network) to minimize errors based on this data. A diverse training set is crucial for effective learning.
 - **Validation Set**: used during the model development phase to provide an unbiased evaluation of the model's performance while fine-tuning its hyperparameters (e.g., the learning rate or number of layers), helping in model selection and serving as an early stopping signal to prevent overfitting to the training data.
-- **Test Set**: This is a completely separate, "held-out" portion of the data used only once at the very end of the process to assess the final, tuned model's performance on truly unseen data; provides the most reliable estimate of the model's real-world generalization ability.
+- **Test Set**: This is a completely separate, held-out portion of the data used only once at the very end of the process to assess the final, tuned model's performance on truly unseen data; provides the most reliable estimate of the model's real-world generalization ability.
 
 ---
 
@@ -127,11 +127,16 @@ These are critical steps for building robust machine learning models by identify
 
 ## Classification in machine learning:
 
-Classification in machine learning is a supervised learning technique that categorizes input data into predefined classes or labels based on training examples. By learning relationships between input features and target outcomes, models predict categorical labels for new data, such as distinguishing "spam" from "not spam".
+Classification in machine learning is a supervised learning technique that categorizes input data into predefined classes or labels based on training examples. By learning relationships between input features and target outcomes, models predict categorical labels for new data, such as distinguishing spam from not spam.
 
-- **Types of Classification**: - Binary: Two possible classes (e.g., Yes/No, Spam/Ham). - Multiclass: More than two classes (e.g., classifying images as cat, dog, or bird). - Multilabel: Each input can be assigned multiple labels. - Ordinal: Classes have a specific order or rank
+- **Types of Classification**:
+  - Binary: Two possible classes (e.g., Yes/No, Spam/Ham).
+  - Multiclass: More than two classes (e.g., classifying images as cat, dog, or bird).
+  - Multilabel: Each input can be assigned multiple labels.
+  - Ordinal: Classes have a specific order or rank
 - **Common Classification Algorithms**: Logistic Regression (used for binary classification), Decision Trees, Random Forest, Support Vector Machines (SVM), K-Nearest Neighbors (KNN), Naive Bayes
-- **Real-World Applications**: Spam Detection: Filtering emails; Healthcare: Disease diagnosis or patient risk identification; Image Recognition: Identifying objects in photos; Fraud Detection: Identifying fraudulent bank transactions; Sentiment Analysis: Determining if text is positive, negative, or neutral.
+- **Real-World Applications**:
+  Spam Detection: Filtering emails; Healthcare: Disease diagnosis or patient risk identification; Image Recognition: Identifying objects in photos; Fraud Detection: Identifying fraudulent bank transactions; Sentiment Analysis: Determining if text is positive, negative, or neutral.
 
 ---
 
@@ -139,10 +144,20 @@ Classification in machine learning is a supervised learning technique that categ
 
 These are quantitative measures used to evaluate, compare, and optimize model effectiveness, ensuring they generalize well to new data.
 
-- Key metrics include accuracy, precision, recall, and F1-score for classification, and mean squared error (MSE) or root mean squared error (RMSE) for regression.
+Key metrics include accuracy, precision, recall, and F1-score for classification, and mean squared error (MSE) or root mean squared error (RMSE) for regression.
 
-- **Key Classification Metrics**: - Accuracy: The ratio of correctly predicted observations to the total observations. - Precision: The ratio of correctly predicted positive observations to total predicted positives, critical when false positives are costly. - Recall (Sensitivity): The ratio of correctly predicted positive observations to all actual positives. - F1-Score: The harmonic mean of precision and recall, useful for imbalanced datasets. - Confusion Matrix: A table summarizing true positives, true negatives, false positives, and false negatives. - ROC-AUC: Measures the ability of a binary classifier to distinguish between classes across thresholds.
-- **Key Regression Metrics** - Mean Absolute Error (MAE): Average of the absolute differences between predicted and actual values. - Mean Squared Error (MSE): Average of the squared differences, heavily punishing large errors. - Root Mean Squared Error (RMSE): The square root of MSE, providing error in the same unit as the target variable.
+- **Key Classification Metrics**:
+  - Accuracy: The ratio of correctly predicted observations to the total observations.
+  - Precision: The ratio of correctly predicted positive observations to total predicted positives, critical when false positives are costly.
+  - Recall (Sensitivity): The ratio of correctly predicted positive observations to all actual positives.
+  - F1-Score: The harmonic mean of precision and recall, useful for imbalanced datasets.
+  - Confusion Matrix: A table summarizing true positives, true negatives, false positives, and false negatives.
+  - ROC-AUC: Measures the ability of a binary classifier to distinguish between classes across thresholds.
+
+- **Key Regression Metrics**
+  - Mean Absolute Error (MAE): Average of the absolute differences between predicted and actual values.
+  - Mean Squared Error (MSE): Average of the squared differences, heavily punishing large errors.
+  - Root Mean Squared Error (RMSE): The square root of MSE, providing error in the same unit as the target variable.
 
 - **Choosing the Right Metric**: Balanced Data: Accuracy is often sufficient; Imbalanced Data: Use Precision, Recall, F1-Score, or AUC-ROC; Regression: Use RMSE or MAE based on whether large errors need to be heavily penalized (RMSE) or not (MAE).
 
@@ -232,9 +247,9 @@ Methods are generally categorized into three supervised groups and various unsup
 
 ## What Is Contrastive Learning?
 
-Contrastive learning is a machine learning paradigm that teaches models to understand data by comparing similar and dissimilar samples. Unlike standard supervised learning that maps an input to a specific label (e.g., "this is a cat"), contrastive learning learns an embedding space where related items are pulled together and unrelated items are pushed apart.
+Contrastive learning is a machine learning paradigm that teaches models to understand data by comparing similar and dissimilar samples. Unlike standard supervised learning that maps an input to a specific label (e.g., this is a cat), contrastive learning learns an embedding space where related items are pulled together and unrelated items are pushed apart.
 
-**How It Works: The "Anchor" System**
+**How It Works: The Anchor System**
 
 The core mechanism typically involves three types of data points:
 
@@ -246,22 +261,22 @@ The model is trained to minimize the distance between the anchor and the positiv
 
 **Why It Is Important**
 
-- Self-Supervised Power: It can learn from vast amounts of unlabeled data by creating its own "labels" through data augmentation (e.g., cropping or rotating an image to create a positive pair).
+- Self-Supervised Power: It can learn from vast amounts of unlabeled data by creating its own labels through data augmentation (e.g., cropping or rotating an image to create a positive pair).
 - Data Efficiency: Once a model learns these robust representations, it can be fine-tuned for specific tasks (like medical diagnosis) using very few labeled examples.
-- Improved Generalization: Models focus on high-level semantic features (the "concept" of an object) rather than low-level pixel noise, making them more robust.
+- Improved Generalization: Models focus on high-level semantic features (the concept of an object) rather than low-level pixel noise, making them more robust.
 
 **Key Frameworks and Applications**
 
 - CLIP (OpenAI): Connects images and text in a shared space, allowing you to search for images using natural language.
 - SimCLR (Google): A popular framework that uses strong data augmentation and large batch sizes to achieve state-of-the-art visual representations.
-- MoCo (Meta): Uses a "momentum encoder" to maintain a large dictionary of negative samples without requiring massive GPU memory.
+- MoCo (Meta): Uses a momentum encoder to maintain a large dictionary of negative samples without requiring massive GPU memory.
 - NLP Tasks: Used for sentence embeddings, machine translation, and text classification by contrasting original text with augmented versions (e.g., via back-translation or word deletion).
 
 ---
 
 ## Data handling in machine learning (ML)
 
-Data handling in machine learning (ML) is the systematic process of preparing raw data for training and evaluating models. It typically consumes up to 80% of a data scientist's time because model performance is directly dependent on data quality (the "garbage in, garbage out" principle).
+Data handling in machine learning (ML) is the systematic process of preparing raw data for training and evaluating models. It typically consumes up to 80% of a data scientist's time because model performance is directly dependent on data quality (the garbage in, garbage out principle).
 
 **Core Stages of Data Handling**
 
@@ -309,12 +324,12 @@ Techniques are broadly categorized into Univariate (using only the column itself
 **Univariate Methods**
 
 - **Mean/Median/Mode:** Replaces blanks with the average, middle, or most frequent value of that column. Best for simple, normally distributed data but can underestimate variance.
-- **Constant/Arbitrary Value:** Fills missing cells with a specific value like "0" or "Unknown" to flag them as originally missing.
+- **Constant/Arbitrary Value:** Fills missing cells with a specific value like 0 or Unknown to flag them as originally missing.
 - **Forward/Backward Fill (FFill/BFill):** Propagates the last or next known value. Essential for time-series data where sequential order matters.
 
 **Multivariate Methods**
 
-- **K-Nearest Neighbors (KNN):** Identifies the "K" most similar rows and imputes values based on those neighbors. It is effective but computationally expensive for large datasets.
+- **K-Nearest Neighbors (KNN):** Identifies the K most similar rows and imputes values based on those neighbors. It is effective but computationally expensive for large datasets.
 - **Multiple Imputation by Chained Equations (MICE):** Models each missing variable as a function of others in an iterative process. It accounts for the uncertainty of missing values by creating multiple complete datasets and pooling results.
 - **Regression Imputation:** Uses other variables as predictors to estimate the missing value through a linear or non-linear model.
 
@@ -339,45 +354,39 @@ Memory-Saving Techniques (First Line of Defense) Before splitting the model, try
 
 ---
 
-## ZeRO (Zero Redundancy Optimizer) ZeRO (used in DeepSpeed or PyTorch FSDP)
+## Overfitting and Underfitting
 
-**ZeRO (Zero Redundancy Optimizer)**
-ZeRO (used in DeepSpeed or PyTorch FSDP) is a powerful, modern technique that shards model states, gradients, and optimizer states across GPUs, rather than replicating them.
+**Overfitting**
 
-- **ZeRO Stage 1**: Shards optimizer states.
-- **ZeRO Stage 2**: Shards optimizer states and gradients.
-- **ZeRO Stage 3 (FSDP)**: Shards optimizer states, gradients, and model parameters. This allows training models with hundreds of billions of parameters.
+- Overfitting in which a model tries to fit the training data entirely and it only learns the data patterns and the noise/random fluctuations of the training data.
+- These models fail to generalize and perform well in new data. The model has a high variance. The training data size is insufficient, and the model trains on the limited training data for several epochs.
+- Deep neural networks are complex and require a significant amount of time to train, and often lead to overfitting the training set.
+- Incorrect tuning of hyper parameters in the training phase leads to over-observing
+- The training set, resulting in memorizing features.
 
-**Tensor Parallelism (TP)**
-Tensor Parallelism (TP) Tensor Parallelism splits individual tensor operations (like matrix multiplication in linear layers or attention blocks) across multiple GPUs.
+**Underfitting**
+Underfitting does not perform well on training and testing data. It is when the model is too simple and cannot create a relationship between the input and the output. We can detected when the training error is very high and the model is unable to learn from the training data. High bias and low variance are the most common indicators of underfitting.
 
-- **How it works**: GPU 0 computes half the output, GPU 1 computes the other half, and they communicate to get the final result.
-- **When to use**: Ideal for huge, dense layers within a transformer model (e.g., Megatron-LM).
-- **Requirement**: Requires very high bandwidth (e.g., NVLink) between GPUs, usually within the same node.
+**Underfitting happens when:**
 
-**Pipeline Parallelism (PP)**
-Pipeline Parallelism divides the model's layers sequentially across different GPUs.
+1. Unclean training data containing noise or outliers can be a reason for the model not being able to derive patterns from the dataset.
+2. The model has a high bias due to the inability to capture the relationship between the input examples and the target values. This usually happens in the case of varied datasets.
+3. The model is assumed to be too simple—for example, we train a linear model in complex scenarios. Incorrect hyperparameters tuning often leads to underfitting due to under-observing of the features.
 
-- **How it works**: Layers 1-4 on GPU 0, 5-8 on GPU 1, etc. Data flows sequentially through the GPUs.
-- **Key Challenge**: "Pipeline Bubbles" (idle time). Requires careful micro-batching to keep GPUs busy.
-- **When to use**: Deep models where layers can be logically split.
+**To overcome this,**
+For underfitting problem, we can build a more complex model,
+For Overfitting model, get add more data and apply regularization like dropouts, l1 and l2 regularization and batch normalization.
 
-**3D Parallelism (Hybrid)**
-3D Parallelism (Hybrid) For models that cannot fit even with TP or PP, you combine all techniques:
+**To overcome vanishing gradient problem,**
 
-- **TP**: Inside a node (splits layer operations).
-- **PP**: Across layers (splits model vertically).
-- **Data Parallelism (DP)**: Replicates the entire (distributed) model for higher throughput.
+1. We can use other activation functions, such as ReLU, which doesn’t cause a small derivative.
 
-**How to Choose Between Them**
-The choice depends on the model architecture, available GPU interconnect speed, and the number of GPUs.
+---
 
-**Decision Workflow:**
+## Regularization techniques
 
-- **Start with ZeRO Stage 3 (FSDP):** It is generally the easiest way to fit large models in PyTorch without manual layer slicing.
+Regularization techniques play a crucial role in machine learning by preventing overfitting and improving the generalization of models.
 
-- **Add Tensor Parallelism (TP) if bandwidth allows:** If using H100s/A100s with NVLink, TP is more efficient than PP for transformer models.
+1. **L1 regularization** is particularly useful when dealing with high-dimensional datasets, where the number of features is large compared to the number of observations. By introducing a penalty term based on the absolute values of the model's parameter coefficients, L1 regularization helps to control the complexity of the model and prevent it from becoming too sensitive to individual observations. The regularization parameter lambda controls the strength of the penalty term. A higher value of lambda will result in more coefficients being set to zero, leading to a sparser model. On the other hand, a lower value of lambda will allow more coefficients to have non-zero values, resulting in a less sparse model.
 
-- **Use Pipeline Parallelism (PP) for very deep models:** If the model is too deep and PP is needed to partition it, ensure you use micro-batching to eliminate "bubbles".
-
-- **Profile:** Use tools like PyTorch Profiler or DeepSpeed to check if you are limited by bandwidth (Communication bound) or computation speed (Compute bound).
+2. **L2 regularization**, also known as Ridge regularization, is another type of regularization commonly used in machine learning. Unlike L1 regularization, L2 regularization adds the squared values of the model's parameter coefficients to the loss function. This penalty term encourages small parameter values without setting them to zero, resulting in a less sparse solution. It effectively reduces model complexity and helps to prevent overfitting by shrinking the parameter values. L2 regularization is also less sensitive to outliers and can handle multicollinearity better than L1 regularization. However, L2 regularization does not perform automatic feature selection and tends to retain all features in the model.
