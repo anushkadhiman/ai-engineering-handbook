@@ -39,14 +39,14 @@ Chunk splitters in RAG break large documents into smaller, manageable, and seman
 
 **Commonly Used Splitters (LangChain)**
 
-- **CharacterTextSplitter:** Splits by a specific, simple character (e.g., " ").
+- **CharacterTextSplitter:** Splits by a specific, simple character (e.g.,  ).
 - **RecursiveCharacterTextSplitter:** The standard for most use cases, balancing semantic coherence with size constraints.
 - **TokenTextSplitter:** Splits based on LLM token counts rather than characters.
 
 **Best Practices**
 
 - **Recommended Settings:** Use a chunk size of 400–512 tokens with a 50–100 token overlap.
-- **Separator Hierarchy:** Use nested separators (e.g., ["\n\n", "\n", ".", " "]) to respect paragraph and sentence boundaries.
+- **Separator Hierarchy:** Use nested separators (e.g., [\n\n, \n, .,  ]) to respect paragraph and sentence boundaries.
 - **Metadata Integration:** Attach metadata (source, summary) to each chunk to improve retrieval accuracy.
 
 ---
@@ -67,9 +67,8 @@ Character splitting breaks text into smaller, fixed-length segments (chunks) bas
 **Pros & Cons:** It is easy to implement, but because it is rigid, it does not consider the semantic structure of the text.
 
 **Character and sentence splitting** are essential NLP preprocessing tasks for breaking down text into manageable chunks. Character-based splitting uses fixed lengths for quick, rigid cuts, whereas sentence splitting utilizes linguistic rules (periods, question marks) or AI models to segment text into coherent sentences while handling abbreviations.
-**Delimiter:** Specific characters like \n\n (paragraphs) or . (sentences) used to separate text.
 
----
+**Delimiter:** Specific characters like \n\n (paragraphs) or . (sentences) used to separate text.
 
 ---
 
@@ -84,7 +83,7 @@ Recursive character splitting is a technique for splitting long text into smalle
 - Parameters:
   chunk_size: The target maximum length of each chunk.
   chunk_overlap: Number of characters to overlap between chunks, maintaining context.
-  separators: The list of characters used for splitting (default is ["\n\n", "\n", " ", ""] )
+  separators: The list of characters used for splitting (default is [\n\n, \n,  , ] )
 
 **Benefits**
 
@@ -139,7 +138,7 @@ Chunk overlap is an AI text-processing technique where adjacent segments (chunks
 **Key Aspects of Chunk Overlap:**
 
 - Purpose: It preserves context when splitting large documents for LLMs, ensuring that information spanning across boundaries is not lost or misinterpreted.
-- Mechanism: When breaking down text, a small amount of data from the end of "Chunk A" is included at the start of "Chunk B".
+- Mechanism: When breaking down text, a small amount of data from the end of Chunk A is included at the start of Chunk B.
 - Recommended Settings: A common starting point is a 512-token chunk size with 128 tokens of overlap (25% overlap).
 - Trade-offs: High overlap improves context retention but increases redundancy and computational load.
 - Usage: It is essential for text splitting, RAG pipelines, and embedding generation to enhance search accuracy.
@@ -159,22 +158,22 @@ Choosing between large and small chunk sizes in Retrieval-Augmented Generation (
 
 **Small Chunk Size**
 Small chunks are highly granular. They are effective when the user query is very specific and the answer is likely contained in a single paragraph or sentence.
-Pros: High-precision search; the embedding vector closely matches the specific query.
-Cons: The Language Model (LLM) might lack the surrounding context needed to understand the "big picture," leading to fragmented or hallucinated answers.
-Best for: Finding exact answers (e.g., "What is the penalty clause?").
+- Pros: High-precision search; the embedding vector closely matches the specific query.
+- Cons: The Language Model (LLM) might lack the surrounding context needed to understand the big picture, leading to fragmented or hallucinated answers.
+- Best for: Finding exact answers (e.g., What is the penalty clause?).
 
 **Large Chunk Size**
 Large chunks retain more surrounding information, ensuring the semantic meaning is not lost at the boundary of a cut.
 
 - Pros: Better for understanding, summarization, and retaining context for complex queries.
-- Cons: Increased "noise" (irrelevant information) that can confuse the LLM. The embedding might also become too generic ("coarse") to distinguish between similar topics.
+- Cons: Increased noise (irrelevant information) that can confuse the LLM. The embedding might also become too generic (coarse) to distinguish between similar topics.
 - Best for: Summarization, narrative analysis, and finding broad themes.
 
 **Key Considerations for Choosing**
 
 - Nature of Data: Structured, concise documents (FAQs) prefer smaller chunks. Unstructured, long-form, or complex documents (legal/academic) require larger chunks to maintain context.
 - Model Limitations: The chunk size must not exceed the maximum token limit of the embedding model.
-- Optimal "Sweet Spot": Many practitioners find that starting around 512 tokens offers a good balance.
+- Optimal Sweet Spot: Many practitioners find that starting around 512 tokens offers a good balance.
 - Use Overlap: Regardless of size, using a 10–20% overlap between chunks helps prevent losing important information at the boundary.
 - Small-to-Big Strategy: An advanced strategy is to use small chunks for retrieval (high accuracy) but pass the surrounding large chunk to the generator (high context).
 - Conclusion: The best approach is often to treat chunk size as a hyperparameter to test, starting with a medium size (e.g., 512) and adjusting based on the precision/context needs of your specific application.
@@ -193,7 +192,7 @@ The optimal chunk size for a RAG system typically ranges between 128 and 512 tok
 
 - Hybrid Search: Combining semantic and keyword searches can improve retrieval with different chunk sizes.
 - Metadata Enhancement: Adding summaries, titles, or headers to chunks improves search relevance.
-- Parent-Child Indexing: Using a larger "parent" chunk (e.g., 1400 tokens) for generation and smaller "child" chunks (e.g., 400 tokens) for retrieval is an advanced technique for better performance.
+- Parent-Child Indexing: Using a larger parent chunk (e.g., 1400 tokens) for generation and smaller child chunks (e.g., 400 tokens) for retrieval is an advanced technique for better performance.
 
 ---
 
@@ -208,13 +207,13 @@ Here are the key considerations when choosing an LLM for a RAG system:
 **Context Window and Length**
 
 - Capacity: The model's context window should be large enough to hold retrieved document chunks, user queries, and chat history. For document-intensive tasks, this might mean 32k to 128k+ tokens.
-- "Lost in the Middle" Phenomenon: LLMs sometimes struggle to get information from the middle of long contexts. Choose models that use long contexts well, such as Gemini 1.5 Pro or Claude 3.5 Sonnet.
+- Lost in the Middle Phenomenon: LLMs sometimes struggle to get information from the middle of long contexts. Choose models that use long contexts well, such as Gemini 1.5 Pro or Claude 3.5 Sonnet.
 - Efficient Processing: While some models have massive windows, processing them increases latency and cost. Choose a model that supports enough context without sacrificing speed for real-time applications.
 
 **Accuracy and Reasoning Capabilities**
 
 - Groundedness and Hallucination Mitigation: The goal of RAG is to minimize hallucinations. Select a model that prioritizes following the provided context over its own pre-trained knowledge.
-- Instruction Following: The model should follow strict, customized system prompts, such as "only answer based on the provided text".
+- Instruction Following: The model should follow strict, customized system prompts, such as only answer based on the provided text.
 - Domain Expertise: For specialized fields (legal, medical, or technical), the model should have pre-trained knowledge relevant to that domain to better understand the retrieved context.
 
 **Performance and Latency**
@@ -225,7 +224,7 @@ Here are the key considerations when choosing an LLM for a RAG system:
 **Cost-Effectiveness**
 
 - Cost vs. Performance Trade-off: High-end models (e.g., GPT-4o, Claude 3 Opus) are more accurate but also more expensive. For simpler tasks, smaller, faster models (e.g., Llama 3.1 8B, GPT-4o-mini) are often more cost-effective.
-- Token Consumption: Consider the total number of tokens processed (input + output). RAG reduces this cost compared to "stuffing" all data, but model selection still affects the price per token.
+- Token Consumption: Consider the total number of tokens processed (input + output). RAG reduces this cost compared to stuffing all data, but model selection still affects the price per token.
 
 **Integration and Deployment**
 
@@ -300,7 +299,7 @@ Here are the primary methods for managing ambiguity in RAG:
 **1. Query Transformation and Rewriting**
 LLMs are used to transform vague inputs into structured, detailed queries before retrieval:
 
-- Query Expansion: Adding synonyms or related terms (e.g., expanding "solar" to "solar energy, photovoltaic cells") to ensure the retriever finds relevant documents.
+- Query Expansion: Adding synonyms or related terms (e.g., expanding solar to solar energy, photovoltaic cells) to ensure the retriever finds relevant documents.
 - Query Rewriting/Clarification: Using an LLM to rephrase a vague query into a more specific one based on user intent.
 - Decomposition: Breaking down a complex or ambiguous question into smaller, concrete sub-questions.
 
@@ -312,7 +311,7 @@ LLMs are used to transform vague inputs into structured, detailed queries before
 **3. Interactive Clarification (Conversational RAG)**
 Instead of guessing, the RAG system behaves like an agent that asks for clarification:
 
-- Conversational Agent: If the query is too broad, the bot asks, "Did you mean [Option A] or [Option B]?".
+- Conversational Agent: If the query is too broad, the bot asks, Did you mean [Option A] or [Option B]?.
 - Context-Aware Dialog: Using or similar agents to pause and request missing information.
 
 **4. Contextual Enhancements**
@@ -440,12 +439,12 @@ Here are the primary reasons for poor RAG retriever performance, categorized by 
 - Chunks too large: Contain too much irrelevant information (noise), which confuses the retriever.
 - Chunks too small: Lose essential context, making them semantically meaningless.
 - Ignoring Document Structure: Splitting text without considering paragraph breaks, headings, or table structures causes vital information to be split across chunks.
-- "Lost in the Middle": When too many retrieved chunks are passed, the LLM struggles to find the relevant information, particularly if it's buried in the middle of the context.
+- Lost in the Middle: When too many retrieved chunks are passed, the LLM struggles to find the relevant information, particularly if it's buried in the middle of the context.
 
 **3. Embedding and Semantic Search Failures**
 
 - Domain Mismatch: Using a general-purpose embedding model on specialized data (e.g., legal, medical, or technical) fails to capture semantic meaning effectively.
-- Vocabulary Mismatch: The query uses different terminology than the documents (e.g., user searches "broken" while documentation says "malfunctioning").
+- Vocabulary Mismatch: The query uses different terminology than the documents (e.g., user searches broken while documentation says malfunctioning).
 - Inability to Handle Exact Matches: Pure semantic search (dense retrieval) often fails to find exact keywords, such as product SKUs, error codes, or specific legal clauses.
 - Embedding Drift: Over time, the embedding model used for new data changes, leading to inconsistencies between old and new vector representations.
 
@@ -458,7 +457,7 @@ Here are the primary reasons for poor RAG retriever performance, categorized by 
 
 **5. Production and System Constraints**
 
-- "Garbage In, Garbage Out": If the retriever fetches poor-quality, irrelevant, or incorrect documents, the generator cannot produce an accurate answer.
+- Garbage In, Garbage Out: If the retriever fetches poor-quality, irrelevant, or incorrect documents, the generator cannot produce an accurate answer.
 - Latency vs. Depth Trade-off: Efforts to improve accuracy through deeper retrieval (e.g., more chunks or complex reranking) often lead to unacceptably high latency, causing users to abandon the application.
 - Context Window Limitations: The retrieved data exceeds the maximum token limit of the LLM, leading to truncation.
   Top Fixes for Poor Performance
@@ -499,7 +498,7 @@ Common RAG retrieval approaches include dense retrieval (semantic vector search)
 Common challenges in RAG retrieval involve retrieving irrelevant or low-quality documents, managing optimal chunk sizes for semantic coherence, and handling data freshness. Other key obstacles include overcoming context window limitations, high latency during search, and ensuring the retriever fetches complete information to avoid hallucinations.
 Key Retrieval Challenges
 
-- Low Precision & Relevance: The retriever may fetch irrelevant or low-quality documents ("noise"), which directly causes the model to generate incorrect or unhelpful answers.
+- Low Precision & Relevance: The retriever may fetch irrelevant or low-quality documents (noise), which directly causes the model to generate incorrect or unhelpful answers.
 - Suboptimal Chunking Strategy: Choosing the wrong size for data segments is critical; chunks that are too small lose context, while chunks that are too large are inefficient and reduce relevance.
 - Context Window Limits: Injecting too much or too little content can limit the LLM's ability to generate accurate, comprehensive answers.
 - Data Freshness & Updates: Maintaining an up-to-date vector index with frequently changing data is difficult, often leading to outdated responses.
@@ -522,7 +521,7 @@ Key metrics for evaluating RAG retrieval quality focus on the relevance, accurac
 - Mean Reciprocal Rank (MRR): Focuses on the rank of the first relevant item; higher is better.
 - Normalized Discounted Cumulative Gain (NDCG): Evaluates the ranking quality, rewarding systems that place more relevant documents higher in the list.
 - Hit Rate: Indicates if at least one relevant document appears within the top $k$ retrieved results.
-- Context Relevancy: Measures the overall proportion of relevant information in the retrieved context, reducing "noise".
+- Context Relevancy: Measures the overall proportion of relevant information in the retrieved context, reducing noise.
   Key End-to-End/Hybrid Metrics
 - Faithfulness (Groundedness): Evaluates if the generated answer is derived solely from the retrieved context, minimizing hallucinations.
 - Answer Relevance: Evaluates how well the generated answer addresses the original query.
@@ -585,15 +584,15 @@ Approximate Nearest Neighbor (ANN) search algorithms are a core component of Ret
 **Role in RAG Retrieval**
 In a RAG pipeline, input text and stored documents are converted into high-dimensional numerical representations called vector embeddings. To answer a user's query, the system must find documents with embeddings semantically similar to the query embedding.
 
-- Speed and Scalability: ANN solves the "curse of dimensionality" problem associated with large datasets and high-dimensional vectors. By using intelligent indexing structures and heuristics, it avoids exhaustively comparing the query vector with every single data point.
+- Speed and Scalability: ANN solves the curse of dimensionality problem associated with large datasets and high-dimensional vectors. By using intelligent indexing structures and heuristics, it avoids exhaustively comparing the query vector with every single data point.
 - Efficiency: ANN significantly reduces the computational power and memory required for searches, making real-time applications, such as search engines and recommendation systems, economically and operationally feasible.
-- Relevance: While not guaranteeing the absolute closest match, ANN provides results that are "close enough" and highly relevant in a practical sense, which is sufficient for most applications where users prioritize low latency.
+- Relevance: While not guaranteeing the absolute closest match, ANN provides results that are close enough and highly relevant in a practical sense, which is sufficient for most applications where users prioritize low latency.
 
 **Key ANN Algorithms and Techniques**
 Various algorithms and libraries implement ANN search, each with its own trade-offs between speed, memory usage, and accuracy.
 
 - Hierarchical Navigable Small World (HNSW): A graph-based method that builds a multi-layer graph index for efficient traversal. It is one of the fastest algorithms available and performs well in high-dimensional spaces.
-- Locality-Sensitive Hashing (LSH): This technique "hashes" similar data points into the same "buckets" in a hash table, drastically reducing the search space. It is memory-efficient and highly effective for very large, high-dimensional datasets.
+- Locality-Sensitive Hashing (LSH): This technique hashes similar data points into the same buckets in a hash table, drastically reducing the search space. It is memory-efficient and highly effective for very large, high-dimensional datasets.
 - KD-trees: A tree-based method that recursively partitions the data space. It excels at finding nearest neighbors in low-dimensional spaces but struggles with the curse of dimensionality in high dimensions.
 - Product Quantization (PQ): A compression technique that reduces memory usage by compressing vectors into smaller, more compact representations. It is often combined with other methods like the Inverted File Index (IVF).
 
@@ -625,7 +624,7 @@ The most typical distance metrics used for similarity search in vector databases
 
 - Measures the straight-line distance between two points in multi-dimensional space (based on the Pythagorean theorem). A shorter distance indicates higher similarity.
 - Best for: Applications where the absolute position and magnitude of the vector components are important, such as spatial data, clustering, and anomaly detection.
-- Note: This metric can be sensitive to the scale of features and the "curse of dimensionality" in very high-dimensional spaces, so data normalization or dimensionality reduction may be needed.
+- Note: This metric can be sensitive to the scale of features and the curse of dimensionality in very high-dimensional spaces, so data normalization or dimensionality reduction may be needed.
 
 **3. Dot Product (Inner Product):**
 
@@ -683,8 +682,8 @@ Hybrid search works by running two parallel, complementary searches, fusing thei
 
 **2. Query Decomposition:** When a user enters a query, the system splits it to perform:
 
-- Semantic Search: Finds chunks based on conceptual similarity (e.g., "blender noise" might match "motor failure").
-- Keyword Search: Finds chunks based on exact word matches (e.g., "blender noise").
+- Semantic Search: Finds chunks based on conceptual similarity (e.g., blender noise might match motor failure).
+- Keyword Search: Finds chunks based on exact word matches (e.g., blender noise).
 
 **3. Merging and Reranking:** The results from both search types are merged, frequently using Reciprocal Rank Fusion (RRF) to combine scores. RRF favors documents that rank highly in both searches.
 
@@ -701,7 +700,7 @@ Hybrid search works by running two parallel, complementary searches, fusing thei
 
 - Increased Accuracy & Recall: 20–35% better retrieval performance compared to either method alone.
 - Handles Diverse Queries: Efficiently manages both natural language questions (needs semantic) and technical, keyword-heavy queries (needs exact match).
-- Reduces "Dumb RAG" Failures: Prevents the system from retrieving semantically similar but irrelevant text.
+- Reduces Dumb RAG Failures: Prevents the system from retrieving semantically similar but irrelevant text.
 - Better Handling of Specificity: Ensures rare keywords, names, or codes are not lost in vector embeddings.
 
 **Common Challenges**
@@ -724,7 +723,7 @@ Balancing relevance and diversity in RAG is achieved by first fetching topically
 - Hybrid Retrieval & Re-ranking: Combine vector search (for semantic relevance) with keyword search (BM25 for lexical precision) to find a broader set of, yet relevant, documents.
 - Small-to-Big Retrieval (Hierarchical Retrieval): Use smaller chunks (e.g., 128 tokens) for initial semantic retrieval to improve recall, and then provide the larger parent document (e.g., 512-2048 tokens) to the LLM for better context.
 - Iterative Query Adjustment (Vendi-RAG): Use adaptive retrieval that adjusts the diversity vs. relevance trade-off based on the quality of the retrieved, dynamically increasing diversity for complex, multifaceted questions.
-- Maximum Covering Algorithms (Knapsack): Apply optimization algorithms to select the most relevant chunks that also maximize the "coverage" of different topics within a set token limit.
+- Maximum Covering Algorithms (Knapsack): Apply optimization algorithms to select the most relevant chunks that also maximize the coverage of different topics within a set token limit.
 
 By using these methods, you reduce redundancy in the prompt, avoid overloading the model with similar information, and ensure diverse, comprehensive, and accurate answers.
 
@@ -737,7 +736,7 @@ Sparse embeddings use high-dimensional, mostly zero vectors to prioritize exact 
 **Key differences include:**
 
 - Keyword Matching: Sparse methods (e.g., BM25) excel at exact, token-level matching of specific terms or product codes. Dense methods (e.g., BERT) may miss exact keywords but excel at semantic matching, understanding synonyms and concepts.
-- Interpretability: Sparse embeddings are highly interpretable because each dimension corresponds directly to a specific token or feature, allowing for easy identification of why a document was retrieved. Dense embeddings are essentially "black boxes" where dimensions represent abstract, latent semantic features.
+- Interpretability: Sparse embeddings are highly interpretable because each dimension corresponds directly to a specific token or feature, allowing for easy identification of why a document was retrieved. Dense embeddings are essentially black boxes where dimensions represent abstract, latent semantic features.
 - Performance & Use Cases: Sparse is better for exact, structured queries. Dense is better for natural language understanding and RAG. Hybrid models combine both to gain lexical precision and semantic depth.
 
 Modern approaches like SPLADE help bridge this gap by generating sparse vectors that are learned, rather than just frequency-based, offering better efficiency and some contextual awareness while maintaining interpretability.
@@ -779,7 +778,7 @@ Scalar quantization (SQ) maps high-precision floating-point values (float32) to 
 - How it works: It analyzes the distribution of embedding values and determines a range (often excluding 1% of outliers) to linearly map 32-bit floats into 256 discrete levels (-128 to 127).
 - Compression: Reduces memory and disk usage by 4x (e.g., a 1024-dimension vector drops from 4096 bytes to 1024 bytes).
 - Retrieval Speed: Typically offers a 2x to 4x speedup.
-- Accuracy: Maintains 99%+ accuracy compared to the original float32 baseline, making it the "safe default" for most production RAG pipelines.
+- Accuracy: Maintains 99%+ accuracy compared to the original float32 baseline, making it the safe default for most production RAG pipelines.
 
 **Binary Quantization (1-bit)**
 Binary quantization (BQ) is an extreme compression method that reduces each dimension to a single bit.
@@ -800,7 +799,7 @@ Modern RAG systems often use a multi-stage approach to maximize efficiency:
 
 ## Re-ranker models
 
-Re-ranker models enhance RAG (Retrieval-Augmented Generation) accuracy by evaluating the relevance of top-retrieved documents to a query. The primary types include Cross-Encoders (high accuracy, slower), Bi-Encoders (efficient, faster), LLM-based rankers (best for nuance), and Multi-Vector models (like ColBERT). These models improve precision after an initial, fast vector search, often reducing issues like "lost in the middle".
+Re-ranker models enhance RAG (Retrieval-Augmented Generation) accuracy by evaluating the relevance of top-retrieved documents to a query. The primary types include Cross-Encoders (high accuracy, slower), Bi-Encoders (efficient, faster), LLM-based rankers (best for nuance), and Multi-Vector models (like ColBERT). These models improve precision after an initial, fast vector search, often reducing issues like lost in the middle.
 
 **Key Types of Re-ranker Models:**
 
@@ -823,7 +822,7 @@ Re-ranker models enhance RAG (Retrieval-Augmented Generation) accuracy by evalua
 ## Instruction-following Reranker
 
 An instruction-following reranker is an advanced component in RAG systems that goes beyond simple semantic similarity to reorder retrieved documents based on explicit user-defined criteria.
-Unlike traditional cross-encoder rerankers, which only assess how well a document matches a query, instruction-following rerankers allow developers to embed natural language instructions—such as "prioritize recent, internal documents" or "ignore marketing materials"—directly into the ranking process.
+Unlike traditional cross-encoder rerankers, which only assess how well a document matches a query, instruction-following rerankers allow developers to embed natural language instructions—such as prioritize recent, internal documents or ignore marketing materials—directly into the ranking process.
 
 **Core Capabilities and Advantages**
 
@@ -844,7 +843,7 @@ Unlike traditional cross-encoder rerankers, which only assess how well a documen
 
 - Compliance and Safety: In healthcare, prioritizing peer-reviewed, evidence-based journals over general websites.
 - Debugging/Technical Support: Prioritizing step-by-step troubleshooting guides over high-level documentation.
-- E-commerce/Context Disambiguation: Interpreting ambiguous terms based on context (e.g., specifying that "Jaguar" refers to the car brand, not the animal).
+- E-commerce/Context Disambiguation: Interpreting ambiguous terms based on context (e.g., specifying that Jaguar refers to the car brand, not the animal).
 
 **Prominent Models**
 
@@ -881,21 +880,21 @@ Here is a breakdown of why BM25 can return relevant chunks but in a poor ranking
 **Why BM25 Produces Poor Rankings**
 
 1. Lack of Semantic Understanding (Synonym Blindness)
-   - BM25 matches keywords, not concepts. If a user searches for "automobile," a document containing "car" twenty times might be ranked lower than a document that mentions "automobile" only once, even if the "car" document is more relevant.
+   - BM25 matches keywords, not concepts. If a user searches for automobile, a document containing car twenty times might be ranked lower than a document that mentions automobile only once, even if the car document is more relevant.
 
-2. Over-emphasis on Keyword Frequency (The "Keyword Stuffing" Problem)
+2. Over-emphasis on Keyword Frequency (The Keyword Stuffing Problem)
    - BM25 gives higher scores to documents where query terms appear more often. However, a document might repeat the query keywords multiple times in a, less relevant section, while the most relevant chunk contains them fewer times.
 
 3. Document Length Inconsistency
    - Although BM25 includes length normalization (via the $b$ parameter), it can still struggle with mixed-length corpora. A very short snippet might be ranked higher than a comprehensive, highly relevant 50-page document because the short document has a higher density of the query term.
 
 4. Ignores Term Proximity
-   - BM25 calculates scores based on the presence of keywords throughout the document, but it does not factor in whether they appear close together or in a meaningful order (e.g., "Python for AI" vs "AI Python").
-     Scenario Example: Query: "How to fix error E4392?"
-   - Rank 1 (BM25): Contains "E4392" in a footer, but the text is about a different topic.
-   - Rank 2 (BM25): Contains "error," "fix," but not "E4392" (less relevant).
-   - Rank 3 (BM25): Contains the exact definition and steps for "E4392" (highly relevant).
-     In this case, BM25 successfully retrieved the correct document (high recall), but placed it at the bottom because another document matched more keywords ("error" + "fix") overall. [4, 12, 13, 14]
+   - BM25 calculates scores based on the presence of keywords throughout the document, but it does not factor in whether they appear close together or in a meaningful order (e.g., Python for AI vs AI Python).
+     Scenario Example: Query: How to fix error E4392?
+   - Rank 1 (BM25): Contains E4392 in a footer, but the text is about a different topic.
+   - Rank 2 (BM25): Contains error, fix, but not E4392 (less relevant).
+   - Rank 3 (BM25): Contains the exact definition and steps for E4392 (highly relevant).
+     In this case, BM25 successfully retrieved the correct document (high recall), but placed it at the bottom because another document matched more keywords (error + fix) overall. [4, 12, 13, 14]
 
 **How to Fix Poor BM25 Ranking**
 To solve this, a two-stage retriever pipeline is typically used in RAG systems:
@@ -966,7 +965,7 @@ By implementing these strategies, you can achieve a substantial reduction in re-
 
 ## Rerankers benefits
 
-Rerankers are highly effective at enhancing RAG system performance by reordering top-retrieved documents based on semantic relevance, significantly boosting precision and reducing "garbage in, garbage out" scenarios. By acting as a second-stage, more precise model, they filter out irrelevant results, improving accuracy and reducing hallucinations, though they add latency and costs.
+Rerankers are highly effective at enhancing RAG system performance by reordering top-retrieved documents based on semantic relevance, significantly boosting precision and reducing garbage in, garbage out scenarios. By acting as a second-stage, more precise model, they filter out irrelevant results, improving accuracy and reducing hallucinations, though they add latency and costs.
 
 **Key Aspects of Reranker Effectiveness
 **
@@ -1019,8 +1018,8 @@ Rerankers in RAG evaluation act as a crucial second-stage, high-precision filter
 - Hit Rate @k: Percentage of queries with at least one relevant document in the top-k, crucial for checking if the relevant context is available.
 - Mean Reciprocal Rank (MRR): Measures how high up the first relevant document is, heavily favoring higher ranking of the best documents.
 - NDCG@k: Measures the relevance ranking, accounting for the position of relevant items.
-- Evaluation Methodology: RAG evaluation tools (e.g., RankArena utilize "LLM-as-a-Judge" to evaluate the relevance of the re-ranked documents and the resulting answer faithfulness.
-- Impact on RAG: Reranking enhances the "precision" of retrieval, reducing the noise fed to the LLM.
+- Evaluation Methodology: RAG evaluation tools (e.g., RankArena utilize LLM-as-a-Judge to evaluate the relevance of the re-ranked documents and the resulting answer faithfulness.
+- Impact on RAG: Reranking enhances the precision of retrieval, reducing the noise fed to the LLM.
 
 **Common Reranker Models for Evaluation**
 
@@ -1033,13 +1032,13 @@ Rerankers in RAG evaluation act as a crucial second-stage, high-precision filter
 
 ## Different Types of Text splitters
 
-Text splitters (or "chunkers") are essential in NLP and RAG (Retrieval-Augmented Generation) to break down large documents into manageable pieces while preserving context.
+Text splitters (or chunkers) are essential in NLP and RAG (Retrieval-Augmented Generation) to break down large documents into manageable pieces while preserving context.
 
 **1. Length-Based Splitters**
 These focus on the physical size of the text segments.
 
 - Character Text Splitter: Splits text into chunks of a fixed character length based on a simple separator like a space or newline. It is fast but may cut sentences mid-thought.
-- Recursive Character Text Splitter: The most popular choice for general text. It uses a hierarchy of separators (e.g., \n\n, \n, " ", "") to split text at the most natural boundaries possible before resorting to character counts.
+- Recursive Character Text Splitter: The most popular choice for general text. It uses a hierarchy of separators (e.g., \n\n, \n,  , ) to split text at the most natural boundaries possible before resorting to character counts.
 - Token Text Splitter: Splits text based on the number of tokens rather than characters. This is critical for LLM applications (like GPT-4) to ensure chunks don't exceed the model's maximum input capacity.
 
 **2. Structure-Aware Splitters**
@@ -1050,22 +1049,22 @@ These understand specific document formats to keep related content together.
 - HTML & JSON Splitters: Use tags (like <div> or <h1>) or nested object structures to create chunks that respect the document's original architecture.
 
 **3. NLP-Enhanced & Semantic Splitters**
-These use linguistic analysis to find the most "meaningful" break points.
+These use linguistic analysis to find the most meaningful break points.
 
 - Sentence-Based Splitters (NLTK/spaCy): Use library-specific tokenizers to ensure text is only split at actual sentence endings, preventing partial thoughts.
-- Semantic Splitter: An advanced method that uses embeddings to measure the "distance" between sentences. It only splits when it detects a significant shift in topic or meaning.
-- Agentic Splitter: Uses an LLM to "read" the text and decide where natural topic transitions occur, offering the highest context preservation.
+- Semantic Splitter: An advanced method that uses embeddings to measure the distance between sentences. It only splits when it detects a significant shift in topic or meaning.
+- Agentic Splitter: Uses an LLM to read the text and decide where natural topic transitions occur, offering the highest context preservation.
 
 ---
 
 ## How do they work?
 
-Each text splitter follows a specific logic to decide where to "cut" the text, usually guided by three main parameters: Chunk Size (maximum length), Chunk Overlap (shared text between chunks for context), and a Separator.
+Each text splitter follows a specific logic to decide where to cut the text, usually guided by three main parameters: Chunk Size (maximum length), Chunk Overlap (shared text between chunks for context), and a Separator.
 
 **1. Length-Based Splitters**
 
 - Character Splitter: Simply counts the number of characters. Once it hits the chunk_size, it looks for the nearest instance of your chosen separator (like a space or newline) to make the cut.
-- Recursive Character Splitter: This is a "smart" version that uses a hierarchy of separators (e.g., ["\n\n", "\n", " ", ""]). It first tries to split at double newlines (paragraphs). If a paragraph is still larger than the chunk_size, it recursively tries to split that paragraph by single newlines (sentences), then spaces (words), and finally individual characters if necessary.
+- Recursive Character Splitter: This is a smart version that uses a hierarchy of separators (e.g., [\n\n, \n,  , ]). It first tries to split at double newlines (paragraphs). If a paragraph is still larger than the chunk_size, it recursively tries to split that paragraph by single newlines (sentences), then spaces (words), and finally individual characters if necessary.
 - Token Splitter: Instead of characters, it uses a tokenizer (like OpenAI's Tiktoken) to convert text into integers. It counts these integers until the limit is reached, then converts them back into text. This ensures the chunk fits perfectly into an LLM's context window.
 
 **2. Structure-Aware Splitters**
@@ -1076,8 +1075,8 @@ Each text splitter follows a specific logic to decide where to "cut" the text, u
 **3. Semantic Splitters**
 
 - Embedding Similarity: These split the document into individual sentences first. They then use an embedding model to turn each sentence into a vector (a list of numbers representing meaning).
-- Breakpoint Detection: The splitter calculates the "distance" or difference between the vectors of consecutive sentences. When the difference exceeds a certain threshold (meaning the topic has changed), it triggers a split.
-- Clustering: Some versions group several similar sentences into a "cluster" until the topic shifts significantly.
+- Breakpoint Detection: The splitter calculates the distance or difference between the vectors of consecutive sentences. When the difference exceeds a certain threshold (meaning the topic has changed), it triggers a split.
+- Clustering: Some versions group several similar sentences into a cluster until the topic shifts significantly.
 
 ---
 
@@ -1088,7 +1087,7 @@ Choosing the right text splitter involves balancing speed, context preservation,
 **1. Character Text Splitter**
 
 - Pros: Extremely fast and simple to implement.
-- Cons: "Naive"—often cuts in the middle of words or sentences, leading to lost meaning.
+- Cons: Naive—often cuts in the middle of words or sentences, leading to lost meaning.
 - Best For: Short, unstructured data (like FAQs or chat logs) where speed is more important than perfect grammatical flow.
 
 **2. Recursive Character Splitter**
@@ -1099,7 +1098,7 @@ Choosing the right text splitter involves balancing speed, context preservation,
 
 **3. Token Text Splitter**
 
-- Pros: Precisely aligns with how LLMs "see" text, ensuring you never accidentally exceed a model's context limit.
+- Pros: Precisely aligns with how LLMs see text, ensuring you never accidentally exceed a model's context limit.
 - Cons: Requires a compatible tokenizer (e.g., Tiktoken) and is slower than character-based methods.
 - Best For: Summarization tasks or RAG pipelines where strict adherence to model input limits is critical.
 
@@ -1113,7 +1112,7 @@ Choosing the right text splitter involves balancing speed, context preservation,
 
 - Pros: Offers the highest accuracy by splitting based on topic shifts rather than length.
 - Cons: Very computationally expensive; requires running embeddings on every sentence to find breakpoints.
-- Best For: Highly complex or "dense" documents (like legal or medical papers) where a topic might change mid-paragraph.
+- Best For: Highly complex or dense documents (like legal or medical papers) where a topic might change mid-paragraph.
 
 ---
 
@@ -1141,7 +1140,7 @@ Embeddings convert real-world data (text, images, audio) into numerical vectors 
 **3. By Training Approach**
 
 - Static Embeddings: A word always has the same vector regardless of context (e.g., Word2Vec).
-- Contextual Embeddings: The vector changes based on surrounding words; "bank" in "river bank" vs. "bank accoun t" gets different vectors (e.g., BERT, GPT).
+- Contextual Embeddings: The vector changes based on surrounding words; bank in river bank vs. bank accoun t gets different vectors (e.g., BERT, GPT).
 
 ---
 
@@ -1170,7 +1169,7 @@ These rerankers use Large Language Models (LLMs) like GPT-4 or specialized small
 **3. Multi-Vector & Late Interaction Rerankers**
 These models aim to bridge the gap between fast retrieval and accurate reranking by pre-computing document representations while still allowing for query-document interaction.
 
-- Mechanism: They encode queries and documents separately into multiple vectors (one per token) and then use a "late interaction" step to compare them efficiently.
+- Mechanism: They encode queries and documents separately into multiple vectors (one per token) and then use a late interaction step to compare them efficiently.
 - Pros: Faster than standard cross-encoders because document parts can be pre-computed.
 - Examples: ColBERT and Voyage Rerank 2.5.
 
@@ -1178,7 +1177,7 @@ These models aim to bridge the gap between fast retrieval and accurate reranking
 Many enterprise-grade solutions offer rerankers optimized for specific tasks like multilingual search or high-volume production traffic.
 
 - Enterprise APIs: Cohere Rerank 4 is a leading proprietary option known for its massive context window and deep reasoning.
-- State-of-the-Art (2025/2026): ZeroEntropy zerank-2 is noted for high accuracy and "instruction-following," allowing users to define specific business logic for how results should be ranked.
+- State-of-the-Art (2025/2026): ZeroEntropy zerank-2 is noted for high accuracy and instruction-following, allowing users to define specific business logic for how results should be ranked.
 
 ---
 
@@ -1199,20 +1198,20 @@ These represent the basic methods for finding data:
 These improve accuracy by handling how data is structured or presented:
 
 - **Parent Document Retriever**: Retrieves small, precise chunks to match the query but provides the full parent document or larger section to the LLM for better context.
-- **Multi-Vector Retriever**: Stores multiple vectors for a single document (e.g., summaries, hypothetical questions, and raw text) to allow more ways for a query to "hit" the right result.
-- **Self-Query Retriever**: Uses an LLM to extract metadata filters (like "date" or "author") from a natural language query to filter the database before performing a semantic search.
+- **Multi-Vector Retriever**: Stores multiple vectors for a single document (e.g., summaries, hypothetical questions, and raw text) to allow more ways for a query to hit the right result.
+- **Self-Query Retriever**: Uses an LLM to extract metadata filters (like date or author) from a natural language query to filter the database before performing a semantic search.
 
 ### Logic-Enhanced Retrievers
 
-These use "reasoning" steps to improve what is fetched:
+These use reasoning steps to improve what is fetched:
 
 - **Multi-Query Retriever**: Uses an LLM to generate multiple variations of the user's question to ensure a wider range of relevant documents is found.
-- **Contextual Compression Retriever**: Shrinks retrieved documents to keep only the most relevant sentences, saving costs and reducing "noise" for the generator.
-- **Hypothetical Document Embeddings (HyDE)**: The LLM first creates a "fake" answer to the query; the retriever then finds real documents that look like that fake answer.
+- **Contextual Compression Retriever**: Shrinks retrieved documents to keep only the most relevant sentences, saving costs and reducing noise for the generator.
+- **Hypothetical Document Embeddings (HyDE)**: The LLM first creates a fake answer to the query; the retriever then finds real documents that look like that fake answer.
 
 ### Graph & Agentic Retrievers
 
-- **GraphRAG**: Uses a Knowledge Graph to find relationships between entities (e.g., how Person A is connected to Company B), allowing for "multi-hop" reasoning.
+- **GraphRAG**: Uses a Knowledge Graph to find relationships between entities (e.g., how Person A is connected to Company B), allowing for multi-hop reasoning.
 - **Agentic Retriever**: A specialized agent that can plan its own search, decide if the results are good enough, and re-query if necessary until it finds a complete answer.
 
 ---
@@ -1223,7 +1222,7 @@ Reciprocal Rank Fusion (RRF) is a simple yet powerful algorithm used to combine 
 
 ### How it Works
 
-RRF doesn't care about the original "score" (distance or similarity) from the retrievers. It only cares about the rank (the position) of each document.
+RRF doesn't care about the original score (distance or similarity) from the retrievers. It only cares about the rank (the position) of each document.
 It calculates a new score for each document using this formula:
 
 ### Why it’s Popular
@@ -1256,7 +1255,7 @@ Imagine a document appears at Rank 2 in Keyword search and Rank 5 in Vector sear
 - `α = 0.5`: Equal weight to both.
 
 2. The Normalization Problem
-   Unlike RRF, which is "score-agnostic," a Convex Combination requires Normalization.
+   Unlike RRF, which is score-agnostic, a Convex Combination requires Normalization.
    BM25 scores can range from 0 to 100+.
    Vector scores (like Cosine Similarity) range from 0 to 1.
    The Fix: Before applying the weights, both sets of scores must be scaled (usually between 0 and 1) so that one doesn't mathematically overwhelm the other.
@@ -1268,16 +1267,16 @@ Improving a retriever is about reducing noise and ensuring the most relevant con
 Here are the most effective strategies to upgrade your retrieval pipeline:
 
 1. Optimize Data Preparation (The Foundation)
-   Small-to-Big Retrieval: Use the MultiVector Retriever to search small, precise chunks or summaries but feed the larger "parent" document to the LLM. This prevents the "lost in the middle" context problem.
+   Small-to-Big Retrieval: Use the MultiVector Retriever to search small, precise chunks or summaries but feed the larger parent document to the LLM. This prevents the lost in the middle context problem.
    Better Chunking: Move away from basic character counts. Use a Recursive Character Text Splitter or Semantic Chunking to ensure breaks only happen when the topic actually shifts.
-   Metadata Enrichment: Add tags (author, date, category) to your chunks. Use a Self-Querying Retriever so the LLM can apply hard filters (e.g., "only files from 2024") before doing a semantic search.
+   Metadata Enrichment: Add tags (author, date, category) to your chunks. Use a Self-Querying Retriever so the LLM can apply hard filters (e.g., only files from 2024) before doing a semantic search.
 2. Upgrade the Retrieval Logic
    Hybrid Search: Don't rely solely on vectors. Combine Dense (semantic) and Sparse (keyword/BM25) search using Reciprocal Rank Fusion (RRF). This ensures you catch both conceptual meanings and specific technical terms.
    Query Expansion: Use a Multi-Query Retriever to generate 3-5 variations of the user's question. This covers different ways the same information might be phrased in your database.
-   HyDE (Hypothetical Document Embeddings): Have the LLM write a "fake" answer to the query first, then use that answer to search. Vectors of answers often match the database better than vectors of questions.
-3. Add a Post-Processing Step (The "Silver Bullet")
+   HyDE (Hypothetical Document Embeddings): Have the LLM write a fake answer to the query first, then use that answer to search. Vectors of answers often match the database better than vectors of questions.
+3. Add a Post-Processing Step (The Silver Bullet)
    Reranking: This is the highest-impact upgrade. Use a Cross-Encoder Reranker (like Cohere Rerank or BGE-Reranker) to re-evaluate the top 20 results. Rerankers are much more accurate at determining true relevance than simple vector similarity.
-   Contextual Compression: Use Contextual Compression to strip out irrelevant sentences from your retrieved documents, leaving only the "gold" information for the LLM.
+   Contextual Compression: Use Contextual Compression to strip out irrelevant sentences from your retrieved documents, leaving only the gold information for the LLM.
 4. Continuous Evaluation
    RAGAS / Arize Phoenix: Use frameworks like RAGAS to measure Faithfulness (no hallucinations) and Relevance (did the retriever find the right info?). You cannot improve what you don't measure.
 
@@ -1286,7 +1285,7 @@ Here are the most effective strategies to upgrade your retrieval pipeline:
 ## GraphRAG
 
 GraphRAG (Graph-based Retrieval-Augmented Generation) is an evolution of RAG that uses a Knowledge Graph (KG) instead of, or alongside, a traditional vector database.
-While standard RAG is great at finding specific "needles in a haystack," GraphRAG excels at global reasoning—answering questions like "What are the main themes in this 1,000-page document?" or "How is Person A connected to Company B?"
+While standard RAG is great at finding specific needles in a haystack, GraphRAG excels at global reasoning—answering questions like What are the main themes in this 1,000-page document? or How is Person A connected to Company B?
 
 ### How GraphRAG Works
 
@@ -1294,7 +1293,7 @@ The process transforms unstructured text into a structured, navigable network:
 
 - **Indexing (Extraction)**: An LLM parses your documents to identify entities (people, places, concepts) and relationships (how they interact).
 - **Graph Construction**: Entities become nodes and relationships become edges.
-- **Community Detection**: Algorithms (like Leiden) group related nodes into "communities"; the LLM generates summaries for these clusters at different levels of granularity.
+- **Community Detection**: Algorithms (like Leiden) group related nodes into communities; the LLM generates summaries for these clusters at different levels of granularity.
 
 ### Retrieval
 
@@ -1303,16 +1302,16 @@ The process transforms unstructured text into a structured, navigable network:
 
 ### Popular Frameworks & Tools
 
-- Microsoft GraphRAG: The most prominent open-source library that implements the "Community Summary" approach.
+- Microsoft GraphRAG: The most prominent open-source library that implements the Community Summary approach.
 - Neo4j + LangChain: A common pairing where Neo4j acts as the graph store and LangChain handles the orchestration.
 - FalkorDB: A high-performance graph database specifically optimized for LLM memory and RAG.
-- LlamaIndex: Offers robust "Knowledge Graph Index" capabilities to turn documents into triplets (Subject-Predicate-Object).
+- LlamaIndex: Offers robust Knowledge Graph Index capabilities to turn documents into triplets (Subject-Predicate-Object).
 
 ---
 
 ## Synthetic Dataset Generation using RAG
 
-Synthetic dataset generation for Retrieval-Augmented Generation (RAG) is the process of using Large Language Models (LLMs) to automatically create "golden" datasets (question-answer-context triplets) from a raw knowledge base. This is primarily used to evaluate and benchmark RAG systems when real-world user data is scarce or sensitive.
+Synthetic dataset generation for Retrieval-Augmented Generation (RAG) is the process of using Large Language Models (LLMs) to automatically create golden datasets (question-answer-context triplets) from a raw knowledge base. This is primarily used to evaluate and benchmark RAG systems when real-world user data is scarce or sensitive.
 
 ### Core Components of a Synthetic RAG Dataset
 
@@ -1329,12 +1328,12 @@ Most modern frameworks follow a structured pipeline to ensure quality:
 - **Data Preparation**: Load and chunk your proprietary documents (PDFs, text, etc.) just as they would be in production.
 - **Initial QA Generation**: An LLM scans individual chunks to generate a straightforward question and a corresponding answer grounded in that text.
 - **Question Evolution**: Evolve simple questions into more complex forms (reasoning, multi-context, conditioning).
-- **Critique & Filtering**: A separate "critic" LLM reviews generated pairs for relevance and groundedness.
+- **Critique & Filtering**: A separate critic LLM reviews generated pairs for relevance and groundedness.
 
 ### Popular Tools and Frameworks
 
-- Ragas: An open-source framework specifically for evaluating RAG. It uses an "evolutionary" paradigm to create diverse and complex test sets.
-- DeepEval: Offers a data synthesizer that uses "data evolutions" to expand the breadth and depth of generated questions.
+- Ragas: An open-source framework specifically for evaluating RAG. It uses an evolutionary paradigm to create diverse and complex test sets.
+- DeepEval: Offers a data synthesizer that uses data evolutions to expand the breadth and depth of generated questions.
 - LangChain: Frequently used as the underlying orchestration layer to load documents and prompt LLMs for generation.
 - SDG Hub (Red Hat): A Python framework that provides a structured RAG evaluation dataset flow.
 - Amazon Bedrock: Provides a managed environment to run these generation pipelines using high-performance models like Claude 3.
@@ -1356,47 +1355,47 @@ Unlike standard models that collapse an entire document into a single vector, la
 Detailed Mechanics: How It Works
 The process is divided into three main phases: independent encoding, indexing (for documents), and a unique scoring step called MaxSim.
 
-1. Independent Encoding (The "Multi-Vector" Approach)
+1. Independent Encoding (The Multi-Vector Approach)
    Query Encoding: When a user enters a query, the model (e.g., a BERT-based encoder) generates a contextualized embedding for each token in that query. If the query has 10 tokens, it produces 10 separate vectors.
    Document Encoding: Similarly, every document in the corpus is encoded at the token level. This happens offline, meaning document vectors can be pre-computed and stored.
 2. The Interaction Step: MaxSim (Maximum Similarity)
-   The "Late Interaction" occurs at the very end of the retrieval pipeline, using the MaxSim operator. Instead of a single dot-product between two global vectors, it performs a fine-grained comparison:
+   The Late Interaction occurs at the very end of the retrieval pipeline, using the MaxSim operator. Instead of a single dot-product between two global vectors, it performs a fine-grained comparison:
    Token-to-Token Comparison: For each token in the query, the model calculates the similarity (usually a dot product or cosine similarity) with every token in the document.
-   Max Selection: For a specific query token (e.g., "Paris"), the model finds the single most similar token in the document (e.g., the word "Paris" or "France") and keeps only that maximum score.
+   Max Selection: For a specific query token (e.g., Paris), the model finds the single most similar token in the document (e.g., the word Paris or France) and keeps only that maximum score.
    Summation: It repeats this for every query token and sums all these maximum scores to produce the final relevance score for that document.
 
 ### Why This Matters
 
 ### Feature Impact
 
-- No "Information Bottleneck" By not "pooling" or averaging tokens into one vector, the model doesn't lose the specific meaning of individual words or their relationships.
+- No Information Bottleneck By not pooling or averaging tokens into one vector, the model doesn't lose the specific meaning of individual words or their relationships.
 - Scalable Pre-computation Since query and document encoding are independent, you can index millions of documents ahead of time—a feat impossible for standard cross-encoders.
 - Explainability You can visualize exactly which word in the query matched which word in the document to generate the final score.
 
 ### Practical Applications & Modern Variants
 
 - ColBERTv2: An optimized version that uses quantization and centroids to reduce the massive storage space required to hold billions of token vectors.
-- ColPali: A recent multimodal version that uses this same "late interaction" logic for vision-language tasks, matching query tokens against image patches to search through PDFs and charts.
+- ColPali: A recent multimodal version that uses this same late interaction logic for vision-language tasks, matching query tokens against image patches to search through PDFs and charts.
 - RAG Pipelines: Often used as a second-stage reranker to provide high-precision results for an LLM after an initial fast retrieval.
 
 ---
 
 ## knowledge graph
 
-A knowledge graph is a structured, network-based representation of information that connects real-world entities (such as people, places, and concepts) through explicitly defined relationships. Unlike traditional databases that store data in rigid tables, knowledge graphs prioritize the connections between data points, transforming raw data into a "network of meaning" that both humans and machines can understand and reason about.
+A knowledge graph is a structured, network-based representation of information that connects real-world entities (such as people, places, and concepts) through explicitly defined relationships. Unlike traditional databases that store data in rigid tables, knowledge graphs prioritize the connections between data points, transforming raw data into a network of meaning that both humans and machines can understand and reason about.
 
 ### Core Technical Components
 
 ### Knowledge graphs are typically built using three primary elements
 
-- Nodes (Entities): Represent the "things" in a domain, such as a person, product, company, or event.
-- Edges (Relationships): The lines connecting nodes that define how they interact (e.g., "Alice works at Company X").
+- Nodes (Entities): Represent the things in a domain, such as a person, product, company, or event.
+- Edges (Relationships): The lines connecting nodes that define how they interact (e.g., Alice works at Company X).
 - Labels/Properties: Attributes that provide extra detail about nodes and edges, such as a person's birthdate or a relationship's start date.
 - Many knowledge graphs utilize triples—a subject-predicate-object format (e.g., Paris -> isCapitalOf -> France)—to create these connections. This format is foundational to the Resource Description Framework (RDF), a standard for interchanging interconnected data.
 
 ### The Role of Ontologies
 
-An ontology serves as the blueprint or "contract" for a knowledge graph. While a knowledge graph contains actual data instances (the "what is happening"), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the "what does it mean"). For example, in a medical knowledge graph, the ontology defines classes like "Pathogen" and "Drug," while the knowledge graph contains specific instances like "COVID-19" and "Remdesivir".
+An ontology serves as the blueprint or contract for a knowledge graph. While a knowledge graph contains actual data instances (the what is happening), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the what does it mean). For example, in a medical knowledge graph, the ontology defines classes like Pathogen and Drug, while the knowledge graph contains specific instances like COVID-19 and Remdesivir.
 
 ### Key Benefits
 
@@ -1409,15 +1408,15 @@ An ontology serves as the blueprint or "contract" for a knowledge graph. While a
 
 ### Organization Knowledge Graph Application
 
-- Google Powers "Knowledge Panels" to provide instant facts about entities and understand query context.
+- Google Powers Knowledge Panels to provide instant facts about entities and understand query context.
 - Amazon Connects products, reviews, and customer behavior to power intelligent recommendation engines.
 - LinkedIn Models the global workforce by linking professionals, skills, companies, and schools.
 - Healthcare Used by organizations like BenevolentAI to identify existing drugs for new treatments (e.g., COVID-19) by mapping biomedical relationships.
 - Finance Used for Fraud Detection by identifying hidden patterns and suspicious networks between accounts and transactions.
 - Comparison: Knowledge Graph vs. Graph Database
 - While often used together, they serve different purposes:
-- Knowledge Graph: A semantic model that captures business meaning and logic (the "what" and "why").
-- Graph Database: The infrastructure technology (like Neo4j or FalkorDB) that stores and queries the data (the "how" and "where").
+- Knowledge Graph: A semantic model that captures business meaning and logic (the what and why).
+- Graph Database: The infrastructure technology (like Neo4j or FalkorDB) that stores and queries the data (the how and where).
 
 ---
 
@@ -1485,7 +1484,7 @@ If your RAG system retrieves good context but provides bad answers, the issue li
 
 ### Here is a breakdown of what is likely happening
 
-**1. The "Generation" (LLM) Phase is Failing**
+**1. The Generation (LLM) Phase is Failing**
 
 - **Prompt Engineering Issues**: The LLM may not be instructed to strictly use only the provided context, causing it to hallucinate or rely on its pre-trained knowledge.
 - **Context Overload/Noise**: Even if relevant, too many chunks make it difficult for the model to identify the specific answer, leading to missed details.
@@ -1503,7 +1502,7 @@ If your RAG system retrieves good context but provides bad answers, the issue li
 
 ### Actionable Fixes
 
-- **Improve Prompts**: Enforce strict grounding (e.g., "Answer only using the context provided. If not found, say 'I don't know'").
+- **Improve Prompts**: Enforce strict grounding (e.g., Answer only using the context provided. If not found, say 'I don't know').
 - **Add a Re-ranker**: Implement a cross-encoder model to re-rank the retrieved results, ensuring the top chunks are truly the most relevant.
 - **Add Citations**: Force the model to cite which document/chunk it used, which reduces hallucinations.
 - **Review Chunking Strategy**: Ensure your chunks contain cohesive, complete thoughts.
@@ -1524,7 +1523,7 @@ Before changing anything, I need to know where the 3-4 seconds are being spent.
 - **API/Network Latency**: Time taken for the request to travel from the user to the server and back.
 - **Tooling**: Use profiling tools (e.g., Datadog, Prometheus, LangSmith) to analyze the full request lifecycle.
 
-**2. Immediate "Quick Wins" for Latency**
+**2. Immediate Quick Wins for Latency**
 
 - **Implement Streaming (User Experience)**: While not technically faster in total time, streaming via Server-Sent Events (SSE) allows the user to see the first token immediately (&lt;100ms), making the feature feel instant, even if the full response takes a second or two.
 - **Switch to a Faster Model/API**: If using a heavy model (e.g., GPT-4o), I would test smaller, faster alternatives (e.g., GPT-4o-mini, Llama 3 8B) for specific use cases.
@@ -1535,7 +1534,7 @@ Before changing anything, I need to know where the 3-4 seconds are being spent.
 
 - **Quantization (4-bit or 8-bit)**: Convert model weights from 16-bit to 8-bit or 4-bit (using GPTQ/AWQ). This reduces the memory footprint, accelerating inference speeds on GPUs, often by 2x-4x.
 - **Use Specialized Inference Engines**: Move away from vanilla PyTorch to high-performance serving frameworks like vLLM (using PagedAttention) or TensorRT-LLM, which handle request batching and memory management much more efficiently.
-- **Speculative Decoding**: Utilize a smaller "draft" model to generate multiple tokens at once, and a larger "verifier" model to validate them, significantly reducing latency.
+- **Speculative Decoding**: Utilize a smaller draft model to generate multiple tokens at once, and a larger verifier model to validate them, significantly reducing latency.
 - **Continuous Batching**: Switch to continuous batching to ensure that as soon as one user's request finishes, the next one is added, maximizing GPU utilization and minimizing downtime between requests.
 
 **4. Input/Context Optimization**

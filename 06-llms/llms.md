@@ -796,3 +796,68 @@ Sample 3: Input: ["sat", "on", "the"] → Target: "mat"
 - **Next-Token Prediction:** It is the fundamental way LLMs like GPT are trained to predict the next word based on context.
 - **Data Efficiency:** It generates many training samples from a relatively small amount of text, allowing the model to see different combinations of preceding context.
 - **Handling Long Text:** It allows models with fixed context limits to process and learn from documents that are much longer than their maximum input size.
+
+***
+
+## Multi-layer caching
+Multi-layer caching for LLMs improves inference speed and reduces costs by storing and reusing computation at various levels, including exact prompt-response pairs, semantic similarity, and KV cache (key-value) of intermediate tokens. This hierarchical approach often combines fast, local in-memory storage (L1) with distributed caches like Redis (L2) or GPU-based KV management systems like LMCache and Mooncake to serve high-traffic, low-latency requests efficiently. 
+
+**Key Components of Multi-Layer LLM Caching:**
+
+- Semantic Caching (L1/L2): Uses vector databases (e.g., Redis, Chroma) to detect if a new query is semantically similar to a previous one, returning the cached answer. 
+- Prompt/Response Caching (Exact): Stores exact prompt-response pairs to bypass the LLM entirely for identical inputs. 
+- KV Cache Management (Disaggregated/Hierarchical): Stores the attention keys and values of previous prompt tokens across inference nodes, allowing new queries to skip the "prefill" phase for shared prefixes. 
+- Hierarchical Storage: Combines RAM, NVMe (disk), and remote storage to manage KV cache, preventing GPU memory bottlenecks.
+
+**Benefits:** 
+- Reduced Latency: Semantic hits reduce user wait times from seconds to milliseconds. 
+- Cost Efficiency: Drastically lowers token costs by avoiding redundant generation. 
+- Higher Throughput: Efficient KV reuse allows more concurrent requests. 
+
+***
+
+## Guardrails AI
+Guardrails AI refers to safety mechanisms, frameworks, and tools used to monitor, validate, and control inputs and outputs in Generative AI and LLM applications. These safeguards reduce hallucinations, prevent sensitive data exposure, and block unsafe or harmful content, ensuring AI operates safely and within predefined, compliant boundaries.
+
+Key aspects of AI guardrails include: 
+
+- Input/Output Validation: Guardrails AI provides a Python framework to detect, quantify, and mitigate risks, such as checking for PII, toxic content, or hallucinations. 
+- Safety & Compliance: Guardrails protect against inappropriate content, such as hate speech or competitor mentions, while maintaining AI reliability. 
+- Types of Guardrails: These can be rule-based (e.g., blacklists of words) or model-based (using AI to evaluate behavior). 
+- Implementation Areas: Safeguards are applied to data (governance), models (behavior), and applications (input/output). 
+- Operational Control: Guardrails AI allows developers to define structural constraints on AI responses, such as requiring data to be in a specific format (JSON, XML) and ensuring accuracy. 
+- Testing & Simulation: Tools are available to simulate user interactions and test AI behavior before deploying.
+
+These measures are critical for organizations adopting AI to ensure compliance and prevent unpredictable model behavior.
+
+***
+
+## Guardrailing Large Language Models (LLMs)
+Guardrailing Large Language Models (LLMs) involves implementing input validation, output filtering, and usage monitoring to ensure safety, accuracy, and compliance. Key techniques include prompt engineering, content moderation filters, NeMo Guardrails, and framework tools like Guardrails AI to structure outputs, sanitize inputs, and prevent harmful content. 
+
+**Key Guardrailing Strategies:** 
+
+- Input Guardrails (Pre-processing): Validates user prompts before they reach the model. This includes blocking prompt injections, SQL injection, jailbreaks, and filtering for PII (Personally Identifiable Information) or inappropriate topics. 
+- Output Guardrails (Post-processing): Evaluates LLM responses before showing them to users. Techniques include checking for toxicity, hallucination detection (checking against source documents in RAG), ensuring structured output formats (JSON/XML), and masking sensitive data. 
+- System Prompting: Using specialized system prompts to define the persona and constraints of the model to keep it on topic and within ethical boundaries. 
+
+- Modular Frameworks: 
+	- NVIDIA NeMo Guardrails: Defines "Rails" (Colang) to control conversations, ensuring the model stays within defined safe topics and structures. 
+	- Guardrails AI: Uses  specifications (XML format) to define output structure and validators to check the output, enabling automatic corrections if the output fails checks. 
+
+- RAG-Specific Guardrails: In retrieval-augmented generation (RAG), guardrails ensure that the answer is solely based on provided context (preventing hallucinations) and that the context retrieved is relevant to the query. 
+
+**Implementation Steps:** 
+
+1. Define Policies: Determine what content is prohibited or required, such as identifying PII, restricting topics, or defining required output formats. 
+2. Apply Input Checks: Implement filtering to detect and reject malicious, irrelevant, or unsafe user inputs. 
+3. Implement Output Filters: Use classifiers to check if the generated output meets the defined safety and quality policies. 
+4. Continuous Monitoring: Monitor usage, log interactions, and perform red teaming to identify potential gaps in the safety measures.
+
+**Tools & Libraries:** 
+
+- Guardrails AI: For validation and structured output. 
+- NeMo Guardrails: For conversational control. 
+- Amazon Bedrock Guardrails: Managed service. 
+- LLM Guard: For scanning inputs and outputs. 
+

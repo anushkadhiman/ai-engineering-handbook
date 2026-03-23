@@ -202,21 +202,6 @@ Pydantic is the core engine for **validation**, **serialization**, and **schema 
 
 ---
 
-## Dependency Injection and Concurrency
-
-**Dependency Injection (DI)**
-
-- **Purpose:** Share logic like DB sessions or security checks across routes.
-- **Mechanism:** Use `Depends()` or `Security()`.
-- **Testing:** Dependencies can be overridden with mocks.
-
-**async def vs def**
-
-- **async def:** Use for I/O-bound work (DB, APIs, file access).
-- **def:** Use for CPU-bound work or synchronous libraries.
-
----
-
 ## Asynchronous Programming in FastAPI
 
 Asynchronous programming uses `async`/`await` to handle many concurrent requests efficiently.
