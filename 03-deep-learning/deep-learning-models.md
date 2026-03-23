@@ -52,154 +52,6 @@ Applications
 
 ---
 
-## Loss functions
-
-Loss functions are mathematical functions that measure how well a neural network's predictions match the expected output (ground truth). They quantify the difference between predicted values and actual values and guide the model's learning process by providing gradients during backpropagation.
-The choice of a loss function depends on the type of task (regression, classification, or other specialized tasks).
-
-**1. Loss Functions for Regression**
-
-**a. Mean Squared Error (MSE)**
-
-- Formula:
-  MSE=1n∑i=1n(yi−y^i)2MSE = \frac{1}{n} \sum\_{i=1}^n (y_i - \hat{y}\_i)^2MSE=n1​i=1∑n​(yi​−y^​i​)2
-- yiy_iyi​: Actual value
-- y^i\hat{y}\_iy^​i​: Predicted value
-- nnn: Number of data points
-- Concept: It calculates the average of the squared differences between actual and predicted values.
-- Usage: Used for regression tasks.
-- Pros: Penalizes large errors more heavily.
-- Cons: Sensitive to outliers due to squaring errors.
-
-**b. Mean Absolute Error (MAE)**
-
-- Formula:
-  MAE=1n∑i=1n∣yi−y^i∣MAE = \frac{1}{n} \sum\_{i=1}^n |y_i - \hat{y}\_i|MAE=n1​i=1∑n​∣yi​−y^​i​∣
-- Concept: It calculates the average of the absolute differences between actual and predicted values.
-- Usage: Used for regression tasks.
-- Pros: Less sensitive to outliers than MSE.
-- Cons: Gradient is not smooth at zero, which can slow convergence.
-
-**c. Huber Loss**
-
-- Formula:
-  Lδ(a)={12a2if ∣a∣≤δδ(∣a∣−12δ)if ∣a∣>δL\_{\delta}(a) = \begin{cases} \frac{1}{2}a^2 & \text{if } |a| \leq \delta \\ \delta(|a| - \frac{1}{2}\delta) & \text{if } |a| > \delta \end{cases}Lδ​(a)={21​a2δ(∣a∣−21​δ)​if ∣a∣≤δif ∣a∣>δ​
-- a=yi−y^ia = y_i - \hat{y}\_ia=yi​−y^​i​: Residual error
-- δ\deltaδ: Threshold value (e.g., 1.0)
-- Concept: It combines MSE (for small errors) and MAE (for large errors), reducing sensitivity to outliers.
-- Usage: Regression tasks with some outliers.
-
-**2. Loss Functions for Classification**
-
-**a. Binary Cross-Entropy (Log Loss)**
-
-- Formula:
-  BCE=−1n∑i=1n[yilog⁡(y^i)+(1−yi)log⁡(1−y^i)]BCE = -\frac{1}{n} \sum\_{i=1}^n \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]BCE=−n1​i=1∑n​[yi​log(y^​i​)+(1−yi​)log(1−y^​i​)]
-- yiy_iyi​: Actual label (0 or 1)
-- y^i\hat{y}\_iy^​i​: Predicted probability (between 0 and 1)
-- Concept: Measures the error for binary classification tasks where the output is probabilistic (using sigmoid activation).
-- Usage: Binary classification problems.
-- Pros: Works well for probabilistic outputs.
-
-**b. Categorical Cross-Entropy**
-
-- Formula:
-  CCE=−1n∑i=1n∑c=1Cyi,clog⁡(y^i,c)CCE = -\frac{1}{n} \sum*{i=1}^n \sum*{c=1}^C y*{i,c} \log(\hat{y}*{i,c})CCE=−n1​i=1∑n​c=1∑C​yi,c​log(y^​i,c​)
-- CCC: Number of classes
-- yi,cy\_{i,c}yi,c​: Actual label (one-hot encoded: 1 for true class, 0 for others)
-- y^i,c\hat{y}\_{i,c}y^​i,c​: Predicted probability for class ccc.
-- Concept: Extends binary cross-entropy to multi-class classification problems.
-- Usage: Multi-class classification problems.
-- Pros: Works well with softmax outputs.
-
-**c. Sparse Categorical Cross-Entropy**
-
-- Concept: A variant of Categorical Cross-Entropy where the true labels are not one-hot encoded but instead provided as integers.
-- Usage: Multi-class classification when labels are integer-encoded.
-
-**d. Kullback-Leibler Divergence (KL Divergence)**
-
-- Formula:
-  DKL(P∣∣Q)=∑iP(i)log⁡(P(i)Q(i))D\_{KL}(P || Q) = \sum_i P(i) \log \left( \frac{P(i)}{Q(i)} \right)DKL​(P∣∣Q)=i∑​P(i)log(Q(i)P(i)​)
-- PPP: True distribution
-- QQQ: Predicted distribution
-- Concept: Measures how one probability distribution QQQ diverges from the true distribution PPP.
-- Usage: Used when comparing two probability distributions.
-- Example: Useful in tasks like variational autoencoders (VAEs).
-
-**3. Specialized Loss Functions**
-
-**a. Hinge Loss**
-
-- Formula:
-  L=∑i=1nmax⁡(0,1−yiy^i)L = \sum\_{i=1}^n \max(0, 1 - y_i \hat{y}\_i)L=i=1∑n​max(0,1−yi​y^​i​)
-- yiy_iyi​: Actual label (−1-1−1 or +1+1+1)
-- y^i\hat{y}\_iy^​i​: Predicted value
-- Concept: Used in Support Vector Machines (SVMs) for classification tasks. It penalizes predictions that are not at least "1 margin" away from the correct class.
-- Usage: Binary classification with SVM.
-
-**b. Triplet Loss**
-
-- Concept: Used in tasks like face recognition to ensure similar images (positive pairs) are close in the embedding space while dissimilar images (negative pairs) are far apart.
-- How it works: - Anchors, positives, and negatives are input. - Loss encourages:
-  d(Anchor,Positive)+margin<d(Anchor,Negative)d(\text{Anchor}, \text{Positive}) + \text{margin} < d(\text{Anchor}, \text{Negative})d(Anchor,Positive)+margin<d(Anchor,Negative)
-
-**c. Focal Loss**
-
-- Concept: Designed for imbalanced classification problems by adding a "focusing factor" to down-weight well-classified samples.
-- Formula:
-  FL=−α(1−y^i)γyilog⁡(y^i)FL = -\alpha (1 - \hat{y}\_i)^\gamma y_i \log(\hat{y}\_i)FL=−α(1−y^​i​)γyi​log(y^​i​)
-- α\alphaα: Balancing factor
-- γ\gammaγ: Focusing parameter to reduce easy examples' impact.
-- Usage: Object detection tasks (e.g., RetinaNet).
-
----
-
-## Vanishing gradient and Exploding gradient problems
-
-The vanishing gradient and exploding gradient problems refer to issues that occur during the training of deep neural networks, particularly when using gradient-based optimization algorithms like backpropagation. These problems arise when the gradients (which are used to update the weights) become too small or too large, making it difficult for the network to learn effectively.
-
-**1. Vanishing Gradient Problem**
-The vanishing gradient problem occurs when the gradients of the loss function with respect to the weights become very small, essentially approaching zero, as they are propagated back through the layers during training. This is especially problematic in deep networks with many layers, because as the gradient is passed through each layer, it gets progressively smaller.
-
-**Causes:**
-
-- Activation functions like the sigmoid or tanh can squash the input values into a small range, causing the gradients to become smaller as they propagate back through the layers.
-- When the derivatives of these activation functions are less than 1 (as they often are for sigmoid or tanh), the gradients shrink exponentially as they move backward through the network.
-  **Impact:**
-- In deep networks, this makes it difficult for the model to update the weights in the earlier layers effectively, leading to slow or even halted learning. This is particularly noticeable in networks with many layers (i.e., deep neural networks).
-- The model may struggle to learn the features in the initial layers because the weight updates are not significant enough to make meaningful changes.
-
-**2. Exploding Gradient Problem**
-The exploding gradient problem is the opposite of the vanishing gradient problem. It occurs when the gradients become very large as they are propagated back through the layers, often growing exponentially. This can lead to extremely large weight updates.
-
-**Causes:**
-
-- Large weights or large values in the activation function can cause the gradients to grow as they propagate backward.
-- In networks with deep architectures, especially when the weights are initialized improperly or the learning rate is too high, the gradients can escalate quickly.
-  **Impact:**
-- Exploding gradients can cause numerical instability during training, where the network's weights grow uncontrollably, making the loss function fail to converge.
-- This can lead to "NaN" (Not a Number) values in the gradients, effectively halting the training process.
-
-**Solutions to Vanishing and Exploding Gradients**
-**1. Vanishing Gradient Solutions:** - ReLU (Rectified Linear Unit) Activation Function: Unlike sigmoid or tanh, ReLU doesn’t squash values, which helps mitigate vanishing gradients. - He Initialization: A method of initializing weights that is designed to work well with ReLU, preventing vanishing gradients at the beginning of training. - Gradient Clipping: Used to limit the size of gradients during backpropagation, which helps prevent them from vanishing or exploding. - Batch Normalization: Normalizes activations to help maintain stable gradients during training.
-
-**2. Exploding Gradient Solutions:** - Gradient Clipping: Prevents gradients from growing too large by clipping them to a predefined threshold. - Weight Regularization: Techniques like L2 regularization (weight decay) can help prevent weights from growing too large and causing exploding gradients. - Proper Weight Initialization: Using techniques like Xavier or He initialization helps control the scale of the gradients in the initial stages of training. - Lower Learning Rate: Reducing the learning rate can prevent the weights from updating too aggressively, helping avoid exploding gradients.
-
-In practice, gradient clipping is commonly used to address both the vanishing and exploding gradient problems, especially in recurrent neural networks (RNNs) and deep networks.
-
----
-
-## Fine-tuning
-
-Fine-tuning is the process of taking a pre-trained model and further training it on a new, dataset for a specific task. This is done to gain the knowledge from the model trained on a large dataset initially and then use it to a more specialized task.
-
-1. Transfer learning: Transfer the knowledge gained by the pre-trained model to a new, but related, task. This is where fine-tuning comes into play. Instead of training the model from scratch on the new task, you initialize it with the weights learned during pre-training.
-2. Architecture modification: Depending on the similarity between the original task and the new task, you may need to modify the architecture of the pre-trained model. This could involve changing the output layer or adjusting other layers to better suit the characteristics of the new task.
-3. Training on the new dataset: Train the model on the new dataset, which is typically smaller than the original dataset. This process allows the model to adapt its weights to the specific features of the new task while retaining the general knowledge acquired during pre-training.
-
----
-
 ## Recurrent Neural Network (RNN)
 
 A Recurrent Neural Network (RNN) is a type of neural network that is designed to handle sequential data by using loops within the network. Essentially it is for the tasks where the context or history of data points is important, such as time series prediction, language modeling, speech recognition, or any other problem that involves data with a temporal dimension.
@@ -215,8 +67,8 @@ A Recurrent Neural Network (RNN) is a type of neural network that is designed to
 The main component of an RNN is its feedback loop, which allows it to "remember" previous inputs.
 
 - Input: A sequence of data points $x_1, x_2, \dots, x_t$, where each $x_t$ is the input at time step $t$.
-- Hidden State: At each time step ttt, the RNN computes a hidden state hth*tht​, based on the current input xtx_txt​ and the previous hidden state ht−1h*{t-1}ht−1​.
-- Output: The RNN generates an output yty_tyt​ at each time step based on the hidden state hth_tht​.
+- Hidden State: At each time step $t$, the RNN computes a hidden state $h_t$, based on the current input $x_t$ and the previous hidden state $h_{t-1}$.
+- Output: The RNN generates an output $y_t$ at each time step based on the hidden state $h_t$.
 
 **Challenges:**
 
@@ -224,3 +76,50 @@ The main component of an RNN is its feedback loop, which allows it to "remember"
 2. Exploding Gradients: The opposite problem, where gradients grow too large, can also occur, leading to unstable training.
 
 ---
+
+## U-Net
+
+U-Net is a convolutional neural network (CNN) architecture designed for fast, precise image segmentation, particularly for biomedical images. It uses a symmetric, U-shaped encoder-decoder structure with skip connections that combine high-level context with low-level spatial features, enabling accurate pixel-wise classification and reconstruction.
+
+**Key Architecture Components**
+
+- Encoder (Contracting Path): Captures context by reducing spatial dimensions using 3x3 convolutions, ReLU, and 2x2 max-pooling, doubling feature channels at each step.
+- Decoder (Expanding Path): Restores spatial resolution using transposed convolutions (up-convolution), halving feature channels to refine segmentation.
+- Skip Connections: Concatenate feature maps from the encoder directly to the corresponding decoder layer, preserving fine-grained details lost during downsampling.
+- Bottleneck: Bridges encoder and decoder, representing the most abstracted features.
+- Final Layer: Uses a 1x1 convolution with sigmoid or softmax to produce the final segmented mask.
+
+**Key Features and Applications**
+
+- Performance: Achieved state-of-the-art results in biomedical imaging, notably winning the ISBI 2015 cell tracking challenge.
+- Versatility: Beyond medical imaging, it is widely used for satellite image segmentation and image generation tasks, including diffusion models.
+- Efficiency: Operates well with smaller datasets due to heavy data augmentation.
+
+---
+
+## Long Short-Term Memory (LSTM)
+
+Long Short-Term Memory (LSTM) is a type of Recurrent Neural Network (RNN) architecture specifically designed to address the limitations of standard RNNs, such as the vanishing gradient problem. LSTM networks are particularly effective at learning long-term dependencies in sequential data, making them ideal for tasks like time series prediction, language modeling, and speech recognition.
+
+The key innovation in LSTMs is the introduction of memory cells and gates that control the flow of information. This structure allows the LSTM to remember or forget information over long sequences, which standard RNNs struggle with.
+
+**Each LSTM unit consists of the following elements:**
+
+**1. Cell State (Memory):** This is the core concept of LSTM. The cell state is like a conveyor belt that runs through the entire sequence, carrying information along without too much modification. The LSTM can decide to add or remove information from the cell state using gates.
+**2. Gates:** Gates control how much information is added to or removed from the cell state. There are three types of gates in an LSTM:
+
+- **Forget Gate:** Decides what information should be thrown away or kept from the previous cell state.
+- **Input Gate:** Decides which new information should be stored in the cell state.
+- **Output Gate:** Decides what parts of the cell state will be output as the current hidden state.
+
+**How LSTM Works:**
+
+**1. Forget Gate:** The forget gate looks at the previous hidden state $h_{t-1}$ and the current input $x_t$, and outputs a number between 0 and 1 for each number in the cell state $C_{t-1}$. A value of 1 means "completely keep this information," while a value of 0 means "completely forget it."
+**2. Input Gate:** The input gate decides which new information should be stored in the cell state by looking at $h_{t-1}$ and $x_t$. It uses a sigmoid function to filter which values are updated.
+**3. Update Cell State:** The forget gate and input gate jointly decide how much of the previous state is retained and how much new information should be added to update the cell state $C_t$​.
+**4. Output Gate:** Finally, the output gate determines what the next hidden state hth_tht​ will be, which is based on the updated cell state $C_t$​. The hidden state is used for making predictions or for passing information to the next LSTM unit.
+
+**Benefits of LSTM:**
+
+**- Long-Term Dependency Handling:** LSTM units can effectively remember information over long sequences, which makes them useful for tasks where context matters.
+**- Mitigating Vanishing Gradient:** LSTMs solve the vanishing gradient problem by using gates to regulate the flow of information, making it easier to train models on long sequences.
