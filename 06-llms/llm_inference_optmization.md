@@ -46,7 +46,7 @@ In a standard Attention mechanism, for a sequence of length :
 Query (Q), Key (K), and Value (V) matrices are computed for all tokens.
 Attention Scores are calculated.
 With KV Caching at step t+1 :
-Query (Q): Only computed for the single new token ().
+Query (Q): Only computed for the single new token .
 Key (K): The model retrieves from the cache and concatenates the new .
 Value (V): Similarly, it retrieves and appends .
 Calculation: The model only performs one row of the attention matrix multiplication (the new Query against all cached Keys) instead of recalculating the entire matrix.
@@ -100,7 +100,7 @@ In standard Multi-Head Attention (MHA), if you have 8 attention heads, you have 
 
 - MHA: Each Query head has its own dedicated Key and Value head.
 - In Multi-Query Attention, you keep multiple Query heads, but all of them share a single Key and a single Value head.
-- MQA: All Query heads () look at the same Key () and Value ().
+- MQA: All Query heads look at the same Key and Value.
 
 **Why do we use it?**
 The primary bottleneck in LLM inference isn't usually "compute" (math operations); it is Memory Bandwidth (the speed at which data moves from VRAM to the GPU cores).
@@ -147,17 +147,17 @@ Multi-Head Latent Attention (MLA) is a specialized attention mechanism introduce
 While GQA (Grouped-Query Attention) reduces cache size by sharing heads, MLA uses low-rank compression to shrink the entire KV space into a small "latent" vector, achieving even greater memory savings without sacrificing model quality.
 
 **The Core Innovation: Low-Rank Compression**
-In standard attention, every token’s Key (K) and Value (V) are stored as large vectors. In MLA, these are compressed into a single, much smaller latent vector ().
+In standard attention, every token’s Key (K) and Value (V) are stored as large vectors. In MLA, these are compressed into a single, much smaller latent vector .
 
-- **Compression:** A "down-projection" matrix () turns the high-dimensional hidden state into a small latent vector ().
+- **Compression:** A "down-projection" matrix turns the high-dimensional hidden state into a small latent vector .
 - **Decompression:** During the attention calculation, this latent vector is "up-projected" back into the full Key and Value heads only when needed.
 - **Result:** You only cache the compressed latent vector, which is often 90%+ smaller than a standard KV cache.
 
 **Mathematical Intuition & The "Absorption Trick"**
 
 - MLA doesn't just store less; it computes smarter using matrix absorption.
-- Standard Logic: MLA Logic: Since is derived from the latent vector (), the math becomes:
-- The Trick: During inference, (the up-projection matrix) can be absorbed directly into the Query matrix ().
+- Standard Logic: MLA Logic: Since is derived from the latent vector , the math becomes:
+- The Trick: During inference, (the up-projection matrix) can be absorbed directly into the Query matrix .
 - This means the model can compute the attention score directly against the compressed latent cache without ever explicitly reconstructing the full keys in memory.
 
 **Decoupled RoPE (Rotary Positional Embeddings)**

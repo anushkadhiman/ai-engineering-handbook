@@ -133,7 +133,7 @@ Thresholding is a fundamental image segmentation technique that converts graysca
 
 **Key Concepts and Types**
 
-- **Simple (Global) Thresholding:** A single, fixed threshold value () is applied to the entire image. If , it is assigned the maximum value (foreground); otherwise, it becomes (background).
+- **Simple (Global) Thresholding:** A single, fixed threshold value is applied to the entire image. If , it is assigned the maximum value (foreground); otherwise, it becomes (background).
 - **Adaptive (Local) Thresholding:** The threshold is calculated for smaller regions of the image, allowing for better handling of varying lighting conditions and uneven illumination.
 - **Otsu's Method:** An automatic thresholding technique that finds the optimal value by maximizing the variance between foreground and background pixels, ideal when the image histogram has two distinct peaks.
 

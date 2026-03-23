@@ -118,8 +118,8 @@ Variance and standard deviation measure how data spreads around the mean. Varian
 
 **Formulas**
 
-- Population Variance (): $\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}$
-- Sample Variance (): $s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1}$
+- Population Variance : $\sigma^2 = \frac{\sum (X_i - \mu)^2}{N}$
+- Sample Variance : $s^2 = \frac{\sum (x_i - \bar{x})^2}{n-1}$
 - Standard Deviation ( or ): $\sqrt{\text{Variance}}$
 
 **Key Details**
@@ -131,12 +131,12 @@ Variance and standard deviation measure how data spreads around the mean. Varian
 Example Calculation
 For data set: {5, 5, 9, 9, 9, 10, 5, 10, 10}
 
-1. Mean (): $\frac{5+5+9+9+9+10+5+10+10}{9} = 8$
+1. Mean : $\frac{5+5+9+9+9+10+5+10+10}{9} = 8$
 2. Differences from mean: -3, -3, 1, 1, 1, 2, -3, 2, 2
 3. Squared differences: 9, 9, 1, 1, 1, 4, 9, 4, 4
 4. Sum of squared differences: 42
-5. Sample Variance (): $\frac{42}{9-1} = \frac{42}{8} = 5.25$
-6. Standard Deviation (): $\sqrt{5.25} \approx 2.29$
+5. Sample Variance : $\frac{42}{9-1} = \frac{42}{8} = 5.25$
+6. Standard Deviation : $\sqrt{5.25} \approx 2.29$
 
 ---
 
@@ -161,6 +161,23 @@ Correlation is a standardized form of covariance, often known as the Pearson cor
 - Formula: $\rho_{XY} = \frac{\text{cov}(X, Y)}{\sigma_X \sigma_Y}$ (Covariance divided by the product of standard deviations).
 
 Correlation is superior for determining the strength of a relationship because it is standardized, whereas covariance is mainly used to understand the direction of movement, often in financial portfolio diversification.
+
+---
+
+## Law of Large Numbers
+
+The law of large numbers states that as the number of independent, identical trials increases, their observed average result approaches the theoretical expected value. It bridges probability theory with empirical observation, indicating that while short-term results vary, long-term trends become stable and predictable.
+
+**Key Aspects of the Law of Large Numbers**
+
+- Definition: The sample mean (average) of a large number of trials will be close to the theoretical mean (expected value).
+- Types:
+  - Weak Law (WLLN): States that the sample average converges in probability to the expected value, meaning the probability that the average deviates significantly from the true mean approaches zero as trials increase.
+  - Strong Law (SLLN): States that the sample average converges "almost surely" to the expected value, meaning the probability of convergence is 1.
+
+- Example: In coin flipping, although 10 flips might result in 8 heads (80%), 10,000 flips will yield a percentage of heads very close to 50%.
+- Misconceptions: It is not the "law of averages," which wrongly implies that past failures make future success more likely (the gambler's fallacy).
+- Applications: Crucial for insurance company risk management, casino payout structures, and statistics to estimate population parameters from large samples.
 
 ---
 
@@ -269,5 +286,39 @@ $P(A|B) = \frac{P(B|A) \times P(A)}{P(B)}$.
 
 **Example:**
 If the probability of rain is $15\%$ ($P(A)$) and it is cloudy in the morning $25\%$ of the time ($P(B)$), and it is cloudy in the morning given that it rains $80\%$ of the time ($P(B|A)$), Bayes' theorem can calculate the probability of rain given that it is cloudy ($P(A|B)$).
+
+---
+
+## Normal Distribution
+
+A normal distribution, or Gaussian distribution, is a symmetric, bell-shaped probability distribution where most data points cluster around a central mean, with frequencies decreasing toward the tails. Defined by its mean ($\mu$) and standard deviation ($\sigma$), it follows the empirical rule: approx. 68% of data falls within $\pm1\sigma$, 95% within $\pm2\sigma$, and 99.7% within $\pm3\sigma$ of the mean.
+
+**Key Characteristics**
+
+- Symmetry & Shape: The distribution is perfectly symmetrical, unimodal, and shaped like a bell.
+- Central Tendency: The mean, median, and mode are all equal and located at the center.
+- Asymptotic Tails: The tails of the curve approach the $x$-axis but never actually touch it, extending to infinity.
+- Empirical Rule (68-95-99.7 Rule):
+  - of data within $\pm1$ standard deviation ($\mu \pm 1\sigma$).
+  - of data within $\pm2$ standard deviations ($\mu \pm 2\sigma$).
+  - of data within $\pm3$ standard deviations ($\mu \pm 3\sigma$).
+
+- Area Under Curve: The total area under the curve is 1 (or 100% probability).
+
+**The Normal Distribution Formula**
+The probability density function (PDF) is given by: $f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}$
+
+- (Mean): Determines the center of the peak.
+- (Standard Deviation): Determines the width/spread of the curve.
+- : Euler's number ($e \approx 2.71828$).
+- : Pi ($\pi \approx 3.14159$).
+
+**Standard Normal Distribution ($Z$-Distribution)**
+A standard normal distribution is a special case where the mean is 0 and the standard deviation is 1 ($\mu=0, \sigma=1$). Data is converted to a standard normal distribution using $z$-scores to compare different datasets: $z = \frac{x - \mu}{\sigma}$
+
+- z-score: Represents how many standard deviations a raw score ($x$) is above or below the mean.
+
+**Why is it Important?**
+The normal distribution is critical in statistics due to the Central Limit Theorem, which states that the sum or average of many independent, random variables tends toward a normal distribution, regardless of the original distribution's shape.
 
 ---

@@ -73,18 +73,21 @@ Diffusion models rely on several key mathematical and structural assumptions to 
 
 **The Markov Assumption**
 The most fundamental structural assumption is that the diffusion process (both forward and backward) is a Markov Chain.
-Definition: Each state in the process depends only on the state immediately preceding it () and not on any earlier history ().
-Why it matters: This simplifies the joint probability of all diffusion steps into a product of individual transitions, making the math tractable for deep learning.
+
+- Definition: Each state in the process depends only on the state immediately preceding it and not on any earlier history.
+- Why it matters: This simplifies the joint probability of all diffusion steps into a product of individual transitions, making the math tractable for deep learning.
 
 **The Gaussian Transition Assumption**
 The model assumes that the "jumps" between steps are Gaussian (Normal) distributions.
-Forward process: Each step is assumed to add a small amount of Gaussian noise.
-Reverse process: It is assumed that if the noise added at each step is sufficiently small and the number of steps is large, the reverse step is also approximately Gaussian. This allows the neural network to be trained simply to predict the mean and variance of a Gaussian distribution.
+
+- Forward process: Each step is assumed to add a small amount of Gaussian noise.
+- Reverse process: It is assumed that if the noise added at each step is sufficiently small and the number of steps is large, the reverse step is also approximately Gaussian. This allows the neural network to be trained simply to predict the mean and variance of a Gaussian distribution.
 
 **The Isotropic Gaussian Prior**
 At the end of the forward process (step), the data is assumed to have evolved into a pure isotropic Gaussian noise distribution.
-Requirement: The variance schedule () must be "well-behaved" enough to ensure that the original signal is almost entirely destroyed by step.
-Application: This allows the model to "start from scratch" during generation by sampling random noise from a standard normal distribution .
+
+- Requirement: The variance schedule must be "well-behaved" enough to ensure that the original signal is almost entirely destroyed by step.
+- Application: This allows the model to "start from scratch" during generation by sampling random noise from a standard normal distribution .
 
 **Variance Schedule**
 In standard implementations like DDPM, the variance schedule is typically assumed to be a fixed hyperparameter rather than a learned parameter.

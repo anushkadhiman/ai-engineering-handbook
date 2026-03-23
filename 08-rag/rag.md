@@ -1447,7 +1447,7 @@ Hierarchical Navigable Small World (HNSW) is a top-performing, graph-based algor
 
 ---
 
-## making retrieval faster from vector databases
+## Making retrieval faster from vector databases
 
 To make retrieval faster from vector databases, you can focus on optimizing indexing strategies, using data compression techniques, and improving system architecture and hardware.
 
@@ -1485,18 +1485,18 @@ If your RAG system retrieves good context but provides bad answers, the issue li
 
 ### Here is a breakdown of what is likely happening
 
-1. The "Generation" (LLM) Phase is Failing
+**1. The "Generation" (LLM) Phase is Failing**
 
 - **Prompt Engineering Issues**: The LLM may not be instructed to strictly use only the provided context, causing it to hallucinate or rely on its pre-trained knowledge.
 - **Context Overload/Noise**: Even if relevant, too many chunks make it difficult for the model to identify the specific answer, leading to missed details.
 - **Poor Summarization**: The LLM struggles to synthesize information across multiple retrieved chunks.
 
-2. Data Quality & Structure Issues
+**2. Data Quality & Structure Issues**
 
 - **Bad Chunking**: Chunks might be too small (lacking necessary context) or too large (containing irrelevant noise), or they may break in the middle of crucial information.
 - **Stale Data (Knowledge Drift)**: The retrieved, relevant chunks might be outdated, providing accurate retrieval metrics but incorrect, outdated answers.
 
-3. Evaluation Gaps
+**3. Evaluation Gaps**
 
 - **Focusing on Retrieval Metrics Only**: You may be measuring if the right document was found, but not if the LLM used it correctly.
 - **No Faithfulness Metric**: You are not measuring if the answer is directly supported by the context, leading to high-confidence hallucinations.
@@ -1516,29 +1516,29 @@ Reducing AI response latency from 3-4 seconds to under 500ms requires a multi-la
 
 Here is a structured, four-step approach to achieve this:
 
-1. Identify and Measure Bottlenecks
-   Before changing anything, I need to know where the 3-4 seconds are being spent.
+**1. Identify and Measure Bottlenecks**
+Before changing anything, I need to know where the 3-4 seconds are being spent.
 
 - **Time To First Token (TTFT)**: Measures how long it takes for the model to process the prompt and start generating the first word.
 - Time Per Output Token (TPOT) / Inter-token Latency (ITL): Measures the speed of token generation, crucial for streaming perception.
 - **API/Network Latency**: Time taken for the request to travel from the user to the server and back.
 - **Tooling**: Use profiling tools (e.g., Datadog, Prometheus, LangSmith) to analyze the full request lifecycle.
 
-2. Immediate "Quick Wins" for Latency
+**2. Immediate "Quick Wins" for Latency**
 
 - **Implement Streaming (User Experience)**: While not technically faster in total time, streaming via Server-Sent Events (SSE) allows the user to see the first token immediately (&lt;100ms), making the feature feel instant, even if the full response takes a second or two.
 - **Switch to a Faster Model/API**: If using a heavy model (e.g., GPT-4o), I would test smaller, faster alternatives (e.g., GPT-4o-mini, Llama 3 8B) for specific use cases.
 - **Set Aggressive Timeouts**: Implement timeouts to ensure the application doesn't wait too long for an LLM response, implementing quick fallbacks.
 - **Cache Frequent Queries**: Cache identical or similar user queries in Redis to bypass LLM inference altogether.
 
-3. Structural Model Optimization (Backend)
+**3. Structural Model Optimization (Backend)**
 
 - **Quantization (4-bit or 8-bit)**: Convert model weights from 16-bit to 8-bit or 4-bit (using GPTQ/AWQ). This reduces the memory footprint, accelerating inference speeds on GPUs, often by 2x-4x.
 - **Use Specialized Inference Engines**: Move away from vanilla PyTorch to high-performance serving frameworks like vLLM (using PagedAttention) or TensorRT-LLM, which handle request batching and memory management much more efficiently.
 - **Speculative Decoding**: Utilize a smaller "draft" model to generate multiple tokens at once, and a larger "verifier" model to validate them, significantly reducing latency.
 - **Continuous Batching**: Switch to continuous batching to ensure that as soon as one user's request finishes, the next one is added, maximizing GPU utilization and minimizing downtime between requests.
 
-4. Input/Context Optimization
+**4. Input/Context Optimization**
 
 - **Reduce Context Length**: Aggressively prune the number of retrieval-augmented generation (RAG) chunks or history provided to the model. Latency grows superlinearly with token count.
 - **Optimize Prompts**: Streamline instructions to reduce the prompt size.
