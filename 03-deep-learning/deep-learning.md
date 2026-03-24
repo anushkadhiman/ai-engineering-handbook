@@ -909,3 +909,7 @@ Depending on the similarity between the original task and the new task, you may 
 Train the model on the new dataset, which is typically smaller than the original dataset. This process allows the model to adapt its weights to the specific features of the new task while retaining the general knowledge acquired during pre-training.
 
 ---
+
+**Resources:**
+
+1. [Deep Learning: Book by Aaron Courville, Ian Goodfellow, and Yoshua Bengio](https://www.deeplearningbook.org/)

@@ -123,3 +123,11 @@ The key innovation in LSTMs is the introduction of memory cells and gates that c
 
 **- Long-Term Dependency Handling:** LSTM units can effectively remember information over long sequences, which makes them useful for tasks where context matters.
 **- Mitigating Vanishing Gradient:** LSTMs solve the vanishing gradient problem by using gates to regulate the flow of information, making it easier to train models on long sequences.
+
+---
+
+Resources:
+
+1. [Deep Learning: Book by Aaron Courville, Ian Goodfellow, and Yoshua Bengio](https://www.deeplearningbook.org/)
+
+2. [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)

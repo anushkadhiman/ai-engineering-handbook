@@ -205,7 +205,7 @@ A typical error analysis follows an iterative process:
 
 - **Collect a Sample of Errors:** Gather a representative set of data points from the development or test set where the model made incorrect predictions.
 - **Manually Examine and Categorize:** Manually inspect the misclassified examples to identify common themes or patterns. For a cat/dog classifier, you might find errors related to: Blurry images, Specific breeds (e.g., dog breeds that look like cats), Incorrectly labeled data (label noise) in the original dataset
-- **Quantify Error Types**: Use a spreadsheet to count the frequency of each error category. This helps determine which issues, if addressed, would yield the largest performance gain.
+- **Quantify Error Types**: count the frequency of each error category. This helps determine which issues, if addressed, would yield the largest performance gain.
 - **Prioritize and Implement Improvements**: Focus efforts on the error categories that have the highest impact or are most frequent.
 
 **Potential fixes include:**
@@ -377,10 +377,6 @@ Underfitting does not perform well on training and testing data. It is when the 
 For underfitting problem, we can build a more complex model,
 For Overfitting model, get add more data and apply regularization like dropouts, l1 and l2 regularization and batch normalization.
 
-**To overcome vanishing gradient problem,**
-
-1. We can use other activation functions, such as ReLU, which doesn’t cause a small derivative.
-
 ---
 
 ## Regularization techniques
@@ -390,3 +386,9 @@ Regularization techniques play a crucial role in machine learning by preventing 
 1. **L1 regularization** is particularly useful when dealing with high-dimensional datasets, where the number of features is large compared to the number of observations. By introducing a penalty term based on the absolute values of the model's parameter coefficients, L1 regularization helps to control the complexity of the model and prevent it from becoming too sensitive to individual observations. The regularization parameter lambda controls the strength of the penalty term. A higher value of lambda will result in more coefficients being set to zero, leading to a sparser model. On the other hand, a lower value of lambda will allow more coefficients to have non-zero values, resulting in a less sparse model.
 
 2. **L2 regularization**, also known as Ridge regularization, is another type of regularization commonly used in machine learning. Unlike L1 regularization, L2 regularization adds the squared values of the model's parameter coefficients to the loss function. This penalty term encourages small parameter values without setting them to zero, resulting in a less sparse solution. It effectively reduces model complexity and helps to prevent overfitting by shrinking the parameter values. L2 regularization is also less sensitive to outliers and can handle multicollinearity better than L1 regularization. However, L2 regularization does not perform automatic feature selection and tends to retain all features in the model.
+
+---
+
+**Resources:**
+
+1. Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition

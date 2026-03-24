@@ -128,3 +128,19 @@ Everything else is forced to predict "nothing." Hence, the model naturally learn
 
 1. Slow Convergence. Training a DETR from scratch takes much longer than traditional models like YOLO.
 2. Small Objects. Original DETR struggled with tiny objects, though newer versions like Deformable DETR have fixed this.
+
+---
+
+## ComfyUI
+
+ComfyUI is a powerful, node-based graphical user interface (GUI) and backend for Stable Diffusion that allows us to create custom, complex AI image and video generation workflows locally. It provides fine-grained control over the generation process—including ControlNet and inpainting—by connecting individual functional blocks, or nodes.
+
+**Key Aspects of ComfyUI:**
+
+• Node-Based Workflow: Instead of simple text prompts, you design a flowchart (graph) connecting components (e.g., Load Checkpoint -&gt; Prompt -&gt; KSampler -&gt; VAE Decode).
+• Local & Free: Runs on your own computer (NVIDIA GPU recommended), ensuring privacy and no generation costs.
+• Highly Efficient: Known for being lightweight and efficient, often enabling faster generation than other GUIs.
+• Reproducibility: Workflows can be saved within generated PNG images, allowing you to drag and drop images back into the app to restore the exact creation process.
+• Customization: Supports extensive customization via custom nodes for specialized tasks, including image-to-video, upscaling, and advanced AI techniques.
+
+ComfyUI is designed for power users seeking detailed control over AI imagery rather than quick, simple generation.
