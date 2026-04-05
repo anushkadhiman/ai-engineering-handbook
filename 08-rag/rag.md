@@ -19,8 +19,6 @@ RAG operates in two main phases:
 
 ---
 
----
-
 ## **Chunk splitters in RAG**
 
 Chunk splitters in RAG break large documents into smaller, manageable, and semantic segments (chunks) to optimize Retrieval-Augmented Generation (RAG) performance. Overlapping, typically 10–20% of the chunk size, ensures that context is not lost at the boundaries, allowing the LLM to understand information spanning across chunks, thus reducing hallucinations and maintaining continuity.
@@ -39,17 +37,15 @@ Chunk splitters in RAG break large documents into smaller, manageable, and seman
 
 **Commonly Used Splitters (LangChain)**
 
-- **CharacterTextSplitter:** Splits by a specific, simple character (e.g.,  ).
+- **CharacterTextSplitter:** Splits by a specific, simple character (e.g., ).
 - **RecursiveCharacterTextSplitter:** The standard for most use cases, balancing semantic coherence with size constraints.
 - **TokenTextSplitter:** Splits based on LLM token counts rather than characters.
 
 **Best Practices**
 
 - **Recommended Settings:** Use a chunk size of 400–512 tokens with a 50–100 token overlap.
-- **Separator Hierarchy:** Use nested separators (e.g., [\n\n, \n, .,  ]) to respect paragraph and sentence boundaries.
+- **Separator Hierarchy:** Use nested separators (e.g., [\n\n, \n, ., ]) to respect paragraph and sentence boundaries.
 - **Metadata Integration:** Attach metadata (source, summary) to each chunk to improve retrieval accuracy.
-
----
 
 ---
 
@@ -83,7 +79,7 @@ Recursive character splitting is a technique for splitting long text into smalle
 - Parameters:
   chunk_size: The target maximum length of each chunk.
   chunk_overlap: Number of characters to overlap between chunks, maintaining context.
-  separators: The list of characters used for splitting (default is [\n\n, \n,  , ] )
+  separators: The list of characters used for splitting (default is [\n\n, \n, , ] )
 
 **Benefits**
 
@@ -92,8 +88,6 @@ Recursive character splitting is a technique for splitting long text into smalle
 - Scalable: Effective for breaking down large documents, legal records, or medical reports.
 
 This approach is highly recommended for general text processing to avoid breaking sentences or words in the middle, ensuring better semantic retrieval in AI applications.
-
----
 
 ---
 
@@ -129,8 +123,6 @@ This ensures that text chunks perfectly fit within the token limits (context win
 
 ---
 
----
-
 ## Chunk overlap
 
 Chunk overlap is an AI text-processing technique where adjacent segments (chunks) of text share a small, common portion of content, preventing loss of context at boundary points. Typically 10–20% of the chunk size, it ensures semantic continuity in RAG (Retrieval-Augmented Generation) applications by maintaining information across cuts.
@@ -150,14 +142,13 @@ Chunk overlap is an AI text-processing technique where adjacent segments (chunks
 
 ---
 
----
-
 ## Choosing between large and small chunk sizes
 
 Choosing between large and small chunk sizes in Retrieval-Augmented Generation (RAG) involves a trade-off between context retention and retrieval precision. Small chunks (e.g., 128–256 tokens) are best for pinpointing specific facts, while large chunks (e.g., 512–1024+ tokens) are better for understanding broader themes and maintaining semantic coherence.
 
 **Small Chunk Size**
 Small chunks are highly granular. They are effective when the user query is very specific and the answer is likely contained in a single paragraph or sentence.
+
 - Pros: High-precision search; the embedding vector closely matches the specific query.
 - Cons: The Language Model (LLM) might lack the surrounding context needed to understand the big picture, leading to fragmented or hallucinated answers.
 - Best for: Finding exact answers (e.g., What is the penalty clause?).
@@ -178,6 +169,7 @@ Large chunks retain more surrounding information, ensuring the semantic meaning 
 - Small-to-Big Strategy: An advanced strategy is to use small chunks for retrieval (high accuracy) but pass the surrounding large chunk to the generator (high context).
 - Conclusion: The best approach is often to treat chunk size as a hyperparameter to test, starting with a medium size (e.g., 512) and adjusting based on the precision/context needs of your specific application.
 
+**Optimal Chunk Size**
 The optimal chunk size for a RAG system typically ranges between 128 and 512 tokens, with 256–512 tokens being a common, effective baseline for balancing context retention, semantic meaning, and retriever accuracy. Smaller chunks (128–256 tokens) improve accuracy for specific, fact-based queries, while larger chunks (512+ tokens) are better for complex, comprehensive, or summarized information.
 
 **Key Considerations for Chunk Size:**
@@ -193,8 +185,6 @@ The optimal chunk size for a RAG system typically ranges between 128 and 512 tok
 - Hybrid Search: Combining semantic and keyword searches can improve retrieval with different chunk sizes.
 - Metadata Enhancement: Adding summaries, titles, or headers to chunks improves search relevance.
 - Parent-Child Indexing: Using a larger parent chunk (e.g., 1400 tokens) for generation and smaller child chunks (e.g., 400 tokens) for retrieval is an advanced technique for better performance.
-
----
 
 ---
 
@@ -242,8 +232,6 @@ Here are the key considerations when choosing an LLM for a RAG system:
 Note: RAG systems should be continuously evaluated using metrics like Faithfulness (ensuring the answer is grounded in the retrieved context) and Answer Relevance.
 
 These resources analyze how to select the best Large Language Models (LLMs) for Retrieval-Augmented Generation (RAG) systems, considering factors like context window size, accuracy, and cost.
-
----
 
 ---
 
@@ -329,8 +317,6 @@ Instead of guessing, the RAG system behaves like an agent that asks for clarific
 ## Minimizing RAG system latency
 
 To minimize RAG system latency, implement a multi-layered approach: utilize semantic caching for frequent queries, use smaller/quantized LLMs, optimize vector database searches (e.g., hybrid search, metadata filtering), reduce retrieved chunk counts, and employ streaming responses.
-
-Key strategies include caching embedding results, using efficient vector databases like Milvus, and minimizing network hops.
 
 - Caching (Most Effective): Store and reuse embeddings and LLM responses for common queries to avoid redundant processing.
 - Vector Database Optimization:
@@ -819,6 +805,8 @@ Re-ranker models enhance RAG (Retrieval-Augmented Generation) accuracy by evalua
 - Performance vs. Latency: Use Cross-Encoders/LLMs for maximum accuracy in short-lists; use Bi-Encoders for higher latency requirements.
 - Query/Document Length: Small, fast models (e.g., Voyage AI rerank-2-lite) are best for short text, while more robust models (e.g., Voyage AI rerank-2) handle longer context.
 
+---
+
 ## Instruction-following Reranker
 
 An instruction-following reranker is an advanced component in RAG systems that goes beyond simple semantic similarity to reorder retrieved documents based on explicit user-defined criteria.
@@ -1038,7 +1026,7 @@ Text splitters (or chunkers) are essential in NLP and RAG (Retrieval-Augmented G
 These focus on the physical size of the text segments.
 
 - Character Text Splitter: Splits text into chunks of a fixed character length based on a simple separator like a space or newline. It is fast but may cut sentences mid-thought.
-- Recursive Character Text Splitter: The most popular choice for general text. It uses a hierarchy of separators (e.g., \n\n, \n,  , ) to split text at the most natural boundaries possible before resorting to character counts.
+- Recursive Character Text Splitter: The most popular choice for general text. It uses a hierarchy of separators (e.g., \n\n, \n, , ) to split text at the most natural boundaries possible before resorting to character counts.
 - Token Text Splitter: Splits text based on the number of tokens rather than characters. This is critical for LLM applications (like GPT-4) to ensure chunks don't exceed the model's maximum input capacity.
 
 **2. Structure-Aware Splitters**
@@ -1064,7 +1052,7 @@ Each text splitter follows a specific logic to decide where to cut the text, usu
 **1. Length-Based Splitters**
 
 - Character Splitter: Simply counts the number of characters. Once it hits the chunk_size, it looks for the nearest instance of your chosen separator (like a space or newline) to make the cut.
-- Recursive Character Splitter: This is a smart version that uses a hierarchy of separators (e.g., [\n\n, \n,  , ]). It first tries to split at double newlines (paragraphs). If a paragraph is still larger than the chunk_size, it recursively tries to split that paragraph by single newlines (sentences), then spaces (words), and finally individual characters if necessary.
+- Recursive Character Splitter: This is a smart version that uses a hierarchy of separators (e.g., [\n\n, \n, , ]). It first tries to split at double newlines (paragraphs). If a paragraph is still larger than the chunk_size, it recursively tries to split that paragraph by single newlines (sentences), then spaces (words), and finally individual characters if necessary.
 - Token Splitter: Instead of characters, it uses a tokenizer (like OpenAI's Tiktoken) to convert text into integers. It counts these integers until the limit is reached, then converts them back into text. This ensures the chunk fits perfectly into an LLM's context window.
 
 **2. Structure-Aware Splitters**
@@ -1544,3 +1532,19 @@ Before changing anything, I need to know where the 3-4 seconds are being spent.
 - **Maximize Shared Prefix**: If using a RAG system, cache the system instructions/context so the model only processes the unique user query.
 
 This approach allows us to reduce the bottleneck by either cutting down the work the AI has to do or improving the hardware's capability to do that work faster.
+
+---
+
+## PageIndex
+
+PageIndex is a vectorless RAG framework that replaces traditional vector databases with a hierarchical, tree-based index for retrieving information from long documents. It enables LLMs to navigate documents logically—like a human reading a table of contents—improving accuracy in complex tasks by understanding structure rather than just keyword similarity.
+
+Key Aspects of PageIndex:
+
+• Vectorless RAG: PageIndex builds a semantic tree structure (often JSON) of the document, eliminating the need for vector embeddings and chunk similarity calculations.
+• Hierarchical Structure: It organizes documents into nodes (summaries) that follow the inherent structure, allowing LLMs to search through the tree to find relevant sections, similar to how a human uses a table of contents.
+• Improved Accuracy: It is designed to handle long, complex documents (like financial reports or manuals) by focusing on reasoning-driven navigation, which can yield higher accuracy compared to traditional RAG.
+• Efficient for Large Documents: Instead of arbitrarily chunking text, it manages large content more effectively by mapping sections to specific page ranges (e.g., physical pages 1-5, 6-10).
+• Open-source Tool: Developed by Vectify AI, it offers tools for building these trees and performing reasoning-based retrieval.
+
+This method is specifically designed to overcome the limitations of RAG in handling deep, structured documents by providing better context awareness.
