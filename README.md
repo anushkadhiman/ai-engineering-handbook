@@ -339,24 +339,3 @@ Follow the structured path:
 ## Support
 
 If you find this helpful, consider **starring the repo** — it helps others discover it!
-
----
-
-## Citation
-
-If you use this repository in your work, please cite it as:
-
-**APA Style:**
-Dhiman, A. (2026). _AI Engineering Handbook_. GitHub. https://github.com/anushkadhiman/ai-engineering-handbook
-
-**BibTeX:**
-
-```id="cit01"
-@misc{dhiman2026ai,
-  author       = {Anushka Dhiman},
-  title        = {AI Engineering Handbook},
-  year         = {2026},
-  publisher    = {GitHub},
-  howpublished = {\url{https://github.com/anushkadhiman/ai-engineering-handbook}}
-}
-```
