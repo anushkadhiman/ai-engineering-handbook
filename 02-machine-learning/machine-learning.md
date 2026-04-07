@@ -2,11 +2,7 @@
 
 ## What Is Machine Learning?
 
-- learning patterns from data
-- without explicit rule-based programming
-- uses statistical models + optimization
-- trained using loss minimization
-- generalizes to unseen data
+Machine Learning is a learning patterns from data without explicit rule-based programming. It uses statistical models and optimization. It is trained using loss minimization and generalizes to unseen data.
 
 ---
 
