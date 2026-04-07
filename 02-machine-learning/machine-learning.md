@@ -2,7 +2,7 @@
 
 ## What Is Machine Learning?
 
-Machine Learning is a learning patterns from data without explicit rule-based programming. It uses statistical models and optimization. It is trained using loss minimization and generalizes to unseen data.
+Machine Learning is the process of learning patterns from data without explicit rule-based programming. It uses statistical models and optimization techniques. Models are trained by minimizing a loss function and can generalize to unseen data.
 
 ---
 
@@ -12,8 +12,8 @@ Machine Learning is a learning patterns from data without explicit rule-based pr
 - **Detecting tumors in brain scans**: semantic image segmentation problem
 - **Automatically classifying news articles**: natural language processing (NLP) problem
 - **Automatically flagging offensive comments** on discussion forums: text classification, using the NLP tools.
-- **Summarizing long documents** automatically
-- **Creating a chatbot or a personal assistant**
+- **Summarizing long documents** automatically using LLM models
+- **Creating a chatbot or a personal assistant** with NLP and LLMs
 - **Forecasting your company’s revenue** next year, based on many performance metrics: This is a regression task (i.e., predicting values)
 - **Detecting credit card fraud**: This is anomaly detection, which can be tackled using isolation forests, Gaussian mixture models, or autoencoders
 - **Segmenting clients based on their purchases** so that you can design a different marketing strategy for each segment: This is clustering, which can be achieved using k-means, DBSCAN, and more.
@@ -34,14 +34,17 @@ Machine Learning is a learning patterns from data without explicit rule-based pr
 
 ## Supervised Learning
 
-- **Classification**: Predicts a discrete category or class label. Examples: Detecting spam in emails, medical diagnosis, and image recognition.
-- **Regression**: Predicts a continuous numerical value. Examples: Forecasting stock prices, predicting house prices, and weather forecasting.
+- **Classification**: Predicts a discrete category or class label. Uses algorithms like logastic regression, svm, tree based algorithms like decision tress, random forest and so on. Examples: Detecting spam in emails, medical diagnosis, and image recognition.
+- **Regression**: Predicts a continuous numerical value. Uses algorithm like linear regression, polynomial regression, K-Nearest Neighbors, etc Examples: Forecasting stock prices, predicting house prices, and weather forecasting.
 
 ---
 
 ## Unsupervised Learning
 
-- **Clustering**: Groups similar data points into clusters based on shared attributes. Examples: Customer segmentation for marketing, social network analysis, and image compression.
+- **Clustering**:
+  - Groups similar data points into clusters based on shared attributes.
+  - Uses algorithms like Centroid-Based Clustering like K-Means,Density-Based Clustering like DBSCAN, Distribution-Based Clustering like Gaussian Mixture Model
+  - Examples: Customer segmentation for marketing, social network analysis, and image compression.
 - **Dimensionality Reduction**: Reduces the number of features in a dataset while preserving essential information to make the data more manageable and easier to visualize. Examples: Data visualization, and reducing genetic variables in bioinformatics.
 - **Association**: Discovers rules that describe large portions of the data. Examples: Market basket analysis to identify products frequently bought together, like purchasing bread and butter.
 
@@ -88,7 +91,10 @@ These are critical steps for building robust machine learning models by identify
 
 - **For model selection**: Evaluate models based on performance metrics (e.g., accuracy, precision, F1-score, AUC-ROC); use cross-validation (e.g., k-fold) to avoid overfitting and ensure generalization; balance model complexity with interpretability and avoid choosing a model that is too simple (underfitting) or too complex (overfitting).
 
-- **For Hyperparameter Tuning**: Use techniques like Grid Search: Exhaustively searches through a predefined subset of hyperparameters; Random Search: Randomly samples combinations of hyperparameters, often faster than grid search; Bayesian Optimization: A probabilistic model to find the best hyperparameters, often more efficient than grid/random search.
+- **For Hyperparameter Tuning**: Use techniques like
+  - Grid Search: Exhaustively searches through a predefined subset of hyperparameters;
+  - Random Search: Randomly samples combinations of hyperparameters, often faster than grid search;
+  - Bayesian Optimization: A probabilistic model to find the best hyperparameters, often more efficient than grid/random search.
 
 ---
 
@@ -146,7 +152,7 @@ Key metrics include accuracy, precision, recall, and F1-score for classification
   - Accuracy: The ratio of correctly predicted observations to the total observations.
   - Precision: The ratio of correctly predicted positive observations to total predicted positives, critical when false positives are costly.
   - Recall (Sensitivity): The ratio of correctly predicted positive observations to all actual positives.
-  - F1-Score: The harmonic mean of precision and recall, useful for imbalanced datasets.
+  - F1-Score: The harmonic mean of precision and recall, providing a balanced measure of performance, especially on imbalanced datasets. It accounts for both false positives and false negatives, whereas accuracy can be misleading if one class is rare.
   - Confusion Matrix: A table summarizing true positives, true negatives, false positives, and false negatives.
   - ROC-AUC: Measures the ability of a binary classifier to distinguish between classes across thresholds.
 
@@ -228,8 +234,8 @@ Feature selection is a critical preprocessing step in machine learning that invo
 Methods are generally categorized into three supervised groups and various unsupervised techniques:
 
 - **Filter Methods**: These evaluate features based on their intrinsic properties (like correlation or variance) independently of any machine learning algorithm.
-- **Univariate Examples**: Chi-Square test (categorical data), ANOVA (numerical input/categorical output), and Information Gain.
-- **Multivariate Examples**: Minimal Redundancy Maximal Relevance (mRMR) and Correlation-based Feature Selection (CFS).
+  - **Univariate Examples**: Chi-Square test (categorical data), ANOVA (numerical input/categorical output), and Information Gain.
+  - **Multivariate Examples**: Minimal Redundancy Maximal Relevance (mRMR) and Correlation-based Feature Selection (CFS).
 
 - **Wrapper Methods**: These use a specific model to evaluate subsets of features by training and testing iteratively.
   Techniques: Forward Selection (adding features one-by-one), Backward Elimination (removing features), and Recursive Feature Elimination (RFE).
@@ -265,7 +271,6 @@ The model is trained to minimize the distance between the anchor and the positiv
 
 - CLIP (OpenAI): Connects images and text in a shared space, allowing you to search for images using natural language.
 - SimCLR (Google): A popular framework that uses strong data augmentation and large batch sizes to achieve state-of-the-art visual representations.
-- MoCo (Meta): Uses a momentum encoder to maintain a large dictionary of negative samples without requiring massive GPU memory.
 - NLP Tasks: Used for sentence embeddings, machine translation, and text classification by contrasting original text with augmented versions (e.g., via back-translation or word deletion).
 
 ---
@@ -313,7 +318,7 @@ Understanding why data is missing determines the best imputation strategy:
 - Missing at Random (MAR): The missingness is related to other observed variables but not the missing value itself (e.g., men are less likely to answer questions about emotions).
 - Missing Not at Random (MNAR): The missingness is directly related to the value that is - missing (e.g., high-income individuals not reporting their earnings).
 
-## Common Imputation Techniques
+### Common Imputation Techniques
 
 Techniques are broadly categorized into Univariate (using only the column itself) and Multivariate (using relationships between different columns).
 
@@ -339,10 +344,10 @@ Techniques are broadly categorized into Univariate (using only the column itself
 ## Distributed Training
 
 When a model is too large to fit into the memory (VRAM) of a single GPU, you have crossed from a Data Parallelism requirement (faster training) into a Model Parallelism requirement (memory capacity). The goal is to break the model into pieces or optimize memory usage to allow training to continue.
-Here is a walk-through of the options, starting from the simplest (often insufficient) to advanced techniques, followed by how to choose between them.
+
 Options for Distributed Training
 
-Memory-Saving Techniques (First Line of Defense) Before splitting the model, try reducing the footprint of the existing model.
+- **Memory-Saving Techniques (First Line of Defense):** Before splitting the model, try reducing the footprint of the existing model.
 
 - **Mixed Precision Training (FP16/BF16)**: Uses 16-bit floats instead of 32-bit for most operations. It cuts model memory usage almost in half and speeds up computation on modern GPUs.
 - **Gradient Checkpointing/Activation Recomputation**: Instead of storing all intermediate activations during the forward pass, you recompute them during the backward pass. It trades computation time for memory, allowing much larger models to fit.
@@ -358,7 +363,7 @@ Memory-Saving Techniques (First Line of Defense) Before splitting the model, try
 - These models fail to generalize and perform well in new data. The model has a high variance. The training data size is insufficient, and the model trains on the limited training data for several epochs.
 - Deep neural networks are complex and require a significant amount of time to train, and often lead to overfitting the training set.
 - Incorrect tuning of hyper parameters in the training phase leads to over-observing
-- The training set, resulting in memorizing features.
+- The training set resulting in memorizing features.
 
 **Underfitting**
 Underfitting does not perform well on training and testing data. It is when the model is too simple and cannot create a relationship between the input and the output. We can detected when the training error is very high and the model is unable to learn from the training data. High bias and low variance are the most common indicators of underfitting.
@@ -367,11 +372,12 @@ Underfitting does not perform well on training and testing data. It is when the 
 
 1. Unclean training data containing noise or outliers can be a reason for the model not being able to derive patterns from the dataset.
 2. The model has a high bias due to the inability to capture the relationship between the input examples and the target values. This usually happens in the case of varied datasets.
-3. The model is assumed to be too simple—for example, we train a linear model in complex scenarios. Incorrect hyperparameters tuning often leads to underfitting due to under-observing of the features.
+3. The model is assumed to be too simple—for example, we train a linear model in complex scenarios.
+4. Incorrect hyperparameters tuning often leads to underfitting due to under-observing of the features.
 
 **To overcome this,**
 For underfitting problem, we can build a more complex model,
-For Overfitting model, get add more data and apply regularization like dropouts, l1 and l2 regularization and batch normalization.
+For overfitting model, get add more data and apply regularization like dropouts, l1 and l2 regularization and batch normalization.
 
 ---
 
@@ -379,9 +385,9 @@ For Overfitting model, get add more data and apply regularization like dropouts,
 
 Regularization techniques play a crucial role in machine learning by preventing overfitting and improving the generalization of models.
 
-1. **L1 regularization** is particularly useful when dealing with high-dimensional datasets, where the number of features is large compared to the number of observations. By introducing a penalty term based on the absolute values of the model's parameter coefficients, L1 regularization helps to control the complexity of the model and prevent it from becoming too sensitive to individual observations. The regularization parameter lambda controls the strength of the penalty term. A higher value of lambda will result in more coefficients being set to zero, leading to a sparser model. On the other hand, a lower value of lambda will allow more coefficients to have non-zero values, resulting in a less sparse model.
+**1. L1 regularization** is particularly useful when dealing with high-dimensional datasets, where the number of features is large compared to the number of observations. By introducing a penalty term based on the absolute values of the model's parameter coefficients, L1 regularization helps to control the complexity of the model and prevent it from becoming too sensitive to individual observations. The regularization parameter lambda controls the strength of the penalty term. A higher value of lambda will result in more coefficients being set to zero, leading to a sparser model. On the other hand, a lower value of lambda will allow more coefficients to have non-zero values, resulting in a less sparse model.
 
-2. **L2 regularization**, also known as Ridge regularization, is another type of regularization commonly used in machine learning. Unlike L1 regularization, L2 regularization adds the squared values of the model's parameter coefficients to the loss function. This penalty term encourages small parameter values without setting them to zero, resulting in a less sparse solution. It effectively reduces model complexity and helps to prevent overfitting by shrinking the parameter values. L2 regularization is also less sensitive to outliers and can handle multicollinearity better than L1 regularization. However, L2 regularization does not perform automatic feature selection and tends to retain all features in the model.
+**2. L2 regularization**, also known as Ridge regularization, is another type of regularization commonly used in machine learning. Unlike L1 regularization, L2 regularization adds the squared values of the model's parameter coefficients to the loss function. This penalty term encourages small parameter values without setting them to zero, resulting in a less sparse solution. It effectively reduces model complexity and helps to prevent overfitting by shrinking the parameter values. L2 regularization is also less sensitive to outliers and can handle multicollinearity better than L1 regularization. However, L2 regularization does not perform automatic feature selection and tends to retain all features in the model.
 
 ---
 

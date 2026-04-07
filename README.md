@@ -8,7 +8,7 @@ from **foundations (Math, Python, ML/DL)** to **production (LLMs, RAG, Agents, D
 ## What This Covers
 
 - Maths & Statistics
-- Python for AI
+- Python
 - Machine Learning & Deep Learning
 - Computer Vision
 - NLP & Transformers

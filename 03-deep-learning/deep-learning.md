@@ -9,18 +9,17 @@ Deep learning is a subset of machine learning based on artificial neural network
 - Hierarchy of Features: Data is processed through layers; early layers may identify simple features like edges, while deeper layers recognize complex structures like faces or objects.
 - Scalability: Performance generally improves as the volume of data increases, whereas traditional algorithms may plateau.
 
-**Common Applications**
+**Some of the common applications includes:**
 
 - Computer Vision: Image classification, facial recognition, and object detection.
 - Natural Language Processing (NLP): Speech recognition, language translation, and chatbots.
-- Autonomous Systems: Self-driving cars and drone navigation.
 - Healthcare: Medical image analysis for diagnosing diseases.
 
 **How It Works:**
 
 Deep learning models are trained using large amounts of labeled or unlabeled data, usually through supervised learning, unsupervised learning, or reinforcement learning. Techniques such as backpropagation are used to adjust the weights of the connections between neurons, enabling the model to improve its accuracy over time.
 
-**Deep Learning vs. Machine Learning**
+**What is the difference between deep learning and machine learning?**
 
 - Data Dependence: Deep learning requires massive amounts of data to perform accurately, while traditional machine learning can operate on smaller datasets.
 - Hardware Reliance: Due to the complexity of the networks, deep learning requires powerful hardware (e.g., GPUs) for training.
@@ -64,14 +63,14 @@ Multilayer Perceptron (MLP) is a foundational type of feedforward artificial neu
 **How They Work**
 The operation of an MLP involves two main phases:
 
-- Forward Propagation: Input data moves forward through the network, from the input layer, through the hidden layers, and to the output layer. At each neuron, the inputs are multiplied by their weights, summed, a bias is added, and the result is passed through an activation function to produce an output for the next layer.
-- Backpropagation: The network learns by minimizing the error (or "loss") between its predictions and the actual desired outputs. The backpropagation algorithm calculates the gradient of the loss function with respect to each weight and bias in the network using the chain rule of calculus. These gradients are then used by an optimization algorithm (like Stochastic Gradient Descent or Adam) to iteratively adjust the weights and biases, improving the model's accuracy over time.
+- **Forward Propagation:** Input data moves forward through the network, from the input layer, through the hidden layers, and to the output layer. At each neuron, the inputs are multiplied by their weights, summed, a bias is added, and the result is passed through an activation function to produce an output for the next layer.
+- **Backpropagation:** The network learns by minimizing the error (or "loss") between its predictions and the actual desired outputs. The backpropagation algorithm calculates the gradient of the loss function with respect to each weight and bias in the network using the chain rule of calculus. These gradients are then used by an optimization algorithm (like Stochastic Gradient Descent or Adam) to iteratively adjust the weights and biases, improving the model's accuracy over time.
 
 ---
 
 ## Neural network layers
 
-Neural network layers are organized stacks of artificial neurons that process data, passing information from an input layer through one or more hidden layers to an output layer. These layers perform weighted transformations and feature extraction, enabling models to learn complex, non-linear relationships. Common layer types include Dense (fully connected), Convolutional, Pooling, and Recurrent layers.
+Neural network layers are organized stacks of artificial neurons that process data, passing information from an input layer through one or more hidden layers to an output layer. These layers perform weighted transformations and feature extraction, enabling models to learn complex, non-linear relationships. Some common layer types include Dense (fully connected), Convolutional, Pooling, and Recurrent layers.
 
 **Primary Layer Types**
 
@@ -184,10 +183,10 @@ A pooling layer is a CNN component that downsamples feature maps to reduce spati
 
 **Key Aspects of Pooling Layers**
 
-- Purpose: To reduce the spatial size of the representation, decreasing computational overhead and the number of parameters.
-- Mechanism: It operates independently on every channel of the input, typically using a filter to slide across the input without any learnable weights.
+- **Purpose:** To reduce the spatial size of the representation, decreasing computational overhead and the number of parameters.
+- **Mechanism:** It operates independently on every channel of the input, typically using a filter to slide across the input without any learnable weights.
 
-- Types of Pooling:
+- **Types of Pooling:**
   - Max Pooling: Selects the maximum value from the window, commonly used to detect the most prominent features.
   - Average Pooling: Calculates the average value of the window, providing a smoother, more general representation.
 
@@ -216,8 +215,6 @@ A pooling layer is a CNN component that downsamples feature maps to reduce spati
 
 Backpropagation (backward propagation of error) is the foundational algorithm for training neural networks, efficiently computing gradients of the loss function with respect to weights using the chain rule of calculus. It calculates how much each weight and bias contributes to the total error, moving backward from the output layer to the input layer.
 
-**Key Aspects of Backpropagation:**
-
 - Purpose: It calculates the gradient (direction and magnitude) needed to adjust network parameters to minimize error and improve accuracy.
 - Mechanism: It works in conjunction with optimization algorithms, typically stochastic gradient descent (SGD), to update weights based on the computed gradients.
 - Efficiency: By traversing backward, it avoids redundant calculations, making it much faster than updating parameters individually.
@@ -235,8 +232,6 @@ Backpropagation (backward propagation of error) is the foundational algorithm fo
 ## Learning Rate
 
 The learning rate is a critical hyperparameter (typically 0.1 to 0.00001) that determines the step size for weight updates during training in neural networks, directly controlling how quickly the model minimizes its loss function. It balances training speed and stability: too high a rate causes divergence or overshooting, while too low a rate results in slow, stagnant convergence.
-
-**Key Aspects of Learning Rate:**
 
 - Impact on Training: A well-tuned learning rate ensures efficient convergence to an optimal solution.
 - Too High: The model may overshoot the minimum, causing the loss to fluctuate or diverge.
@@ -261,7 +256,7 @@ The learning rate is a critical hyperparameter (typically 0.1 to 0.00001) that d
 
 Gradient descent is an iterative optimization algorithm used to train neural networks by minimizing the cost function (error) through updating network weights and biases. By calculating the gradient (slope) of the loss function, the algorithm determines the direction of steepest descent and adjusts parameters in the opposite direction. This process continues until the network reaches a minimum loss, often using backpropagation to compute gradients efficiently.
 
-**Key Components and Concepts**
+**Some key components:**
 
 - Cost/Loss Function: Measures the error, representing how far predicted values are from actual values.
 - Gradient: A vector of partial derivatives that points in the direction of steepest ascent; thus, updates move in the opposite (negative) direction.
@@ -329,7 +324,7 @@ In essence, momentum provides a memory of past updates, leading to a more direct
 
 Adagrad (Adaptive Gradient Algorithm) is an optimizer for machine learning, notably deep learning, that improves performance on sparse data by adapting the learning rate for each model parameter. By accumulating past squared gradients, it lowers learning rates for frequently updated parameters and keeps them higher for infrequent ones.
 
-**Key Aspects of Adagrad:**
+**Key Concepts of Adagrad:**
 
 - Adaptive Learning Rate: Instead of a single, fixed learning rate, Adagrad scales the learning rate for each parameter individually based on the history of gradients for that specific parameter.
 - Effective for Sparse Data: Because it assigns larger updates to infrequent parameters and smaller updates to frequent ones, it is ideal for problems involving sparse, high-dimensional data, such as natural language processing (NLP) or recommendation systems.
@@ -345,7 +340,7 @@ Common improvements, such as RMSprop and Adam, were developed to address the pre
 
 RMSProp (Root Mean Square Propagation) is an adaptive learning rate optimization algorithm developed by Geoffrey Hinton to improve neural network training. It addresses AdaGrad's tendency to prematurely decrease learning rates by using an exponentially decaying average of squared gradients, which keeps the learning rate balanced and prevents it from becoming too small.
 
-**Key aspects of RMSProp include:**
+**Key concepts of RMSProp include:**
 
 - Adaptive Learning Rate: It adjusts the learning rate for each parameter individually based on recent gradient magnitudes.
 - Exponentially Weighted Moving Average: Instead of accumulating all past squared gradients like AdaGrad, it focuses on recent trends, allowing for faster convergence in non-convex problems.
@@ -402,9 +397,10 @@ Normalization layers in Neural Networks (NNs) stabilize training by scaling acti
 - RMSNorm: A computationally efficient variant of LayerNorm that uses Root Mean Square (RMS) for normalization.
 
 **Why Use Normalization?**
-Reduces Internal Covariate Shift: Stabilizes the distribution of inputs to subsequent layers as parameters update.
-Accelerates Training: Smoother loss landscapes allow for larger learning rates and faster convergence.
-Improves Generalization: Can act as a regularizer, reducing reliance on dropout.
+
+- Reduces Internal Covariate Shift: Stabilizes the distribution of inputs to subsequent layers as parameters update.
+- Accelerates Training: Smoother loss landscapes allow for larger learning rates and faster convergence.
+- Improves Generalization: Can act as a regularizer, reducing reliance on dropout.
 
 **Where to Use Them:**
 After Linear/Conv Layers, Before Activations: Typically inserted after the linear/convolutional transformation and before the activation function (e.g., ReLU).
@@ -436,17 +432,15 @@ RMSNorm is often applied before or after attention and feed-forward blocks to pr
 
 ## Layer Normalization (LayerNorm)
 
-Layer Normalization (LayerNorm) is a, AI technique that stabilizes and accelerates deep neural network training by normalizing the inputs across the features for each individual data point, rather than across the batch. It reduces internal covariate shift by ensuring activations have a consistent mean and variance,, making it ideal for RNNs, Transformers, and tasks with varying sequence lengths.
+Layer Normalization (LayerNorm) is an AI technique that stabilizes and accelerates deep neural network training by normalizing the inputs across the features for each individual data point, rather than across the batch. It reduces internal covariate shift by ensuring activations have a consistent mean and variance,, making it ideal for RNNs, Transformers, and tasks with varying sequence lengths.
 
-**Key Aspects of Layer Normalization**
+**Key concepts of Layer Normalization**
 
 - Mechanism: For each sample, it computes the mean and variance of all neurons in a single layer and uses these to normalize the activations.
 - Formula: $y = \frac{x - E[x]}{\sqrt{Var[x] + \epsilon}} \cdot \gamma + \beta$, where $\gamma$ and $\beta$ are learnable scaling and shifting parameters, and $\epsilon$ is a small constant for numerical stability.
 - Advantage over Batch Norm: It does not depend on batch size, making it suitable for, online learning and natural language processing (NLP) tasks with variable sequence lengths.
 - Placement: Usually inserted after linear transformations and before non-linear activation functions.
-- Applications: Key component in, Transformer-based models, BERT, and GPT architectures.
-
-Layer Normalization was introduced to address, training, stability issues in, recurrent, neural networks (RNNs).
+- Applications: It plays a key role in Transformer-based models, BERT, and GPT architectures.
 
 ---
 
@@ -459,26 +453,22 @@ Batch Normalization (BN) and Layer Normalization (LN) both stabilize training by
 - Mechanism: Normalizes each channel/neuron across the mini-batch dimension.
 - Pros: Generally faster convergence in computer vision tasks.
 - Cons: Struggles with variable sequence lengths and small batch sizes.
-- Applicability: Best for computer vision (CNNs).
+- Best for computer vision (CNNs).
 
 **Layer Normalization (LN)**
 
 - Mechanism: Normalizes all features within a single data sample independently of other samples.
 - Pros: Works efficiently with small batch sizes, online learning, and RNNs.
 - Cons: Might not be as effective as BN for certain image processing tasks.
-- Applicability: Best for sequential models (Transformers, RNNs).
-
-**Best Usage**
-
-- Use Batch Normalization if you are training image classification models with convolutional layers and have a large batch size.
-- Use Layer Normalization if you are training NLP models, Transformers, or RNNs, or if you need to use a small batch size.
+- Best for sequential models (Transformers, RNNs).
 
 ---
 
 ## Group Normalization (GN)
 
-Group Normalization (GN) is a technique that normalizes feature channels by dividing them into groups, computing the mean and variance for each group within a single training example. It overcomes Batch Normalization limitations with small batch sizes, making it ideal for tasks like object detection and image segmentation where memory constraints are high. [1, 2, 3, 4]  
-Core Concepts of Group Normalization
+Group Normalization (GN) is a technique that normalizes feature channels by dividing them into groups, computing the mean and variance for each group within a single training example. It overcomes Batch Normalization limitations with small batch sizes, making it ideal for tasks like object detection and image segmentation where memory constraints are high.
+
+**Core Concepts of Group Normalization**
 
 - Mechanism: GN divides the channel dimension ($C$) into $G$ groups (a hyperparameter), computing the mean and variance for each group, typically with $G=32$.
 - Independence from Batch Size: Unlike Batch Normalization (BN), GN does not rely on batch statistics, allowing it to perform consistently regardless of batch size.
@@ -529,7 +519,7 @@ An activation function is a mathematical formula applied to a neuron's output, d
 
 The Rectified Linear Unit (ReLU) is the most popular activation function in deep learning, defined as $f(x) = \text{max}(0, x)$. It introduces non-linearity by outputting the input value directly if it is positive, and zero if it is negative. ReLU enables faster training, is computationally efficient, and helps mitigate vanishing gradient problems, making it the default choice for hidden layers in CNNs.
 
-**Key Aspects of ReLU:**
+**Key concepts of ReLU:**
 
 - Formula: $f(x) = \max(0, x)$.
 - Behavior: Positive inputs pass through unchanged; negative inputs are mapped to zero.
@@ -563,14 +553,14 @@ The sigmoid function, specifically the standard logistic function, is an S-shape
 It is frequently used for mapping inputs to binary class probabilities.  
 The sigmoid (logistic) function is great for binary classification as it outputs probabilities (0 to 1) and introduces non-linearity, but its major drawbacks are the vanishing gradient problem, which slows deep network training, and its non-zero-centered output, which can hinder convergence, plus its exponential calculations are computationally expensive, making alternatives like ReLU often preferred in hidden layers.
 
-**Pros (Advantages)**
+**Advantages**
 
 - Probabilistic Output: Maps any input to a range of (0, 1), ideal for binary classification (e.g., yes/no, 0/1).
 - Smooth & Differentiable: Provides a smooth gradient, allowing for efficient gradient-based learning (backpropagation).
 - Non-Linearity: Enables neural networks to learn complex, non-linear relationships in data.
 - Bounded Output: Its output is always between 0 and 1, preventing large activation values from disrupting subsequent layers.
 
-**Cons (Disadvantages)**
+**Disadvantages**
 
 - Vanishing Gradient: Gradients become very small (near zero) for large positive or negative inputs, causing slow learning in deep networks.
 - Not Zero-Centered: Output is always positive, which can lead to inefficient weight updates (zig-zagging) during optimization.
@@ -604,20 +594,15 @@ The hyperbolic tangent function, denoted as $\tanh(x)$, is a sigmoid-shaped, non
 - Non-linearity: It enables networks to model complex, non-linear relationships.
 - Limitation: It can suffer from the vanishing gradient problem when inputs are very large or small, similar to the sigmoid function.
 
-**Common Uses**
-
-- Machine Learning: Activation function in artificial neural networks (ANNs).
-- Physics/Engineering: Describing catenary curves, such as high-voltage transmission lines, and modeling ocean waves.
-
 ---
 
 ## Softmax Function
 
 The softmax function converts a vector of raw, real-valued scores (logits) into a probability distribution, where each value is between 0 and 1 and the sum of all elements equals 1. It is primarily used in the final layer of multi-class classification neural networks.
 
-- Purpose: It maps outputs to a range of \([0,1]\), making them interpretable as probabilities.
+- It maps outputs to a range of \([0,1]\), making them interpretable as probabilities.
 - Mechanism: Exponentiates input values to ensure positivity and divides by the sum of exponents for normalization.
-- Applications: Essential for multi-class classification tasks to determine the likelihood of an input belonging to a specific class.
+- It is essential for multi-class classification tasks to determine the likelihood of an input belonging to a specific class.
 - "Soft" Max: Acts as a differentiable, probabilistic version of the argmax function.
 
 ---
@@ -790,8 +775,6 @@ A Batch Normalization (BN) layer normalizes the inputs to a hidden layer within 
 
 A dropout layer is a powerful regularization technique in neural networks that reduces overfitting by randomly deactivating a subset of neurons during training. By dropping out units (typically 20%-50%) in each forward pass, it prevents neurons from co-depending, forcing the network to learn more robust, independent features.
 
-**Key Aspects of Dropout Layers:**
-
 - Function: It randomly sets input units to 0 with a given frequency (rate) during training, which prevents the network from over-relying on specific neurons.Regularization: It acts as a form of "ensemble" learning, where different, smaller network architectures are trained at each step.
 - Training vs. Inference: Dropout is only active during training. At test/inference time, all neurons are used, but their outputs are scaled by the retention probability (\(1-\text{rate}\)) to match the expected activation magnitude.
 - Hyperparameter: The rate (e.g., 0.5) dictates the percentage of neurons to drop.
@@ -805,7 +788,7 @@ A dropout layer is a powerful regularization technique in neural networks that r
 
 ## AdamW (Adam with Weight Decay)
 
-AdamW (Adam with Weight Decay) is a modified version of the popular Adam optimizer, widely considered the de facto standard for training modern deep learning models like Transformers and Large Language Models (LLMs).
+AdamW is an improved variant of the widely used Adam optimizer that incorporates weight decay. It has become the go-to optimization method for training modern deep learning models, including Transformers and large language models (LLMs).
 
 **The Core Difference: Decoupled Weight Decay**
 While standard Adam combines L2 regularization directly with the gradient update, AdamW decouples them.
@@ -820,8 +803,8 @@ While standard Adam combines L2 regularization directly with the gradient update
 - **Stability for Large Models:** It is particularly robust for training complex architectures where parameters have vastly different gradient scales, such as in Vision Transformers or GPT models.
 
 **How it Works (5-Step Algorithm)**
-Compute Gradient: Calculate the unregularized loss gradient.
 
+- **Compute Gradient:** Calculate the unregularized loss gradient.
 - **Update First Moment:** Track the moving average of gradients (momentum).
 - **Update Second Moment:** Track the moving average of squared gradients (adaptive learning rate).
 - **Bias Correction:** Adjust moments to account for their zero-initialization.
