@@ -1,6 +1,6 @@
 # Probabilty
 
-Probability is a measure of the likelihood that an event will occur, represented as a number between 0 (impossible) and 1 (certain). It is calculated by dividing the number of favorable outcomes by the total number of possible outcomes. Probability is used to quantify uncertainty in various fields like risk management, finance, and weather forecasting.
+Probability is a measure of the likelihood that an event will occur, represented as a number between 0 and 1. It is calculated by dividing the number of favorable outcomes by the total number of possible outcomes. Probability is used to quantify uncertainty in various fields like risk management, finance, and weather forecasting.
 
 **Key Concepts of Probability**
 
@@ -10,7 +10,7 @@ Probability is a measure of the likelihood that an event will occur, represented
 - Events: A specific outcome or subset of the sample space (e.g., rolling an even number: $\{2,4,6\}$).
 - Independent Events: The outcome of one event does not affect the probability of another.
 
-**Common Examples**
+**Some common examples:**
 
 - Coin Toss: A fair coin has a 0.5 or 50% probability of landing on heads.
 - Rolling a Die: The probability of rolling a specific number (e.g., a 4) is $\frac{1}{6}$.
@@ -128,7 +128,7 @@ Variance and standard deviation measure how data spreads around the mean. Varian
 - Sample vs. Population: When calculating sample variance, dividing by $n-1$ (Bessel's correction) instead of $N$ provides an unbiased estimate of the population variance.
 - Zero Variance: If all data points are the same, the variance and standard deviation are zero.
 
-Example Calculation
+**Example Calculation**
 For data set: {5, 5, 9, 9, 9, 10, 5, 10, 10}
 
 1. Mean : $\frac{5+5+9+9+9+10+5+10+10}{9} = 8$
