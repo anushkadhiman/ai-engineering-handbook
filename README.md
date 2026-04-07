@@ -3,11 +3,9 @@
 A structured, end-to-end knowledge base for building modern AI systems —  
 from **foundations (Math, Python, ML/DL)** to **production (LLMs, RAG, Agents, Deployment)**.
 
-> Designed for **fast learning, quick revision, and interview preparation**
-
 ---
 
-## What You'll Learn
+## What This Covers
 
 - Maths & Statistics
 - Python for AI
@@ -300,32 +298,6 @@ Follow the structured path:
 - Quantization (PTQ, QAT)
 - Mixed precision
 - Weight pruning
-
----
-
-## How to Use This Repo
-
-- Browse topic-wise folders
-- Use notes for **quick revision & interview prep**
-- Explore notebooks for hands-on learning
-- Follow the roadmap for structured learning
-
----
-
-## Who Is This For?
-
-- Students preparing for AI/ML roles
-- Engineers transitioning into AI
-- Anyone building real-world AI systems
-- People who want **quick, high-signal notes**
-
----
-
-## Philosophy
-
-- **Fast recall over long theory**
-- **Concept clarity over memorization**
-- **Systems thinking over isolated topics**
 
 ---
 
