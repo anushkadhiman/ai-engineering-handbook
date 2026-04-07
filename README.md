@@ -1,31 +1,362 @@
-# AI Engineering Handbook
+# AI Engineering Handbook 🚀
 
-A structured set of notes and reference docs for building modern ML/AI systems — from fundamentals (math, Python, ML/DL) to production topics (LLMs, RAG, agentic workflows, and deployment).
+A structured, end-to-end knowledge base for building modern AI systems —  
+from **foundations (Math, Python, ML/DL)** to **production (LLMs, RAG, Agents, Deployment)**.
 
-## Contents
+> ⚡ Designed for **fast learning, quick revision, and interview preparation**
 
-| Parts                 | Sections                                                                                 | Content Covered                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `00-maths-statistics` | - Linear Algebra<br>- Probability and Statistics                                         | - Linear Algebra; Vectors; Matrix; Linear Transformation; System of linear equations; Eigenvalues (λ) and eigenvectors (v)<br> - Probabilty; Statistics; Data; Mean, median, and mode; Variance and standard deviation; Covariance and correlation; Law of Large Numbers; Marginal probability; Joint probability; Conditional probability; Bayes' Theorem; Normal Distribution                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `01-python`           | - Python                                                                                 | - Hands-on notebook: python.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `02-machine-learning` | - Machine Learning                                                                       | - What Is Machine Learning?; Applications of Machine Learning; Types of Machine Learning; Supervised Learning; Unsupervised Learning; Batch learning and Online learning; Instance based vs Model based learning; Main Challenges of Machine Learning; Training, Testing and Validation dataset; Hyperparameter Tuning and Model Selection; What is end-to-end machine learning (ML) project?; Classification in machine learning; Performance metrics in machine learning; Precision-Recall Curve; ROC curve; Error analysis; Feature selection; What Is Contrastive Learning?; Data handling in machine learning (ML); Missing value imputation; Distributed Training; Overfitting and Underfitting; Regularization techniques                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `03-deep-learning`    | - Deep Learning<br>- Deep Learning Models                                                | - Deep Learning; Perceptron; Multilayer Perceptron (MLP); Hidden Layers; Dense (or Fully Connected) Layer; Convolutional layer (Conv layer); Receptive Field (RF); Pooling Layer; Backpropagation; Learning Rate; Gradient descent; Batch Gradient Descent; Momentum Gradient Descent; Adagrad; RMSProp; Adam; Normalization layers; RMSNorm; Layer Normalization; Group Normalization; Activation Function; ReLU; Sigmoid Function; Hyperbolic Tangent Function; Softmax Function; Loss functions; Batch Normalization (BN) layer; Dropout Layer; AdamW (Adam with Weight Decay); Decoupled Weight Decay; Vanishing gradient and Exploding gradient problems; Fine-tuning<br> - ResNet (Residual Network); DenseNet (Densely Connected Convolutional Network); Recurrent Neural Network (RNN); U-Net; Long Short-Term Memory (LSTM)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `04-computer-vision`  | - Computer Vision<br>- Image Segmentation<br>- Keypoints Detection<br>- Object Detection | - Computer Vision ; Computer vision tasks; Image processing; Image transformation; Image enhancement; Thresholding; Image noise reduction; Morphological operations; Feature extraction; Edge detection; Corner and interest point detection; Feature descriptors<br>- Image processing<br>- Image transformation<br>- Image segmentation; Segment Anything Model (SAM); SAM 2<br>- Object Detection; YOLO (You Only Look Once); Object tracking; Kalman filter; DeepSORT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `05-nlp`              | - NLP                                                                                    | - Hands-on notebook: NLP<br> - Natural Language Processing (NLP); NLP applications<br>- End-to-end NLP pipeline; End to end NLP pipeline; NLP preprocessing; Feature Engineering in NLP; Word2Vec; Continuous Bag of Words (CBOW); tf-idf; Negative Sampling and Hierarchical Softmax; bm25; GloVe (Global Vectors for Word Representation); fastext; Document-Term Matrix (DTM); N-gram; skipgrams; Data Augmentation in nlp; Text extraction and cleaning; Unicode Normalization, Spelling Correction, System-Specific Error Correction; One-Hot Encoding and bag of words; Distributed Representations in nlp; Naive Bayes Classifier in nlp; Logistic Regression in nlp; Keyphrase extraction; Named Entity Disambiguation (NED) and Named Entity Linking (NEL); Tokenizing Texts for different nlp tasks;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `06-llms`             | - LLM<br>- Transformers<br>- VLM                                                         | - LLM; What is LLM ?; How do LLM work ?; Significance of pre-training and fine-tuning; Embeddings; Encoder-only models; Decoder-only models; The training paradigm of Large Language Models (LLMs); Applications of LLMs:; Responsible Large Language Model (LLM) development; Tokenization in LLMs; LLM-based text classification; LLM output verification; Semantic search in Large Language Models (LLMs); Multimodal Large Language Models (MLLMs); Gradient Accumulation; Context Window; Context Window; LLM decoding strategies; Greedy search (or greedy decoding); Beam search;Temperature Sampling; Top-K sampling; Top-P (Nucleus) Sampling; Dealing with hallucination; Responsible LLM Development; LLM Reasoning; Templating Instruction Data; Post-processing Large Language Model (LLM) output; Data Sampling with a Sliding Window llm; Multi-layer caching; Guardrails AI; Guardrailing Large Language Models (LLMs)<br>- Evaluation<br>- Fine Tuning<br>- LLM Inference Optimization; KV Cache (Key-Value Cache); PagedAttention; Multi-Query Attention; Grouped-Query Attention; Multi-Head Latent Attention; Continuous Batching; Speculative Batching; Prefix Caching; vllm; Knowledge Distillation; llama.cpp and Ollama; Cpu Offloading; <br>- Prompt Engineering; Advanced prompt engineering; Complexity of a Prompt; In-Context Learning (ICL); Chain prompting; Reasoning with Generative Models (GenAI); Chain of thought (CoT) prompting; Self-consistency; Tree of Thoughts (ToT); Zero-shot prompting; Few-shot prompting; Best Practice Prompting; Prompt caching<br>- Fine-tuning; Parameter-efficient fine-tuning (PEFT); LoRA and QLoRA; Prompt tuning; Prefix Tuning; <br>- Transformers; Transformer model; Attention mechanisms in Transformer models; Positional encodings; BERT (Bidirectional Encoder Representations from Transformers); Next Sentence Prediction (NSP); RoBERTa and ALBERT; Segment Embeddings; DistilBERT; Transformers as Feature Extractors; Scaling Transformers<br>- Vision-Language Model; CLIP (Contrastive Language-Image Pre-training); Swin Transformer; Masked Autoencoders (MAE); DETR (DEtection TRansformer) |
-| `07-diffusion-model`  | - Diffusion Models                                                                       | - Mathematical intuition; Variance schedule; Assumptions; Time Embedding; Controlnet; Stable Diffusion; ComfyUI                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `08-rag`              | - RAG<br>- RAG Systems                                                                   | - RAG; Chunk splitters; Character splitting; Recursive character splitting; TokenTextSplitter; Chunk overlap; Choosing between large and small chunk sizes; Choosing the right Large Language Model (LLM); Key hyperparameters; Reasoning LLMs; Handling ambiguous or vague user queries; Minimizing RAG system latency; Common RAG chunking methods; Choosing the right chunking method; Poor performance of a RAG retriever; Common RAG retrieval approaches; Common challenges in RAG retrieval; Key metrics for evaluating RAG retrieval quality; Embeddings; Choosing the right embedding model for RAG; VectorDB (Vector Database); Approximate Nearest Neighbor (ANN) search algorithms; Distance Metrics used for similarity search in vector databases; Keyword-based (sparse) and semantic (dense) retrieval in RAG systems; Hybrid search; Balancing relevance and diversity in RAG; Sparse embeddings; Fine-tuning embedding models; Scalar and Binary quantization; Re-ranker models; Instruction-following Reranker; Bi-encoders; Re-rankers challenges; Reducing re-ranking overhead; Rerankers benefits; Mean Reciprocal Rank (MRR); Rerankers in RAG evaluation; Different Types of Text splitters; Reciprocal Rank Fusion; GraphRAG; Synthetic Dataset Generation using RAG; Late interaction models; knowledge graph; Hierarchical Navigable Small World (HNSW); Making retrieval faster from vector databases; PageIndex                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `09-agentic-ai`       | - Agentic AI<br>- LangChain                                                              | -Agentic AI; Prompt chaining; Routing; Parallelization; Reflection; Tool use (function calling); Planning; Multi-agent system; Memory Management; Learning and Adaptation; Goal Setting and Monitoring; Exceptional Handling; Reasoning Techniques; Guardrail and safety techniques; Evaluation and monitoring; Advanced prompting for agentic AI; Context drift; Context window overflow; Prompt injection; Designing an AI application for high user traffic; Managing context between AI agents; Fault-tolerant AI agents; Productionizing an AI agent; create a custom AI agent; Challenges in developing multi-agent systems; Challenges of multi ai agents in production; Guardrails for agentic systems; Saving costs in a multi-agent system; Handling user interruptions in a multi-agent system (MAS); Handling infinite loops; Pydantic; Evaluating Multi-agent systems (MAS) in production; Memory Management for Long Conversations; Inference Observability, Metrics, and Fallbacks                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `10-rl`               | - Reinforcement Learning                                                                 | - Reinforcement learning (RL);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `11-deployment`       | - Deployment<br> - FastAPI<br>- Quantization                                             | - Deployment<br> - FastAPI; Routing and request handling; Defining Routes and HTTP Methods; Query Parameters; Status Codes and HTTP Exceptions; FastAPI vs Flask vs Django; Role of Pydantic in FastAPI; Asynchronous Programming in FastAPI; Database Integration; Security and Authentication; Automatic Interactive API Documentation; Organizing Code with API Routers; Background Tasks and WebSockets; Testing and Deploying FastAPI; <br> - Quantization; Post-Training Quantization (PTQ); Quantization-Aware Training (QAT); Mixed Precision Training; Weight Pruning Methods                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+---
 
-## How to Use This Repo
+## 🧠 What You'll Learn
 
-- Browse the Markdown files directly in your editor (VS Code works great).
-- Use the numbered folders as a rough learning path (fundamentals → advanced → production).
-- Open the notebooks (`.ipynb`) for hands-on explorations where available.
+- 📐 Maths & Statistics
+- 🐍 Python for AI
+- 🤖 Machine Learning & Deep Learning
+- 👁️ Computer Vision
+- 🗣️ NLP & Transformers
+- 🧩 LLMs, RAG & Agentic AI
+- ⚙️ FastAPI & Deployment
+- 🎯 Real-world AI system design
 
-## Notes
+---
 
-- This repo is primarily a **living handbook**: sections may be expanded, reorganized, or rewritten over time.
-- If you spot mistakes or want to add content, feel free to open a PR.
+## 🗺️ Learning Roadmap
+
+Follow the structured path:
+
+---
+
+## 📚 Contents
+
+---
+
+### 🟢 00 — Maths & Statistics
+
+**Sections:** Linear Algebra, Probability, Statistics
+
+**Topics Covered:**
+
+- Linear Algebra, Vectors, Matrices
+- Linear Transformations
+- Systems of Linear Equations
+- Eigenvalues (λ) & Eigenvectors (v)
+- Probability & Statistics fundamentals
+- Mean, Median, Mode
+- Variance & Standard Deviation
+- Covariance & Correlation
+- Law of Large Numbers
+- Marginal, Joint, Conditional Probability
+- Bayes’ Theorem
+- Normal Distribution
+
+---
+
+### 🟢 01 — Python
+
+**Sections:** Python
+
+**Topics Covered:**
+
+- Core Python
+- Hands-on notebooks
+- NumPy, Pandas basics
+
+---
+
+### 🔵 02 — Machine Learning
+
+**Sections:** Machine Learning
+
+**Topics Covered:**
+
+- What is Machine Learning
+- Applications of ML
+- Types of ML (Supervised, Unsupervised, Reinforcement)
+- Batch vs Online Learning
+- Instance-based vs Model-based Learning
+- ML Pipeline & End-to-End Projects
+- Training, Validation, Testing
+- Hyperparameter Tuning
+- Classification & Performance Metrics
+- Precision-Recall Curve, ROC Curve
+- Error Analysis
+- Feature Engineering & Selection
+- Contrastive Learning
+- Data Handling & Missing Value Imputation
+- Distributed Training
+- Overfitting & Underfitting
+- Regularization Techniques
+
+---
+
+### 🔵 03 — Deep Learning
+
+**Sections:** Deep Learning, Models
+
+**Topics Covered:**
+
+- Perceptron, MLP, Hidden Layers
+- Dense (Fully Connected) Layers
+- Convolutional Layers & Receptive Field
+- Pooling Layers
+- Backpropagation
+- Learning Rate & Gradient Descent
+- Optimizers: SGD, Momentum, Adagrad, RMSProp, Adam, AdamW
+- Normalization: BatchNorm, LayerNorm, RMSNorm, GroupNorm
+- Activation Functions: ReLU, Sigmoid, Tanh, Softmax
+- Loss Functions
+- Dropout
+- Vanishing & Exploding Gradients
+- Fine-tuning
+
+**Models:**
+
+- ResNet, DenseNet
+- RNN, LSTM
+- U-Net
+
+---
+
+### 🟣 04 — Computer Vision
+
+**Sections:** CV, Segmentation, Detection
+
+**Topics Covered:**
+
+- Computer Vision fundamentals
+- Image Processing & Transformations
+- Image Enhancement & Noise Reduction
+- Thresholding & Morphological Operations
+- Feature Extraction
+- Edge Detection
+- Corner & Interest Point Detection
+- Feature Descriptors
+
+**Advanced:**
+
+- Image Segmentation
+- Segment Anything Model (SAM, SAM2)
+- Object Detection (YOLO)
+- Object Tracking (Kalman Filter, DeepSORT)
+
+---
+
+### 🟣 05 — NLP
+
+**Sections:** NLP
+
+**Topics Covered:**
+
+- NLP fundamentals & applications
+- End-to-End NLP Pipeline
+- Text Preprocessing & Cleaning
+- Feature Engineering
+- Word2Vec, CBOW
+- TF-IDF, BM25
+- GloVe, FastText
+- N-grams, Skip-grams
+- Data Augmentation
+- Document-Term Matrix
+- Tokenization strategies
+- Named Entity Linking (NEL) & Disambiguation (NED)
+- Naive Bayes, Logistic Regression for NLP
+
+---
+
+### 🔴 06 — LLMs & Transformers
+
+**Sections:** LLMs, Transformers, VLMs
+
+**Topics Covered:**
+
+- LLM fundamentals & training paradigm
+- Pre-training vs Fine-tuning
+- Tokenization & Embeddings
+- Encoder-only vs Decoder-only models
+- Context Window & Scaling
+- LLM Applications & Evaluation
+- Hallucination handling & Guardrails
+
+**Inference Optimization:**
+
+- KV Cache, PagedAttention
+- Multi-Query & Grouped Attention
+- Continuous Batching
+- Speculative Decoding
+- Prefix Caching
+- llama.cpp, Ollama, vLLM
+- CPU Offloading
+
+**Prompt Engineering:**
+
+- Zero-shot, Few-shot
+- Chain-of-Thought (CoT)
+- Tree of Thoughts (ToT)
+- Self-consistency
+- Prompt Caching
+
+**Fine-Tuning:**
+
+- PEFT, LoRA, QLoRA
+- Prompt Tuning, Prefix Tuning
+
+**Transformers:**
+
+- Attention Mechanism
+- Positional Encoding
+- BERT, RoBERTa, ALBERT, DistilBERT
+- Scaling Transformers
+
+**Vision-Language Models:**
+
+- CLIP
+- Swin Transformer
+- MAE
+- DETR
+
+---
+
+### 🔴 07 — Diffusion Models
+
+**Sections:** Diffusion
+
+**Topics Covered:**
+
+- Mathematical intuition
+- Variance scheduling
+- Time embeddings
+- ControlNet
+- Stable Diffusion
+- ComfyUI
+
+---
+
+### 🔴 08 — RAG Systems
+
+**Sections:** RAG
+
+**Topics Covered:**
+
+- Chunking strategies & splitters
+- Embeddings & vector databases
+- ANN search (HNSW, etc.)
+- Hybrid search (sparse + dense)
+- Retrieval optimization
+- Rerankers & evaluation metrics (MRR)
+- GraphRAG
+- Synthetic dataset generation
+- Retrieval latency optimization
+
+---
+
+### 🔴 09 — Agentic AI
+
+**Sections:** Agents
+
+**Topics Covered:**
+
+- Prompt chaining & routing
+- Tool use (function calling)
+- Planning & reasoning
+- Multi-agent systems
+- Memory management
+- Context handling & drift
+- Guardrails & safety
+- Production challenges
+- Fault tolerance & monitoring
+
+---
+
+### 🟡 10 — Reinforcement Learning
+
+**Sections:** RL
+
+**Topics Covered:**
+
+- Reinforcement Learning fundamentals
+
+---
+
+### 🟡 11 — Deployment
+
+**Sections:** FastAPI, Quantization
+
+**Topics Covered:**
+
+**FastAPI:**
+
+- Routing & request handling
+- Query parameters & status codes
+- Async programming
+- Pydantic
+- Database integration
+- Authentication & security
+- API documentation
+- Background tasks & WebSockets
+- Testing & deployment
+
+**Optimization:**
+
+- Quantization (PTQ, QAT)
+- Mixed precision
+- Weight pruning
+
+---
+
+## ⚡ How to Use This Repo
+
+- 📂 Browse topic-wise folders
+- 🧠 Use notes for **quick revision & interview prep**
+- 📓 Explore notebooks for hands-on learning
+- 🔁 Follow the roadmap for structured learning
+
+---
+
+## 🎯 Who Is This For?
+
+- Students preparing for AI/ML roles
+- Engineers transitioning into AI
+- Anyone building real-world AI systems
+- People who want **quick, high-signal notes**
+
+---
+
+## 🧩 Philosophy
+
+- ⚡ **Fast recall over long theory**
+- 🧠 **Concept clarity over memorization**
+- 🏗️ **Systems thinking over isolated topics**
+
+---
+
+## 📌 Notes
+
+- This is a **living handbook** — continuously updated
+- Contributions, suggestions, and improvements are welcome
+
+---
+
+## ⭐ Support
+
+If you find this helpful, consider **starring the repo** — it helps others discover it!
+
+---
+
+## 📖 Citation
+
+If you use this repository in your work, please cite it as:
+
+**APA Style:**
+Dhiman, A. (2026). _AI Engineering Handbook_. GitHub. https://github.com/anushkadhiman/ai-engineering-handbook
+
+**BibTeX:**
+
+```id="cit01"
+@misc{dhiman2026ai,
+  author       = {Anushka Dhiman},
+  title        = {AI Engineering Handbook},
+  year         = {2026},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/anushkadhiman/ai-engineering-handbook}}
+}
+```
