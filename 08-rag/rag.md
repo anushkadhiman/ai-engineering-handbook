@@ -1368,33 +1368,30 @@ The process is divided into three main phases: independent encoding, indexing (f
 
 ---
 
-## knowledge graph
+## Knowledge Graph
 
 A knowledge graph is a structured, network-based representation of information that connects real-world entities (such as people, places, and concepts) through explicitly defined relationships. Unlike traditional databases that store data in rigid tables, knowledge graphs prioritize the connections between data points, transforming raw data into a network of meaning that both humans and machines can understand and reason about.
 
-### Core Technical Components
+**Core Technical Components**
 
-### Knowledge graphs are typically built using three primary elements
+Knowledge graphs are typically built using three primary elements
 
 - Nodes (Entities): Represent the things in a domain, such as a person, product, company, or event.
 - Edges (Relationships): The lines connecting nodes that define how they interact (e.g., Alice works at Company X).
 - Labels/Properties: Attributes that provide extra detail about nodes and edges, such as a person's birthdate or a relationship's start date.
 - Many knowledge graphs utilize triples—a subject-predicate-object format (e.g., Paris -> isCapitalOf -> France)—to create these connections. This format is foundational to the Resource Description Framework (RDF), a standard for interchanging interconnected data.
 
-### The Role of Ontologies
-
+**The Role of Ontologies**
 An ontology serves as the blueprint or contract for a knowledge graph. While a knowledge graph contains actual data instances (the what is happening), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the what does it mean). For example, in a medical knowledge graph, the ontology defines classes like Pathogen and Drug, while the knowledge graph contains specific instances like COVID-19 and Remdesivir.
 
-### Key Benefits
+**Key Benefits**
 
 - Grounding AI: Knowledge graphs provide context for Large Language Models (LLMs), significantly reducing hallucinations by grounding AI responses in verified business facts and relationships.
 - Breaking Data Silos: They can unify disparate data sources across an organization without needing to replicate or move the original data.
 - Advanced Reasoning: Because the data is interconnected, systems can infer new facts that are not explicitly stated by following paths through the graph.
 - Enhanced Search: They enable semantic search, allowing engines like Google to understand user intent rather than just matching keywords.
 
-### Real-World Examples
-
-### Organization Knowledge Graph Application
+**Real-World Examples**
 
 - Google Powers Knowledge Panels to provide instant facts about entities and understand query context.
 - Amazon Connects products, reviews, and customer behavior to power intelligent recommendation engines.
@@ -1507,7 +1504,7 @@ Here is a structured, four-step approach to achieve this:
 Before changing anything, I need to know where the 3-4 seconds are being spent.
 
 - **Time To First Token (TTFT)**: Measures how long it takes for the model to process the prompt and start generating the first word.
-- Time Per Output Token (TPOT) / Inter-token Latency (ITL): Measures the speed of token generation, crucial for streaming perception.
+- **Time Per Output Token (TPOT) / Inter-token Latency (ITL):** Measures the speed of token generation, crucial for streaming perception.
 - **API/Network Latency**: Time taken for the request to travel from the user to the server and back.
 - **Tooling**: Use profiling tools (e.g., Datadog, Prometheus, LangSmith) to analyze the full request lifecycle.
 
@@ -1539,12 +1536,27 @@ This approach allows us to reduce the bottleneck by either cutting down the work
 
 PageIndex is a vectorless RAG framework that replaces traditional vector databases with a hierarchical, tree-based index for retrieving information from long documents. It enables LLMs to navigate documents logically—like a human reading a table of contents—improving accuracy in complex tasks by understanding structure rather than just keyword similarity.
 
-Key Aspects of PageIndex:
+**Key Aspects of PageIndex:**
 
-• Vectorless RAG: PageIndex builds a semantic tree structure (often JSON) of the document, eliminating the need for vector embeddings and chunk similarity calculations.
-• Hierarchical Structure: It organizes documents into nodes (summaries) that follow the inherent structure, allowing LLMs to search through the tree to find relevant sections, similar to how a human uses a table of contents.
-• Improved Accuracy: It is designed to handle long, complex documents (like financial reports or manuals) by focusing on reasoning-driven navigation, which can yield higher accuracy compared to traditional RAG.
-• Efficient for Large Documents: Instead of arbitrarily chunking text, it manages large content more effectively by mapping sections to specific page ranges (e.g., physical pages 1-5, 6-10).
-• Open-source Tool: Developed by Vectify AI, it offers tools for building these trees and performing reasoning-based retrieval.
+- Vectorless RAG: PageIndex builds a semantic tree structure (often JSON) of the document, eliminating the need for vector embeddings and chunk similarity calculations.
+- Hierarchical Structure: It organizes documents into nodes (summaries) that follow the inherent structure, allowing LLMs to search through the tree to find relevant sections, similar to how a human uses a table of contents.
+- Improved Accuracy: It is designed to handle long, complex documents (like financial reports or manuals) by focusing on reasoning-driven navigation, which can yield higher accuracy compared to traditional RAG.
+- Efficient for Large Documents: Instead of arbitrarily chunking text, it manages large content more effectively by mapping sections to specific page ranges (e.g., physical pages 1-5, 6-10).
+- Open-source Tool: Developed by Vectify AI, it offers tools for building these trees and performing reasoning-based retrieval.
 
 This method is specifically designed to overcome the limitations of RAG in handling deep, structured documents by providing better context awareness.
+
+---
+
+## GraphRAG
+
+GraphRAG (Graph Retrieval-Augmented Generation) enhances LLMs by combining semantic search with knowledge graphs, allowing the model to understand relationships between data points rather than just retrieving isolated text snippets. It works by indexing text to build a structured graph of entities and relationships, using this structure to provide richer context for, improving accuracy and reducing hallucinations, especially for complex, multi-hop queries.
+
+**GraphRAG Process:**
+
+- Indexing & Extraction: The system processes raw text to extract entities, relationships, and key claims, building a knowledge graph.
+- Community Detection: It uses algorithms (like Leiden) to detect clusters ("communities") of densely connected nodes, generating summaries at different hierarchical levels for a holistic view of the data.
+- Retrieval & Reasoning: When a user asks a question, GraphRAG performs a dual-channel search: it retrieves relevant text via embeddings and traverses the graph to find connected entities.
+- Generation: The structured graph data (relationships and community summaries) is used to prompt the LLM, resulting in answers that are grounded in structured, relational context rather than just keyword matches.
+
+GraphRAG is particularly effective for navigating complex relationships, answering global questions about a dataset, and improving AI reasoning over private data.

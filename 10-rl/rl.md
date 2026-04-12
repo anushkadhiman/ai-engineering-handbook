@@ -32,3 +32,23 @@ Reinforcement learning agents learn from experience, similar to human learning, 
 - Sample Inefficiency: Requires massive amounts of data and interaction to learn.
 - Stability: High sensitivity to hyperparameters, leading to training instability.
 - Reward Design: Crafting appropriate reward functions is difficult, as poor design can lead to undesired behaviors.
+
+---
+
+## Proximal Policy Optimization (PPO)
+
+Proximal Policy Optimization (PPO) is a state-of-the-art, policy-gradient reinforcement learning algorithm that balances ease of implementation, sample efficiency, and training stability. It limits policy updates using a clipping mechanism, preventing large, destabilizing changes. PPO is the default algorithm at OpenAI, commonly used for robotics and language model alignment (RLHF).
+
+**Key Aspects of PPO:**
+
+- On-Policy Algorithm: PPO directly updates the policy and requires new data for every update cycle.
+- Clipping Mechanism: Instead of complex Trust Region Policy Optimization (TRPO), PPO uses a clipped surrogate objective to keep the new policy close to the old one.
+- Actor-Critic Architecture: Typically, an Actor (policy network) decides the action, and a Critic (value network) estimates the value of the current state.
+- Versatility: Works efficiently with both discrete and continuous action spaces.
+
+**How PPO Works (The Clipped Objective):**
+PPO tries to maximize the following objective, which consists of three parts:
+
+- Policy Loss (Clipped): Limits how much the policy can change, preventing performance collapse.
+- Value Loss: Optimizes the critic to better estimate future rewards.
+- Entropy Bonus: Encourages exploration by preventing the policy from becoming too deterministic too quickly.

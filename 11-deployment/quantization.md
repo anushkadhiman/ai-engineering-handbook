@@ -9,29 +9,30 @@ Quantization is an optimization technique that reduces the precision of a model'
 - **Energy Efficiency:** Lower precision requires fewer clock cycles and less power, which is critical for battery-powered devices.
 
 **Core Types of Quantization**
-Practitioners generally choose between two main workflows:
+We generally choose between two main workflows:
 
 - **Post-Training Quantization (PTQ):** Applied to a model after it has been fully trained. It's fast and doesn't require the original training pipeline, making it the most common choice for deploying pre-trained models.
-- **Dynamic:** Quantizes weights once, but computes activation ranges "on the fly" during inference.
-- **Static:** Uses a small "calibration" dataset to pre-calculate activation ranges for even faster execution.
+  - **Dynamic:** Quantizes weights once, but computes activation ranges "on the fly" during inference.
+  - **Static:** Uses a small "calibration" dataset to pre-calculate activation ranges for even faster execution.
 - **Quantization-Aware Training (QAT):** Simulates quantization effects during the training or fine-tuning process. The model "learns" to compensate for the lost precision, typically resulting in higher final accuracy than PTQ.
-  Popular Modern Techniques
-- **GPTQ:** A popular method for LLMs that quantizes weight matrices layer-by-layer to 4-bit precision with minimal accuracy loss.
-- **AWQ (Activation-aware Weight Quantization):** Identifies and protects "salient" weights (those most important for performance) from heavy quantization based on activation patterns.
-- **QLoRA:** Combines 4-bit quantization with Low-Rank Adaptation (LoRA), allowing you to fine-tune massive models on a single GPU.
+  Here are some popular modern techniques:
+  - **GPTQ:** A popular method for LLMs that quantizes weight matrices layer-by-layer to 4-bit precision with minimal accuracy loss.
+  - **AWQ (Activation-aware Weight Quantization):** Identifies and protects "salient" weights (those most important for performance) from heavy quantization based on activation patterns.
+  - **QLoRA:** Combines 4-bit quantization with Low-Rank Adaptation (LoRA), allowing you to fine-tune massive models on a single GPU.
 
 Most major frameworks provide built-in support for these workflows:
 
 - PyTorch: Offers a comprehensive Quantization API for PTQ and QAT.
-  TensorFlow / TFLite: Specifically optimized for deploying mobile and edge models via the Model Optimization Toolkit.
+- TensorFlow / TFLite: Specifically optimized for deploying mobile and edge models via the Model Optimization Toolkit.
 - NVIDIA TensorRT: A high-performance inference SDK that uses symmetric quantization to maximize GPU throughput.
 - Hugging Face: Their bitsandbytes library is the industry standard for loading large models in 8-bit or 4-bit mode with just one line of code.
 
 ---
 
-## Quantization
+## Types of Quantization
 
 Quantization can be categorized by when it occurs, how it maps values, and its granularity.
+
 **1. By Timing (When it's applied)**
 
 - **Post-Training Quantization (PTQ):** Applied to a model after it is fully trained. It is fast and requires little data but can lead to accuracy loss.
@@ -79,7 +80,7 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 **Key Benefits**
 
 - **Ease of Use:** You don't need the original training code, high-end GPU clusters, or the full dataset. You only need the final model and a few data samples.
-  **Significant Compression:** Moving from 32-bit (FP32) to 8-bit (INT8) reduces the model's memory footprint by 4x.
+- **Significant Compression:** Moving from 32-bit (FP32) to 8-bit (INT8) reduces the model's memory footprint by 4x.
 - **Hardware Compatibility:** Many low-power chips (like those in phones or IoT devices) are optimized specifically for integer math rather than floating-point math.
 
 **Limitations**
@@ -94,17 +95,17 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 Quantization-Aware Training (QAT) is a method where a model is trained or fine-tuned while simulating the effects of low-precision storage (like INT8).
 Unlike Post-Training Quantization (PTQ), which converts a model after it’s finished, QAT introduces quantization errors during the training process so the model can learn to compensate for them.
 
-**How It Works: "Fake Quantization"**
+**How It Works: (Fake Quantization)**
 Since actual integer math isn't differentiable (you can't do standard calculus on discrete integers), QAT uses fake quantization modules:
-Forward Pass: Weights and activations are rounded to low-precision values (e.g., INT8) to simulate how the model will behave on edge hardware.
 
+- **Forward Pass:** Weights and activations are rounded to low-precision values (e.g., INT8) to simulate how the model will behave on edge hardware.
 - **Loss Calculation:** The model sees the "damage" caused by rounding and calculates its error based on these degraded values.
 - **Backward Pass:** The gradients are calculated using high-precision floats (FP32) using a trick called the Straight-Through Estimator (STE). This allows the model to update its weights in a way that minimizes the rounding error.
 
 **Why Use QAT?**
 
 - **Superior Accuracy:** It is the "gold standard" for quantization. Because the model "practices" being low-precision during training, it usually suffers almost zero accuracy loss compared to the original FP32 model.
-  Essential for Low Bit-Widths: If you are trying to compress a model down to 4-bit or 2-bit, PTQ often fails completely. QAT is usually required to keep the model functional at these extreme levels.
+- **Essential for Low Bit-Widths:** If you are trying to compress a model down to 4-bit or 2-bit, PTQ often fails completely. QAT is usually required to keep the model functional at these extreme levels.
 - **Robustness:** It handles "outlier" weights better than PTQ because the model can shift its weight distribution to avoid values that would be clipped or rounded poorly.
 
 **The Trade-offs**
