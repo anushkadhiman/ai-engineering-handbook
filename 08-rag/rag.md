@@ -23,21 +23,21 @@ RAG operates in two main phases:
 
 Chunk splitters in RAG break large documents into smaller, manageable, and semantic segments (chunks) to optimize Retrieval-Augmented Generation (RAG) performance. Overlapping, typically 10–20% of the chunk size, ensures that context is not lost at the boundaries, allowing the LLM to understand information spanning across chunks, thus reducing hallucinations and maintaining continuity.
 
-**Key Chunking Concepts and Strategies**
+**Here are some chunking concepts and strategies**
 
 - **Chunk Size:** The number of characters or tokens per chunk (commonly 512–1000).
 - **Chunk Overlap:** A set number of characters/tokens from the end of a previous chunk added to the start of the next (e.g., 50-100 tokens).
 - **RecursiveCharacterTextSplitter:** A widely used LangChain method that breaks text based on a hierarchy of characters (paragraphs \n\n, then sentences \n, then spaces ) to keep related text together.
 - **Semantic Chunking:** A more advanced approach that splits text based on meaning rather than fixed lengths, ideal for complex, thematic, or academic documents.
 
-**Benefits of Overlapping**
+**Here are some benefits of overlapping**
 
 - **Context Retention:** Prevents losing information when a sentence or topic is split precisely at the chunk boundary.
 - **Improved Retrieval:** Ensures that semantic meaning remains consistent, enhancing the retrieval of relevant information for the prompt.
 
-**Commonly Used Splitters (LangChain)**
+**Here are some commonly used splitters (LangChain)**
 
-- **CharacterTextSplitter:** Splits by a specific, simple character (e.g., ).
+- **CharacterTextSplitter:** Splits by a specific, simple character .
 - **RecursiveCharacterTextSplitter:** The standard for most use cases, balancing semantic coherence with size constraints.
 - **TokenTextSplitter:** Splits based on LLM token counts rather than characters.
 
@@ -160,7 +160,7 @@ Large chunks retain more surrounding information, ensuring the semantic meaning 
 - Cons: Increased noise (irrelevant information) that can confuse the LLM. The embedding might also become too generic (coarse) to distinguish between similar topics.
 - Best for: Summarization, narrative analysis, and finding broad themes.
 
-**Key Considerations for Choosing**
+**Here are some key considerations for choosing**
 
 - Nature of Data: Structured, concise documents (FAQs) prefer smaller chunks. Unstructured, long-form, or complex documents (legal/academic) require larger chunks to maintain context.
 - Model Limitations: The chunk size must not exceed the maximum token limit of the embedding model.

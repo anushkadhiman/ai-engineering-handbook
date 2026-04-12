@@ -2,7 +2,7 @@
 
 LangChain is an open-source development framework designed to simplify creating applications using Large Language Models (LLMs) like GPT-4. It connects LLMs to external data sources, APIs, and computation tools to build complex, context-aware, and agentic workflows in Python or JavaScript. Developed by Harrison Chase in October 2022, LangChain has become a dominant tool for building AI-driven applications like chatbots, document analyzers, and autonomous agents.
 
-**Key Features and Components**
+**So, what are the key features and components?**
 
 - **Components/Modules:** Modular abstractions for working with LLMs, including prompts, models, and indexes.
 - **Chains:** Sequences of actions that link LLMs with other tools (e.g., prompt + model + parser).
@@ -12,7 +12,7 @@ LangChain is an open-source development framework designed to simplify creating 
 
 ---
 
-## What are MultiQueryRetriever and MultiVectorRetriever
+## What are MultiQueryRetriever and MultiVectorRetriever?
 
 Both retrievers are advanced LangChain techniques designed to overcome the limitations of standard vector search, but they focus on different parts of the process: one optimizes the query, while the other optimizes the documents.
 
@@ -44,21 +44,23 @@ Both retrievers are advanced LangChain techniques designed to overcome the limit
 
 These two retrievers are specialized tools for handling metadata filtering and time-sensitive information, respectively.
 
-1. Self-Querying Retriever
-   The Self-Querying Retriever addresses the semantic search limitation where a model might find relevant text but ignore specific constraints (like from 2023 or rating > 4).
-   How it works: It uses an LLM to self-query by translating a natural language question into a structured query. It splits the user's input into two parts:
-   A Search Term: Used for semantic vector search.
-   A Metadata Filter: Used to filter the database (e.g., filtering by genre or year).
-   Example: If you ask, What are movies about space released after 2010?, the LLM creates a filter { year: { $gt: 2010 } } and searches the vector store only for space movies within that subset.
-   Best For: Datasets with rich metadata (products, movie databases, structured logs) where users often ask for specific subsets.
+**1. Self-Querying Retriever**
+The Self-Querying Retriever addresses the semantic search limitation where a model might find relevant text but ignore specific constraints (like from 2023 or rating > 4).
 
-2. Time-Weighted Vector Store Retriever
-   The Time-Weighted Retriever is designed for applications where freshness matters as much as relevance.
-   How it works: It calculates a combined score for each document based on two factors:
-   Semantic Similarity: How well the document matches the query.
-   Recency: How long ago the document was last accessed or created.
-   The Decay Formula: It uses a decay rate (often exponential). Information that hasn't been accessed in a long time fades away, while frequently or recently accessed info stays top of mind.
-   Best For: Memory for AI agents, customer support bots, or news feeds where old information might be outdated or irrelevant to current events.
+- How it works: It uses an LLM to self-query by translating a natural language question into a structured query. It splits the user's input into two parts:
+- A Search Term: Used for semantic vector search.
+- A Metadata Filter: Used to filter the database (e.g., filtering by genre or year).
+- Example: If you ask, What are movies about space released after 2010?, the LLM creates a filter { year: { $gt: 2010 } } and searches the vector store only for space movies within that subset.
+  Best For: Datasets with rich metadata (products, movie databases, structured logs) where users often ask for specific subsets.
+
+**2. Time-Weighted Vector Store Retriever**
+The Time-Weighted Retriever is designed for applications where freshness matters as much as relevance.
+
+- How it works: It calculates a combined score for each document based on two factors:
+  - Semantic Similarity: How well the document matches the query.
+  - Recency: How long ago the document was last accessed or created.
+- The Decay Formula: It uses a decay rate (often exponential). Information that hasn't been accessed in a long time fades away, while frequently or recently accessed info stays top of mind.
+- Best For: Memory for AI agents, customer support bots, or news feeds where old information might be outdated or irrelevant to current events.
 
 ---
 
@@ -122,7 +124,7 @@ Once you've loaded documents, they are often too large for an LLM's context wind
 
 - **TokenTextSplitter:** Splits based on LLM tokens (using tiktoken) rather than characters. This is vital for ensuring your chunks fit perfectly within model limits without going over.
 - **Text Splitting Methods in NLP:** These involve using libraries like NLTK or Spacy to split specifically at sentence boundaries or logical grammatical breaks rather than arbitrary character counts.
-- **SemanticChunker:** A newer, high-intelligence splitter that uses embeddings to find break points. It splits text where it detects a significant change in meaning or topic.
+- **SemanticChunker:** A high-intelligence splitter that uses embeddings to find break points. It splits text where it detects a significant change in meaning or topic.
 
 **3. Specialized Format Splitters**
 
@@ -328,7 +330,7 @@ To ensure your RAG pipeline actually works, you need more than just vibes—you 
 **2. Evaluator Types**
 
 - **LLM-as-Judge:** Using a superior model (like GPT-4o) to grade a smaller model's output based on a rubric.
-  Embedding-based (embedding_distance): Measures how semantically close a predicted answer is to the reference answer using vector math.
+- **Embedding-based (embedding_distance):** Measures how semantically close a predicted answer is to the reference answer using vector math.
 - **Groundedness Evaluation:** A specific check to ensure the LLM only used the provided context and didn't hallucinate external info.
 - **Heuristic Evaluation:** Fast, code-based checks (e.g., Does the output contain JSON?, Is it longer than 100 words?).
 - **Pairwise Evaluation:** Presenting two different model responses to a Judge LLM and asking: Which one is better for this specific prompt?
