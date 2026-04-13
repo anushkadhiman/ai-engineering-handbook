@@ -36,8 +36,8 @@ Quantization can be categorized by when it occurs, how it maps values, and its g
 **1. By Timing (When it's applied)**
 
 - **Post-Training Quantization (PTQ):** Applied to a model after it is fully trained. It is fast and requires little data but can lead to accuracy loss.
-- **Dynamic PTQ:** Calculates the quantization range for activations on the fly during inference.
-- **Static PTQ:** Uses a small calibration dataset to pre-calculate ranges for faster inference.
+  - **Dynamic PTQ:** Calculates the quantization range for activations on the fly during inference.
+  - **Static PTQ:** Uses a small calibration dataset to pre-calculate ranges for faster inference.
 - **Quantization-Aware Training (QAT):** Simulates quantization effects during training. This allows the model to adjust to the lower precision, typically yielding the highest accuracy.
 
 **2. By Mapping Scheme (How values are converted)**

@@ -1,7 +1,5 @@
 # Retrieval-Augmented Generation (RAG)
 
-# RAG
-
 **Retrieval-Augmented Generation (RAG)** is an AI framework that improves Large Language Model (LLM) accuracy by retrieving data from external, trusted sources before generating a response. Instead of relying solely on pre-trained knowledge, RAG fetches up-to-date, relevant documents to minimize hallucinations, offering a cost-effective alternative to retraining models.
 
 **How it Works:**
@@ -77,9 +75,9 @@ Recursive character splitting is a technique for splitting long text into smalle
 - Prioritized Separators: The algorithm attempts to split the text using a list of delimiters, starting with the largest structures (paragraphs) and moving to smaller ones (sentences, words) if the resulting chunks are still too large.
 - Recursive Process: If a chunk is larger than the specified , the splitter recursively applies the next separator in the list to that chunk.
 - Parameters:
-  chunk_size: The target maximum length of each chunk.
-  chunk_overlap: Number of characters to overlap between chunks, maintaining context.
-  separators: The list of characters used for splitting (default is [\n\n, \n, , ] )
+  - chunk_size: The target maximum length of each chunk.
+  - chunk_overlap: Number of characters to overlap between chunks, maintaining context.
+  - separators: The list of characters used for splitting (default is [\n\n, \n, , ] )
 
 **Benefits**
 
@@ -260,7 +258,9 @@ Key hyperparameters in a RAG pipeline optimize retrieval and generation, directl
    - Trade-offs: Smaller chunk sizes can improve accuracy but increase computation.
    - Higher top-k values increase context but may introduce noise.
 
-#### Reasoning LLMs
+---
+
+## Reasoning LLMs
 
 Reasoning LLMs (e.g., DeepSeek R1, OpenAI o1) enhance RAG by performing autonomous multi-step analysis, self-correction, and handling complex, multi-hop queries, whereas non-reasoning models (e.g., GPT-4o, Claude 3.5 Sonnet) excel in fast, cost-effective retrieval and generation of direct answers. Reasoning models are better for agentic, complex tasks, while non-reasoning models suit simple Q&A.
 
@@ -422,8 +422,8 @@ Here are the primary reasons for poor RAG retriever performance, categorized by 
 **2. Ineffective Chunking Strategy**
 
 - Chunk Size Mismatch:
-- Chunks too large: Contain too much irrelevant information (noise), which confuses the retriever.
-- Chunks too small: Lose essential context, making them semantically meaningless.
+  - Chunks too large: Contain too much irrelevant information (noise), which confuses the retriever.
+  - Chunks too small: Lose essential context, making them semantically meaningless.
 - Ignoring Document Structure: Splitting text without considering paragraph breaks, headings, or table structures causes vital information to be split across chunks.
 - Lost in the Middle: When too many retrieved chunks are passed, the LLM struggles to find the relevant information, particularly if it's buried in the middle of the context.
 
@@ -446,17 +446,18 @@ Here are the primary reasons for poor RAG retriever performance, categorized by 
 - Garbage In, Garbage Out: If the retriever fetches poor-quality, irrelevant, or incorrect documents, the generator cannot produce an accurate answer.
 - Latency vs. Depth Trade-off: Efforts to improve accuracy through deeper retrieval (e.g., more chunks or complex reranking) often lead to unacceptably high latency, causing users to abandon the application.
 - Context Window Limitations: The retrieved data exceeds the maximum token limit of the LLM, leading to truncation.
-  Top Fixes for Poor Performance
 
-**6. Switch to Hybrid Search:** Combine sparse retrieval (BM25/keywords) with dense retrieval (semantic) for better accuracy.
+**What are the top fixes for poor performance?**
 
-**7. Add a Reranker:** Implement a cross-encoder model to reorder the top-k results for better precision.
+- **Switch to Hybrid Search:** Combine sparse retrieval (BM25/keywords) with dense retrieval (semantic) for better accuracy.
 
-**8. Optimize Chunking:** Move to semantic chunking or adopt smaller, overlapping chunks to retain context.
+- **Add a Reranker:** Implement a cross-encoder model to reorder the top-k results for better precision.
 
-**9. Use Domain-Specific Embeddings:** Fine-tune or change the embedding model to better fit the specific industry or data type.
+- **Optimize Chunking:** Move to semantic chunking or adopt smaller, overlapping chunks to retain context.
 
-**10. Implement Query Expansion:** Use an LLM to rewrite user queries into more searchable, expanded versions.
+- **Use Domain-Specific Embeddings:** Fine-tune or change the embedding model to better fit the specific industry or data type.
+
+- **Implement Query Expansion:** Use an LLM to rewrite user queries into more searchable, expanded versions.
 
 ---
 
@@ -472,7 +473,9 @@ Common RAG retrieval approaches include dense retrieval (semantic vector search)
 - Reranking: A post-processing step where a more sophisticated model (reranker) re-orders the initially retrieved documents based on a higher-fidelity relevance score.
 - Query Transformations/Rewriting: Enhances user queries by generating variations, expanding keywords, or using techniques likeHyDE (Hypothetical Document Embeddings), where the LLM generates a fake answer to use for finding actual documents.
 - Self-RAG (Self-Reflective RAG): An adaptive approach where the LLM evaluates the retrieved documents for relevance and quality, allowing it to choose to retrieve more information or proceed with generation.
-  Common Architectures:
+
+**Common Architectures:**
+
 - Naive RAG: Simple retrieval and generation.
 - Advanced RAG: Involves pre-retrieval (query optimization) and post-retrieval (reranking) enhancements.
 - Modular RAG: Allows flexible, customized, and scalable components.
@@ -482,16 +485,15 @@ Common RAG retrieval approaches include dense retrieval (semantic vector search)
 ## Common challenges in RAG retrieval
 
 Common challenges in RAG retrieval involve retrieving irrelevant or low-quality documents, managing optimal chunk sizes for semantic coherence, and handling data freshness. Other key obstacles include overcoming context window limitations, high latency during search, and ensuring the retriever fetches complete information to avoid hallucinations.
-Key Retrieval Challenges
 
-- Low Precision & Relevance: The retriever may fetch irrelevant or low-quality documents (noise), which directly causes the model to generate incorrect or unhelpful answers.
-- Suboptimal Chunking Strategy: Choosing the wrong size for data segments is critical; chunks that are too small lose context, while chunks that are too large are inefficient and reduce relevance.
-- Context Window Limits: Injecting too much or too little content can limit the LLM's ability to generate accurate, comprehensive answers.
-- Data Freshness & Updates: Maintaining an up-to-date vector index with frequently changing data is difficult, often leading to outdated responses.
-- Incomplete Retrieval: The system may miss necessary information spread across multiple documents, particularly for queries requiring synthesis of diverse data sources.
-- Format Diversity: Handling complex, non-textual data, such as images, tables, or various document formats (PDFs, PPTs), can hinder retrieval accuracy.
-- Performance Latency: Real-time retrieval and ranking across massive datasets can introduce significant latency.
-- Evaluation Difficulties: Measuring the effectiveness of retrieval, rather than just generation, is complex due to the hybrid nature of RAG.
+- **Low Precision & Relevance:** The retriever may fetch irrelevant or low-quality documents (noise), which directly causes the model to generate incorrect or unhelpful answers.
+- **Suboptimal Chunking Strategy:** Choosing the wrong size for data segments is critical; chunks that are too small lose context, while chunks that are too large are inefficient and reduce relevance.
+- **Context Window Limits:** Injecting too much or too little content can limit the LLM's ability to generate accurate, comprehensive answers.
+- **Data Freshness & Updates:** Maintaining an up-to-date vector index with frequently changing data is difficult, often leading to outdated responses.
+- **Incomplete Retrieval:** The system may miss necessary information spread across multiple documents, particularly for queries requiring synthesis of diverse data sources.
+- **Format Diversity:** Handling complex, non-textual data, such as images, tables, or various document formats (PDFs, PPTs), can hinder retrieval accuracy.
+- **Performance Latency:** Real-time retrieval and ranking across massive datasets can introduce significant latency.
+- **Evaluation Difficulties:** Measuring the effectiveness of retrieval, rather than just generation, is complex due to the hybrid nature of RAG.
 
 ---
 
@@ -503,19 +505,26 @@ Key metrics for evaluating RAG retrieval quality focus on the relevance, accurac
 
 - Context Precision@k: Measures the accuracy of the top-k retrieved documents, ensuring relevant documents are ranked higher.
 - Context Recall@k: Measures whether the retrieved context contains all the necessary information needed to answer the query, ensuring no critical information is missed.
-- Context Relevance/Ranking (MRR & NDCG):
+
+**Context Relevance/Ranking (MRR & NDCG):**
+
 - Mean Reciprocal Rank (MRR): Focuses on the rank of the first relevant item; higher is better.
 - Normalized Discounted Cumulative Gain (NDCG): Evaluates the ranking quality, rewarding systems that place more relevant documents higher in the list.
 - Hit Rate: Indicates if at least one relevant document appears within the top $k$ retrieved results.
 - Context Relevancy: Measures the overall proportion of relevant information in the retrieved context, reducing noise.
-  Key End-to-End/Hybrid Metrics
+
+**Key End-to-End/Hybrid Metrics**
+
 - Faithfulness (Groundedness): Evaluates if the generated answer is derived solely from the retrieved context, minimizing hallucinations.
 - Answer Relevance: Evaluates how well the generated answer addresses the original query.
 - Latency: Measures the time taken to retrieve the context, critical for user experience in production.
-  Common Evaluation Frameworks
+
+**Common Evaluation Frameworks**
+
 - RAGAS: Often used for automated, LLM-based evaluation of context, including metrics like faithfulness and answer relevance.
 - ARES: Focuses on using human-annotated data for evaluation, often utilizing metrics like MRR and NDCG.
-  These metrics are often calculated using LLM-as-a-judge approaches, where a high-performing LLM evaluates the output of the retriever against a query.
+
+These metrics are often calculated using LLM-as-a-judge approaches, where a high-performing LLM evaluates the output of the retriever against a query.
 
 ---
 
@@ -538,10 +547,12 @@ This process ensures the RAG system finds information based on meaning rather th
 
 Choosing the right embedding model for RAG involves balancing retrieval accuracy, domain specificity, and infrastructure constraints (cost/latency). Key considerations include selecting a model with high performance on metrics like NDCG/MRR (via MTEB leaderboard), matching the model to your data domain, handling language requirements (multilingual vs. English-only), and ensuring the output dimension fits your database.
 
-- Model Performance & Accuracy: Evaluate models using benchmarks like the MTEB (Massive Text Embedding Benchmark) leaderboard, specifically looking at retrieval tasks. Popular options include proprietary models (e.g., OpenAI, Cohere) or open-source models (e.g., E5, BGE, Instructor).
-- Domain Specificity: General-purpose models might underperform on technical, legal, or medical data. Consider fine-tuning a model or choosing one specialized for your domain.
-- Context Window & Embedding Dimension: Ensure the model can handle your chunk size (e.g., 512, 8192 tokens). Higher dimensional embeddings (e.g., 1024+ dimensions) often provide better accuracy but require more storage and computational resources.
-- Infrastructure & Cost:
+- **Model Performance & Accuracy:** Evaluate models using benchmarks like the MTEB (Massive Text Embedding Benchmark) leaderboard, specifically looking at retrieval tasks. Popular options include proprietary models (e.g., OpenAI, Cohere) or open-source models (e.g., E5, BGE, Instructor).
+- **Domain Specificity:** General-purpose models might underperform on technical, legal, or medical data. Consider fine-tuning a model or choosing one specialized for your domain.
+- **Context Window & Embedding Dimension:** Ensure the model can handle your chunk size (e.g., 512, 8192 tokens). Higher dimensional embeddings (e.g., 1024+ dimensions) often provide better accuracy but require more storage and computational resources.
+
+**Infrastructure & Cost:**
+
 - Open-source: Offers control and lower operational costs but requires managing GPU infrastructure.
 - Proprietary/API-based: Simple integration, but introduces latency, ongoing costs, and data privacy concerns.
 - Language Support: Ensure the model supports the language of your documents, particularly for non-English or multilingual, heterogeneous datasets.
@@ -559,7 +570,8 @@ A VectorDB (Vector Database) is a specialized storage system that manages high-d
 - Semantic Search (Retrieval): When a user asks a question, it is converted into a vector. The VectorDB performs a nearest-neighbor search to identify the top-$k$ most semantically similar text chunks in milliseconds.
 - Contextualization & Augmentation: The retrieved relevant chunks are sent to the LLM alongside the user query as prompt context. This allows the LLM to generate answers based on specific, up-to-date, or private data.
 - Popular Tools: Common vector database solutions include Pinecone, Chroma, FAISS, Weaviate, and Milvus.
-  VectorDBs are essential for RAG because they allow AI systems to handle vast amounts of information efficiently, which would otherwise exceed the context limits of large language models.
+
+VectorDBs are essential for RAG because they allow AI systems to handle vast amounts of information efficiently, which would otherwise exceed the context limits of large language models.
 
 ---
 
@@ -569,6 +581,8 @@ Approximate Nearest Neighbor (ANN) search algorithms are a core component of Ret
 
 **Role in RAG Retrieval**
 In a RAG pipeline, input text and stored documents are converted into high-dimensional numerical representations called vector embeddings. To answer a user's query, the system must find documents with embeddings semantically similar to the query embedding.
+
+**Why to use Approximate Nearest Neighbor (ANN) search algorithms?**
 
 - Speed and Scalability: ANN solves the curse of dimensionality problem associated with large datasets and high-dimensional vectors. By using intelligent indexing structures and heuristics, it avoids exhaustively comparing the query vector with every single data point.
 - Efficiency: ANN significantly reduces the computational power and memory required for searches, making real-time applications, such as search engines and recommendation systems, economically and operationally feasible.
@@ -640,7 +654,7 @@ Keyword-based (sparse) and semantic (dense) retrieval in RAG systems offer disti
 
 **2. Semantic Retrieval (Dense Search)**
 
-- Method: Uses vector embeddings generated by machine learning models to represent text in a high-dimensional space, calculating similarity based on meaning.
+- Method: Uses vector embeddings generated by large language models to represent text in a high-dimensional space, calculating similarity based on meaning.
 - Strengths: Understands natural language, context, and intent, allowing it to find relevant documents even if the wording differs.
 - Weaknesses: Requires high computational resources, more complex infrastructure, and may miss exact, rare terms.
 
@@ -1560,3 +1574,26 @@ GraphRAG (Graph Retrieval-Augmented Generation) enhances LLMs by combining seman
 - Generation: The structured graph data (relationships and community summaries) is used to prompt the LLM, resulting in answers that are grounded in structured, relational context rather than just keyword matches.
 
 GraphRAG is particularly effective for navigating complex relationships, answering global questions about a dataset, and improving AI reasoning over private data.
+
+---
+
+## Symmetric and Asymmetric Embedding models
+
+Symmetric embedding models use the same encoding process for queries and documents, making them ideal for comparing similar-length texts, like semantic search or clustering. Asymmetric models use different encoding processes for short queries and long documents to improve retrieval accuracy in RAG systems.
+
+**Symmetric Embedding Models**
+Query and document are treated with similar importance and structure. If you swap them, the semantic meaning remains the same.
+Best for: Paraphrase detection, semantic search where queries and documents have similar lengths, clustering, and classification.
+Examples: all-MiniLM-L6-v2, mpnet, SimCSE.
+Example Usage: "How to learn Python?" vs. "Ways to learn Python online."
+
+**Asymmetric Embedding Models**
+The model distinguishes between the query (usually short) and the document/passage (usually long), often using specialized prefixes like query: or passage:.
+Best for: RAG (Retrieval-Augmented Generation), QA systems, and searching large knowledge bases (e.g., finding a paragraph in response to a short question).
+Examples: E5, Nomic Embed, BGE-M3, Voyage AI.
+Example Usage: "Best restaurant?" vs. "Rameshwaram Cafe offers authentic..."
+
+**How to Choose**
+
+- Use Symmetric if you are comparing two paragraphs for similarity or clustering short sentences.
+- Use Asymmetric if you are performing RAG, search, or querying, where the query intent differs from the document content.

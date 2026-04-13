@@ -2,7 +2,7 @@
 
 Natural Language Processing (NLP) is a branch of artificial intelligence (AI) that enables computers to understand, interpret, and generate human language, bridging the gap between human communication and computer comprehension. It uses algorithms to analyze text and speech, automating tasks like sentiment analysis, translation, and text summarization.
 
-**Key Components and Techniques**
+It involves multiple key steps,
 
 - Preprocessing: Cleaning data through tokenization (breaking text into words), stemming/lemmatization (reducing words to root forms), and removing stop words.
 - Syntax/Parsing: Analyzing grammatical structure to understand relationships between words.
@@ -13,7 +13,7 @@ Natural Language Processing (NLP) is a branch of artificial intelligence (AI) th
 **How It Works**
 NLP combines linguistics (language rules) with machine learning algorithms. It treats language as data, processing inputs through several stages—including phonology, morphology, and pragmatics—to produce meaningful output.
 
-**Common Applications**
+Here are some common applications
 
 - Virtual Assistants: Siri, Alexa, and Google Assistant.
   Machine Translation: Google Translate.
@@ -27,7 +27,7 @@ NLP combines linguistics (language rules) with machine learning algorithms. It t
 
 NLP in social media transforms vast amounts of unstructured user data into actionable insights for marketing, security, and research.
 
-**Key Applications**
+Here are some key applications,
 
 - Sentiment Analysis: Gauges the emotional tone (positive, negative, neutral) of posts to monitor brand reputation, track campaign effectiveness, and understand public opinion.
 - Social Listening & Brand Monitoring: Tracks brand mentions, competitor activities, and industry shifts in real-time, even when the brand isn't directly tagged.
@@ -36,7 +36,7 @@ NLP in social media transforms vast amounts of unstructured user data into actio
 - Mental Health Surveillance: Analyzes linguistic patterns to identify signs of depression, anxiety, or potential crises in users.
 - Customer Service Automation: Powers 24/7 chatbots that resolve routine queries and route complex issues to human agents.
 
-**Major Challenges**
+But there are some major challenges,
 
 - Informal Language & Noise: Social media text is rife with slang, abbreviations (e.g., "u" for "you"), misspellings, lack of punctuation, and emoticons, which can confuse traditional NLP models.
 - Sarcasm & Ambiguity: Determining the true meaning of a post is difficult when the tone is ironic or sarcastic (e.g., "Great job!" as a complaint).
@@ -47,52 +47,64 @@ NLP in social media transforms vast amounts of unstructured user data into actio
 
 ---
 
-## End to end NLP pipeline
+## What is an end to end NLP pipeline?
 
 An end-to-end NLP pipeline transforms raw, unstructured text into structured, actionable insights. While specific steps vary by task, the standard industry workflow follows this sequence:
 
-1. Data Acquisition & Collection
-   The foundation of the pipeline.
-   Sources: Web scraping, APIs (Twitter/X, Reddit), SQL databases, PDF/OCR scanning, or internal logs.
-   Storage: Raw data is typically stored in a "Data Lake" (e.g., AWS S3) before processing.
-2. Text Pre-processing (Cleaning)
-   Converting "noisy" text into a standardized format.
-   Cleaning: Removing HTML tags, emojis, URLs, and special characters.
-   Normalization: Lowercasing, fixing spelling errors, and expanding contractions (e.g., "don't" → "do not").
-   Tokenization: Breaking sentences into individual words or sub-word units.
-   Linguistic Refinement:
-   Stop-word Removal: Deleting high-frequency, low-value words (e.g., "the", "is").
-   Lemmatization/Stemming: Reducing words to their root form (e.g., "running" → "run").
-3. Feature Engineering & Vectorization
-   Translating text into numbers that a machine can understand.
-   Statistical: TF-IDF or Count Vectorizers (Bag-of-Words).
-   Static Embeddings: Word2Vec, GloVe (capturing basic semantic relationships).
-   Dynamic Embeddings: Contextual vectors from Transformers like BERT or RoBERTa (understanding that "bank" means different things in "river bank" vs. "bank account").
-4. Model Training & Fine-Tuning
-   Selecting the brain of the pipeline.
-   Traditional ML: Naive Bayes, Logistic Regression, or Support Vector Machines for speed and small datasets.
-   Deep Learning: Training Hugging Face Transformers or LSTMs for complex language tasks.
-   Fine-Tuning: Taking a pre-trained model (like GPT or BERT) and training it on your specific domain data (e.g., medical or legal).
-5. Evaluation & Optimization
-   Testing the model against unseen data.
-   Metrics: Accuracy, Precision, Recall, F1-Score, or ROUGE/BLEU for text generation.
-   Error Analysis: Identifying where the model fails (e.g., struggling with sarcasm or specific entities).
-   Hyperparameter Tuning: Using tools like Optuna to find the best model settings.
-6. Deployment & Monitoring (MLOps)
-   Moving the model into production.
-   Serving: Wrapping the model in an API using FastAPI or Flask.
-   Inference Optimization: Speeding up the model using ONNX Runtime or Quantization.
-   Monitoring: Tracking "Data Drift" (when real-world language changes over time) and performance degradation.
-7. Human-in-the-Loop (Optional but Recommended)
-   A feedback loop where humans review uncertain model predictions to continuously improve the system through active learning.
+**1. Data Acquisition & Collection**
+The foundation of the pipeline.
+
+- Sources: Web scraping, APIs (Twitter/X, Reddit), SQL databases, PDF/OCR scanning, or internal logs.
+- Storage: Raw data is typically stored in a "Data Lake" (e.g., AWS S3) before processing.
+
+**2. Text Pre-processing (Cleaning)**
+
+- Converting "noisy" text into a standardized format.
+  - Cleaning: Removing HTML tags, emojis, URLs, and special characters.
+  - Normalization: Lowercasing, fixing spelling errors, and expanding contractions (e.g., "don't" → "do not").
+  - Tokenization: Breaking sentences into individual words or sub-word units.
+- Linguistic Refinement:
+  - Stop-word Removal: Deleting high-frequency, low-value words (e.g., "the", "is").
+  - Lemmatization/Stemming: Reducing words to their root form (e.g., "running" → "run").
+
+**3. Feature Engineering & Vectorization**
+Translating text into numbers that a machine can understand.
+
+- Statistical: TF-IDF or Count Vectorizers (Bag-of-Words).
+- Static Embeddings: Word2Vec, GloVe (capturing basic semantic relationships).
+- Dynamic Embeddings: Contextual vectors from Transformers like BERT or RoBERTa (understanding that "bank" means different things in "river bank" vs. "bank account").
+
+**4. Model Training & Fine-Tuning**
+Selecting the brain of the pipeline.
+
+- Traditional ML: Naive Bayes, Logistic Regression, or Support Vector Machines for speed and small datasets.
+- Deep Learning: Training Hugging Face Transformers or LSTMs for complex language tasks.
+- Fine-Tuning: Taking a pre-trained model (like GPT or BERT) and training it on your specific domain data (e.g., medical or legal).
+
+**5. Evaluation & Optimization**
+Testing the model against unseen data.
+
+- Metrics: Accuracy, Precision, Recall, F1-Score, or ROUGE/BLEU for text generation.
+- Error Analysis: Identifying where the model fails (e.g., struggling with sarcasm or specific entities).
+- Hyperparameter Tuning: Using tools like Optuna to find the best model settings.
+
+**6. Deployment & Monitoring (MLOps)**
+Moving the model into production.
+
+- Serving: Wrapping the model in an API using FastAPI or Flask.
+- Inference Optimization: Speeding up the model using ONNX Runtime or Quantization.
+- Monitoring: Tracking "Data Drift" (when real-world language changes over time) and performance degradation.
+
+**7. Human-in-the-Loop (Optional but Recommended)**
+A feedback loop where humans review uncertain model predictions to continuously improve the system through active learning.
 
 ---
 
-## NLP preprocessing
+## What are some NLP preprocessing techniques?
 
 NLP preprocessing transforms raw, messy text into a structured format to improve model performance and accuracy.
 
-**Fundamental Cleaning & Normalization**
+**Here are some fundamental cleaning & normalization**
 
 - Sentence Segmentation: Breaking a body of text into individual sentences, typically using punctuation like periods as delimiters.
 - Word Tokenization: Splitting a sentence into smaller units called "tokens" (words, numbers, or symbols).
@@ -117,7 +129,7 @@ NLP preprocessing transforms raw, messy text into a structured format to improve
 
 ---
 
-## Feature Engineering in NLP
+## What is feature engineering in NLP?
 
 In NLP, feature engineering is the art of converting text into numerical representations (vectors) that machine learning algorithms can understand. This ranges from simple word counts to complex contextual embeddings.
 
@@ -125,36 +137,36 @@ In NLP, feature engineering is the art of converting text into numerical represe
 These methods focus on the frequency and importance of words within a document.
 
 - **Bag-of-Words (BoW):** Represents text as a simple count of each word's occurrence. It ignores word order and grammar.
-- TF-IDF (Term Frequency-Inverse Document Frequency): Weights words by how unique they are to a specific document. It penalizes common words (like "the") and highlights distinctive terms.
-- N-Grams: Captures local context by grouping adjacent words (e.g., Bigrams: "New York"; Trigrams: "Machine Learning Models").
+- **TF-IDF (Term Frequency-Inverse Document Frequency):** Weights words by how unique they are to a specific document. It penalizes common words (like "the") and highlights distinctive terms.
+- **N-Grams:** Captures local context by grouping adjacent words (e.g., Bigrams: "New York"; Trigrams: "Machine Learning Models").
 
 **2. Shallow Embeddings (Static)**
 These provide a dense numerical vector for each word, where words with similar meanings are positioned close together in space.
 
-- Word2Vec: Uses a shallow neural network to learn word associations (CBOW or Skip-gram models).
-- GloVe (Global Vectors): Based on global word-word co-occurrence statistics from a large corpus.
-- FastText: Treats words as a "bag of character n-grams," allowing it to handle out-of-vocabulary words and typos effectively.
+- **Word2Vec:** Uses a shallow neural network to learn word associations (CBOW or Skip-gram models).
+- **GloVe (Global Vectors):** Based on global word-word co-occurrence statistics from a large corpus.
+- **FastText:** Treats words as a "bag of character n-grams," allowing it to handle out-of-vocabulary words and typos effectively.
 
 **3. Contextual Embeddings (Deep Learning)**
 Unlike static embeddings, these change based on the surrounding words (e.g., "bank" in "river bank" vs. "bank account").
 
-- BERT (Bidirectional Encoder Representations from Transformers): Uses transformers to read text in both directions, providing deep context.
-- RoBERTa/ELMo: Advanced variations that capture nuanced semantic and syntactic information.
+- **BERT (Bidirectional Encoder Representations from Transformers):** Uses transformers to read text in both directions, providing deep context.
+- **RoBERTa/ELMo:** Advanced variations that capture nuanced semantic and syntactic information.
 
 **4. Structural & Linguistic Features**
 Sometimes, manual "meta-features" provide a significant boost for specific tasks:
 
-- Syntactic Features: Word counts, sentence length, or the ratio of nouns to verbs.
-- Entity Features: Presence of Named Entities (NER) like locations, dates, or organizations.
-- Sentiment Scores: Using a lexicon like VADER to extract polarity (positive/negative) as a numerical feature.
-- Readability Scores: Metrics like the Flesch-Kincaid Grade Level to measure text complexity.
+- **Syntactic Features:** Word counts, sentence length, or the ratio of nouns to verbs.
+- **Entity Features:** Presence of Named Entities (NER) like locations, dates, or organizations.
+- **Sentiment Scores:** Using a lexicon like VADER to extract polarity (positive/negative) as a numerical feature.
+- **Readability Scores:** Metrics like the Flesch-Kincaid Grade Level to measure text complexity.
 
 **5. Feature Selection & Dimensionality Reduction**
 To avoid "the curse of dimensionality" (too many features for the model to handle):
 
-- PCA (Principal Component Analysis): Compresses high-dimensional vectors into fewer, high-impact dimensions.
-- Chi-Square Test: Identifies which words have the strongest statistical relationship with the target label.
-- L1 Regularization (Lasso): Naturally pushes the coefficients of less important features to zero during training.
+- **PCA (Principal Component Analysis):** Compresses high-dimensional vectors into fewer, high-impact dimensions.
+- **Chi-Square Test:** Identifies which words have the strongest statistical relationship with the target label.
+- **L1 Regularization (Lasso):** Naturally pushes the coefficients of less important features to zero during training.
 
 ---
 
@@ -164,9 +176,10 @@ Word2Vec is a technique used to map words into high-dimensional numerical vector
 
 **1. The Core Mechanism**
 Word2Vec is a shallow, two-layer neural network. Instead of using the model for its actual output, we use the weights of the hidden layer as the word vectors.
-**Input:** Words are initially represented as sparse One-Hot Encoded vectors (a long string of 0s with a single 1).
-**Hidden Layer:** This layer "compresses" the large one-hot vector into a smaller, dense vector (e.g., 100 or 300 dimensions).
-**Output:** The model predicts either a target word or its neighbors.
+
+- **Input:** Words are initially represented as sparse One-Hot Encoded vectors (a long string of 0s with a single 1).
+- **Hidden Layer:** This layer "compresses" the large one-hot vector into a smaller, dense vector (e.g., 100 or 300 dimensions).
+- **Output:** The model predicts either a target word or its neighbors.
 
 **2. Training Architectures**
 There are two primary ways to train the model:
@@ -194,15 +207,17 @@ Continuous Bag of Words (CBOW) is an architecture in Word2Vec that predicts a si
 
 **How it Works**
 Think of CBOW as a "fill-in-the-blank" exercise for a neural network.
-Context Selection: You define a window size (e.g., 2), which determines how many words before and after the target word are used as context.
 
-**Aggregation:** The model takes the One-Hot Encoded vectors of all context words and averages or sums them to create a single input for the hidden layer.
-**Prediction:** This averaged input is passed through a hidden layer (the "projection layer") and an output layer that uses a Softmax Activation Function to predict the most likely target word from the entire vocabulary.
+- **Context Selection:** You define a window size (e.g., 2), which determines how many words before and after the target word are used as context.
+
+- **Aggregation:** The model takes the One-Hot Encoded vectors of all context words and averages or sums them to create a single input for the hidden layer.
+- **Prediction:** This averaged input is passed through a hidden layer (the "projection layer") and an output layer that uses a Softmax Activation Function to predict the most likely target word from the entire vocabulary.
 
 **Key Characteristics**
-**Averaging Effect:** Because CBOW averages the context word vectors, it loses information about the order of those words (hence the "Bag of Words" name).
-**Speed:** It is generally faster to train than Skip-gram because it makes one prediction per context window rather than multiple.
-**Frequency Bias:** CBOW tends to perform better and produce more accurate embeddings for frequently occurring words compared to rare ones.
+
+- **Averaging Effect:** Because CBOW averages the context word vectors, it loses information about the order of those words (hence the "Bag of Words" name).
+- **Speed:** It is generally faster to train than Skip-gram because it makes one prediction per context window rather than multiple.
+- **Frequency Bias:** CBOW tends to perform better and produce more accurate embeddings for frequently occurring words compared to rare ones.
 
 **Example**
 If the training sentence is "The cat sat on the mat" and the window size is 2:
@@ -212,9 +227,10 @@ The model learns to associate the combined meaning of "The," "cat," "on," and "t
 
 ---
 
-## tf-idf
+## TF-IDF (Term Frequency-Inverse Document Frequency)
 
 TF-IDF (Term Frequency-Inverse Document Frequency) is a numerical statistic used to rank how "important" a word is to a specific document within a larger collection (corpus).
+
 While Word2Vec focuses on meaning, TF-IDF focuses on uniqueness.
 
 **1. The Two Components**
@@ -243,10 +259,11 @@ In a standard neural network, the output layer has one node for every word in yo
 **1. Negative Sampling**
 Instead of asking the model to choose the 1 correct word out of 100,000, Negative Sampling turns the problem into a simple Yes/No (Binary) classification.
 
-The Idea: For every "positive" pair (a word and its actual neighbor), pick a small number (e.g., 5 to 20) of "negative" words at random from the dictionary that are not neighbors.
-The Goal: Train the model to distinguish the real neighbor from the random noise.
+The idea is that for every "positive" pair (a word and its actual neighbor), pick a small number (e.g., 5 to 20) of "negative" words at random from the dictionary that are not neighbors.
 
-Why it works: Instead of updating 100,000 weights, the model only updates the weights for the 1 positive word and the 5 negative samples. This makes training massively faster while still producing high-quality vectors.
+The goal is to train the model to distinguish the real neighbor from the random noise.
+
+**Why it works:** Instead of updating 100,000 weights, the model only updates the weights for the 1 positive word and the 5 negative samples. This makes training massively faster while still producing high-quality vectors.
 
 **2. Hierarchical Softmax (The "Tree Search")**
 Hierarchical Softmax uses a binary tree structure (typically a Huffman Tree) to represent the vocabulary.
@@ -259,9 +276,10 @@ For a vocabulary of 65,536 words, the model only needs to make 16 binary decisio
 
 ---
 
-## bm25
+## BM25 (Best Matching 25)
 
 BM25 (Best Matching 25) is a ranking function used by search engines to estimate the relevance of documents to a given search query. It is widely considered the state-of-the-art for keyword-based (lexical) search and is the default algorithm for Elasticsearch, Lucene, and Solr.
+
 While it shares the core concepts of TF-IDF, it fixes major flaws to provide more intuitive results.
 
 **1. The Core Components**
@@ -276,7 +294,7 @@ One reason BM25 is so effective is that it can be fine-tuned via two main variab
 
 - **Saturation Control**: Determines how quickly term frequency reaches saturation. A common default is 1.2. Higher values mean that more occurrences of a word continue to boost the score for longer.
 
-- **Length Normalization**: Controls how strictly the document length is penalized. It ranges from 0 to 1, with 0.75 as a standard default. If, full normalization is applied; if , length is ignored entirely.
+- **Length Normalization**: Controls how strictly the document length is penalized. It ranges from 0 to 1, with 0.75 as a standard default. If 1, full normalization is applied; if 0, length is ignored entirely.
 
 **3. Real Use Cases**
 
@@ -293,30 +311,31 @@ While Word2Vec is a "predictive" model (predicting neighbors), GloVe is a "count
 
 **1. How it Works: The Co-occurrence Matrix**
 GloVe starts by building a massive table (matrix) that counts how often every word in your vocabulary appears near every other word.
-The Idea: If "Ice" and "Cold" appear together frequently, their vectors should be close.
-The Global View: Unlike Word2Vec, which only looks at a small local window of words at a time, GloVe analyzes the entire corpus to build this matrix before it starts training.
+
+- The Idea: If "Ice" and "Cold" appear together frequently, their vectors should be close.
+- The Global View: Unlike Word2Vec, which only looks at a small local window of words at a time, GloVe analyzes the entire corpus to build this matrix before it starts training.
 
 **2. Ratios of Probabilities**
 The genius of GloVe is that it doesn't just look at raw counts; it looks at the ratios of co-occurrence probabilities.
-Example: Consider the words Ice and Steam in relation to Water.
-Ice co-occurs with Solid frequently.
-Steam co-occurs with Solid rarely.
-The ratio of these probabilities helps the model pinpoint that "Ice" is to "Solid" what "Steam" is to "Gas."
+
+- Example: Consider the words Ice and Steam in relation to Water.
+  Ice co-occurs with Solid frequently.
+  Steam co-occurs with Solid rarely.
+  The ratio of these probabilities helps the model pinpoint that "Ice" is to "Solid" what "Steam" is to "Gas."
 
 **3. Why use it?**
 GloVe is famous for its pre-trained vectors. Because it's trained on massive datasets like Wikipedia and Common Crawl, you don't have to train it yourself. You can simply download the vectors and plug them into your model to give it an "instant" understanding of English.
 
 ---
 
-## fastext
+## FastText
 
 FastText, developed by Facebook's AI Research (FAIR) lab, is essentially the "evolution" of Word2Vec. While Word2Vec treats every word as an unbreakable atom, FastText breaks words down into smaller chunks called n-grams.
 
 **1. The Core Innovation: Subword Information**
 The biggest difference is that FastText represents a word as the sum of its character n-grams.
-Example: For the word apple with
-, the n-grams are: <ap, app, ppl, ple, le>, and the whole word <apple>.
-The final vector for "apple" is the average of all these subword vectors.
+
+Example: For the word “apple” with n = 3 to 6, the n-grams are: <ap, app, ppl, ple, le>, and the whole word <apple>. The final vector for “apple” is the average of all these subword vectors.
 
 **2. Why is this better?**
 This "subword" approach solves the two biggest headaches in NLP:
@@ -336,14 +355,14 @@ This "subword" approach solves the two biggest headaches in NLP:
 
 A Document-Term Matrix (DTM) in NLP is a mathematical structure representing a corpus, where rows represent documents and columns represent unique terms (words). Each cell contains the count or weight (e.g., TF-IDF) of a term in a document, enabling quantitative analysis of unstructured text data.
 
-**Key Characteristics and Components**
+Here are some key characteristics and components
 
 - Structure: Documents are usually rows, and terms are columns (or vice versa in a Term-Document Matrix).
 - Sparsity: Because not every word appears in every document, DTMs are often sparse, containing mostly zeros.
 - Vectorization: It converts text into numerical, high-dimensional vectors, allowing algorithms to process documents.
 - Weighting: Cells can contain raw counts (Bag of Words) or weighted values like Term Frequency-Inverse Document Frequency (TF-IDF) to highlight meaningful words.
 
-**Applications in NLP**
+Here are some applications of DTM,
 
 - Topic Modeling: Discovering hidden thematic structures in documents.
 - Text Classification: Categorizing documents based on word frequencies.
@@ -355,10 +374,13 @@ A Document-Term Matrix (DTM) in NLP is a mathematical structure representing a c
 - Ignores Context: The order of words and grammatical structure are lost, treating documents as "bags of words".
 - High Dimensionality: As the vocabulary size increases, the matrix becomes extremely large, requiring significant memory.
 
-**Stop words in NLP**
+---
+
+## Stop words in NLP
+
 Stop words in NLP are common, high-frequency words (e.g., "the," "is," "in," "and") filtered out during text preprocessing to reduce noise, improve computational efficiency, and focus on meaningful content. They are typically ignored in tasks like sentiment analysis, search indexing, and topic modeling.
 
-**Key Aspects of Stop Words:**
+Here are some key aspects of stop words,
 
 - Definition: Words that carry little unique information, such as articles, prepositions, and conjunctions.
 - Purpose: Removing them reduces dataset size, lowers computational load, and helps algorithms focus on important terms.
@@ -389,7 +411,7 @@ The value of n defines the order of the model:
 **Core Concept: The Markov Assumption**
 Calculating the probability of a word given its entire preceding history is computationally expensive and data-intensive. N-gram models simplify this using the Markov Assumption, which states that the probability of a word depends only on a limited window of previous words.
 
-**Common Applications**
+Here are some common applications,
 
 - **Text Prediction:** Powering autocomplete functions in search engines and mobile keyboards.
 - **Speech Recognition:** Helping systems choose the most likely sequence of words from noisy audio.
@@ -411,7 +433,7 @@ Calculating the probability of a word given its entire preceding history is comp
 skip-grams are a way of looking at pairs of words in a sentence while skipping over some words in between.
 They help NLP models understand context even when words aren't sitting right next to each other.
 
-**1. How they work (The Visual)**
+**1. How they work?**
 Imagine the sentence: "The cat sat on the mat."
 
 - Standard Bigram (No skips): You only look at neighbors.
@@ -469,7 +491,6 @@ Data augmentation methods in NLP are generally categorized by the level at which
 - Handling Class Imbalance: Generates extra samples for minority classes to ensure the model doesn't become biased toward the majority class.
 - Improving Robustness: Trains models to handle real-world "noise" like typos, slang, and varying sentence structures.
 
-**Top Python Libraries**
 Several open-source libraries simplify the implementation of these techniques:
 
 - NLPAug: Supports character, word, and sentence-level augmentations, including back-translation.
@@ -508,12 +529,13 @@ Once extracted, text must be "cleaned" to remove noise and standardize variation
 **Common steps include:**
 
 - Noise Removal: Deleting irrelevant elements like HTML tags, URLs, special characters (e.g., emojis or symbols), and extra whitespaces.
-  Normalization:
-- Lowercasing: Converting all text to lowercase to ensure consistency (e.g., treating "Apple" and "apple" as the same token).
-- Contraction Expansion: Replacing shortened forms like "don't" with "do not" to standardize phrasing.
-- Spell Checking: Correcting typos using tools like pyspellchecker or TextBlob.
-- Tokenization: Breaking the text down into smaller, meaningful units like words or sentences.
-- Stop Word Removal: Filtering out common words that carry little semantic weight (e.g., "the," "is," "and").
+
+- Normalization:
+  - Lowercasing: Converting all text to lowercase to ensure consistency (e.g., treating "Apple" and "apple" as the same token).
+  - Contraction Expansion: Replacing shortened forms like "don't" with "do not" to standardize phrasing.
+  - Spell Checking: Correcting typos using tools like pyspellchecker or TextBlob.
+  - Tokenization: Breaking the text down into smaller, meaningful units like words or sentences.
+  - Stop Word Removal: Filtering out common words that carry little semantic weight (e.g., "the," "is," "and").
 
 **Stemming & Lemmatization:**
 
@@ -539,8 +561,7 @@ Forms:
 
 - NFC (Composed): Merges characters into their shortest equivalent (e.g., "e" + "´"
   "é"). This is the standard for most web and Windows applications.
-- NFD (Decomposed): Breaks composed characters into base letters and marks (e.g., "é"
-  "e" + "´").
+- NFD (Decomposed): Breaks composed characters into base letters and marks (e.g., "é", "e" + "´").
 - NFKC / NFKD (Compatibility): More "aggressive" forms that normalize symbols with the same meaning but different formatting, such as converting circled digits (①) to regular digits (1) or expanding ligatures like "ﬁ" to "fi".
 
 - Usage: Primarily used for text matching and search consistency. Python’s unicodedata.normalize() is the standard tool.
@@ -616,7 +637,7 @@ Unlike One-Hot Encoding or Bag-of-Words, Distributed Representations (also known
 
 ---
 
-## Naive Bayes Classifier in nlp
+## Naive Bayes Classifier in NLP
 
 Naive Bayes is a widely used probabilistic machine learning algorithm in Natural Language Processing (NLP), primarily for text classification tasks like spam detection and sentiment analysis. It is based on Bayes' Theorem and makes the "naive" assumption that all features (words) are independent of each other given the class label.
 
@@ -654,7 +675,7 @@ Bayes’ Theorem: It calculates the probability of a class (e.g., "Spam") given 
 
 ---
 
-## Logistic Regression in nlp
+## Logistic Regression in NLP
 
 In Natural Language Processing (NLP), Logistic Regression (LR) is a foundational discriminative machine learning algorithm used for supervised text classification. Unlike generative models like Naive Bayes, LR learns the direct relationship between input features (words) and class labels by optimizing a decision boundary.
 
@@ -754,26 +775,33 @@ A typical entity linking system follows three main steps:
 
 Tokenization converts raw text into structured numerical units (tokens) that machine learning models can process. The strategy you choose depends on the specific NLP task and its requirements for granularity or context.
 
-1. Tokenization by Level of Granularity
-   Word Tokenization: Splits text by whitespace and punctuation into individual words.
-   Best for: Standard text classification, sentiment analysis, and keyword extraction.
-   Subword Tokenization: Breaks words into smaller meaningful units (e.g., "unhappiness"
-   "un", "happi", "ness"). Algorithms like Byte Pair Encoding (BPE) or WordPiece are industry standards.
-   Best for: Modern transformer models (BERT, GPT) to handle "out-of-vocabulary" (OOV) words and rare terms.
-   Sentence Tokenization: Segments a document into distinct sentences.
-   Best for: Summarization, machine translation, and document-level analysis.
-   Character Tokenization: Treats every character as a token.
-   Best for: Languages without clear word boundaries (Chinese, Japanese), spelling correction, or phonetic analysis.
-2. Task-Specific Strategies
-   NLP Task Recommended Strategy Why?
-   Named Entity Recognition (NER) Subword + Alignment Preserves internal word structure to identify entities like "San Francisco" correctly.
-   Machine Translation Sentence + Subword Captures sentence-level context while managing vast vocabularies across different languages.
-   Sentiment Analysis Word or Subword Focuses on key emotional triggers (e.g., "happy", "not").
-   Question Answering Subword with Offsets Needs to map the exact start/end character positions of the answer in the original text.
-3. Implementation Tools
-   Hugging Face Tokenizers: Fast, Rust-based library that handles the complex subword mapping required for transformers.
-   spaCy: A production-ready tool that uses sophisticated linguistic rules to handle contractions (e.g., "don't"
-   "do", "n't") and punctuation.
-   NLTK: Offers a wide range of rule-based tokenizers like word_tokenize and sent_tokenize, ideal for educational use and rapid prototyping.
+**1. Tokenization by Level of Granularity**
+
+- Word Tokenization: Splits text by whitespace and punctuation into individual words.
+  Best for: Standard text classification, sentiment analysis, and keyword extraction.
+
+- Subword Tokenization: Breaks words into smaller meaningful units (e.g., "unhappiness" -> "un", "happi", "ness"). Algorithms like Byte Pair Encoding (BPE) or WordPiece are industry standards.
+  Best for: Modern transformer models (BERT, GPT) to handle "out-of-vocabulary" (OOV) words and rare terms.
+
+- Sentence Tokenization: Segments a document into distinct sentences.
+  Best for: Summarization, machine translation, and document-level analysis.
+
+- Character Tokenization: Treats every character as a token.
+  Best for: Languages without clear word boundaries (Chinese, Japanese), spelling correction, or phonetic analysis.
+
+**2. Task-Specific Strategies**
+NLP Task Recommended Strategy Why?
+
+- Named Entity Recognition (NER) Subword + Alignment Preserves internal word structure to identify entities like "San Francisco" correctly.
+- Machine Translation Sentence + Subword Captures sentence-level context while managing vast vocabularies across different languages.
+- Sentiment Analysis Word or Subword Focuses on key emotional triggers (e.g., "happy", "not").
+- Question Answering Subword with Offsets Needs to map the exact start/end character positions of the answer in the original text.
+
+**3. Implementation Tools**
+
+- Hugging Face Tokenizers: Fast, Rust-based library that handles the complex subword mapping required for transformers.
+- spaCy: A production-ready tool that uses sophisticated linguistic rules to handle contractions (e.g., "don't"
+  "do", "n't") and punctuation.
+- NLTK: Offers a wide range of rule-based tokenizers like word_tokenize and sent_tokenize, ideal for educational use and rapid prototyping.
 
 ---

@@ -2,15 +2,15 @@
 
 Linear algebra is the branch of mathematics focusing on linear equations, vector spaces, and matrices used to perform linear transformations. It enables representing multi-variable systems and geometric transformations through numerical operations like matrix addition and multiplication. It is fundamental for computer graphics, engineering, machine learning, and physics.
 
-**Key Concepts and Components**
+Here are some most important concepts,
 
-- Vectors: The foundational building blocks, interpreted as arrows in space (geometry) or ordered lists of numbers (data).
-- Matrices: Rectangular arrays of numbers that represent linear operations (like rotation or scaling) or sets of simultaneous equations.
-- Linear Transformations: Functions that take a vector as input and produce a new vector as output, keeping lines straight and the origin fixed.
-- Systems of Linear Equations: Often represented as $Ax = b$, where $A$ is a matrix of coefficients, $x$ is the variable vector, and $b$ is the output vector.
-- Eigenvalues and Eigenvectors: Special vectors of a transformation that do not change direction, only length, which provide deep insights into matrix properties.
+- **Vectors:** The foundational building blocks, interpreted as arrows in space (geometry) or ordered lists of numbers (data).
+- **Matrices:** Rectangular arrays of numbers that represent linear operations (like rotation or scaling) or sets of simultaneous equations.
+- **Linear Transformations:** Functions that take a vector as input and produce a new vector as output, keeping lines straight and the origin fixed.
+- **Systems of Linear Equations:** Often represented as $Ax = b$, where $A$ is a matrix of coefficients, $x$ is the variable vector, and $b$ is the output vector.
+- **Eigenvalues and Eigenvectors:** Special vectors of a transformation that do not change direction, only length, which provide deep insights into matrix properties.
 
-**Applications**
+**How these concepts are actually used in real world use cases?**
 
 - Machine Learning/AI: Representing data as vectors and applying transformations for models.
 - Computer Graphics: Using matrices to perform 2D and 3D rotations, scaling, and shearing.
@@ -25,7 +25,7 @@ Linear algebra acts as a bridge between geometric intuition (graphs, shapes) and
 
 In linear algebra, vectors are ordered lists of numbers (components) representing points or directions in $n$-dimensional space ($\mathbb{R}^n$), often visualized as arrows from the origin. They are fundamental objects that can be added together and multiplied by scalars (numbers) to scale their length.
 
-**Key Concepts in Vector Algebra**
+**Here are some key concepts in vector algebra**
 
 - Vector Representation: Usually written as column vectors, e.g., $\vec{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}$.
 - Vector Addition: Performed component-wise. If $\vec{u} = \begin{bmatrix} a \\ b \end{bmatrix}$ and $\vec{v} = \begin{bmatrix} c \\ d \end{bmatrix}$, then $\vec{u}+\vec{v} = \begin{bmatrix} a+c \\ b+d \end{bmatrix}$.
@@ -35,7 +35,7 @@ In linear algebra, vectors are ordered lists of numbers (components) representin
 - Span: The set of all possible linear combinations (additions and scalar multiplications) of a set of vectors.
 - Linear Independence: A set of vectors is linearly independent if none can be written as a linear combination of the others.
 
-**Key Types of Vectors**
+**What are some types of vectors?**
 
 - Zero Vector: A vector with all components as zero, acting as the additive identity.
 - Unit Vector: A vector with a magnitude (length) of 1, often used to indicate direction.
@@ -49,7 +49,7 @@ Vectors in linear algebra are foundational for representing data, solving system
 
 A matrix is a rectangular array of numbers, symbols, or expressions arranged in rows and columns, serving as a fundamental tool in linear algebra to represent linear transformations, solve systems of linear equations, and manipulate data. Matrices are defined by their dimensions ($m$ rows $\times$ $n$ columns) and can be added, subtracted, and multiplied when dimensions are compatible.
 
-**Key Concepts and Operations**
+**Here are some key concepts and operations of matrix,**
 
 - Structure: Matrices are ordered in $m \times n$ grids, where entries are identified by row and column (e.g., $a_{ij}$ is the entry in row $i$ and column $j$).
 - Linear Transformations: Matrices represent geometric transformations, such as rotations or scaling, by mapping input vectors to output vectors.
@@ -57,7 +57,7 @@ A matrix is a rectangular array of numbers, symbols, or expressions arranged in 
 - Special Matrices: Includes square matrices ($n \times n$), identity matrices, symmetric matrices, and zero matrices.
 - Operations: Core operations include transposition (switching rows and columns), inversion ($A^{-1}$), determinant calculation ($\det(A)$), and finding eigenvalues/eigenvectors.
 
-**Common Applications**
+**So, what are the applications of matrix?**
 
 - Solving Systems: Used in Gaussian elimination to solve linear equations.
 - Computer Graphics: Used for 2D and 3D transformations.
@@ -83,14 +83,14 @@ Every linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ can be re
 
 - Finding the Matrix : The columns of the matrix $A$ are found by applying the transformation $T$ to the standard basis vectors $\mathbf{e}_1, \ldots, \mathbf{e}_n$ of $\mathbb{R}^n$, resulting in $A = [T(\mathbf{e}_1) \cdots T(\mathbf{e}_n)]$.
 
-**Key Concepts**
+**What are some key concepts?**
 
 - Kernel (Null Space): The set of all vectors $\mathbf{v}$ in $V$ such that $T(\mathbf{v}) = \mathbf{0}$.
 - Image (Range): The set of all vectors in $W$ that are output by $T$, denoted as $\text{im}(T)$ or $T(V)$.
 - Linear Operator: A linear transformation from a vector space to itself ($T: V \rightarrow V$).
 - Properties Preserved: Linear transformations take lines to lines (or points) and keep the origin fixed.
 
-**Examples**
+**Here are some matrices commonly used in computer graphics and machine learning problems,**
 
 - Rotation: Rotating a vector in $\mathbb{R}^2$ or $\mathbb{R}^3$ around the origin.
 - Scaling: Stretching or compressing a vector by a scalar factor.
@@ -105,7 +105,7 @@ Every linear transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ can be re
 
 A system of linear equations is a set of two or more equations with the same variables, where each variable has an exponent of one. Solutions are found when all equations are satisfied simultaneously, which can result in a unique solution, no solution, or infinitely many solutions. These are solved using methods like Gaussian elimination, substitution, or matrix inversion (represented as $Ax = b$).
 
-**Key Concepts and Methods:**
+**Here are some key concepts and methods:**
 
 - Systems Types: Consistent systems have at least one solution (unique or infinite), while inconsistent systems have no solutions.
 - Graphical Representation: In 2D, linear equations are lines; the solution is the intersection point. In 3D, they are planes, and the solution is their intersection line or point.
@@ -126,7 +126,7 @@ A system of linear equations is a set of two or more equations with the same var
 
 Eigenvalues ($\lambda$) and eigenvectors ($v$) are fundamental concepts in linear algebra representing the scalars and nonzero vectors that satisfy the equation $Av = \lambda v$ for a square matrix $A$. They define directions that remain unchanged in span when a linear transformation is applied, scaled only by the eigenvalue, forming key tools for diagonalizing matrices, understanding transformations, and solving differential equations.
 
-**Core Concepts**
+**What are some core concepts?**
 
 - Eigenvector : A nonzero vector that does not change direction under a linear transformation, only scaled by its eigenvalue.
 - Eigenvalue : The scalar factor by which an eigenvector is multiplied (scaled or flipped) during a linear transformation.
@@ -147,13 +147,11 @@ To find eigenvalues and eigenvectors of a square matrix $A$:
 - Invertibility: A matrix is singular (non-invertible) if and only if it has an eigenvalue equal to zero.
 - Matrix Powers: If $\lambda$ is an eigenvalue of $A$, then $\lambda^k$ is an eigenvalue of $A^k$.
 
-**Common Examples**
+**Here are some common examples and applications**
 
 - Rotation Matrix (2D): A $90^\circ$ rotation in 2D has no real eigenvalues because no vector remains in the same direction, though it has complex eigenvalues.
 - Projection Matrix: Projection matrices have only eigenvalues of 1 and 0.
 - Reflection Matrix: Reflection matrices have eigenvalues of 1 and -1.
-
-**Applications**
 
 - Diagonalization: Simplifying a matrix $A = PDP^{-1}$, where $D$ is a diagonal matrix of eigenvalues and $P$ is a matrix of eigenvectors.
 - Principal Component Analysis (PCA): Used in data reduction to find the principal components, which are eigenvectors of the covariance matrix.
