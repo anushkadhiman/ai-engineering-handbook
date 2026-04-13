@@ -30,7 +30,6 @@ In linear algebra, vectors are ordered lists of numbers (components) representin
 - Vector Representation: Usually written as column vectors, e.g.,
   $$
   \vec{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}
-  $$.
   $$
 - Vector Addition: Performed component-wise. If $\vec{u} = \begin{bmatrix} a \\ b \end{bmatrix}$ and $\vec{v} = \begin{bmatrix} c \\ d \end{bmatrix}$, then $\vec{u}+\vec{v} = \begin{bmatrix} a+c \\ b+d \end{bmatrix}$.
 
