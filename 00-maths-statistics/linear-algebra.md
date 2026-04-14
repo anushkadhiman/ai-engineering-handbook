@@ -63,7 +63,7 @@ b + d
 \end{bmatrix}
 ```
 
-- **Scalar Multiplication:** A scalar \( c \) multiplies each component:
+- **Scalar Multiplication:** A scalar \( c \) multiplies each component, scaling the vector's length.
 
 ```math
 c \vec{u} =
@@ -71,9 +71,9 @@ c \vec{u} =
 ca \\
 cb
 \end{bmatrix}
-```
+``` 
 
-Scaling the vector's length.
+
 
 - **Geometric Interpretation:**  
 Geometric Interpretation: An arrow starting at the origin $(0,0)$ and ending at $(v_1, v_2)$.
@@ -83,6 +83,7 @@ The set of all possible linear combinations (additions and scalar multiplication
 
 - **Linear Independence:**  
 A set of vectors is linearly independent if none can be written as a linear combination of the others.  
+
 **What are some types of vectors?**
 
 - Zero Vector: A vector with all components as zero, acting as the additive identity.
