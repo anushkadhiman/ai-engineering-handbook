@@ -28,9 +28,9 @@ In linear algebra, vectors are ordered lists of numbers (components) representin
 **Here are some key concepts in vector algebra**
 
 - Vector Representation: Usually written as column vectors, e.g.,
-  $$
+  $
   \vec{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}
-  $$
+  $
 - Vector Addition: Performed component-wise. If $\vec{u} = \begin{bmatrix} a \\ b \end{bmatrix}$ and $\vec{v} = \begin{bmatrix} c \\ d \end{bmatrix}$, then $\vec{u}+\vec{v} = \begin{bmatrix} a+c \\ b+d \end{bmatrix}$.
 
 - Scalar Multiplication: A scalar $c$ multiplies each component: $c\vec{u} = \begin{bmatrix} ca \\ cb \end{bmatrix}$, scaling the vector's length.
