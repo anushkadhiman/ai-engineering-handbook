@@ -25,24 +25,83 @@ Linear algebra acts as a bridge between geometric intuition (graphs, shapes) and
 
 In linear algebra, vectors are ordered lists of numbers (components) representing points or directions in $n$-dimensional space ($\mathbb{R}^n$), often visualized as arrows from the origin. They are fundamental objects that can be added together and multiplied by scalars (numbers) to scale their length.
 
-**Here are some key concepts in vector algebra**
+## Here are some key concepts in vector algebra
 
-- Vector Representation: Usually written as column vectors, e.g.,
+- **Vector Representation:** Usually written as column vectors, e.g.,
 
-  \[ \vec{v} = \begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix} \]
+```math
+\vec{v} =
+\begin{bmatrix}
+v_1 \\
+v_2 \\
+\vdots \\
+v_n
+\end{bmatrix}
+```
 
-- Vector Addition: Performed component-wise. If $\vec{u} = \begin{bmatrix} a \\ b \end{bmatrix}$ and $\vec{v} = \begin{bmatrix} c \\ d \end{bmatrix}$, then $\vec{u}+\vec{v} = \begin{bmatrix} a+c \\ b+d \end{bmatrix}$.
+- **Vector Addition:** Performed component-wise.
 
-- Scalar Multiplication: A scalar $c$ multiplies each component: $c\vec{u} = \begin{bmatrix} ca \\ cb \end{bmatrix}$, scaling the vector's length.
-- Geometric Interpretation: An arrow starting at the origin $(0,0)$ and ending at $(v_1, v_2)$.
-- Span: The set of all possible linear combinations (additions and scalar multiplications) of a set of vectors.
-- Linear Independence: A set of vectors is linearly independent if none can be written as a linear combination of the others.
+```math
+\vec{u} =
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix},
+\quad
+\vec{v} =
+\begin{bmatrix}
+c \\
+d
+\end{bmatrix}
+```
+
+```math
+\vec{u} + \vec{v} =
+\begin{bmatrix}
+a + c \\
+b + d
+\end{bmatrix}
+```
+
+- **Scalar Multiplication:** A scalar \( c \) multiplies each component, scaling the vector's length.
+
+```math
+c \vec{u} =
+\begin{bmatrix}
+ca \\
+cb
+\end{bmatrix}
+```
+
+- **Geometric Interpretation:**  
+  Geometric Interpretation: An arrow starting at the origin $(0,0)$ and ending at $(v_1, v_2)$.
+
+- **Span:**  
+  The set of all possible linear combinations (additions and scalar multiplications) of a set of vectors.
+
+- **Linear Independence:**  
+  A set of vectors is linearly independent if none can be written as a linear combination of the others.
 
 **What are some types of vectors?**
 
 - Zero Vector: A vector with all components as zero, acting as the additive identity.
 - Unit Vector: A vector with a magnitude (length) of 1, often used to indicate direction.
-- Basis Vectors: A set of linearly independent vectors that span a vector space, such as the standard basis vectors $\vec{i} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$ and $\vec{j} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$ in $\mathbb{R}^2$.
+- **Basis Vectors:**  
+  A set of linearly independent vectors that span a vector space, such as the standard basis vectors in $\mathbb{R}^2$
+
+```math
+\vec{i} =
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix},
+\quad
+\vec{j} =
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+```
 
 Vectors in linear algebra are foundational for representing data, solving systems of linear equations, and performing transformations in computer graphics and machine learning.
 
