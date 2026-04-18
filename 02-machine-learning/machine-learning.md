@@ -381,4 +381,8 @@ Regularization techniques play a crucial role in machine learning by preventing 
 
 **Resources:**
 
-1. Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition
+1. [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow by Aurélien Géron](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
+
+2. [CS229 Machine Learning Lecture Notes by Andrew Ng](https://cs229.stanford.edu/lectures-spring2022/main_notes.pdf)
+
+3. [Machine Learning Course (Stanford CS229) by Andrew Ng](https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU)

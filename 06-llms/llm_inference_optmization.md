@@ -423,3 +423,37 @@ The main downside is speed. Moving data between the GPU and CPU over the PCIe bu
 - **ZeRO-Offload (DeepSpeed):** Specifically designed to offload both optimizer states and gradients to the CPU.
 - **FSDP (Fully Sharded Data Parallel):** A PyTorch technique that supports offloading parameters to the CPU when not in use during the forward/backward pass.
 - **Llama.cpp:** Uses CPU offloading to allow users to run LLMs using a mix of GPU and System RAM, making local AI accessible on standard PCs.
+
+---
+
+_Resources:_
+
+1. [Attention Is All You Need (Transformer foundation for KV Cache)](https://arxiv.org/abs/1706.03762)  
+   _Vaswani et al._
+
+2. [FlashAttention: Fast and Memory-Efficient Exact Attention](https://arxiv.org/abs/2205.14135)  
+   _Tri Dao et al._
+
+3. [Multi-Query Attention (MQA) and Grouped-Query Attention (GQA) explanation](https://arxiv.org/abs/1911.02150)  
+   _Noam Shazeer et al. (MQA concept)_
+
+4. [vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention](https://arxiv.org/abs/2309.06180)  
+   _Introduces PagedAttention + KV cache paging system_
+
+5. [Continuous Batching in LLM Serving (vLLM design notes)](https://docs.vllm.ai/)  
+   _Practical explanation of batching requests dynamically_
+
+6. [Prefix Caching in LLM Serving (Hugging Face TGI / vLLM docs)](https://huggingface.co/docs/text-generation-inference/en/concepts/prefix_caching)
+
+7. [Speculative Decoding: Accelerating LLM Inference](https://arxiv.org/abs/2211.17192)  
+   _Leviathan et al._
+
+8. [llama.cpp (efficient CPU/GPU inference for LLaMA models)](https://github.com/ggerganov/llama.cpp)
+
+9. [Ollama: Run LLMs locally with simple API](https://ollama.com/)
+
+10. [vLLM: High-throughput LLM serving engine](https://github.com/vllm-project/vllm)
+
+11. [DeepSpeed Inference (CPU/GPU offloading + optimization stack)](https://www.deepspeed.ai/tutorials/inference/)
+
+12. [Hugging Face Accelerate (CPU/GPU offloading & device mapping)](https://huggingface.co/docs/accelerate/index)

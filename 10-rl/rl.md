@@ -40,11 +40,11 @@ Reinforcement learning agents learn from experience, similar to human learning, 
 Proximal Policy Optimization (PPO) is a state-of-the-art, policy-gradient reinforcement learning algorithm that balances ease of implementation, sample efficiency, and training stability. It limits policy updates using a clipping mechanism, preventing large, destabilizing changes. PPO is the default algorithm at OpenAI, commonly used for robotics and language model alignment (RLHF).
 
 **What are the key componenets?**
+
 - Itolicy Algorithm: PPO directly updates the policy and requires new data for every update cycle.
 - Clipping Mechanism: Instead of complex Trust Region Policy Optimization (TRPO), PPO uses a clipped surrogate objective to keep the new policy close to the old one.
 - Actor-Critic Architecture: Typically, an Actor (policy network) decides the action, and a Critic (value network) estimates the value of the current state.
 - It works efficiently with both discrete and continuous action spaces.
-
 
 **How PPO Works (The Clipped Objective):**
 PPO tries to maximize the following objective, which consists of three parts:
@@ -53,10 +53,14 @@ PPO tries to maximize the following objective, which consists of three parts:
 - Value Loss: Optimizes the critic to better estimate future rewards.
 - Entropy Bonus: Encourages exploration by preventing the policy from becoming too deterministic too quickly.
 
-***
+---
 
-*References:*
-1. https://huggingface.co/learn/deep-rl-course/unit0/introduction
-2. https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf
-3. https://spinningup.openai.com/en/latest/spinningup/rl_intro.html
-4. https://icml.cc/2016/tutorials/deep_rl_tutorial.pdf
+_Resources:_
+
+1. [Hugging Face Deep Reinforcement Learning Course – Introduction (Unit 0)](https://huggingface.co/learn/deep-rl-course/unit0/introduction)
+
+2. [Reinforcement Learning: An Introduction (2nd Edition) by Sutton & Barto (Full PDF)](https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf)
+
+3. [Spinning Up in Deep Reinforcement Learning by OpenAI](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html)
+
+4. [Deep Reinforcement Learning Tutorial (ICML 2016 PDF)](https://icml.cc/2016/tutorials/deep_rl_tutorial.pdf)

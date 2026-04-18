@@ -322,3 +322,9 @@ A standard normal distribution is a special case where the mean is 0 and the sta
 The normal distribution is critical in statistics due to the Central Limit Theorem, which states that the sum or average of many independent, random variables tends toward a normal distribution, regardless of the original distribution's shape.
 
 ---
+
+1. [Practical Statistics for Data Scientists by Peter Bruce, Andrew Bruce, and Peter Gedeck](https://www.oreilly.com/library/view/practical-statistics-for/9781491952955/)
+
+2. [Statistics for Data Science (StatQuest Series) by Josh Starmer](https://www.youtube.com/watch?v=sQqniayndb4&list=PLMrJAkhIeNNR3sNYvfgiKgcStwuPSts9V)
+
+3. [Statistics 110: Probability (Harvard University) by ](https://www.youtube.com/watch?v=KbB0FjPg0mw&list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo)

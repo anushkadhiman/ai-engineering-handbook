@@ -251,3 +251,33 @@ While the frontier moves toward "Trillion-parameter" models, there is a massive 
 ## LLAMA
 
 ## Mixture of Experts
+
+---
+
+_Resources:_
+
+1. [Attention Is All You Need (Original Transformer Paper) by Vaswani et al.](https://arxiv.org/abs/1706.03762)  
+   _Introduces self-attention, encoder-decoder architecture_
+
+2. [The Illustrated Transformer by Jay Alammar](https://jalammar.github.io/illustrated-transformer/)  
+   _Best intuitive explanation of attention + positional encoding_
+
+3. [Positional Encoding in Transformers (blog explanation)](https://kazemnejad.com/blog/transformer_architecture_positional_encoding/)
+
+4. [Scaled Dot-Product Attention Explained (Illustrated Guide)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+
+5. [Self-Attention Explained (Stanford CS224N notes)](https://web.stanford.edu/class/cs224n/)
+
+6. [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+
+7. [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/abs/1907.11692)
+
+8. [ALBERT: A Lite BERT for Self-supervised Learning of Language Representations](https://arxiv.org/abs/1909.11942)
+
+9. [DistilBERT: A distilled version of BERT](https://arxiv.org/abs/1910.01108)
+
+10. [Scaling Laws for Neural Language Models (OpenAI)](https://arxiv.org/abs/2001.08361)
+
+11. [Training Compute-Optimal Large Language Models (Chinchilla paper)](https://arxiv.org/abs/2203.15556)
+
+12. [Efficient Training of Transformers (overview of scaling strategies)](https://huggingface.co/blog/large-language-models)

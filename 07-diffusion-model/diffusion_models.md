@@ -215,3 +215,38 @@ ComfyUI is a powerful, node-based graphical user interface (GUI) and backend for
 ComfyUI is designed for power users seeking detailed control over AI imagery rather than quick, simple generation.
 
 ---
+
+_Resources:_
+
+1. [Denoising Diffusion Probabilistic Models (DDPM) by Ho et al.](https://arxiv.org/abs/2006.11239)  
+   _Foundational diffusion model paper_
+
+2. [Understanding Diffusion Models (Lil’Log blog by Lilian Weng)](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)  
+   _Best intuitive + mathematical breakdown_
+
+3. [Improved Denoising Diffusion Probabilistic Models by Nichol & Dhariwal](https://arxiv.org/abs/2102.09672)  
+   _Introduces improved noise schedules_
+
+4. [Diffusion Noise Schedules Explained (blog)](https://huggingface.co/blog/annotated-diffusion)  
+   _Clear explanation of linear vs cosine scheduling_
+
+5. [Sinusoidal Position Embeddings in Diffusion Models (Transformer analogy)](https://arxiv.org/abs/1706.03762)  
+   _Original positional encoding idea reused in diffusion time steps_
+
+6. [Time Embeddings in Diffusion Models (Hugging Face explanation)](https://huggingface.co/blog/annotated-diffusion)
+
+7. [High-Resolution Image Synthesis with Latent Diffusion Models (Stable Diffusion paper)](https://arxiv.org/abs/2112.10752)  
+   _Core architecture behind Stable Diffusion_
+
+8. [Stable Diffusion Explained (Stability AI / blog)](https://stability.ai/blog/stable-diffusion-public-release)
+
+9. [Stable Diffusion Tutorial (Hugging Face Diffusers)](https://huggingface.co/docs/diffusers/index)
+
+10. [Adding Conditional Control to Text-to-Image Diffusion Models (ControlNet)](https://arxiv.org/abs/2302.05543)  
+    _Adds controllable structure (edges, poses, depth, etc.)_
+
+11. [ControlNet Explained (Hugging Face blog)](https://huggingface.co/blog/controlnet)
+
+12. [ComfyUI GitHub Repository (node-based Stable Diffusion UI)](https://github.com/comfyanonymous/ComfyUI)
+
+13. [ComfyUI Workflows & Guide (community docs)](https://comfyui-wiki.com/)

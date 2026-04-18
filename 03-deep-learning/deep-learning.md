@@ -896,3 +896,12 @@ Train the model on the new dataset, which is typically smaller than the original
 **Resources:**
 
 1. [Deep Learning: Book by Aaron Courville, Ian Goodfellow, and Yoshua Bengio](https://www.deeplearningbook.org/)
+2. [Deep Learning Specialization (DeepLearning.AI) by Andrew Ng](https://www.youtube.com/watch?v=DrhJLHiia7g&list=PLgPbN3w-ia_PeT1_c5jiLW3RJdR7853b9)
+
+3. [Neural Networks (3Blue1Brown Series) by Grant Sanderson](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)
+
+4. [Deep Learning Specialization (Andrew Ng - Coursera Lectures) by Andrew Ng](https://www.youtube.com/watch?v=CS4cs9xVecg&list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0)
+
+5. [Deep Learning (MIT Press Book) by Ian Goodfellow, Yoshua Bengio, and Aaron Courville](https://www.deeplearningbook.org/)
+
+6. [Deep Learning with Python by François Chollet](https://sourestdeeds.github.io/pdf/Deep%20Learning%20with%20Python.pdf)

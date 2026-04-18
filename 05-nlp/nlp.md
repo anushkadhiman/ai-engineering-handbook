@@ -791,3 +791,13 @@ NLP Task Recommended Strategy
 - NLTK: Offers a wide range of rule-based tokenizers like word_tokenize and sent_tokenize, ideal for educational use and rapid prototyping.
 
 ---
+
+_Resources:_
+
+1. [Natural Language Processing with Deep Learning (Stanford CS224N) by Christopher Manning](https://www.youtube.com/watch?v=DzpHeXVSC5I&list=PLoROMvodv4rOaMFbaqxPDoLWjDaRAdP9D)
+
+2. [Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems by Sowmya Vajjala, Bodhisattwa Majumder, Anuj Gupta, and Harshit Surana](https://dokumen.pub/practical-natural-language-processing-a-comprehensive-guide-to-building-real-world-nlp-systems-1492054054-9781492054054-h-1409126.html)
+
+3. [Natural Language Processing with Python by Steven Bird, Ewan Klein, and Edward Loper](https://www.oreilly.com/library/view/natural-language-processing/9780596803346/)
+
+4. [Natural Language Processing with Python (NLTK Book) by Steven Bird, Ewan Klein, and Edward Loper](https://www.nltk.org/book/)

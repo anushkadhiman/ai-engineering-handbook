@@ -90,3 +90,11 @@ Key evaluation techniques include loss curves, downstream task benchmarks, and c
   - Memory vs. Accuracy: Compare 8-bit or 4-bit loading against 16-bit to evaluate the trade-off between memory footprint (reduced 8x) and precision.
 
 ---
+
+_Resources:_
+
+1. [Awesome LLM Evaluation (Comprehensive Guide) by Andrei Lopatenko](https://alopatenko.github.io/LLMEvaluation/)
+
+2. [LLM Evaluation Explained (Full Tutorial) by AssemblyAI](https://www.youtube.com/watch?v=8fNP4N46RRo&t=1152s)
+
+3. [LLM Evaluation Guidebook by Hugging Face](https://huggingface.co/spaces/OpenEvals/evaluation-guidebook)

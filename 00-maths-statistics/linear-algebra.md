@@ -219,3 +219,13 @@ To find eigenvalues and eigenvectors of a square matrix $A$:
 - Principal Component Analysis (PCA): Used in data reduction to find the principal components, which are eigenvectors of the covariance matrix.
 - Stability Analysis: Used in differential equations to determine stability (eigenvalues with negative real parts indicate stability).
 - Machine Learning: Eigenvectors/eigenvalues are used in spectral clustering and dimensionality reduction.
+
+---
+
+_Resources:_
+
+1. [Linear Algebra (MIT OpenCourseWare) by Professor Gilbert Strang](https://www.youtube.com/watch?v=Cx5Z-OslNWE&list=PLUl4u3cNGP63oMNUHXqIUcrkS2PivhN3k)
+
+2. [Essence of Linear Algebra (3Blue1Brown Series) by Grant Sanderson](https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
+
+3. [Introduction to Linear Algebra by Pablo Insente](https://pabloinsente.github.io/intro-linear-algebra)

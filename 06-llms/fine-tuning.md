@@ -139,3 +139,17 @@ While it shares the same goal as prompt tuning—steering a frozen model without
 - **Efficiency:** Drastically reduces the computational and storage costs of maintaining multiple task-specific models.
 
 ---
+
+_Resources:_
+
+1. [Hugging Face LLM Course – PEFT (LoRA, Prefix Tuning, Prompt Tuning, QLoRA)](https://huggingface.co/learn/llm-course/chapter11/1)
+
+2. [LoRA: Low-Rank Adaptation of Large Language Models by Edward J. Hu et al.](https://arxiv.org/abs/2106.09685)
+
+3. [QLoRA: Efficient Finetuning of Quantized LLMs by Tim Dettmers et al.](https://arxiv.org/abs/2305.14314)
+
+4. [Prefix-Tuning: Optimizing Continuous Prompts for Generation by Xiang Lisa Li and Percy Liang](https://arxiv.org/abs/2101.00190)
+
+5. [The Power of Prompt Tuning (Google Research overview)](https://arxiv.org/abs/2104.08691)
+
+6. [Prompt Tuning Explained (Hugging Face blog / PEFT guide)](https://huggingface.co/blog/prompt-tuning)

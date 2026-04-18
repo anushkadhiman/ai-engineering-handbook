@@ -1,7 +1,7 @@
 # AI Engineering Handbook
 
 A structured, end-to-end knowledge base for building modern AI systems —  
-from **foundations (Math, Python, ML/DL)** to **production (LLMs, RAG, Agents, Deployment)**.
+from foundational concepts (mathematics, Python, ML/DL) to production-grade systems (LLMs, RAG, agents, and deployment).
 
 ---
 

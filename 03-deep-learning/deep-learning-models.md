@@ -126,7 +126,7 @@ The key innovation in LSTMs is the introduction of memory cells and gates that c
 
 ---
 
-Resources:
+_Resources:_
 
 1. [Deep Learning: Book by Aaron Courville, Ian Goodfellow, and Yoshua Bengio](https://www.deeplearningbook.org/)
 

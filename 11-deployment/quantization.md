@@ -180,7 +180,22 @@ Weight pruning methods reduce the size and computational load of neural networks
 
 ---
 
-_Reference:_
+_Resources:_
 
-1. https://huggingface.co/docs/optimum/concept_guides/quantization
-2. https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization
+1. [Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference (Google)](https://arxiv.org/abs/1712.05877)
+
+2. [Post-Training Quantization in PyTorch](https://pytorch.org/docs/stable/quantization.html)
+
+3. [Efficient Inference with Quantization (Hugging Face Optimum)](https://huggingface.co/docs/optimum/index)
+
+4. [Mixed Precision Training (NVIDIA Apex / AMP Guide)](https://docs.nvidia.com/deeplearning/amp/)
+
+5. [Mixed Precision Training Paper (Micikevicius et al.)](https://arxiv.org/abs/1710.03740)
+
+6. [PyTorch Automatic Mixed Precision (AMP)](https://pytorch.org/docs/stable/amp.html)
+
+7. [Learning both Weights and Connections for Efficient Neural Networks](https://arxiv.org/abs/1506.02626)
+
+8. [The Lottery Ticket Hypothesis](https://arxiv.org/abs/1803.03635)
+
+9. [Pruning in PyTorch (Tutorial)](https://pytorch.org/tutorials/intermediate/pruning_tutorial.html)

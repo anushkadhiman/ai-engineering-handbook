@@ -720,7 +720,7 @@ Balancing relevance and diversity in RAG is achieved by first fetching topically
 **Key Strategies to Balance Relevance and Diversity:**
 
 - Maximum Marginal Relevance (MMR): This method explicitly balances the trade-off by selecting chunks that are relevant to the query but dissimilar to already selected chunks. It uses a parameter ($\lambda$) to tune the balance, allowing you to favor either higher diversity or higher relevance.
-- Hybrid Retrieval & Re-ranking: Combine vector search (for semantic relevance) with keyword search (BM25 for lexical precision) to find a broader set of, yet relevant, documents. 
+- Hybrid Retrieval & Re-ranking: Combine vector search (for semantic relevance) with keyword search (BM25 for lexical precision) to find a broader set of, yet relevant, documents.
 - Small-to-Big Retrieval (Hierarchical Retrieval): Use smaller chunks (e.g., 128 tokens) for initial semantic retrieval to improve recall, and then provide the larger parent document (e.g., 512-2048 tokens) to the LLM for better context.
 - Iterative Query Adjustment (Vendi-RAG): Use adaptive retrieval that adjusts the diversity vs. relevance trade-off based on the quality of the retrieved, dynamically increasing diversity for complex, multifaceted questions.
 - Maximum Covering Algorithms (Knapsack): Apply optimization algorithms to select the most relevant chunks that also maximize the coverage of different topics within a set token limit.
@@ -1597,3 +1597,45 @@ Example Usage: "Best restaurant?" vs. "Rameshwaram Cafe offers authentic..."
 
 - Use Symmetric if you are comparing two paragraphs for similarity or clustering short sentences.
 - Use Asymmetric if you are performing RAG, search, or querying, where the query intent differs from the document content.
+
+---
+
+_Resources:_
+
+1. [RAG Chunking Strategies Explained (LangChain Docs)](https://python.langchain.com/docs/concepts/text_splitters/)
+
+2. [Effective Text Splitting for RAG (LlamaIndex Docs)](https://docs.llamaindex.ai/en/stable/module_guides/loading/node_parsers/)
+
+3. [Sentence-BERT: Sentence Embeddings using Siamese BERT Networks](https://arxiv.org/abs/1908.10084)
+
+4. [OpenAI Embeddings Guide](https://platform.openai.com/docs/guides/embeddings)
+
+5. [Pinecone Vector Database Overview](https://www.pinecone.io/learn/vector-database/)
+
+6. [Efficient and Robust Approximate Nearest Neighbor Search Using Hierarchical Navigable Small World Graphs (HNSW)](https://arxiv.org/abs/1603.09320)
+
+7. [FAISS: Facebook AI Similarity Search](https://github.com/facebookresearch/faiss)
+
+8. [Hybrid Search Explained (Weaviate Docs)](https://weaviate.io/developers/weaviate/search/hybrid-search)
+
+9. [BM25 + Dense Retrieval Combination (Elastic Blog)](https://www.elastic.co/blog/what-is-bm25)
+
+10. [Retrieval-Augmented Generation (RAG) Survey Paper](https://arxiv.org/abs/2312.10997)
+
+11. [Improving RAG Systems (OpenAI Cookbook)](https://cookbook.openai.com/)
+
+12. [Learning to Rank with Cross-Encoders (SentenceTransformers)](https://www.sbert.net/examples/applications/retrieve_rerank/README.html)
+
+13. [MRR (Mean Reciprocal Rank) Explanation](https://en.wikipedia.org/wiki/Mean_reciprocal_rank)
+
+14. [GraphRAG: Leveraging Knowledge Graphs for Retrieval-Augmented Generation](https://arxiv.org/abs/2404.16130)
+
+15. [Microsoft GraphRAG Implementation Overview](https://github.com/microsoft/graphrag)
+
+16. [Self-Instruct: Aligning Language Models with Self-Generated Instructions](https://arxiv.org/abs/2212.10560)
+
+17. [Synthetic Data Generation for LLMs (Hugging Face blog)](https://huggingface.co/blog/synthetic-data)
+
+18. [Scalable Vector Search (FAISS + ANN Optimization)](https://github.com/facebookresearch/faiss/wiki)
+
+19. [vLLM + RAG Optimization Techniques](https://docs.vllm.ai/en/latest/)

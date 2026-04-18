@@ -835,3 +835,15 @@ Guardrailing Large Language Models (LLMs) involves implementing input validation
 - NeMo Guardrails: For conversational control.
 - Amazon Bedrock Guardrails: Managed service.
 - LLM Guard: For scanning inputs and outputs.
+
+---
+
+_Resources:_
+
+1. [Natural Language Processing with Deep Learning (CS224N) – Stanford Lecture Series by Christopher Manning](https://www.youtube.com/watch?v=Ub3GoFaUcds&list=PLoROMvodv4rOCXd21gf0CF4xr35yINeOy)
+
+2. [Hands-On Large Language Models: Language Understanding and Generation by Jay Alammar & Maarten Grootendorst](https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/)
+
+3. [Build a Large Language Model (From Scratch) by Sebastian Raschka](https://www.oreilly.com/library/view/build-a-large/9781633437166/)
+
+4. [AI Engineering: Building Applications with Foundation Models by Chip Huyen](https://www.oreilly.com/library/view/ai-engineering/9781098166298/)

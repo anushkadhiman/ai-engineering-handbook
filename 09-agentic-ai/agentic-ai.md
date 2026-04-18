@@ -1131,3 +1131,46 @@ Human-in-the-Loop (HITL) Agentic AI integrates human judgment into autonomous AI
 - Safety and Accuracy: Reduces the risks associated with AI hallucination or unexpected behavior in edge cases.
 - Improved Model Training: Human feedback at critical junctures serves as high-quality data to refine and improve future agent performance.
 - Regulatory Compliance: Addresses requirements for oversight, such as those found in the EU AI Act and NIST’s AI Risk Management Framework.
+
+---
+
+_Resources:_
+
+1. [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)  
+   _Introduces reasoning + tool use in iterative chains_
+
+2. [LangChain: Chains & Routing Concepts](https://python.langchain.com/docs/concepts/agents/)
+
+3. [Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)
+
+4. [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
+
+5. [Tree of Thoughts: Deliberate Problem Solving with LLMs](https://arxiv.org/abs/2305.10601)
+
+6. [Chain-of-Thought Prompting](https://arxiv.org/abs/2201.11903)
+
+7. [CAMEL: Communicative Agents for “Mind” Exploration](https://arxiv.org/abs/2303.17760)
+
+8. [AutoGen: Multi-Agent Conversation Framework (Microsoft)](https://github.com/microsoft/autogen)
+
+9. [MemGPT: Towards LLMs with Long-Term Memory](https://arxiv.org/abs/2310.08560)
+
+10. [LangChain Memory Systems Overview](https://python.langchain.com/docs/concepts/memory/)
+
+11. [Lost in the Middle: How Language Models Use Long Contexts](https://arxiv.org/abs/2307.03172)
+
+12. [Long Context Modeling Survey](https://arxiv.org/abs/2402.08268)
+
+13. [Constitutional AI: Harmlessness from AI Feedback](https://arxiv.org/abs/2212.08073)
+
+14. [Guardrails AI Framework](https://www.guardrailsai.com/)
+
+15. [OpenAI Safety Best Practices](https://platform.openai.com/docs/guides/safety-best-practices)
+
+16. [Building LLM Applications in Production (OpenAI Cookbook)](https://cookbook.openai.com/)
+
+17. [Designing LLM Systems for Reliability (Chip Huyen blog)](https://huyenchip.com/2023/04/11/llm-applications.html)
+
+18. [Observability for LLM Applications (LangSmith)](https://docs.smith.langchain.com/)
+
+19. [LLM Evaluation & Monitoring (Arize AI Blog)](https://arize.com/blog/)

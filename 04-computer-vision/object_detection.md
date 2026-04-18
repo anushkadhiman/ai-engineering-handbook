@@ -251,3 +251,15 @@ DeepSORT operates in four main stages for every single frame of video:
 - Cons: It is slower than basic trackers because it has to run a neural network on every single detected box to get that "fingerprint". It also struggles if the camera itself is moving quickly or if lighting changes drastically.
 
 ---
+
+_Resources:_
+
+1. [You Only Look Once: Unified, Real-Time Object Detection (YOLOv1) by Joseph Redmon et al.](https://arxiv.org/abs/1506.02640)
+
+2. [YOLOv3: An Incremental Improvement by Joseph Redmon and Ali Farhadi](https://arxiv.org/abs/1804.02767)
+
+3. [YOLOv4: Optimal Speed and Accuracy of Object Detection by Alexey Bochkovskiy et al.](https://arxiv.org/abs/2004.10934)
+
+4. [Deep SORT: Simple Online and Realtime Tracking with a Deep Association Metric by Nicolai Wojke et al.](https://arxiv.org/abs/1703.07402)
+
+5. [Object Detection with YOLO (PyImageSearch Guide) by Adrian Rosebrock](https://pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)

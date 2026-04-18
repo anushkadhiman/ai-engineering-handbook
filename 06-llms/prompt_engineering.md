@@ -244,7 +244,7 @@ Tree of Thoughts (ToT) is an advanced AI prompting framework that enables large 
 
 **Key Aspects of Tree of Thoughts:**
 
-- Branching & Exploration: ToT allows the model to explore multiple "thoughts" or potential solution paths at each step, rather than committing to one, notes this article from Zerotomastery.io.
+- Branching & Exploration: ToT allows the model to explore multiple "thoughts" or potential solution paths at each step, rather than committing to one.
 - Evaluation & Backtracking: The AI evaluates its own progress along each branch, backtracking when a path leads to a dead end, according to arXiv.
 - Components: A ToT system involves a prompter agent, a checker (evaluator) module, a memory module, and a controller to guide the search algorithm (e.g., BFS or DFS), say arXiv and Prompt Engineering Guide.
 
@@ -334,3 +334,39 @@ Prompt caching is a performance optimization technique for Large Language Models
 - Place system instructions, tool definitions, and long reference documents at the beginning. Put user-specific, changing queries at the end.
 - Ensure formatting, whitespace, and the order of elements (like tools or few-shot examples) are identical across requests.
 - For multi-turn chats, place breakpoints after static instructions or after key conversation turns to maximize reuse.
+
+---
+
+_Resources:_
+
+1. [Prompt Engineering Guide (comprehensive hub)](https://www.promptingguide.ai/)
+
+2. [Language Models are Few-Shot Learners (GPT-3 paper)](https://arxiv.org/abs/2005.14165)  
+   _Introduces zero-shot and few-shot prompting behavior at scale_
+
+3. [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)  
+   _CoT prompting for step-by-step reasoning_
+
+4. [Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601)  
+   _Tree-of-thought reasoning framework_
+
+5. [Self-Consistency Improves Chain of Thought Reasoning](https://arxiv.org/abs/2203.11171)  
+   _Sampling multiple reasoning paths and voting_
+
+6. [Prompt Caching (OpenAI / LLM serving concept overview)](https://platform.openai.com/docs/guides/prompt-caching)
+
+7. [Prompt Engineering Guide (comprehensive hub)](https://www.promptingguide.ai/)
+
+8. [Language Models are Few-Shot Learners (GPT-3 paper)](https://arxiv.org/abs/2005.14165)  
+   _Introduces zero-shot and few-shot prompting behavior at scale_
+
+9. [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](https://arxiv.org/abs/2201.11903)  
+   _CoT prompting for step-by-step reasoning_
+
+10. [Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601)  
+    _Tree-of-thought reasoning framework_
+
+11. [Self-Consistency Improves Chain of Thought Reasoning](https://arxiv.org/abs/2203.11171)  
+    _Sampling multiple reasoning paths and voting_
+
+12. [Prompt Caching (OpenAI / LLM serving concept overview)](https://platform.openai.com/docs/guides/prompt-caching)

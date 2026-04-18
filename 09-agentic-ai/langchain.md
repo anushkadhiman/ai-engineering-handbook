@@ -487,3 +487,13 @@ This persists user preferences or facts across different conversations using a S
 
 - **Namespaces:** Memories are stored under custom namespaces (e.g., [user_id, preferences]) rather than being tied to a single thread ID.
 - **Semantic Search:** Advanced setups use vector-based storage (like Mem0 or Redis) to retrieve relevant past facts via similarity search.
+
+---
+
+_Resources:_
+
+1. [LangChain YouTube Channel](https://www.youtube.com/@LangChain)
+
+2. [LangChain Official Website](https://www.langchain.com/)
+
+3. [LangChain Tutorial / Agentic AI Overview (YouTube Playlist)](https://www.youtube.com/watch?v=_v_fgW2SkkQ&list=PLqZXAkvF1bPNQER9mLmDbntNfSpzdDIU5)

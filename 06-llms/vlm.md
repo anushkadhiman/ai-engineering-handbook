@@ -132,3 +132,25 @@ Everything else is forced to predict "nothing." Hence, the model naturally learn
 2. Small Objects. Original DETR struggled with tiny objects, though newer versions like Deformable DETR have fixed this.
 
 ---
+
+_Resources:_
+
+1. [CLIP: Learning Transferable Visual Models From Natural Language Supervision by OpenAI](https://arxiv.org/abs/2103.00020)  
+   _Introduces contrastive image–text learning_
+
+2. [CLIP Explained (Jay Alammar blog)](https://jalammar.github.io/clip/)
+
+3. [Swin Transformer: Hierarchical Vision Transformer using Shifted Windows by Microsoft Research](https://arxiv.org/abs/2103.14030)  
+   _Hierarchical attention for vision tasks_
+
+4. [Swin Transformer Explained (blog walkthrough)](https://huggingface.co/blog/swin-transformer)
+
+5. [Masked Autoencoders Are Scalable Vision Learners by Meta AI](https://arxiv.org/abs/2111.06377)  
+   _Self-supervised vision pretraining via masking_
+
+6. [MAE Explained (Hugging Face blog)](https://huggingface.co/blog/mae)
+
+7. [DETR: End-to-End Object Detection with Transformers by Facebook AI](https://arxiv.org/abs/2005.12872)  
+   _Replaces traditional detection pipelines with transformers_
+
+8. [DETR Explained (Illustrated blog)](https://towardsdatascience.com/detr-object-detection-with-transformers-explained-3f4e1f7f5b9f)
