@@ -2,7 +2,7 @@
 
 Fine-tuning an LLM is the process of further training a pre-trained model on a smaller, domain-specific dataset to improve performance on specialized tasks, align with specific formats, or reduce hallucinations. It adapts model weights for better accuracy without requiring the vast, costly data of initial pre-training. Key methods include Supervised Fine-Tuning (SFT) and parameter-efficient techniques like LoRA/QLoRA.
 
-**Key Aspects of Fine-Tuning**
+**Why do we do Fine-Tuning?**
 
 - Purpose: To specialize a general-purpose model for specific industries (legal, medical) or tasks (chatbots, code generation), improving accuracy and lowering operational costs.
 
@@ -33,17 +33,42 @@ Fine-tuning an LLM is the process of further training a pre-trained model on a s
 
 ---
 
+## Instruction fine-tuning
+
+Instruction fine-tuning is a supervised learning technique that trains pre-trained language models (LLMs) on datasets of specific prompts and desired outputs to improve their ability to follow human instructions. Unlike general fine-tuning, it focuses on behavioral alignment, teaching models to generalize across tasks and understand context. This creates more usable, conversational, and precise AI assistants.
+
+**How to do Instruction Tuning?**
+
+- Dataset Structure: Training data includes a natural language instruction (task), optional input context, and the expected output.
+- Instruction Types: Covers diverse tasks like summarization, question answering, and code generation, often using datasets like FLAN or P3.
+- Methodology: Often uses PEFT (Parameter-Efficient Fine-Tuning) methods like LoRA to reduce computational costs.
+- Advantages: It enhances model alignment with user intent, improves performance on unseen tasks, and reduces the need for extensive task-specific training data.
+- Instruction Masking: Research suggests not masking (ignoring) the instructions during loss calculation often improves performance.
+
+**Instruction Fine-Tuning vs. Other Techniques:**
+
+- Supervised Fine-Tuning (SFT): Instruction tuning is a specialized form of SFT that uses instruction-based data rather than just general domain data.
+- Pre-training: While pre-training provides general language understanding, instruction tuning aligns that knowledge with user commands.
+
+**Common Use Cases:**
+
+- Conversational AI: Teaching models to act as chatbots or agents.
+- Task Specialization: Tuning models for specific business requirements, such as document classification or entity extraction.
+- Reducing Hallucinations: Making models more accurate by training them to follow formatting constraints.
+
+---
+
 ## Parameter-efficient fine-tuning (PEFT)
 
 Parameter-efficient fine-tuning (PEFT) techniques, such as LoRA and Prefix Tuning, adapt large language models (LLMs) to new tasks by updating only a tiny subset of parameters (often &lt;1%) while freezing the base model. PEFT drastically reduces computational and storage costs, allowing high-performance tuning on consumer hardware.
 
-**Key Aspects of PEFT:**
+**Why do we use PEFT?**
 
 - Reduced Resource Requirements: By freezing the majority of pre-trained parameters, PEFT saves significant GPU memory and storage, making it possible to fine-tune large models like 12B parameter models on a single 80GB GPU.
 - Comparable Performance: Despite training fewer parameters, PEFT methods often deliver performance comparable to, or even matching, full fine-tuning.
 - Mitigates Catastrophic Forgetting: Since the original model weights are frozen, the model retains its foundational knowledge while adapting to new tasks.
 
-**Common PEFT Methods:**
+**What are some common PEFT methods?**
 
 - LoRA (Low-Rank Adaptation): Injects trainable, low-rank decomposition matrices into the transformer architecture, reducing the number of trainable parameters.
 - Prefix Tuning: Prepends small, trainable virtual tokens to the input, allowing the model to adapt without changing its core parameters.
@@ -79,7 +104,7 @@ QLoRA is an advanced version that adds quantization to LoRA to save even more me
 Prompt tuning is a parameter-efficient adaptation technique where you keep a large pre-trained model entirely frozen and only train a small set of special, continuous vectors called soft prompts.
 Unlike traditional hard prompts (actual text you write), soft prompts are high-dimensional vectors that the model learns through training to steer its behavior toward a specific task.
 
-**How It Works**
+**How It Works?**
 
 - **Frozen Backbone:** The billions of weights in the original model remain unchanged, preserving all its general knowledge.
 - **Soft Prompt Addition:** A sequence of virtual tokens (soft prompts) is prepended to the input.
@@ -100,7 +125,7 @@ Unlike traditional hard prompts (actual text you write), soft prompts are high-d
 Prefix Tuning is a parameter-efficient fine-tuning (PEFT) method that adapts large language models to specific tasks by adding a set of trainable, continuous vectors (called a prefix) to the beginning of the input at every layer of the model.
 While it shares the same goal as prompt tuning—steering a frozen model without retraining all its weights—it is more expressive because its influence goes deeper into the model's architecture.
 
-**How It Works**
+**How It Works?**
 
 - **Frozen Backbone:** The original billions of parameters in the pre-trained model remain completely unchanged.
 - **Multi-Layer Injection:** Instead of just adding a soft prompt to the input layer, prefix tuning prepends learned vectors to the Key (K) and Value (V) matrices in the self-attention mechanism of every transformer layer.
@@ -114,5 +139,3 @@ While it shares the same goal as prompt tuning—steering a frozen model without
 - **Efficiency:** Drastically reduces the computational and storage costs of maintaining multiple task-specific models.
 
 ---
-
-s

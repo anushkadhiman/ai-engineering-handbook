@@ -720,7 +720,7 @@ Balancing relevance and diversity in RAG is achieved by first fetching topically
 **Key Strategies to Balance Relevance and Diversity:**
 
 - Maximum Marginal Relevance (MMR): This method explicitly balances the trade-off by selecting chunks that are relevant to the query but dissimilar to already selected chunks. It uses a parameter ($\lambda$) to tune the balance, allowing you to favor either higher diversity or higher relevance.
-- Hybrid Retrieval & Re-ranking: Combine vector search (for semantic relevance) with keyword search (BM25 for lexical precision) to find a broader set of, yet relevant, documents.
+- Hybrid Retrieval & Re-ranking: Combine vector search (for semantic relevance) with keyword search (BM25 for lexical precision) to find a broader set of, yet relevant, documents. 
 - Small-to-Big Retrieval (Hierarchical Retrieval): Use smaller chunks (e.g., 128 tokens) for initial semantic retrieval to improve recall, and then provide the larger parent document (e.g., 512-2048 tokens) to the LLM for better context.
 - Iterative Query Adjustment (Vendi-RAG): Use adaptive retrieval that adjusts the diversity vs. relevance trade-off based on the quality of the retrieved, dynamically increasing diversity for complex, multifaceted questions.
 - Maximum Covering Algorithms (Knapsack): Apply optimization algorithms to select the most relevant chunks that also maximize the coverage of different topics within a set token limit.

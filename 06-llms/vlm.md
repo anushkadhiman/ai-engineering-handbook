@@ -27,13 +27,15 @@ CLIP (Contrastive Language-Image Pre-training) is a foundational AI model develo
 
 **How CLIP Works**
 The model uses a "two-part brain" architecture to align visual and textual concepts in a shared mathematical space:
-**Dual Encoders:** It consists of an Image Encoder (often a Vision Transformer (ViT) or ResNet) and a Text Encoder (a standard Transformer).
-**Shared Embedding Space:** Both encoders convert their respective inputs into high-dimensional vectors (embeddings). CLIP is trained to ensure that the vector for an image of a dog is physically close to the vector for the text "a photo of a dog".
-**Contrastive Learning:** During training on 400 million image-text pairs from the internet, the model learns by "matching". It maximizes the similarity between correct image-text pairs while minimizing the similarity for incorrect pairings.
 
-**Key Capabilities**
+- **Dual Encoders:** It consists of an Image Encoder (often a Vision Transformer (ViT) or ResNet) and a Text Encoder (a standard Transformer).
+- **Shared Embedding Space:** Both encoders convert their respective inputs into high-dimensional vectors (embeddings). CLIP is trained to ensure that the vector for an image of a dog is physically close to the vector for the text "a photo of a dog".
+- **Contrastive Learning:** During training on 400 million image-text pairs from the internet, the model learns by "matching". It maximizes the similarity between correct image-text pairs while minimizing the similarity for incorrect pairings.
+
+**What are some key capabilities?**
 **Zero-Shot Learning:** CLIP can classify images into categories it has never explicitly seen before. For example, you can give it a list of labels like "a photo of a galaxy" or "a microscopic cell," and it will pick the best fit without needing any specialized training for those tasks.
-Robustness: Because it learns from diverse web data rather than a narrow dataset like ImageNet, it is much better at generalizing to different styles of images (sketches, cartoons, or blurry photos).
+
+It is robust because it learns from diverse web data rather than a narrow dataset like ImageNet, it is much better at generalizing to different styles of images (sketches, cartoons, or blurry photos).
 
 **Real-World Applications**
 
@@ -63,7 +65,7 @@ patches). Attention is only computed inside these windows. This reduces complexi
 - **Shifted Windows (SW-MSA):** Since local windows don't talk to each other, Swin alternates every layer by "shifting" the window boundaries by half their size. This forces the new windows to straddle the boundaries of the old ones, allowing information to propagate across the entire image over multiple layers.
 - **Cyclic Shifting:** To maintain efficient batch processing during shifts, Swin uses a "cyclic shift" and masking technique to ensure the number of windows remains constant without needing extra padding.
 
-**Summary of Benefits**
+**What are some benefits?**
 
 - **Scalability:** It can process high-resolution images (like 1024px) that would crash a standard ViT.
 - **General-Purpose Backbone:** It works "out-of-the-box" for diverse tasks including classification (ImageNet), object detection (COCO), and semantic segmentation (ADE20K).
@@ -130,17 +132,3 @@ Everything else is forced to predict "nothing." Hence, the model naturally learn
 2. Small Objects. Original DETR struggled with tiny objects, though newer versions like Deformable DETR have fixed this.
 
 ---
-
-## ComfyUI
-
-ComfyUI is a powerful, node-based graphical user interface (GUI) and backend for Stable Diffusion that allows us to create custom, complex AI image and video generation workflows locally. It provides fine-grained control over the generation process—including ControlNet and inpainting—by connecting individual functional blocks, or nodes.
-
-**Key Aspects of ComfyUI:**
-
-• Node-Based Workflow: Instead of simple text prompts, you design a flowchart (graph) connecting components (e.g., Load Checkpoint -&gt; Prompt -&gt; KSampler -&gt; VAE Decode).
-• Local & Free: Runs on your own computer (NVIDIA GPU recommended), ensuring privacy and no generation costs.
-• Highly Efficient: Known for being lightweight and efficient, often enabling faster generation than other GUIs.
-• Reproducibility: Workflows can be saved within generated PNG images, allowing you to drag and drop images back into the app to restore the exact creation process.
-• Customization: Supports extensive customization via custom nodes for specialized tasks, including image-to-video, upscaling, and advanced AI techniques.
-
-ComfyUI is designed for power users seeking detailed control over AI imagery rather than quick, simple generation.

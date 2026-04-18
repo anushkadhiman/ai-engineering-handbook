@@ -2,7 +2,7 @@
 
 Natural Language Processing (NLP) is a branch of artificial intelligence (AI) that enables computers to understand, interpret, and generate human language, bridging the gap between human communication and computer comprehension. It uses algorithms to analyze text and speech, automating tasks like sentiment analysis, translation, and text summarization.
 
-It involves multiple key steps,
+**It involves multiple key steps,**
 
 - Preprocessing: Cleaning data through tokenization (breaking text into words), stemming/lemmatization (reducing words to root forms), and removing stop words.
 - Syntax/Parsing: Analyzing grammatical structure to understand relationships between words.
@@ -27,7 +27,7 @@ Here are some common applications
 
 NLP in social media transforms vast amounts of unstructured user data into actionable insights for marketing, security, and research.
 
-Here are some key applications,
+**Here are some key applications,**
 
 - Sentiment Analysis: Gauges the emotional tone (positive, negative, neutral) of posts to monitor brand reputation, track campaign effectiveness, and understand public opinion.
 - Social Listening & Brand Monitoring: Tracks brand mentions, competitor activities, and industry shifts in real-time, even when the brand isn't directly tagged.
@@ -36,7 +36,7 @@ Here are some key applications,
 - Mental Health Surveillance: Analyzes linguistic patterns to identify signs of depression, anxiety, or potential crises in users.
 - Customer Service Automation: Powers 24/7 chatbots that resolve routine queries and route complex issues to human agents.
 
-But there are some major challenges,
+**But there are some major challenges,**
 
 - Informal Language & Noise: Social media text is rife with slang, abbreviations (e.g., "u" for "you"), misspellings, lack of punctuation, and emoticons, which can confuse traditional NLP models.
 - Sarcasm & Ambiguity: Determining the true meaning of a post is difficult when the tone is ironic or sarcastic (e.g., "Great job!" as a complaint).
@@ -221,8 +221,7 @@ Think of CBOW as a "fill-in-the-blank" exercise for a neural network.
 
 **Example**
 If the training sentence is "The cat sat on the mat" and the window size is 2:
-Context: ["The", "cat", "on", "the"]
-Target: "sat"
+Context: ["The", "cat", "on", "the"], Target: "sat"
 The model learns to associate the combined meaning of "The," "cat," "on," and "the" with the word "sat".
 
 ---
@@ -246,8 +245,9 @@ A high score is achieved by having a high term frequency (in the specific docume
 
 **4. Practical Example**
 If you have 1,000 articles about technology:
-The word "the" will have a high TF but a very low IDF (because it’s in every article), resulting in a low total score.
-The word "blockchain" might appear 20 times in one specific article but only in 5 articles total. This creates a high total score, marking "blockchain" as a key descriptor for that document.
+
+- The word "the" will have a high TF but a very low IDF (because it’s in every article), resulting in a low total score.
+- The word "blockchain" might appear 20 times in one specific article but only in 5 articles total. This creates a high total score, marking "blockchain" as a key descriptor for that document.
 
 ---
 
@@ -268,9 +268,9 @@ The goal is to train the model to distinguish the real neighbor from the random 
 **2. Hierarchical Softmax (The "Tree Search")**
 Hierarchical Softmax uses a binary tree structure (typically a Huffman Tree) to represent the vocabulary.
 
-The Structure: All the words in the vocabulary are "leaves" at the bottom of the tree. Frequent words are placed on shorter paths, and rare words are deeper.
+- The Structure: All the words in the vocabulary are "leaves" at the bottom of the tree. Frequent words are placed on shorter paths, and rare words are deeper.
 
-The Process: To calculate the probability of a word, the model doesn't look at all words. It traces a path from the root of the tree down to that specific word's leaf.
+- The Process: To calculate the probability of a word, the model doesn't look at all words. It traces a path from the root of the tree down to that specific word's leaf.
 
 For a vocabulary of 65,536 words, the model only needs to make 16 binary decisions instead of 65,536 calculations.
 
@@ -319,8 +319,7 @@ GloVe starts by building a massive table (matrix) that counts how often every wo
 The genius of GloVe is that it doesn't just look at raw counts; it looks at the ratios of co-occurrence probabilities.
 
 - Example: Consider the words Ice and Steam in relation to Water.
-  Ice co-occurs with Solid frequently.
-  Steam co-occurs with Solid rarely.
+  Ice co-occurs with Solid frequently and Steam co-occurs with Solid rarely.
   The ratio of these probabilities helps the model pinpoint that "Ice" is to "Solid" what "Steam" is to "Gas."
 
 **3. Why use it?**
@@ -355,14 +354,14 @@ This "subword" approach solves the two biggest headaches in NLP:
 
 A Document-Term Matrix (DTM) in NLP is a mathematical structure representing a corpus, where rows represent documents and columns represent unique terms (words). Each cell contains the count or weight (e.g., TF-IDF) of a term in a document, enabling quantitative analysis of unstructured text data.
 
-Here are some key characteristics and components
+**Here are some key characteristics and components**
 
 - Structure: Documents are usually rows, and terms are columns (or vice versa in a Term-Document Matrix).
 - Sparsity: Because not every word appears in every document, DTMs are often sparse, containing mostly zeros.
 - Vectorization: It converts text into numerical, high-dimensional vectors, allowing algorithms to process documents.
 - Weighting: Cells can contain raw counts (Bag of Words) or weighted values like Term Frequency-Inverse Document Frequency (TF-IDF) to highlight meaningful words.
 
-Here are some applications of DTM,
+**Here are some applications of DTM,**
 
 - Topic Modeling: Discovering hidden thematic structures in documents.
 - Text Classification: Categorizing documents based on word frequencies.
@@ -380,7 +379,7 @@ Here are some applications of DTM,
 
 Stop words in NLP are common, high-frequency words (e.g., "the," "is," "in," "and") filtered out during text preprocessing to reduce noise, improve computational efficiency, and focus on meaningful content. They are typically ignored in tasks like sentiment analysis, search indexing, and topic modeling.
 
-Here are some key aspects of stop words,
+**Here are some key aspects of stop words,**
 
 - Definition: Words that carry little unique information, such as articles, prepositions, and conjunctions.
 - Purpose: Removing them reduces dataset size, lowers computational load, and helps algorithms focus on important terms.
@@ -396,9 +395,7 @@ After Stop Word Removal: "quick brown fox jumps lazy dog."
 
 ## N-gram
 
-An N-gram is a contiguous sequence of
-items (typically words or characters) from a given sample of text or speech. In Natural Language Processing (NLP), an N-gram model is a probabilistic language model that predicts the next item in a sequence based on the previous
-items.
+An N-gram is a contiguous sequence of n items (typically words or characters) from a given sample of text or speech. In Natural Language Processing (NLP), an N-gram model is a probabilistic language model that predicts the next item in a sequence based on the previous items.
 
 **Types of N-Grams**
 The value of n defines the order of the model:
@@ -411,7 +408,7 @@ The value of n defines the order of the model:
 **Core Concept: The Markov Assumption**
 Calculating the probability of a word given its entire preceding history is computationally expensive and data-intensive. N-gram models simplify this using the Markov Assumption, which states that the probability of a word depends only on a limited window of previous words.
 
-Here are some common applications,
+**Here are some common applications,**
 
 - **Text Prediction:** Powering autocomplete functions in search engines and mobile keyboards.
 - **Speech Recognition:** Helping systems choose the most likely sequence of words from noisy audio.
@@ -428,7 +425,7 @@ Here are some common applications,
 
 ---
 
-## skipgrams
+## Skipgrams
 
 skip-grams are a way of looking at pairs of words in a sentence while skipping over some words in between.
 They help NLP models understand context even when words aren't sitting right next to each other.
@@ -459,7 +456,7 @@ By allowing these "skips," the model learns that "cat" and "sat" are related, bu
 
 In Natural Language Processing (NLP), data augmentation is the practice of artificially increasing the size and diversity of a training dataset by creating modified versions of existing text. Unlike image augmentation (e.g., rotating or flipping), text augmentation is more complex because even minor changes can drastically alter a sentence's meaning or grammatical correctness.
 
-**Core Techniques**
+**What are some core techniques?**
 Data augmentation methods in NLP are generally categorized by the level at which they operate:
 **1. Lexical (Word-level) Augmentation:**
 
@@ -484,14 +481,14 @@ Data augmentation methods in NLP are generally categorized by the level at which
 
 - Mixup: Interpolates the hidden representations (embeddings) of two different sentences to create a "virtual" training sample.
 
-**Why It's Used**
+**Why It's Used?**
 
 - Preventing Overfitting: Helps models generalize better by exposing them to diverse linguistic patterns.
 - Addressing Data Scarcity: Useful for training "data-hungry" deep learning models when labeled datasets are small.
 - Handling Class Imbalance: Generates extra samples for minority classes to ensure the model doesn't become biased toward the majority class.
 - Improving Robustness: Trains models to handle real-world "noise" like typos, slang, and varying sentence structures.
 
-Several open-source libraries simplify the implementation of these techniques:
+**Several open-source libraries simplify the implementation of these techniques:**
 
 - NLPAug: Supports character, word, and sentence-level augmentations, including back-translation.
 - TextAttack: Focused on adversarial attacks and data augmentation for robustness.
@@ -506,22 +503,19 @@ In Natural Language Processing (NLP), text extraction and cleanup are the critic
 **1. Text Extraction**
 This phase involves pulling plain text from various unstructured file formats using specialized tools:
 
-**PDFs:**
+- **PDFs:**
+  - PyMuPDF (Fitz): Highly efficient for general text, metadata, and extracting content by blocks or paragraphs.
+  - pdfplumber: Best for detailed extraction, especially when dealing with complex layouts or tables.
+  - pypdf: A pure-Python library commonly used for simpler text extraction and page management.
 
-- PyMuPDF (Fitz): Highly efficient for general text, metadata, and extracting content by blocks or paragraphs.
-- pdfplumber: Best for detailed extraction, especially when dealing with complex layouts or tables.
-- pypdf: A pure-Python library commonly used for simpler text extraction and page management.
+- **Images & Scanned Docs (OCR):**
+  - pytesseract: A wrapper for Google’s Tesseract-OCR, standard for general image-to-text tasks.
+  - EasyOCR: A deep learning-based tool that supports 80+ languages and often performs better than Tesseract on diverse fonts.
+  - Web Content (HTML):
+    BeautifulSoup: Used to strip HTML tags and isolate relevant text from raw web data.
 
-**Images & Scanned Docs (OCR):**
-
-- pytesseract: A wrapper for Google’s Tesseract-OCR, standard for general image-to-text tasks.
-- EasyOCR: A deep learning-based tool that supports 80+ languages and often performs better than Tesseract on diverse fonts.
-- Web Content (HTML):
-  BeautifulSoup: Used to strip HTML tags and isolate relevant text from raw web data.
-
-**Multi-format:**
-
-- Unstructured: A comprehensive library designed to ingest and partition documents of almost any type (PDF, Word, Excel, etc.) into a consistent format for LLM pipelines.
+- **Multi-format:**
+  - Unstructured: A comprehensive library designed to ingest and partition documents of almost any type (PDF, Word, Excel, etc.) into a consistent format for LLM pipelines.
 
 **2. Text Cleanup (Preprocessing)**
 Once extracted, text must be "cleaned" to remove noise and standardize variations.
@@ -594,8 +588,7 @@ OHE represents individual words as binary vectors.
 - How it works: Create a vector with a length equal to your entire vocabulary. For a specific word, put a 1 at its unique index and 0 everywhere else.
 
 - Example: If your vocabulary is ["cat", "dog", "run"]:
-  "cat" = [1, 0, 0]
-  "dog" = [0, 1, 0]
+  "cat" = [1, 0, 0] and "dog" = [0, 1, 0]
 
 - Downside: It is "sparse" (mostly zeros) and cannot represent a whole sentence in one vector without losing the "one-hot" property.
 
@@ -615,24 +608,21 @@ Unlike One-Hot Encoding or Bag-of-Words, Distributed Representations (also known
 
 - The core idea is based on the Distributional Hypothesis: "Words that occur in similar contexts tend to have similar meanings."
 
-**Key Characteristics**
+**What are some key characteristics and techniques?**
 
 - Dense Vectors: Instead of thousands of zeros, words are represented by a fixed-size vector (e.g., 50, 100, or 300 dimensions) of floating-point numbers.
 - Semantic Proximity: Related words like "king" and "queen" are mathematically close to each other in the vector space.
 - Linear Relationships: They capture analogies through vector arithmetic, famously.
-
-**Core Techniques**
-
 - Word2Vec: Developed by Google, it uses two architectures:
 - CBOW (Continuous Bag of Words): Predicts a target word based on its context.
 - Skip-gram: Predicts the surrounding context words given a single target word.
-- GloVe (Global Vectors): Developed by Stanford, it creates embeddings by analyzing global word-word co-occurrence statistics across the entire corpus [1].
+- GloVe (Global Vectors): Developed by Stanford, it creates embeddings by analyzing global word-word co-occurrence statistics across the entire corpus.
 - FastText: Developed by Facebook, it treats words as a collection of character n-grams. This allows it to generate representations for "Out of Vocabulary" (OOV) words by looking at their sub-parts.
 
 **Why They Are Superior**
 
 - Efficiency: They significantly reduce dimensionality compared to sparse methods like One-Hot Encoding.
-- Generalization: Because "hotel" and "motel" have similar vectors, a model trained on "hotel" data can still perform well when it encounters the word "motel" [1].
+- Generalization: Because "hotel" and "motel" have similar vectors, a model trained on "hotel" data can still perform well when it encounters the word "motel".
 - Transfer Learning: You can download Pre-trained Vectors trained on billions of words (Wikipedia, Common Crawl) and plug them into your own smaller models to boost performance.
 
 ---
@@ -641,18 +631,18 @@ Unlike One-Hot Encoding or Bag-of-Words, Distributed Representations (also known
 
 Naive Bayes is a widely used probabilistic machine learning algorithm in Natural Language Processing (NLP), primarily for text classification tasks like spam detection and sentiment analysis. It is based on Bayes' Theorem and makes the "naive" assumption that all features (words) are independent of each other given the class label.
 
-**Core Mechanisms in NLP**
-Bayes’ Theorem: It calculates the probability of a class (e.g., "Spam") given a set of features (words).
+**What are some core mechanisms in NLP?**
 
+- Bayes’ Theorem: It calculates the probability of a class (e.g., "Spam") given a set of features (words).
 - The "Naive" Assumption: It assumes that the presence of one word in a document is unrelated to the presence of any other word. While linguistically inaccurate (e.g., "San" and "Francisco" are highly related), this simplification makes the algorithm extremely fast and computationally efficient.
 - Bag-of-Words Model: Text is typically represented as a "bag-of-words," where word order is ignored and only frequency counts or presence/absence matter.
 - Laplace Smoothing: To prevent "zero-frequency" problems—where a word not seen in training results in a total probability of zero—a small value (usually 1) is added to every word count.
 
-**Variants Used in NLP**
+**What are the variants used in NLP?**
 
 - Multinomial Naive Bayes: The most common version for text. It uses word frequency counts (how many times "offer" appears).
 - Bernoulli Naive Bayes: Focused on word presence or absence (did "offer" appear at all? Yes/No). This is effective for shorter documents or binary classification.
-  Complement Naive Bayes: Specifically designed to correct for imbalanced datasets where one class has much more data than another.
+- Complement Naive Bayes: Specifically designed to correct for imbalanced datasets where one class has much more data than another.
 
 **Pros**
 
@@ -689,7 +679,7 @@ In Natural Language Processing (NLP), Logistic Regression (LR) is a foundational
 - Sigmoid Function: To convert this sum into a probability between 0 and 1, the model applies the sigmoid function.
 - Decision Boundary: Typically, if the probability is 1, it is assigned to the positive class; otherwise, it belongs to the negative class.
 
-**Common Applications**
+**What are some common applications?**
 
 - Sentiment Analysis: Categorizing reviews as positive, negative, or neutral.
 - Spam Detection: Classifying emails or SMS messages as "spam" or "ham".
@@ -716,19 +706,17 @@ Most systems follow a two-stage framework:
 
 **Types of Methods**
 Methods are generally categorized based on whether they require labeled training data.
-Unsupervised Methods (No Training Data Required)
 
-These are highly popular because they work "out of the box" across different domains.
+- **Unsupervised Methods (No Training Data Required)**
+  These are highly popular because they work "out of the box" across different domains.
+  - Statistical: Uses word frequency, position, and co-occurrence (e.g., TF-IDF, RAKE, YAKE).
+  - Graph-Based: Treats a document as a graph where words are nodes. Algorithms like TextRank or PositionRank use a PageRank-style approach to find the most "central" words.
+  - Embeddings-Based: Uses modern models like BERT to compare the semantic meaning of candidate phrases to the entire document (e.g., KeyBERT, EmbedRank).
 
-- Statistical: Uses word frequency, position, and co-occurrence (e.g., TF-IDF, RAKE, YAKE).
-- Graph-Based: Treats a document as a graph where words are nodes. Algorithms like TextRank or PositionRank use a PageRank-style approach to find the most "central" words.
-- Embeddings-Based: Uses modern models like BERT to compare the semantic meaning of candidate phrases to the entire document (e.g., KeyBERT, EmbedRank).
-
-**Supervised Methods (Training Data Required)**
-These treat extraction as a binary classification problem (is it a keyphrase or not?) or a sequence labeling task.
-
-- Classical Models: Uses features like TF-IDF and position to train classifiers like Naive Bayes (e.g., KEA, Maui).
-- Deep Learning: Uses neural networks like Bi-LSTMs or Transformers to capture long-term context and semantic relationships.
+- **Supervised Methods (Training Data Required)**
+  These treat extraction as a binary classification problem (is it a keyphrase or not?) or a sequence labeling task.
+  - Classical Models: Uses features like TF-IDF and position to train classifiers like Naive Bayes (e.g., KEA, Maui).
+  - Deep Learning: Uses neural networks like Bi-LSTMs or Transformers to capture long-term context and semantic relationships.
 
 **Popular Python Libraries**
 Several libraries provide easy-to-use implementations of these algorithms:
@@ -777,20 +765,18 @@ Tokenization converts raw text into structured numerical units (tokens) that mac
 
 **1. Tokenization by Level of Granularity**
 
-- Word Tokenization: Splits text by whitespace and punctuation into individual words.
-  Best for: Standard text classification, sentiment analysis, and keyword extraction.
+- Word Tokenization: Splits text by whitespace and punctuation into individual words. It is best for standard text classification, sentiment analysis, and keyword extraction.
 
-- Subword Tokenization: Breaks words into smaller meaningful units (e.g., "unhappiness" -> "un", "happi", "ness"). Algorithms like Byte Pair Encoding (BPE) or WordPiece are industry standards.
-  Best for: Modern transformer models (BERT, GPT) to handle "out-of-vocabulary" (OOV) words and rare terms.
+- Subword Tokenization: Breaks words into smaller meaningful units (e.g., "unhappiness" -> "un", "happi", "ness"). Algorithms like Byte Pair Encoding (BPE) or WordPiece are industry standards.It is ideal for modern transformer models (BERT, GPT) to handle "out-of-vocabulary" (OOV) words and rare terms.
 
 - Sentence Tokenization: Segments a document into distinct sentences.
-  Best for: Summarization, machine translation, and document-level analysis.
+  It is best for summarization, machine translation, and document-level analysis.
 
 - Character Tokenization: Treats every character as a token.
-  Best for: Languages without clear word boundaries (Chinese, Japanese), spelling correction, or phonetic analysis.
+  It is best for languages without clear word boundaries (Chinese, Japanese), spelling correction, or phonetic analysis.
 
 **2. Task-Specific Strategies**
-NLP Task Recommended Strategy Why?
+NLP Task Recommended Strategy
 
 - Named Entity Recognition (NER) Subword + Alignment Preserves internal word structure to identify entities like "San Francisco" correctly.
 - Machine Translation Sentence + Subword Captures sentence-level context while managing vast vocabularies across different languages.

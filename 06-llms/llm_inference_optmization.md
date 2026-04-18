@@ -17,14 +17,18 @@ These methods optimize the mathematical operations within the Transformer archit
 - **Attention Variants:** Grouped-Query Attention (GQA) and Multi-Query Attention (MQA) reduce the KV cache size by sharing Key/Value heads across multiple Query heads.
 - **Speculative Decoding:** A small "draft" model predicts multiple future tokens, which the large model verifies in a single parallel step, often speeding up generation by 2x–3x.
 - **FlashInfer:** Uses JIT-compiled kernels and block-sparse formats to reduce long-context latency by up to 30%.
-  **3. System & Serving Optimizations**
-  These strategies manage how requests are scheduled and how memory is allocated.
+
+**3. System & Serving Optimizations**
+These strategies manage how requests are scheduled and how memory is allocated.
+
 - **PagedAttention:** Allocates KV cache in fixed-size "pages" (like OS virtual memory) to eliminate fragmentation and waste, enabling much larger batch sizes.
 - **Continuous (In-flight) Batching:** Dynamically replaces finished requests in a batch with new ones immediately, keeping the GPU near 100% utilization.
 - **Prefix (Prompt) Caching:** Stores the KV cache for common prompt prefixes (e.g., system instructions) so they never need to be recomputed for new requests.
 - **Prefill-Decode Disaggregation:** Separates the compute-heavy prompt processing (prefill) onto different GPUs from the memory-heavy generation (decode) to scale each independently.
-  **4. Parallelism Strategies**
-  For models too large for a single GPU, workloads are split across devices.
+
+**4. Parallelism Strategies**
+For models too large for a single GPU, workloads are split across devices.
+
 - **Tensor Parallelism:** Splits individual layers (sharding weights) across GPUs.
 - **Pipeline Parallelism:** Splits the model vertically by layers; different GPUs handle different stages of the model.
 - **Expert Parallelism:** In Mixture-of-Experts (MoE) models, only specific "expert" sub-networks are activated per token, improving efficiency.
@@ -43,13 +47,14 @@ KV Cache (Key-Value Cache) is an optimization technique used in Transformer-base
 
 **How it works mathematically**
 In a standard Attention mechanism, for a sequence of length :
-Query (Q), Key (K), and Value (V) matrices are computed for all tokens.
-Attention Scores are calculated.
-With KV Caching at step t+1 :
-Query (Q): Only computed for the single new token .
-Key (K): The model retrieves from the cache and concatenates the new .
-Value (V): Similarly, it retrieves and appends .
-Calculation: The model only performs one row of the attention matrix multiplication (the new Query against all cached Keys) instead of recalculating the entire matrix.
+
+- Query (Q), Key (K), and Value (V) matrices are computed for all tokens.
+- Attention Scores are calculated.
+- With KV Caching at step t+1 :
+  - Query (Q): Only computed for the single new token .
+  - Key (K): The model retrieves from the cache and concatenates the new .
+  - Value (V): Similarly, it retrieves and appends .
+- Calculation: The model only performs one row of the attention matrix multiplication (the new Query against all cached Keys) instead of recalculating the entire matrix.
 
 **Pros**
 
@@ -69,7 +74,11 @@ Calculation: The model only performs one row of the attention matrix multiplicat
 PagedAttention is a memory management algorithm designed to solve the biggest problem with KV caches: memory fragmentation and waste. It was introduced by the team behind vLLM and is inspired by how operating systems handle virtual memory.
 
 **The Problem**
-Before PagedAttention, LLM serving frameworks allocated a static, contiguous block of GPU memory for the KV cache of every request. This led to three major inefficiencies: - **Internal Fragmentation:** We had to pre-allocate space for the maximum possible sequence length (e.g., 2048 tokens), even if the model only generated 50 tokens. - **External Fragmentation:** Memory gaps between different requests couldn't be used effectively. - **Reservation Waste:** Even if we knew a request wouldn't reach the max length, the system "reserved" that memory just in case.
+Before PagedAttention, LLM serving frameworks allocated a static, contiguous block of GPU memory for the KV cache of every request. This led to three major inefficiencies:
+
+- **Internal Fragmentation:** We had to pre-allocate space for the maximum possible sequence length (e.g., 2048 tokens), even if the model only generated 50 tokens.
+- **External Fragmentation:** Memory gaps between different requests couldn't be used effectively.
+- **Reservation Waste:** Even if we knew a request wouldn't reach the max length, the system "reserved" that memory just in case.
 
 In practice, standard systems wasted 60% to 80% of available GPU memory.
 
@@ -123,21 +132,23 @@ Grouped-Query Attention (GQA) is the modern standard for attention in large-scal
 
 **The Balanced Architecture**
 GQA divides the many Query heads into a smaller number of Groups. Each group of Query heads shares a single Key and Value head.
-**MHA (Multi-Head):** 1 Query : 1 Key : 1 Value (e.g., 32 Q, 32 K, 32 V) — High quality, heavy cache.
-**MQA (Multi-Query):** Many Queries : 1 Key : 1 Value (e.g., 32 Q, 1 K, 1 V) — Fastest, but lower quality.
-**GQA (Grouped-Query)**: Many Queries : Shared Key/Value per Group (e.g., 32 Q divided into 8 groups, each group sharing 1 K and 1 V).
 
-**Key Benefits**
-**Memory Bandwidth Efficiency:** LLM inference is often "memory-bound," meaning the bottleneck is moving data from VRAM to GPU cores. GQA reduces the amount of KV data to be loaded by up to 80–90% compared to MHA, significantly speeding up token generation.
-**Near-MHA Quality:** Because the model still has multiple distinct Key/Value heads (just fewer than the Query heads), it retains most of the "expressive power" of MHA, avoiding the significant accuracy drops seen in MQA.
-**Higher Throughput:** By drastically shrinking the KV Cache size, GQA allows for much larger batch sizes and longer context windows (e.g., 128k tokens) on the same hardware.
+- **MHA (Multi-Head):** 1 Query : 1 Key : 1 Value (e.g., 32 Q, 32 K, 32 V) — High quality, heavy cache.
+- **MQA (Multi-Query):** Many Queries : 1 Key : 1 Value (e.g., 32 Q, 1 K, 1 V) — Fastest, but lower quality.
+- **GQA (Grouped-Query)**: Many Queries : Shared Key/Value per Group (e.g., 32 Q divided into 8 groups, each group sharing 1 K and 1 V).
 
-**Mathematical Intuition**
+**What are some key benefits?**
+
+- **Memory Bandwidth Efficiency:** LLM inference is often "memory-bound," meaning the bottleneck is moving data from VRAM to GPU cores. GQA reduces the amount of KV data to be loaded by up to 80–90% compared to MHA, significantly speeding up token generation.
+- **Near-MHA Quality:** Because the model still has multiple distinct Key/Value heads (just fewer than the Query heads), it retains most of the "expressive power" of MHA, avoiding the significant accuracy drops seen in MQA.
+- **Higher Throughput:** By drastically shrinking the KV Cache size, GQA allows for much larger batch sizes and longer context windows (e.g., 128k tokens) on the same hardware.
+
+**What is the mathematical intuition?**
 
 - In GQA, if you have Query heads and groups, each group has heads. For a given group :
-- The Queries are distinct.
-- They all perform attention against the same and for that group.
-- This effectively averages out the "lookup" information for that group, which empirical studies show is often redundant across all heads anyway.
+  - The Queries are distinct.
+  - They all perform attention against the same and for that group.
+  - This effectively averages out the "lookup" information for that group, which empirical studies show is often redundant across all heads anyway.
 
 ---
 
@@ -166,11 +177,15 @@ To fix this, MLA decouples the attention into two parts:
 
 - **Content Part:** Uses the compressed latent vectors (no RoPE) and supports matrix absorption for maximum speed.
 - **Position Part:** A small, separate set of vectors carries the RoPE information. These are concatenated to the content vectors just before the dot product.
-  **Pros**
+
+**Pros**
+
 - Memory: Reduces KV cache size by ~93% compared to MHA.
 - Quality: Maintains or surpasses MHA quality; GQA usually loses some accuracy.
 - Throughput: Massively increases generation speed by overcoming memory bandwidth limits.
-  **Cons**
+
+**Cons**
+
 - Higher computational (FLOP) cost during the "prefill" phase.
 - Extremely complex to implement and optimize (requires custom kernels like FlashMLA).
 - Incompatible with standard RoPE; requires the "decoupled" architecture.
@@ -188,18 +203,22 @@ While other optimizations like KV Caching or MQA reduce the amount of data proce
 - **Reduces Padding:** Static batching requires padding all sequences to the length of the longestone in the batch. Continuous batching processes only the actual tokens needed for each request.
 - **Massive Throughput:** It can increase the number of tokens processed per second by 10x to 23xcompared to naive batching.
 
-**How it works**
+**How does it works?**
 The core innovation, first introduced by the Orca paper (OSDI '22), is changing the scheduling unit from a whole request to a single iteration.
 
 - **Request Queue:** Incoming requests wait in a queue.
 - **Iteration Step:** At every single generation cycle, the scheduler checks if any request has finished (e.g., generated an <EOS> token).
 - **Dynamic Swapping:** If a request finishes, it is immediately removed from the batch. The scheduler then pulls a new request from the queue to fill that specific "slot".
 - **Token Generation:** The GPU performs one forward pass for the current "mixed" batch, where one request might be on its 5th token while another is on its 200th.
-  **Pros**
+
+**Pros**
+
 - Utilization Keeps the GPU active at near-100% capacity.
 - Latency Dramatically reduces "Time to First Token" (TTFT) for new users.
 - Efficiency Works seamlessly with vLLM's PagedAttention for optimal memory use.
-  **Cons**
+
+**Cons**
+
 - Requires a complex scheduler to manage the "prefill" vs "decode" states.
 - Can cause jitter in token delivery speed for active users as new requests join.
 - Extremely memory-intensive; requires robust VRAM management.
@@ -254,7 +273,7 @@ While standard KV caching works within a single request to speed up decoding, pr
 - **Few-Shot Examples:** If you provide 10 examples of a task in your prompt, those examples are cached for all future similar queries.
 - **RAG (Retrieval-Augmented Generation):** When querying the same long document multiple times with different questions, the document's KV state is reused.
 
-**How it works**
+**How does it works?**
 Modern frameworks like vLLM use a Radix Tree or a Hash-based system to identify shared prefixes:
 
 - **Hashing:** Every block of tokens (often in 16-token chunks) is hashed based on its content and the hash of all tokens preceding it.
@@ -303,7 +322,7 @@ vLLM (Virtual Large Language Model) is an open-source, high-throughput inference
 
 Knowledge Distillation is a machine learning technique where a small, compact model (the Student) is trained to reproduce the behavior and performance of a large, complex, pre-trained model (the Teacher).
 
-**How It Works**
+**How It Works?**
 
 - In standard training, a model is told: "This image is a Cat (100%), not a Dog (0%)." This is called a Hard Target.
 - In Distillation, the Student looks at the Teacher’s Soft Targets. The Teacher might say: "I am 90% sure this is a Cat, but it has a 9% chance of being a Dog because it has floppy ears, and 1% chance of being a Car."
@@ -320,16 +339,10 @@ Knowledge Distillation is a machine learning technique where a small, compact mo
 In Knowledge Distillation, Temperature (T) is a mathematical "smoothing" tool, and Soft Targets are the blurred, information-rich results that come from it.
 
 **What are Soft Targets?**
-In a standard AI model, the final layer (called Softmax) tries to be as confident as possible. It might output:
-Cat: 0.999
-Dog: 0.001
-Car: 0.000001
+In a standard AI model, the final layer (called Softmax) tries to be as confident as possible. It might output: Cat: 0.999, Dog: 0.001, Car: 0.000001
 This is a Hard Target. It’s very "peaky" and hides the relationship between categories.
 
-A Soft Target "flattens" those numbers. It looks like this:
-Cat: 0.70
-Dog: 0.25
-Car: 0.05
+A Soft Target "flattens" those numbers. It looks like this: Cat: 0.70, Dog: 0.25 and Car: 0.05
 
 By looking at these Soft Targets, the Student model learns that a cat is kind of like a dog (both have fur/ears) but nothing like a car. This "hidden" similarity is the Dark Knowledge that makes the Student smarter.
 
@@ -360,6 +373,8 @@ When training a model like DistilBERT, the "Loss Function" actually looks at two
 - Student Loss: The difference between the Student's hard output and the actual "correct" label (using T=1).
   By balancing these two, the Student learns both the facts (it is a cat) and the logic (it looks a bit like a dog).
 
+---
+
 ## llama.cpp and Ollama
 
 While vLLM is built for high-scale enterprise serving, llama.cpp and Ollama are the kings of the "Local LLM" world, designed to run models on your own laptop or desktop.
@@ -371,8 +386,10 @@ llama.cpp is a low-level, high-performance inference engine written in pure C/C+
 - **GGUF Format:** It pioneered the GGUF file format, which allows large models to be compressed (quantized) so they fit into consumer RAM.
 - **The "Bare Metal" Experience:** It is a command-line tool. You have total control over threads, GPU layers, and memory mapping, but it has a steep learning curve.
 - **Performance:** Often faster than wrappers for single-user tasks because it has zero overhead.
-  **Ollama:**
-  If llama.cpp is the engine, Ollama is the sleek, user-friendly car built around it. It is a high-level manager that makes running AI as easy as installing an app.
+
+**Ollama:**
+If llama.cpp is the engine, Ollama is the sleek, user-friendly car built around it. It is a high-level manager that makes running AI as easy as installing an app.
+
 - **One-Click Simplicity:** It provides a simple installer for macOS, Linux, and Windows. You don't need to know what a "tensor" is to use it.
 - **Model Library:** Instead of hunting for files on Hugging Face, you just type ollama run llama3, and it automatically downloads and starts the model for you.
 - **API by Default:** It automatically sets up a local server that other apps (like Open WebUI or VS Code plugins) can talk to immediately.
@@ -380,7 +397,7 @@ llama.cpp is a low-level, high-performance inference engine written in pure C/C+
 
 ---
 
-### Cpu Offloading
+### CPU Offloading
 
 Cpu Offloading is a memory management trick that moves model data (weights, gradients, or optimizer states) from the GPU VRAM to the System RAM (CPU) when they aren't actively being used.
 Think of it as using your computer's RAM as an "overflow parking lot" for your graphics card.

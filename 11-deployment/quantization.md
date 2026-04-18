@@ -179,3 +179,8 @@ Weight pruning methods reduce the size and computational load of neural networks
 - **Lottery Ticket Hypothesis:** Proposes that large networks contain "winning ticket" subnetworks that can reach the same accuracy as the original when trained from the same initial state.
 
 ---
+
+_Reference:_
+
+1. https://huggingface.co/docs/optimum/concept_guides/quantization
+2. https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-quantization

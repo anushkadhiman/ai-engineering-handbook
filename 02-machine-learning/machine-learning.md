@@ -4,9 +4,7 @@
 
 Machine Learning is the process of learning patterns from data without explicit rule-based programming. It uses statistical models and optimization techniques. Models are trained by minimizing a loss function and can generalize to unseen data.
 
----
-
-## Applications of Machine Learning
+**Applications of Machine Learning**
 
 - **Analyzing images of products on a production line** to automatically classify them
 - **Detecting tumors in brain scans**: semantic image segmentation problem
@@ -20,9 +18,7 @@ Machine Learning is the process of learning patterns from data without explicit 
 - **Representing a complex, high-dimensional** dataset in a clear and insightful diagram: This is data visualization, often involving dimensionality reduction techniques.
 - **Recommending a product** that a client may be interested in, based on past purchases: This is a recommender system.
 
----
-
-## Types of Machine Learning Systems
+**Types of Machine Learning Systems**
 
 - **Supervised Learning**: The model is trained on labeled data (input-output pairs) to make predictions.
 - **Unsupervised Learning**: The model identifies patterns and structures in unlabeled data without predefined outcomes.
@@ -30,14 +26,21 @@ Machine Learning is the process of learning patterns from data without explicit 
 - **Self-supervised learning**: This is a subset of unsupervised learning creates its own supervisory signals (labels) from unlabeled data by solving pretext tasks like predicting missing parts.
 - **Reinforcement Learning**: An agent learns to make decisions through trial and error by interacting with an environment and receiving rewards or penalties.
 
+**Main Challenges of Machine Learning**
+
+- **Data Issues**: Poor quality, insufficient data, or lack of diversity causing bias.
+- **Overfitting/Underfitting**: Models either failing to learn patterns (underfitting) or memorizing noise (overfitting), leading to poor performance on new data.
+- **Scalability and Resources**: High computational costs and difficulty scaling models for large, real-time datasets.
+- **Interpretability**: Difficulty in explaining how complex black box models make decisions, crucial for trust in industries like healthcare.
+- **Data Security and Privacy**: Protecting sensitive data used for training.
+- **Feature Engineering**: The time-intensive process of selecting relevant data features.
+
 ---
 
 ## Supervised Learning
 
 - **Classification**: Predicts a discrete category or class label. Uses algorithms like logastic regression, svm, tree based algorithms like decision tress, random forest and so on. Examples: Detecting spam in emails, medical diagnosis, and image recognition.
 - **Regression**: Predicts a continuous numerical value. Uses algorithm like linear regression, polynomial regression, K-Nearest Neighbors, etc Examples: Forecasting stock prices, predicting house prices, and weather forecasting.
-
----
 
 ## Unsupervised Learning
 
@@ -48,30 +51,15 @@ Machine Learning is the process of learning patterns from data without explicit 
 - **Dimensionality Reduction**: Reduces the number of features in a dataset while preserving essential information to make the data more manageable and easier to visualize. Examples: Data visualization, and reducing genetic variables in bioinformatics.
 - **Association**: Discovers rules that describe large portions of the data. Examples: Market basket analysis to identify products frequently bought together, like purchasing bread and butter.
 
----
-
 ## Batch learning and Online learning
 
 - **Batch learning** trains models on the entire dataset at once, making it ideal for stable, offline data, but it requires full retraining for updates.
 - **Online learning** trains incrementally on data streams (individually or mini-batches), allowing for real-time adaptation, lower memory usage, and continuous improvement without retraining from scratch. However, susceptible to catastrophic interference (forgetting old patterns); harder to maintain.
 
----
-
 ## Instance based vs Model based learning
 
 - **Instance-based learning** (e.g., k-NN) memorizes training data and makes predictions based on similarity to new inputs, functioning as lazy learning, ideal for small, dynamic datasets.
 - **Model-based learning** (e.g., linear regression) trains a model to generalize patterns from data, resulting in faster, more efficient predictions for large, static datasets.
-
----
-
-## Main Challenges of Machine Learning
-
-- **Data Issues**: Poor quality, insufficient data, or lack of diversity causing bias.
-- **Overfitting/Underfitting**: Models either failing to learn patterns (underfitting) or memorizing noise (overfitting), leading to poor performance on new data.
-- **Scalability and Resources**: High computational costs and difficulty scaling models for large, real-time datasets.
-- **Interpretability**: Difficulty in explaining how complex black box models make decisions, crucial for trust in industries like healthcare.
-- **Data Security and Privacy**: Protecting sensitive data used for training.
-- **Feature Engineering**: The time-intensive process of selecting relevant data features.
 
 ---
 
@@ -127,7 +115,7 @@ These are critical steps for building robust machine learning models by identify
 
 ---
 
-## Classification in machine learning:
+## Classification in machine learning
 
 Classification in machine learning is a supervised learning technique that categorizes input data into predefined classes or labels based on training examples. By learning relationships between input features and target outcomes, models predict categorical labels for new data, such as distinguishing spam from not spam.
 
@@ -165,7 +153,7 @@ Key metrics include accuracy, precision, recall, and F1-score for classification
 
 ---
 
-## Precision-Recall Curve:
+## Precision-Recall Curve
 
 It visualizes the trade-off between precision (exactness) and recall (completeness) for binary classifiers at various decision thresholds. As the threshold changes, increasing precision typically lowers recall (fewer false positives, more false negatives), and vice versa. It is crucial for imbalanced datasets, where a higher curve towards the top-right indicates superior model performance.
 

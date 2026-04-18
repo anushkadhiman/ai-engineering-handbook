@@ -22,7 +22,7 @@ Computer vision is transforming industries by automating tasks that previously r
 
 Computer vision tasks are the specific functions that enable machines to "see" and interpret visual data from images and videos. These tasks range from simple categorization to complex 3D scene reconstruction.
 
-**Core Computer Vision Tasks**
+**What are some core computer vision tasks?**
 
 - **Image Classification:** The most foundational task, where the system assigns a single label to an entire image (e.g., "this is a cat").
 - **Object Detection:** This task identifies specific objects within an image and locates them by drawing bounding boxes around them.
@@ -34,7 +34,7 @@ Computer vision tasks are the specific functions that enable machines to "see" a
 - **Facial Recognition:** A specialized form of object recognition focused on identifying or verifying an individual's identity based on their facial features.
 - **Pose Estimation:** Determines the spatial position and orientation of objects or human body parts, often by tracking key points like joints.
 
-**Advanced and Specialized Tasks**
+**What are some advanced and specialized tasks?**
 
 - **Optical Character Recognition (OCR):** Extracts and converts text from images or scanned documents into a machine-readable format.
 - **Scene Reconstruction:** Computes a 3D model of a real-world object or environment from 2D images or video sequences.
@@ -56,7 +56,7 @@ Image processing involves applying algorithms to digital images to enhance, anal
 - **Image Compression:** Reducing image size for storage and transmission.
 - **Image Analysis:** Extracting information, such as detecting patterns or recognizing objects.
 
-**SOme real x`Applications:**
+**Some real use cases:**
 
 - **Medical Imaging:** X-rays, MRI scans, and ultrasound.
 - **Satellite/Remote Sensing:** Weather prediction and environmental monitoring.
@@ -71,7 +71,7 @@ Image processing involves applying algorithms to digital images to enhance, anal
 
 Image transformation processes, analyzes, and modifies digital images using geometric (spatial) or pixel-level adjustments. Key techniques include rotation, scaling, shearing, translation, and cropping to alter shape, size, or orientation. These operations are crucial for computer vision, image preprocessing, and computer graphics to enhance or correct images.
 
-**Key Types of Image Transformations**
+**What are some key types of Image Transformations?**
 
 - **Geometric Transformations (Warping):** Alters the shape and position of an image. Examples include rotation (rotating around an axis), translation (shifting positions), and scaling (resizing).
 - **Affine Transformations:** A subset of geometric transformations that preserves lines and parallelism, commonly used to correct perspective.
@@ -109,7 +109,7 @@ Image enhancement in image processing improves digital image quality, contrast, 
 - Manipulates the Fourier transform of an image to enhance features. Low-pass filters smooth images, while high-pass filters sharpen them.
 - Homomorphic Filtering: A technique used to normalize brightness and increase contrast across an image, often used to remove multiplicative noise.
 
-**Primary Objectives**
+**What are some primary objectives?**
 
 • **Contrast Enhancement:** Techniques like contrast stretching increase the distinction between light and dark areas.
 • **Noise Reduction:** Removing unwanted, random variation in brightness or color (denoising).
@@ -128,7 +128,7 @@ Image enhancement in image processing improves digital image quality, contrast, 
 
 Thresholding is a fundamental image segmentation technique that converts grayscale images into binary (black and white) images by separating pixels into foreground and background based on a specific intensity value. Pixels above the threshold become white, while those below become black, crucial for object detection, binarization, and noise reduction.
 
-Here are some key concepts and types:
+**Here are some key concepts and types:**
 
 - **Simple (Global) Thresholding:** A single, fixed threshold value is applied to the entire image. If greater than threshold T, it is assigned the maximum value (foreground); otherwise, it becomes (background).
 - **Adaptive (Local) Thresholding:** The threshold is calculated for smaller regions of the image, allowing for better handling of varying lighting conditions and uneven illumination.
@@ -149,7 +149,7 @@ Simple thresholding struggles with images that have low contrast, noise, or unev
 
 Image noise reduction in image processing involves filtering techniques to enhance image quality by reducing undesired noise (e.g., Gaussian, salt-and-pepper). Common techniques include spatial domain filtering like Mean (smoothing), Gaussian (weighted smoothing), Median (salt-and-pepper removal), and Bilateral filters (edge-preserving), as well as advanced methods like Non-Local Means (NLM) and Block Matching 3D (BM3D).
 
-Here are the primary noise reduction techniques:
+**Here are the primary noise reduction techniques:**
 
 - **Spatial Domain Filters (Spatial Filtering)**
   These filters work by modifying pixels based on their local neighborhood (e.g., a 3x3 or 5x5 window ).
@@ -172,7 +172,6 @@ These methods transform the image to the frequency domain (using Fourier Transfo
 **Deep Learning-Based Denoising**
 
 - **CNN-based models:** Convolutional Neural Networks (CNNs) can learn to remove complex noise patterns by training on noisy-clean image pairs, often outperforming traditional filters, especially with high-density noise.
-- **Noise2Void:** A technique that allows training denoising networks using only noisy images, without needing clean ground-truth data
 
 ---
 
@@ -215,7 +214,7 @@ Feature extraction methods can be categorized into classical, handcrafted method
 - **LBP (Local Binary Pattern):** An efficient texture operator that labels the pixels of an image by thresholding the neighborhood of each pixel, resulting in a binary code. It describes texture by comparing a pixel with its neighbors, making it robust against monotonic gray-scale changes.
 - **Edge/Corner Detection:** Methods like Canny edge detection or Harris corner detection locate key points and shapes.
 
-**Automated/Deep Learning Feature Extraction:**
+**Deep Learning Feature Extraction:**
 
 - **Convolutional Neural Networks (CNNs):** Modern CNNs automatically learn to extract relevant hierarchical features (from low-level edges to high-level object parts) directly from image pixels.
 - **Autoencoders:** Neural networks designed for data dimensionality reduction.

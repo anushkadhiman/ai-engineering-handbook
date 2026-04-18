@@ -444,4 +444,32 @@ Because the standard BackgroundTasks class won't trigger until a connection "fin
 
 ---
 
-**Reference:** https://fastapi.tiangolo.com/
+## Type hints in FastAPI
+
+FastAPI is built entirely on standard Python type hints (PEP 484), using them for much more than just editor autocompletion.
+
+When you declare types for parameters, FastAPI automatically performs the following:
+
+- Data Validation: Validates incoming request data (path, query, body, headers). If types don't match, it returns a 422 Unprocessable Entity error automatically.
+- Data Conversion: Converts incoming request data to the declared Python type (e.g., a string "5" in a URL to a Python int).
+- Automatic Documentation: Generates OpenAPI schemas used by the interactive Swagger UI (/docs) and ReDoc (/redoc).
+- Editor Support: Enables precise autocompletion and error checking in IDEs like VS Code or PyCharm.
+
+**Some common Type Hint Patterns**
+
+- Simple Types: Use standard types like str, int, float, and bool for basic parameters.
+- Optional Parameters: Use Union[str, None] or the newer str | None (Python 3.10+) to indicate a parameter is not required.
+- Pydantic Models: Define request bodies by inheriting from pydantic.BaseModel. FastAPI will parse the JSON body into an instance of that class.
+- Annotated Metadata: Use Annotated (from typing) to add extra FastAPI-specific validation like string length or regex.
+
+Advanced Usage
+
+- Generic Collections: Use list[str] or dict[str, float] to validate collections of data.
+- Literal Types: Restrict a parameter to a specific set of allowed values using Literal["json", "xml"].
+- Response Models: Use the response_model parameter in your decorator (e.g., @app.get("/", response_model=UserOut)) to filter or format the data returned to the client.
+
+---
+
+**References:**
+
+1. https://fastapi.tiangolo.com/

@@ -171,21 +171,20 @@ Key Steps in YOLOv3
 
 Object tracking is a core computer vision task that involves identifying and following specific entities (such as people, vehicles, or animals) across a sequence of video frames. Unlike object detection, which identifies "what" is in a single frame, tracking maintains a unique identity (ID) for each object to understand "where" it is going over time.
 
-**Core Methodologies**
-Modern systems generally follow the tracking-by-detection paradigm, which consists of three main stages:
+**Modern systems generally follow the tracking-by-detection paradigm, which consists of three main stages:**
 
 - Detection: An algorithm (like YOLO) identifies objects and draws bounding boxes in each frame.
 - Motion Prediction: Techniques like the Kalman Filter estimate the object's future position based on its current velocity and trajectory.
 - Data Association: New detections are matched to existing tracks using optimization methods like the Hungarian algorithm, often utilizing the Intersection over Union (IoU) metric.
 
-Popular Algorithms
+**Popular Algorithms**
 
 - DeepSORT: An extension of SORT that uses deep learning to extract visual features, allowing it to re-identify objects even after they are temporarily hidden (occluded).
 - ByteTrack: A high-performance method that improves tracking by associating almost all detection boxes, including those with low confidence scores, to maintain more coherent trajectories.
 - BoT-SORT: Combines motion and appearance information with camera-motion compensation for more robust tracking in complex scenes.
 - SiamMask: A specialized tracker that provides pixel-level segmentation masks rather than just bounding boxes.
 
-Key Applications
+**Key Applications**
 
 - Autonomous Vehicles: Tracking pedestrians and other cars to predict potential collisions and plan safe paths.
 - Retail Analytics: Monitoring customer flow, measuring "dwell time" in front of displays, and optimizing store layouts.
@@ -211,7 +210,7 @@ The filter continuously cycles through these two phases for every video frame:
   - State Update: It refines the predicted position using the actual detected location from an object detector (e.g., YOLO).
   - Covariance Update: It updates the uncertainty estimate for the next cycle.
 
-**Key Advantages in Computer Vision**
+**What are some key advantages in Computer Vision?**
 
 - Noise Reduction: It "smooths" erratic detections caused by camera jitter or lighting changes.
 - Occlusion Handling: When an object is temporarily hidden (e.g., passing behind a tree), the filter can continue "tracking" by solely relying on its prediction step until the object reappears.
@@ -236,7 +235,7 @@ The Embedding: Every time an object is detected, a specialized neural network (C
 
 **The Re-Identification (Re-ID):** The tracker remembers these fingerprints for up to 100 frames. If a person walks behind a tree and disappears, DeepSORT won't just guess where they are; it will wait for someone to come out the other side and check if their new "fingerprint" matches the one it has in its memory.
 
-**How the Full Pipeline Works**
+**How the Full Pipeline Works?**
 DeepSORT operates in four main stages for every single frame of video:
 
 - Detection: An external detector (like YOLOv8) finds all objects and draws boxes around them.
@@ -250,3 +249,5 @@ DeepSORT operates in four main stages for every single frame of video:
 
 - Pros: Significantly reduces "ID switches" compared to basic trackers; very robust in crowded environments like malls or busy streets.
 - Cons: It is slower than basic trackers because it has to run a neural network on every single detected box to get that "fingerprint". It also struggles if the camera itself is moving quickly or if lighting changes drastically.
+
+---
