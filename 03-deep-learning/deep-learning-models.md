@@ -106,6 +106,7 @@ The key innovation in LSTMs is the introduction of memory cells and gates that c
 **Each LSTM unit consists of the following elements:**
 
 **1. Cell State (Memory):** This is the core concept of LSTM. The cell state is like a conveyor belt that runs through the entire sequence, carrying information along without too much modification. The LSTM can decide to add or remove information from the cell state using gates.
+
 **2. Gates:** Gates control how much information is added to or removed from the cell state. There are three types of gates in an LSTM:
 
 - **Forget Gate:** Decides what information should be thrown away or kept from the previous cell state.
