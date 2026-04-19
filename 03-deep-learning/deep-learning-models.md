@@ -107,7 +107,9 @@ The key innovation in LSTMs is the introduction of memory cells and gates that c
 
 **1. Cell State (Memory):** This is the core concept of LSTM. The cell state is like a conveyor belt that runs through the entire sequence, carrying information along without too much modification. The LSTM can decide to add or remove information from the cell state using gates.
 
-**2. Gates:** Gates control how much information is added to or removed from the cell state. There are three types of gates in an LSTM:
+**2. Gates:** Gates control how much information is added to or removed from the cell state.
+
+There are three types of gates in an LSTM:
 
 - **Forget Gate:** Decides what information should be thrown away or kept from the previous cell state.
 - **Input Gate:** Decides which new information should be stored in the cell state.
@@ -116,13 +118,17 @@ The key innovation in LSTMs is the introduction of memory cells and gates that c
 **How LSTM Works:**
 
 **1. Forget Gate:** The forget gate looks at the previous hidden state $h_{t-1}$ and the current input $x_t$, and outputs a number between 0 and 1 for each number in the cell state $C_{t-1}$. A value of 1 means "completely keep this information," while a value of 0 means "completely forget it."
+
 **2. Input Gate:** The input gate decides which new information should be stored in the cell state by looking at $h_{t-1}$ and $x_t$. It uses a sigmoid function to filter which values are updated.
+
 **3. Update Cell State:** The forget gate and input gate jointly decide how much of the previous state is retained and how much new information should be added to update the cell state $C_t$​.
+
 **4. Output Gate:** Finally, the output gate determines what the next hidden state hth_tht​ will be, which is based on the updated cell state $C_t$​. The hidden state is used for making predictions or for passing information to the next LSTM unit.
 
 **Benefits of LSTM:**
 
 **- Long-Term Dependency Handling:** LSTM units can effectively remember information over long sequences, which makes them useful for tasks where context matters.
+
 **- Mitigating Vanishing Gradient:** LSTMs solve the vanishing gradient problem by using gates to regulate the flow of information, making it easier to train models on long sequences.
 
 ---
