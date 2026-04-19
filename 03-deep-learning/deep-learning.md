@@ -881,8 +881,10 @@ Fine-tuning is the process of taking a pre-trained model and further training it
 
 **1. Transfer learning:**
 Transfer the knowledge gained by the pre-trained model to a new, but related, task. This is where fine-tuning comes into play. Instead of training the model from scratch on the new task, you initialize it with the weights learned during pre-training.
+
 **2. Architecture modification:**
 Depending on the similarity between the original task and the new task, you may need to modify the architecture of the pre-trained model. This could involve changing the output layer or adjusting other layers to better suit the characteristics of the new task.
+
 **3. Training on the new dataset:**
 Train the model on the new dataset, which is typically smaller than the original dataset. This process allows the model to adapt its weights to the specific features of the new task while retaining the general knowledge acquired during pre-training.
 
