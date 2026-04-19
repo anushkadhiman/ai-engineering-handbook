@@ -1026,8 +1026,7 @@ Human-in-the-Loop (HITL) Agentic AI integrates human judgment into autonomous AI
 
 _Resources:_
 
-1. [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)  
-   _Introduces reasoning + tool use in iterative chains_
+1. [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
 
 2. [LangChain: Chains & Routing Concepts](https://python.langchain.com/docs/concepts/agents/)
 
