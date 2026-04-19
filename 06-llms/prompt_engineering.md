@@ -2,8 +2,9 @@
 
 Prompt engineering is the art and science of designing, refining, and optimizing natural language inputs (prompts) to guide AI models like LLMs to produce accurate, relevant, and high-quality outputs. It involves crafting precise instructions, context, persona, and examples to minimize AI bias, confusion, and hallucinations
 
-**Key Elements of a Perfect Prompt** - Task: The specific action you want the AI to perform.
+**Key Elements of a Perfect Prompt**
 
+- Task: The specific action you want the AI to perform.
 - Context & Audience: Background information and who the output is for.
 - Persona: Assigning a specific role to the model (e.g., "Act as a senior python developer").
 - Format: Defining the structure (e.g., table, bullet points, code block).
@@ -16,7 +17,7 @@ Prompt engineering is the art and science of designing, refining, and optimizing
 - Chain-of-Thought (CoT): Asking the model to explain its reasoning step-by-step.
 - Role Prompting: Assigning a persona to improve tone and accuracy.
 
-**Why Prompt Engineering Matters:** It bridges the gap between human intent and AI understanding, acting as a "roadmap" for the model. It is crucial for developing robust, efficient, and specialized AI applications in various fields.
+**Why Prompt Engineering matters?** It bridges the gap between human intent and AI understanding, acting as a "roadmap" for the model. It is crucial for developing robust, efficient, and specialized AI applications in various fields.
 
 **Common Pitfalls**
 
@@ -24,10 +25,13 @@ Prompt engineering is the art and science of designing, refining, and optimizing
 - Hallucinations: Without proper constraints, models may generate false information.
 - Ignoring Context: Failing to provide enough, or providing too much, irrelevant context
 
-**Instruction-based prompting**
+---
+
+## Instruction-based prompting
+
 Instruction-based prompting is a core AI engineering method where clear, specific natural language instructions are given to generative AI models (like LLMs) to guide them in performing tasks accurately. This differs from open-ended questions by directing the model to perform specific actions such as summarizing, translating, or formatting data, utilizing its existing knowledge without requiring extra training.
 
-**Key Components of Effective Instructions**
+**What are some key components of effective instructions?**
 Effective instructions generally include:
 
 - Clear Task Definition: Stating the exact action for the AI to take.
@@ -52,8 +56,7 @@ Effective instructions generally include:
 - Too many constraints might cause the model to fail.
 - Complex tasks may require more advanced techniques than a single instruction.
 
-**Examples:**
-Examples range from simple commands like
+**Examples range from simple commands like**
 
 - "Summarize the following text in 50 words" to more complex ones, such as assigning a persona and specifying formatting.
 - Instruction-based prompting can be enhanced by combining it with techniques like few-shot prompting (providing examples) or role-based prompting (assigning a persona).
@@ -91,7 +94,7 @@ Advanced prompt engineering involves using specialized techniques like Few-Shot 
 
 ## Complexity of a Prompt
 
-The potential complexity of a prompt lies in its ability to transform a simple, high-entropy query into a highly structured, low-entropy instruction set, shifting the AI from simple pattern matching to complex reasoning. While simple prompts are quick and direct, high-complexity prompts—often involving detailed constraints, chain-of-thought (CoT) instructions, and examples—are required to solve sophisticated, multi-step tasks.
+The potential complexity of a prompt lies in its ability to transform a simple, high-entropy query into a highly structured, low-entropy instruction set, shifting the AI from simple pattern matching to complex reasoning. While simple prompts are quick and direct, high-complexity prompts, often involving detailed constraints, chain-of-thought (CoT) instructions, and examples—are required to solve sophisticated, multi-step tasks.
 
 **Dimensions of Prompt Complexity**
 Prompt complexity can be broken down into several dimensions that affect how an AI model interprets and processes information:
@@ -144,7 +147,7 @@ In-Context Learning (ICL) allows large language models (LLMs) to learn new tasks
 
 Chain prompting breaks down complex tasks into smaller, sequential subtasks, where the output of one prompt becomes the input for the next. This technique improves AI accuracy, reduces hallucinations by narrowing focus, and enhances control over the reasoning process. It is highly effective for complex, multi-step tasks.
 
-**Key Aspects of Chain Prompting**
+**What are the key characeristics of Chain Prompting?**
 
 - Decomposition: The core principle involves splitting a large task into manageable, logical, and smaller steps.
 - Sequential Logic: Each step in the chain relies on the previous step's output to maintain context.
@@ -210,7 +213,7 @@ Traditional generative AI models (LLMs) predict the most likely next token, whic
 
 Chain of thought (CoT) prompting is a technique that improves large language model (LLM) performance by encouraging them to generate intermediate reasoning steps before arriving at a final answer. By breaking down complex problems into logical, step-by-step, or multi-step, it significantly enhances reasoning capabilities in math, logic, and common sense tasks.
 
-**Key Aspects of Chain of Thought (CoT):**
+**Why do we use Chain of Thought (CoT)?**
 
 - Improved Reasoning: CoT enables models to solve complex, multi-step tasks by breaking them into smaller, manageable, intermediate steps.
 - Structured Output: Instead of directly jumping to a conclusion, the model outlines its reasoning process, which enhances transparency and allows for better debugging.
@@ -229,7 +232,7 @@ Chain of thought (CoT) prompting is a technique that improves large language mod
 
 Self-consistency is a prompting technique that improves AI reasoning accuracy by generating multiple, diverse, chain-of-thought solutions to a single query and selecting the final answer via majority vote. It enhances reliability in complex tasks like math or logic by treating answers as crowdsourced, picking the most frequent, consistent output rather than trusting one greedy generation.
 
-**Key Aspects of Self-Consistency**
+**Key Concepts of Self-Consistency**
 
 - Method: Instead of one response (greedy decoding), the model generates several reasoning paths (e.g., 5-10).
 - Selection: The most frequent, consistent answer across all generations is selected.
@@ -242,13 +245,13 @@ Self-consistency is a prompting technique that improves AI reasoning accuracy by
 
 Tree of Thoughts (ToT) is an advanced AI prompting framework that enables large language models (LLMs) to solve complex problems by exploring multiple reasoning paths, simulating human-like, non-linear thinking. Unlike linear Chain of Thought (CoT), ToT generates, evaluates, and branches out through potential solutions, allowing for backtracking to find the best outcome.
 
-**Key Aspects of Tree of Thoughts:**
+**Why do we use Tree of Thoughts?**
 
 - Branching & Exploration: ToT allows the model to explore multiple "thoughts" or potential solution paths at each step, rather than committing to one.
 - Evaluation & Backtracking: The AI evaluates its own progress along each branch, backtracking when a path leads to a dead end, according to arXiv.
-- Components: A ToT system involves a prompter agent, a checker (evaluator) module, a memory module, and a controller to guide the search algorithm (e.g., BFS or DFS), say arXiv and Prompt Engineering Guide.
+- A ToT system involves a prompter agent, a checker (evaluator) module, a memory module, and a controller to guide the search algorithm (e.g., BFS or DFS), say arXiv and Prompt Engineering Guide.
 
-- Use Cases: It is highly effective for tasks requiring planning, deliberation, or creative, multi-faceted thinking, such as complex puzzles, mathematical reasoning, and strategic planning,
+- It is highly effective for tasks requiring planning, deliberation, or creative, multi-faceted thinking, such as complex puzzles, mathematical reasoning, and strategic planning,
 
 ---
 
@@ -256,12 +259,12 @@ Tree of Thoughts (ToT) is an advanced AI prompting framework that enables large 
 
 Zero-shot prompting is a technique where an AI model performs a task without being given any specific examples, relying solely on its pre-trained knowledge. By providing a direct, natural language instruction (e.g., "Summarize this text"), the model interprets the requirement immediately. It offers high scalability, speed, and simplicity for tasks like classification, translation, and text generation, though accuracy may be lower than few-shot learning for highly complex, niche tasks.
 
-**Key Aspects of Zero-Shot Prompting:**
+**Why do we use Zero-Shot Prompting?**
 
 - No Examples: Unlike few-shot prompting, no input-output pairs are provided to guide the model.
 - Direct Instruction: The prompt is simply a question or command in natural language.
 - Relies on Generalization: The model uses its broad training data to understand context and intent.
-- Best Use Cases: Quick tasks such as sentiment analysis, topic classification, summarization, and, occasionally, simple translation.
+- Its best use cases are quick tasks such as sentiment analysis, topic classification, summarization, and, occasionally, simple translation.
 
 **Examples:**
 
@@ -280,13 +283,21 @@ Zero-shot prompting is a technique where an AI model performs a task without bei
 
 Few-shot prompting is an AI prompting technique where you provide a LLM with a few examples (usually 2–5) in the prompt to demonstrate the desired output format, style, or logic before asking it to perform a task. This method improves accuracy, enables the model to understand complex patterns without fine-tuning, and ensures consistent formatting.
 
-**Key Aspects of Few-Shot Prompting:** - How it Works: It relies on "in-context learning," where the AI recognizes patterns from the examples to solve similar, unseen queries. - Structure: A prompt includes an instruction, followed by examples (Input: X -> Output: Y), and then a final query for the model to complete. - Benefits: Reduces the need for massive labeled datasets, enables faster adaptation to new tasks, and is cost-effective compared to fine-tuning.
+**Why do we use Few-Shot Prompting?**
 
-**Best Practices:** - Consistency: Keep the format of your examples identical to help the model learn the structure. - Diversity: Use a range of examples that cover different aspects of the task to improve generalization. - Quantity: Typically, 2 to 5 examples are enough to guide the model effectively.
+- It relies on "in-context learning," where the AI recognizes patterns from the examples to solve similar, unseen queries.
+- A prompt includes an instruction, followed by examples (Input: X -> Output: Y), and then a final query for the model to complete.
+- Benefits: Reduces the need for massive labeled datasets, enables faster adaptation to new tasks, and is cost-effective compared to fine-tuning.
+
+**Best Practices:**
+
+- Consistency: Keep the format of your examples identical to help the model learn the structure.
+- Diversity: Use a range of examples that cover different aspects of the task to improve generalization.
+- Quantity: Typically, 2 to 5 examples are enough to guide the model effectively.
 
 ---
 
-## Best Practice Prompting
+## What is the best practice of prompting?
 
 Effective prompting requires specificity, context, and structure to guide AI models effectively. Key practices include assigning a specific persona/role, defining clear, concise instructions at the beginning, using delimiters (e.g., """, ###, <>) to separate instructions from content, and providing examples for desired output formats. Iterate on prompts by adjusting detail levels and trying alternative phrasings.
 

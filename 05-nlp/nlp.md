@@ -606,7 +606,7 @@ BoW represents an entire document or sentence by summing up the word counts.
 
 Unlike One-Hot Encoding or Bag-of-Words, Distributed Representations (also known as Word Embeddings) represent words as dense, low-dimensional, real-valued vectors.
 
-- The core idea is based on the Distributional Hypothesis: "Words that occur in similar contexts tend to have similar meanings."
+The core idea is based on the Distributional Hypothesis: "Words that occur in similar contexts tend to have similar meanings."
 
 **What are some key characteristics and techniques?**
 

@@ -27,8 +27,6 @@ Most major frameworks provide built-in support for these workflows:
 - NVIDIA TensorRT: A high-performance inference SDK that uses symmetric quantization to maximize GPU throughput.
 - Hugging Face: Their bitsandbytes library is the industry standard for loading large models in 8-bit or 4-bit mode with just one line of code.
 
----
-
 ## Types of Quantization
 
 Quantization can be categorized by when it occurs, how it maps values, and its granularity.

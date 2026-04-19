@@ -2,7 +2,7 @@
 
 Deep learning is a subset of machine learning based on artificial neural networks with multiple layers (hence "deep") that simulate the human brain to process data, identify patterns, and make decisions autonomously. It excels at analyzing large, unstructured datasets—such as images, sound, and text—without requiring manual feature engineering, making it foundational for modern AI, including self-driving cars, chatbots, and medical diagnostics.
 
-**Key Aspects of Deep Learning**
+**What are some key features of Deep Learning?**
 
 - Neural Networks: Composed of interconnected layers (input, hidden, and output) of neurons that process information.
 - Automatic Feature Learning: Unlike traditional machine learning, deep learning models automatically discover relevant features from raw data, reducing the need for human intervention.
@@ -15,7 +15,7 @@ Deep learning is a subset of machine learning based on artificial neural network
 - Natural Language Processing (NLP): Speech recognition, language translation, and chatbots.
 - Healthcare: Medical image analysis for diagnosing diseases.
 
-**How It Works:**
+**How It Works?**
 
 Deep learning models are trained using large amounts of labeled or unlabeled data, usually through supervised learning, unsupervised learning, or reinforcement learning. Techniques such as backpropagation are used to adjust the weights of the connections between neurons, enabling the model to improve its accuracy over time.
 
@@ -29,19 +29,16 @@ Deep learning models are trained using large amounts of labeled or unlabeled dat
 
 ## Perceptron
 
-- the fundamental building block of an artificial neural network, acting as a single-layer, linear binary classifier.
-- it processes inputs by multiplying them by weights, summing them, adding a bias, and applying an activation function to produce a binary output.
+- It is the fundamental building block of an artificial neural network, acting as a single-layer, linear binary classifier.
+- It processes inputs by multiplying them by weights, summing them, adding a bias, and applying an activation function to produce a binary output.
 
-**Key Components and Functionality**
+**What are some key components and functionalities?**
 
 - Input Nodes: Receive data features, typically binary (0 or 1).
 - Weights: Assign importance to inputs, determining the strength of the connection.
 - Bias: An additional parameter that shifts the decision boundary, allowing the activation function to be shifted left or right.
 - Weighted Sum: Calculates the linear combination of inputs and weights.
 - Activation Function: Typically a step function (Heaviside) that maps the output to 0 or 1, acting as a threshold.
-
-**Charateristics:**
-
 - Binary Classification: Primarily used to classify data into two distinct categories.
 - Linear Classifier: Can only separate linearly separable data, meaning a straight line (or hyperplane) must be able to divide the classes.
 - Learning Rule: Adjusts weights based on the error between predicted and actual outputs, enabling it to learn patterns during training.
@@ -98,7 +95,7 @@ Neural network layers are organized stacks of artificial neurons that process da
 
 Hidden layers are intermediate layers of artificial neurons in a neural network, located between the input and output layers, that process data through weighted connections and non-linear activation functions. They are essential for learning complex, non-linear patterns, allowing deep learning models to perform tasks like image recognition.
 
-**Key Aspects of Hidden Layers**
+**What are some key features of Hidden Layers?**
 
 - Function: They act as "hidden" processing units that transform input data into more abstract, meaningful representations for the output layer to use.
 - Structure: They consist of nodes (neurons) that perform a weighted sum of inputs and apply an activation function (e.g., ReLU, Sigmoid) to introduce non-linearity.
@@ -128,7 +125,6 @@ A Dense (or Fully Connected) Layer is a fundamental neural network layer where e
 - Summation: Adds these weighted inputs together, along with a bias term.
 - Activation: Passes the result through an activation function to introduce non-linearity.
 - Output: Produces an output vector for the next layer.
-
 - Often found at the end of Convolutional Neural Networks (CNNs) after feature extraction by convolutional layers, to make final predictions.
 - The main building block in basic Multi-Layer Perceptrons (MLPs).
 
@@ -146,7 +142,7 @@ A convolutional layer (Conv layer) is the core building block of Convolutional N
 - Activation Function: This output value is passed through a non-linear activation function (like ReLU) to introduce non-linearity.
 - Feature Map (Activation Map): The collection of these output values forms a new matrix, called a feature map, which highlights where the specific feature detected by the filter exists in the input.
 
-**Key Characteristics**
+**What are some key characteristics?**
 
 - Feature Hierarchy: Early layers detect simple features (edges, corners), while deeper layers combine these to detect complex patterns (eyes, wheels, entire objects).
 - Parameter Sharing: The same filter is used across the entire image, drastically reducing the number of parameters compared to fully connected layers, making CNNs efficient for high-dimensional data like images.
@@ -162,7 +158,7 @@ Convolutional layers enable CNNs to efficiently learn spatial hierarchies of fea
 
 A receptive field (RF) in a convolutional layer is the specific region of the original input (like an image) that a neuron/feature in that layer "sees" or is influenced by, growing larger in deeper layers as neurons aggregate information from increasingly broader areas through stacked convolutions and pooling. It defines the spatial context a unit perceives, allowing early layers to detect simple features (edges) and deeper layers to capture complex patterns by covering larger input portions, crucial for tasks like segmentation.
 
-**Key Aspects**
+**What are some key components?**
 
 - Definition: The patch of input pixels that contributes to the value of a single output feature/neuron.
 - Initial Layers: Neurons have small RFs, seeing only local areas (e.g., a 3x3 patch).
@@ -181,22 +177,20 @@ A receptive field (RF) in a convolutional layer is the specific region of the or
 
 A pooling layer is a CNN component that downsamples feature maps to reduce spatial dimensions (height and width), lowering computational costs and mitigating overfitting. By applying operations like max or average pooling over local regions (typically (2x2) windows), it consolidates features, providing translational invariance and reducing the number of parameters.
 
-**Key Aspects of Pooling Layers**
-
-- **Purpose:** To reduce the spatial size of the representation, decreasing computational overhead and the number of parameters.
-- **Mechanism:** It operates independently on every channel of the input, typically using a filter to slide across the input without any learnable weights.
+- A pooling layer is to reduce the spatial size of the representation, decreasing computational overhead and the number of parameters.
+- It operates independently on every channel of the input, typically using a filter to slide across the input without any learnable weights.
 
 - **Types of Pooling:**
   - Max Pooling: Selects the maximum value from the window, commonly used to detect the most prominent features.
   - Average Pooling: Calculates the average value of the window, providing a smoother, more general representation.
 
-- **Impact on Model:** Pooling allows for faster processing, reduces the risk of overfitting by limiting parameter count, and enables the network to be more robust to small transformations in input data, such as position changes.
+- Pooling allows for faster processing, reduces the risk of overfitting by limiting parameter count, and enables the network to be more robust to small transformations in input data, such as position changes.
 
 - **Common Configuration:** A (2, 2) window with a stride of 2 is frequently used, which halves the height and width of the input, resulting in a 75% reduction in the number of pixels.
 
 - **Location:** Pooling layers are usually inserted between successive convolutional layers to downsample the feature maps.
 
-**Common Pooling Types**
+**Here are some common pooling types**
 
 - Max Pooling: Selects the maximum pixel value within a defined window (e.g., 2x2), effectively capturing the most prominent feature in that region.
 - Average Pooling: Calculates the average of all pixel values in the window, summarizing the features and often used for noisier inputs.
@@ -215,11 +209,11 @@ A pooling layer is a CNN component that downsamples feature maps to reduce spati
 
 Backpropagation (backward propagation of error) is the foundational algorithm for training neural networks, efficiently computing gradients of the loss function with respect to weights using the chain rule of calculus. It calculates how much each weight and bias contributes to the total error, moving backward from the output layer to the input layer.
 
-- Purpose: It calculates the gradient (direction and magnitude) needed to adjust network parameters to minimize error and improve accuracy.
-- Mechanism: It works in conjunction with optimization algorithms, typically stochastic gradient descent (SGD), to update weights based on the computed gradients.
-- Efficiency: By traversing backward, it avoids redundant calculations, making it much faster than updating parameters individually.
+- It calculates the gradient (direction and magnitude) needed to adjust network parameters to minimize error and improve accuracy.
+- It works in conjunction with optimization algorithms, typically stochastic gradient descent (SGD), to update weights based on the computed gradients.
+- By traversing backward, it avoids redundant calculations, making it much faster than updating parameters individually.
 
-**Process:**
+**Backpropagation Process:**
 
 - Forward Pass: Input data passes through the network to generate a prediction and calculate the initial error (loss).
 - Backward Pass: The error is propagated backward. The algorithm calculates the gradient of the loss function for each weight using the chain rule.
@@ -233,9 +227,9 @@ Backpropagation (backward propagation of error) is the foundational algorithm fo
 
 The learning rate is a critical hyperparameter (typically 0.1 to 0.00001) that determines the step size for weight updates during training in neural networks, directly controlling how quickly the model minimizes its loss function. It balances training speed and stability: too high a rate causes divergence or overshooting, while too low a rate results in slow, stagnant convergence.
 
-- Impact on Training: A well-tuned learning rate ensures efficient convergence to an optimal solution.
-- Too High: The model may overshoot the minimum, causing the loss to fluctuate or diverge.
-- Too Low: The model learns too slowly, taking excessive time to converge or getting stuck in local minima.
+- A well-tuned learning rate ensures efficient convergence to an optimal solution.
+- If the learning rate is too high, the model may overshoot the minimum, causing the loss to fluctuate or diverge.
+- If the learning rate is too low, the model learns too slowly, taking excessive time to converge or getting stuck in local minima.
 - Common Values: Often ranges between $0.1$ and $0.00001$.
 - Optimization Function: Used in techniques like SGD (Stochastic Gradient Descent) to update weights: $w = w - \alpha \cdot \nabla L(w)$, where $\alpha$ is the learning rate.
 
@@ -330,7 +324,7 @@ Adagrad (Adaptive Gradient Algorithm) is an optimizer for machine learning, nota
 - Effective for Sparse Data: Because it assigns larger updates to infrequent parameters and smaller updates to frequent ones, it is ideal for problems involving sparse, high-dimensional data, such as natural language processing (NLP) or recommendation systems.
 - Reduced Manual Tuning: It removes the need for manual, frequent learning rate adjustments, simplifying the training process.
 - Drawback: The main limitation is that the accumulated sum of squared gradients in the denominator continues to grow, which can cause the learning rate to shrink too rapidly, leading to very slow convergence or stalling.
-- Formula: The parameter update is given by $\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \odot g_t$, where $\eta$ is the learning rate, $G_t$ is the accumulated sum of squares of past gradients, and $\epsilon$ is a small scalar to avoid division by zero. [1, 2, 5, 6, 7, 8, 9]
+- The parameter update is given by $\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \odot g_t$, where $\eta$ is the learning rate, $G_t$ is the accumulated sum of squares of past gradients, and $\epsilon$ is a small scalar to avoid division by zero. [1, 2, 5, 6, 7, 8, 9]
 
 Common improvements, such as RMSprop and Adam, were developed to address the premature, drastic reduction in the learning rate.
 
@@ -344,7 +338,7 @@ RMSProp (Root Mean Square Propagation) is an adaptive learning rate optimization
 
 - Adaptive Learning Rate: It adjusts the learning rate for each parameter individually based on recent gradient magnitudes.
 - Exponentially Weighted Moving Average: Instead of accumulating all past squared gradients like AdaGrad, it focuses on recent trends, allowing for faster convergence in non-convex problems.
-- Formula: It updates the moving average of squared gradients $s_{dw}$ (with a hyperparameter $\beta$ or $\rho$, typically 0.9) and updates parameters by dividing the gradient by the square root of $s_{dw}$.
+- It updates the moving average of squared gradients $s_{dw}$ (with a hyperparameter $\beta$ or $\rho$, typically 0.9) and updates parameters by dividing the gradient by the square root of $s_{dw}$.
 - Hyperparameters: Key parameters include (default $\approx 0.001$), ($\beta$, decay factor, default 0.9), and (small constant for stability, e.g., $10^{-7}$).
 - Applications: It is highly effective for training deep, complex neural networks, particularly in handling non-stationary objectives and sparse gradients.
   It is often used in combination with techniques like momentum and is a predecessor to the popular Adam optimizer.
@@ -414,9 +408,9 @@ After Linear/Conv Layers, Before Activations: Typically inserted after the linea
 
 RMSNorm (Root Mean Square Normalization) is a, computationally efficient alternative to LayerNorm that improves training stability and speed in deep neural networks, particularly Large Language Models (LLMs). It simplifies normalization by removing the mean-centering step, normalizing inputs only by their root mean square, which reduces computational overhead while maintaining similar performance.
 
-**Key Aspects of RMSNorm:**
+**What are some key components of RMSNorm?**
 
-- Formula: $\text{RMSNorm}(a_i) = \frac{a_i}{\sqrt{\frac{1}{n} \sum_{j=1}^{n} a_j^2 + \epsilon}} \cdot \gamma_i$, where $a_i$ is the input, $\gamma_i$ is a learnable scaling parameter, and $\epsilon$ is a small value for stability.
+- $\text{RMSNorm}(a_i) = \frac{a_i}{\sqrt{\frac{1}{n} \sum_{j=1}^{n} a_j^2 + \epsilon}} \cdot \gamma_i$, where $a_i$ is the input, $\gamma_i$ is a learnable scaling parameter, and $\epsilon$ is a small value for stability.
 - Efficiency: It offers a 7% to 64% speed-up compared to traditional LayerNorm by eliminating the need to compute the mean.
 - Usage in LLMs: Used extensively in modern transformer architectures like Llama2, Mistral, and Gopher to accelerate training and maintain performance.
 - Re-scaling Invariance: It assumes that the success of normalization comes from rescaling invariance rather than re-centering, making it highly effective for deep networks.
@@ -437,7 +431,7 @@ Layer Normalization (LayerNorm) is an AI technique that stabilizes and accelerat
 **Key concepts of Layer Normalization**
 
 - Mechanism: For each sample, it computes the mean and variance of all neurons in a single layer and uses these to normalize the activations.
-- Formula: $y = \frac{x - E[x]}{\sqrt{Var[x] + \epsilon}} \cdot \gamma + \beta$, where $\gamma$ and $\beta$ are learnable scaling and shifting parameters, and $\epsilon$ is a small constant for numerical stability.
+- $y = \frac{x - E[x]}{\sqrt{Var[x] + \epsilon}} \cdot \gamma + \beta$, where $\gamma$ and $\beta$ are learnable scaling and shifting parameters, and $\epsilon$ is a small constant for numerical stability.
 - Advantage over Batch Norm: It does not depend on batch size, making it suitable for, online learning and natural language processing (NLP) tasks with variable sequence lengths.
 - Placement: Usually inserted after linear transformations and before non-linear activation functions.
 - Applications: It plays a key role in Transformer-based models, BERT, and GPT architectures.
@@ -450,17 +444,17 @@ Batch Normalization (BN) and Layer Normalization (LN) both stabilize training by
 
 **Batch Normalization (BN)**
 
-- Mechanism: Normalizes each channel/neuron across the mini-batch dimension.
+- It normalizes each channel/neuron across the mini-batch dimension.
 - Pros: Generally faster convergence in computer vision tasks.
 - Cons: Struggles with variable sequence lengths and small batch sizes.
-- Best for computer vision (CNNs).
+- It is best forc omputer vision (CNNs).
 
 **Layer Normalization (LN)**
 
-- Mechanism: Normalizes all features within a single data sample independently of other samples.
+- It normalizes all features within a single data sample independently of other samples.
 - Pros: Works efficiently with small batch sizes, online learning, and RNNs.
 - Cons: Might not be as effective as BN for certain image processing tasks.
-- Best for sequential models (Transformers, RNNs).
+- It is best for sequential models (Transformers, RNNs).
 
 ---
 
@@ -472,7 +466,7 @@ Group Normalization (GN) is a technique that normalizes feature channels by divi
 
 - Mechanism: GN divides the channel dimension ($C$) into $G$ groups (a hyperparameter), computing the mean and variance for each group, typically with $G=32$.
 - Independence from Batch Size: Unlike Batch Normalization (BN), GN does not rely on batch statistics, allowing it to perform consistently regardless of batch size.
-- Formula: For a feature map of shape $(N, C, H, W)$ (Batch, Channel, Height, Width), GN calculates normalization statistics along the spatial ($H, W$) and group dimensions ($\frac{C}{G}$).
+- For a feature map of shape $(N, C, H, W)$ (Batch, Channel, Height, Width), GN calculates normalization statistics along the spatial ($H, W$) and group dimensions ($\frac{C}{G}$).
 - Structure: It acts as a hybrid of Instance Normalization (where $G=C$) and Layer Normalization (where $G=1$).
 
 **Key Advantages**
@@ -493,7 +487,7 @@ Group Normalization (GN) is a technique that normalizes feature channels by divi
 
 An activation function is a mathematical formula applied to a neuron's output, determining if it should "fire" based on its input, thus introducing non-linearity into neural networks. Essential for learning complex, non-linear data patterns, these functions—like ReLU, Sigmoid, and Tanh—prevent networks from behaving like simple linear regression models.
 
-**Key Aspects of Activation Functions**
+**What are some key concepts of Activation Functions?**
 
 - Non-Linearity: Without them, a neural network is just a linear model, regardless of how many layers it has.
 - Decision Making: They decide whether a neuron is activated, meaning its input is important.
@@ -519,9 +513,9 @@ An activation function is a mathematical formula applied to a neuron's output, d
 
 The Rectified Linear Unit (ReLU) is the most popular activation function in deep learning, defined as $f(x) = \text{max}(0, x)$. It introduces non-linearity by outputting the input value directly if it is positive, and zero if it is negative. ReLU enables faster training, is computationally efficient, and helps mitigate vanishing gradient problems, making it the default choice for hidden layers in CNNs.
 
-**Key concepts of ReLU:**
+**Here are some key concepts of ReLU:**
 
-- Formula: $f(x) = \max(0, x)$.
+- $f(x) = \max(0, x)$.
 - Behavior: Positive inputs pass through unchanged; negative inputs are mapped to zero.
 - Advantages:
   - Computational Efficiency: Does not involve expensive exponential calculations like sigmoid or tanh.
@@ -543,14 +537,15 @@ The sigmoid function, specifically the standard logistic function, is an S-shape
 
 **Key Aspects of the Sigmoid Logistic Function:**
 
-- Formula: $\sigma(z) = \frac{1}{1 + e^{-z}}$.
-- Purpose: It maps input values ($z$) to a output range between 0 and 1, allowing for probability interpretation in models.
+- $\sigma(z) = \frac{1}{1 + e^{-z}}$.
+- It maps input values ($z$) to a output range between 0 and 1, allowing for probability interpretation in models.
 - Range: The output is always bounded within $(0, 1)$, never exactly reaching 0 or 1, but approaching them as $z$ goes to $\pm\infty$.
 - Logistic Regression: Used in the output layer to transform raw linear model outputs into predictions.
 - Shape: It produces an "S"-shaped curve.
 - Derivative: The derivative is convenient, calculated as $\sigma'(z) = \sigma(z)(1 - \sigma(z))$, aiding optimization.
 
-It is frequently used for mapping inputs to binary class probabilities.  
+It is frequently used for mapping inputs to binary class probabilities.
+
 The sigmoid (logistic) function is great for binary classification as it outputs probabilities (0 to 1) and introduces non-linearity, but its major drawbacks are the vanishing gradient problem, which slows deep network training, and its non-zero-centered output, which can hinder convergence, plus its exponential calculations are computationally expensive, making alternatives like ReLU often preferred in hidden layers.
 
 **Advantages**
@@ -580,11 +575,11 @@ The hyperbolic tangent function, denoted as $\tanh(x)$, is a sigmoid-shaped, non
 
 **Key Properties and Characteristics**
 
-- Formula: $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$.
+- $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$.
 - Range: The output is strictly bounded between -1 and 1.
 - Domain: All real numbers ($-\infty, \infty$).
-- Shape: S-shaped (sigmoid), passing through the origin $(0,0)$.
-- Symmetry: It is an odd function, meaning $\tanh(-x) = -\tanh(x)$.
+- It's shape is S-shaped (sigmoid), passing through the origin $(0,0)$.
+- It is symmetry: It is an odd function, meaning $\tanh(-x) = -\tanh(x)$.
 - Derivative: The derivative is $1 - \tanh^2(x)$, which is useful for gradient-based optimization.
 - Behavior: As $x \to \infty$, $\tanh(x) \to 1$; as $x \to -\infty$, $\tanh(x) \to -1$.
 

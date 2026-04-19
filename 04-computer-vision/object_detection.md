@@ -35,20 +35,20 @@ YOLO (You Only Look Once) is a real-time object detection algorithm that perform
 **Here's a step-by-step breakdown of how YOLO works:**
 
 1. Image Grid Division
-   • Input Image: YOLO takes the entire image as input.
-   • Grid Division: It divides the input image into an S×SS \times SS×S grid (for example, a 13x13 or 19x19 grid, depending on the resolution).
-   • Grid Cells: Each cell in the grid is responsible for predicting bounding boxes for objects whose center lies within that cell.
+   - Input Image: YOLO takes the entire image as input.
+   - Grid Division: It divides the input image into an S×SS \times SS×S grid (for example, a 13x13 or 19x19 grid, depending on the resolution).
+   - Grid Cells: Each cell in the grid is responsible for predicting bounding boxes for objects whose center lies within that cell.
 
 2. Bounding Box Prediction
-   • Bounding Box (BBox): For each grid cell, YOLO predicts a fixed number of bounding boxes (usually 2 to 3 boxes per cell).
-   • Each bounding box is described by:
+   - Bounding Box (BBox): For each grid cell, YOLO predicts a fixed number of bounding boxes (usually 2 to 3 boxes per cell).
+   - Each bounding box is described by:
    - The coordinates of the box: (x,y)(x, y)(x,y) for the center, and (w,h)(w, h)(w,h) for the width and height.
    - Confidence Score: A probability that the bounding box contains an object and how accurate the box is.
-     • YOLO uses anchor boxes (predefined bounding boxes with different aspect ratios) to predict these bounding boxes.
+     - YOLO uses anchor boxes (predefined bounding boxes with different aspect ratios) to predict these bounding boxes.
 
 3. Class Prediction
-   • For each grid cell, YOLO also predicts class probabilities for each object (e.g., car, person, dog). This is typically done for multiple classes, depending on the number of objects the model is trained to detect.
-   • These class probabilities are independent for each grid cell, meaning the algorithm will predict the probability of each class for the detected object.
+   - For each grid cell, YOLO also predicts class probabilities for each object (e.g., car, person, dog). This is typically done for multiple classes, depending on the number of objects the model is trained to detect.
+   - These class probabilities are independent for each grid cell, meaning the algorithm will predict the probability of each class for the detected object.
 
 4. Objectness Score: YOLO assigns a confidence score (objectness) for each bounding box, which reflects two things:
    1. The likelihood that an object exists in the predicted bounding box.
@@ -83,9 +83,9 @@ YOLO (You Only Look Once) is a real-time object detection algorithm that perform
 5. The final output is a set of bounding boxes around the objects in the image, along with their predicted class labels.
 
 6. YOLO’s Advantages:
-   • Speed: YOLO is very fast because it predicts everything in a single forward pass.
-   • Accuracy: YOLO can achieve high accuracy, especially when detecting large or well-defined objects.
-   • End-to-End: It is an end-to-end model that simplifies the pipeline compared to other methods like R-CNN, which require multiple stages for detection.
+   - Speed: YOLO is very fast because it predicts everything in a single forward pass.
+   - Accuracy: YOLO can achieve high accuracy, especially when detecting large or well-defined objects.
+   - End-to-End: It is an end-to-end model that simplifies the pipeline compared to other methods like R-CNN, which require multiple stages for detection.
 
 ---
 
@@ -95,7 +95,7 @@ YOLOv3 (You Only Look Once version 3) is a powerful and efficient object detecti
 
 Here's a detailed breakdown of how YOLOv3 works:
 
-Key Steps in YOLOv3
+**Key Steps in YOLOv3**
 
 1. Image Division into Grid Cells
    - YOLOv3 divides the input image into an S×SS \times SS×S grid (e.g., 13x13, 26x26, or 52x52). Each grid cell is responsible for predicting objects whose center falls within that cell.
@@ -130,27 +130,23 @@ Key Steps in YOLOv3
 
 **Detailed Breakdown of YOLOv3 Components**
 
-1.  Backbone Network (Darknet-53)
+1. Backbone Network (Darknet-53)
+   - YOLOv3 uses a custom convolutional neural network architecture known as Darknet-53 as its backbone for feature extraction. Darknet-53 is a deep convolutional network that improves upon the older Darknet-19, providing better accuracy and feature extraction capabilities.
+   - Darknet-53 uses residual connections to help with the gradient flow and avoid vanishing gradient problems during training.
 
-- YOLOv3 uses a custom convolutional neural network architecture known as Darknet-53 as its backbone for feature extraction. Darknet-53 is a deep convolutional network that improves upon the older Darknet-19, providing better accuracy and feature extraction capabilities.
-- Darknet-53 uses residual connections to help with the gradient flow and avoid vanishing gradient problems during training.
+2. Detection Head
+   - The detection head of YOLOv3 consists of multiple layers that take the features extracted by the backbone and output predictions for the bounding boxes, class probabilities, and confidence scores.
+   - YOLOv3 employs leaky ReLU activation functions and convolutional layers to process the features and make predictions at different scales.
 
-2.  Detection Head
+3. Multi-Layer Output
+   - YOLOv3 produces output at three different layers (corresponding to the different scales mentioned earlier).
+     Each output layer corresponds to a different feature map:
+   - Small-scale output: Detects small objects with finer details.
+   - Medium-scale output: Detects medium-sized objects.
+   - Large-scale output: Detects larger objects with fewer details.
 
-- The detection head of YOLOv3 consists of multiple layers that take the features extracted by the backbone and output predictions for the bounding boxes, class probabilities, and confidence scores.
-- YOLOv3 employs leaky ReLU activation functions and convolutional layers to process the features and make predictions at different scales.
-
-3.  Multi-Layer Output
-
-- YOLOv3 produces output at three different layers (corresponding to the different scales mentioned earlier).
-  Each output layer corresponds to a different feature map:
-  - Small-scale output: Detects small objects with finer details.
-  - Medium-scale output: Detects medium-sized objects.
-  - Large-scale output: Detects larger objects with fewer details.
-
-4.  Post-processing
-
-- After applying NMS to eliminate redundant detections, the final bounding boxes are output, along with their associated class labels and confidence scores.
+4. Post-processing
+   - After applying NMS to eliminate redundant detections, the final bounding boxes are output, along with their associated class labels and confidence scores.
 
 **Example Workflow of YOLOv3**
 
@@ -161,9 +157,10 @@ Key Steps in YOLOv3
 5. Output: The final output consists of bounding boxes and their associated class labels (e.g., person, car, dog), along with confidence scores.
 
 **Advantages of YOLOv3:**
-• Speed: YOLOv3 is fast and suitable for real-time object detection tasks, making it ideal for applications like video surveillance, autonomous driving, and robotics.
-• High Accuracy: With the use of a deeper network (Darknet-53) and multi-scale predictions, YOLOv3 offers high accuracy in detecting objects of various sizes.
-• Unified Architecture: YOLOv3 performs object detection in a single pass, which simplifies the pipeline compared to traditional methods like R-CNN that require multiple stages.
+
+- Speed: YOLOv3 is fast and suitable for real-time object detection tasks, making it ideal for applications like video surveillance, autonomous driving, and robotics.
+- High Accuracy: With the use of a deeper network (Darknet-53) and multi-scale predictions, YOLOv3 offers high accuracy in detecting objects of various sizes.
+- Unified Architecture: YOLOv3 performs object detection in a single pass, which simplifies the pipeline compared to traditional methods like R-CNN that require multiple stages.
 
 ---
 
@@ -171,7 +168,7 @@ Key Steps in YOLOv3
 
 Object tracking is a core computer vision task that involves identifying and following specific entities (such as people, vehicles, or animals) across a sequence of video frames. Unlike object detection, which identifies "what" is in a single frame, tracking maintains a unique identity (ID) for each object to understand "where" it is going over time.
 
-**Modern systems generally follow the tracking-by-detection paradigm, which consists of three main stages:**
+Modern systems generally follow the tracking-by-detection paradigm, which consists of three main stages:
 
 - Detection: An algorithm (like YOLO) identifies objects and draws bounding boxes in each frame.
 - Motion Prediction: Techniques like the Kalman Filter estimate the object's future position based on its current velocity and trajectory.

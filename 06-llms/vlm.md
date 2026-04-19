@@ -84,7 +84,7 @@ The core idea is to hide most of an image and force the model to predict what is
 - **The Encoder:** The small remaining portion (the 25% visible patches) is sent through a standard Vision Transformer (ViT) encoder. Because so little data is present, the encoder must be very efficient at extracting "meaning" from fragments.
 
 - **The Decoder:** A lightweight decoder takes the encoded fragments plus "mask tokens" (placeholders for the missing pieces) and tries to reconstruct the full original pixels.
-  The Goal: The model is penalized based on how different the reconstructed image looks from the original (using Mean Squared Error).
+- The Goal is the model is penalized based on how different the reconstructed image looks from the original (using Mean Squared Error).
 
 **Why it’s a big deal**
 
@@ -120,7 +120,6 @@ It looks at the 100 predicted boxes and the actual ground-truth objects in the i
 It finds the unique "best match" for each real object among the predictions.
 Everything else is forced to predict "nothing." Hence, the model naturally learns to predict exactly one box per object.
 
-**Pros and Cons**
 **Pro:**
 
 1. Streamlined Pipeline. It removes the need for complex, manual computer vision engineering (no more anchors or NMS).

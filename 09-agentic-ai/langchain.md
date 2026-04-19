@@ -25,7 +25,7 @@ Both retrievers are advanced LangChain techniques designed to overcome the limit
      - The system performs a vector search for every variation.
      - It deduplicates and merges all unique documents found across all searches.
 
-   - **Best For:** Improving recall when users provide vague or poorly phrased questions.
+   - It is best for improving recall when users provide vague or poorly phrased questions.
 
 2. **MultiVectorRetriever (Document Optimization)**
    This retriever decouples the data used for searching from the data sent to the LLM for answering.
@@ -36,7 +36,7 @@ Both retrievers are advanced LangChain techniques designed to overcome the limit
      - **Hypothetical Questions:** You generate questions the document could answer and embed those. If the user asks a similar question, the document is retrieved.
      - **Smaller Chunks (Parent-Child):** You embed tiny snippets for high precision but return the large parent section so the LLM has enough context.
 
-   - **Best For:** Complex data like tables, images (via descriptions), or very long documents where the meat of the info is buried.
+   - It is best for complex data like tables, images (via descriptions), or very long documents where the meat of the info is buried.
 
 ---
 
@@ -47,11 +47,11 @@ These two retrievers are specialized tools for handling metadata filtering and t
 **1. Self-Querying Retriever**
 The Self-Querying Retriever addresses the semantic search limitation where a model might find relevant text but ignore specific constraints (like from 2023 or rating > 4).
 
-- How it works: It uses an LLM to self-query by translating a natural language question into a structured query. It splits the user's input into two parts:
-- A Search Term: Used for semantic vector search.
-- A Metadata Filter: Used to filter the database (e.g., filtering by genre or year).
+- It uses an LLM to self-query by translating a natural language question into a structured query. It splits the user's input into two parts:
+  - A Search Term: Used for semantic vector search.
+  - A Metadata Filter: Used to filter the database (e.g., filtering by genre or year).
 - Example: If you ask, What are movies about space released after 2010?, the LLM creates a filter { year: { $gt: 2010 } } and searches the vector store only for space movies within that subset.
-  Best For: Datasets with rich metadata (products, movie databases, structured logs) where users often ask for specific subsets.
+  It is best for datasets with rich metadata (products, movie databases, structured logs) where users often ask for specific subsets.
 
 **2. Time-Weighted Vector Store Retriever**
 The Time-Weighted Retriever is designed for applications where freshness matters as much as relevance.
@@ -60,7 +60,7 @@ The Time-Weighted Retriever is designed for applications where freshness matters
   - Semantic Similarity: How well the document matches the query.
   - Recency: How long ago the document was last accessed or created.
 - The Decay Formula: It uses a decay rate (often exponential). Information that hasn't been accessed in a long time fades away, while frequently or recently accessed info stays top of mind.
-- Best For: Memory for AI agents, customer support bots, or news feeds where old information might be outdated or irrelevant to current events.
+- It is best for memory for AI agents, customer support bots, or news feeds where old information might be outdated or irrelevant to current events.
 
 ---
 
@@ -74,8 +74,6 @@ Every memory system performs two primary actions during a conversation:
 - **Reading:** Before generating a response, the chain reads from memory to supplement the user's current input with past context.
 - **Writing:** After generating a response, the chain writes the new interaction back into memory for future use.
 
----
-
 ### Core Types of Memory
 
 **1. Buffer-Based Memory**
@@ -85,15 +83,15 @@ Every memory system performs two primary actions during a conversation:
   - Cons: Rapidly consumes tokens and will eventually hit the model's context limit.
 
 - **ConversationBufferWindowMemory:** Maintains a sliding window of the last K interactions.
-  - Best For: Keeping prompts lean and avoiding token overflow.
+  - It is best for keeping prompts lean and avoiding token overflow.
 
 - **ConversationTokenBufferMemory:** Similar to the window memory, but flushes history based on a max token count instead of a set number of messages.
-  - Best For: Precise cost and performance management.
+  - It is best for precise cost and performance management.
 
 **2. Summarization & Knowledge Memory**
 
 - **ConversationSummaryMemory:** Uses an LLM to create a running summary of the chat as it progresses.
-  - Best For: Extremely long conversations where keeping full text is impossible.
+  - It is best for extremely long conversations where keeping full text is impossible.
 
 - **ConversationEntityMemory:** Extracts and stores specific facts about entities (people, places, objects) mentioned in the conversation.
 
@@ -214,7 +212,7 @@ Rerankers act as a high-precision second pass in RAG pipelines. While initial re
 Standard embedding models (bi-encoders) encode queries and documents separately, which can miss subtle context. A Cross-Encoder processes the query and each document together as a single input string.
 
 - **How it Works:** It uses full self-attention across all tokens in both the query and the document to output a definitive relevance score.
-- **Best For:** Maximum accuracy where you need to detect negations or complex logical constraints that simple vector similarity might miss.
+- It is best for maximum accuracy where you need to detect negations or complex logical constraints that simple vector similarity might miss.
 
 - **Implementation:** In LangChain, this is typically done using the HuggingFaceCrossEncoder wrapped in a CrossEncoderReranker.
 

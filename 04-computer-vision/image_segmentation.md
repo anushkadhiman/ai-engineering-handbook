@@ -60,7 +60,6 @@ SAM 2 extends the original "Segment Anything" task to the video domain. While th
 
 - Video Tracking: You can click an object in just one frame, and SAM 2 will automatically track and mask it throughout the entire video timeline.
 - Interactive Refinement: If the tracking drifts or makes a mistake, you can simply click on a future frame to correct it. The model will then re-propagate the improved mask forward and backward through the video.
-- Open Source: Meta has open-sourced the code and weights under the Apache 2.0 license and released the SA-V dataset (51,000+ videos) for the research community.
 
 ---
 
