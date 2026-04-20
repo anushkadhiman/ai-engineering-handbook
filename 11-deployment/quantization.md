@@ -4,9 +4,9 @@ Quantization is an optimization technique that reduces the precision of a model'
 
 **Why do we Quantize?**
 
-- **Reduced Memory Footprint:** A model quantized from 32-bit to 8-bit is roughly 4x smaller, allowing large models to fit on consumer hardware.
-- **Faster Inference:** Integer arithmetic is less computationally expensive than floating-point math, leading to quicker response times.
-- **Energy Efficiency:** Lower precision requires fewer clock cycles and less power, which is critical for battery-powered devices.
+- It reduced Memory Footprint. A model quantized from 32-bit to 8-bit is roughly 4x smaller, allowing large models to fit on consumer hardware.
+- Its faster inference. Integer arithmetic is less computationally expensive than floating-point math, leading to quicker response times.
+- It's energy efficiency. Lower precision requires fewer clock cycles and less power, which is critical for battery-powered devices.
 
 **Core Types of Quantization**
 We generally choose between two main workflows:
@@ -77,9 +77,9 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 
 **Key Benefits**
 
-- **Ease of Use:** You don't need the original training code, high-end GPU clusters, or the full dataset. You only need the final model and a few data samples.
-- **Significant Compression:** Moving from 32-bit (FP32) to 8-bit (INT8) reduces the model's memory footprint by 4x.
-- **Hardware Compatibility:** Many low-power chips (like those in phones or IoT devices) are optimized specifically for integer math rather than floating-point math.
+- Its ease of use. You don't need the original training code, high-end GPU clusters, or the full dataset. You only need the final model and a few data samples.
+- It compress significantly moving from 32-bit (FP32) to 8-bit (INT8) reduces the model's memory footprint by 4x.
+- Many low-power chips (like those in phones or IoT devices) are optimized specifically for integer math rather than floating-point math.
 
 **Limitations**
 
@@ -108,8 +108,8 @@ Since actual integer math isn't differentiable (you can't do standard calculus o
 
 **The Trade-offs**
 
-- **Computationally Expensive:** You are essentially performing a full training or fine-tuning run, which requires GPUs, time, and the original training dataset.
-- **Complexity:** It requires more engineering effort to set up the fake quantization layers correctly within the training pipeline.
+- Its computationally expensive. You are essentially performing a full training or fine-tuning run, which requires GPUs, time, and the original training dataset.
+- It has complexity. It requires more engineering effort to set up the fake quantization layers correctly within the training pipeline.
 
 **Popular Tools**
 
@@ -122,10 +122,11 @@ Since actual integer math isn't differentiable (you can't do standard calculus o
 ## Mixed Precision Training
 
 Mixed Precision Training is a technique that speeds up deep learning by using both 16-bit (half precision) and 32-bit (single precision) floating-point numbers during the same training session.
+
 It gives you the best of both worlds: the speed of lower precision and the accuracy of higher precision.
 
-- **How It Works:**
-  The key challenge is that 16-bit floats (FP16) have a very narrow range. If a gradient is too small, it becomes zero (underflow); if too large, it becomes NaN (overflow).
+**How It Works:**
+The key challenge is that 16-bit floats (FP16) have a very narrow range. If a gradient is too small, it becomes zero (underflow); if too large, it becomes NaN (overflow).
 
 Mixed precision solves this using three steps:
 
