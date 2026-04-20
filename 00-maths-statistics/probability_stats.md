@@ -5,7 +5,7 @@ Probability is a measure of the likelihood that an event will occur, represented
 **Key Concepts of Probability**
 
 - Scale: Ranges from 0 (0%) to 1 (100%), often expressed as a fraction, decimal, or percentage.
-- Formula: $P(\text{Event}) = \frac{\text{Number of favorable outcomes}}{\text{Total number of possible outcomes}}$.
+- $P(\text{Event}) = \frac{\text{Number of favorable outcomes}}{\text{Total number of possible outcomes}}$.
 - Sample Space: The set of all possible outcomes of a random experiment (e.g., $\{1,2,3,4,5,6\}$ for a six-sided die).
 - Events: A specific outcome or subset of the sample space (e.g., rolling an even number: $\{2,4,6\}$).
 - Independent Events: The outcome of one event does not affect the probability of another.
@@ -59,7 +59,7 @@ Statistics is the science of collecting, organizing, analyzing, interpreting, an
 
 Data is raw, unorganized facts, figures, and symbols that are collected to be processed, analyzed, and used to make informed decisions. It serves as the basis for information in both human and computing contexts, ranging from text and numbers to audio, video, and images, and is commonly stored in databases.
 
-- Definition: Data is information translated into a format that is efficient for movement and processing, often in binary form for computers.
+- Data is information translated into a format that is efficient for movement and processing, often in binary form for computers.
 - Types:
   - Quantitative: Measurable or countable numbers and statistics.
   - Qualitative: Descriptive information, such as labels or text, that cannot be easily measured.
@@ -112,7 +112,7 @@ Variance and standard deviation measure how data spreads around the mean. Varian
 
 **Key Differences**
 
-- Definition: Variance is the average of squared deviations, whereas standard deviation is the square root of that average.
+- Variance is the average of squared deviations, whereas standard deviation is the square root of that average.
 - Units: Variance is in squared units (e.g., $m^2$), while standard deviation is in the same units as the data (e.g., $m$).
 - Interpretation: Standard deviation is often preferred to understand the actual spread of data because it is in the same scale as the mean.
 
@@ -150,7 +150,7 @@ Covariance measures the total variation of two random variables from their expec
 - Significance: Tells us if variables increase or decrease together ($>0$) or move in opposite directions ($<0$).
 - Units: The unit is the product of the units of the two variables.
 - Range: $-\infty$ to $+\infty$.
-- Formula: $\text{cov}(X, Y) = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$.
+- $\text{cov}(X, Y) = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$.
 
 **Correlation**
 Correlation is a standardized form of covariance, often known as the Pearson correlation coefficient, which quantifies the linear strength of the relationship.
@@ -158,7 +158,7 @@ Correlation is a standardized form of covariance, often known as the Pearson cor
 - Significance: Measures the strength and direction. A value of +1 implies a perfect positive relationship, -1 a perfect negative relationship, and 0 no linear relationship.
 - Units: Unitless (dimensionless).
 - Range: -1 to +1.
-- Formula: $\rho_{XY} = \frac{\text{cov}(X, Y)}{\sigma_X \sigma_Y}$ (Covariance divided by the product of standard deviations).
+- $\rho_{XY} = \frac{\text{cov}(X, Y)}{\sigma_X \sigma_Y}$ (Covariance divided by the product of standard deviations).
 
 Correlation is superior for determining the strength of a relationship because it is standardized, whereas covariance is mainly used to understand the direction of movement, often in financial portfolio diversification.
 
@@ -168,9 +168,9 @@ Correlation is superior for determining the strength of a relationship because i
 
 The law of large numbers states that as the number of independent, identical trials increases, their observed average result approaches the theoretical expected value. It bridges probability theory with empirical observation, indicating that while short-term results vary, long-term trends become stable and predictable.
 
-**Key Aspects of the Law of Large Numbers**
+**What Law of Large Numbers is and how it works?**
 
-- Definition: The sample mean (average) of a large number of trials will be close to the theoretical mean (expected value).
+- The sample mean (average) of a large number of trials will be close to the theoretical mean (expected value).
 - Types:
   - Weak Law (WLLN): States that the sample average converges in probability to the expected value, meaning the probability that the average deviates significantly from the true mean approaches zero as trials increase.
   - Strong Law (SLLN): States that the sample average converges "almost surely" to the expected value, meaning the probability of convergence is 1.
@@ -185,12 +185,13 @@ The law of large numbers states that as the number of independent, identical tri
 
 Marginal probability is the unconditional likelihood of a single event occurring, independent of other variables. It represents the probability of a subset of variables, calculated by summing (for discrete variables) or integrating (for continuous) the joint probability distribution over all possible values of the irrelevant, ignored variables.
 
-**Key Aspects of Marginal Probability**
+**What Marginal Probability is and how it works?**
 
 - Unconditional: Unlike conditional probability, it does not depend on another event.
+
 - Marginalization Process: To find the marginal probability of event $X$, you sum the joint probabilities $P(X, Y)$ across all possible values of $Y$.
-  - Discrete Formula: $P(X=x) = \sum_{y} P(X=x, Y=y)$.
-  - Continuous Formula: $f_X(x) = \int f_{X,Y}(x,y) dy$.
+  - Discrete $P(X=x) = \sum_{y} P(X=x, Y=y)$.
+  - Continuous $f_X(x) = \int f_{X,Y}(x,y) dy$.
 
 - "Marginal" Origin: The term comes from the practice of calculating these probabilities by summing joint probability tables along rows or down columns and placing the results in the table's margins.
 
@@ -206,11 +207,11 @@ Marginal probability is the unconditional likelihood of a single event occurring
 
 Joint probability is the statistical likelihood of two or more events occurring simultaneously, denoted as $P(A \text{ and } B)$ or $P(A, B)$. It measures the intersection of events. If events are independent, the joint probability is calculated by multiplying their individual probabilities: $P(A \cap B) = P(A) \times P(B)$.
 
-**Key Aspects of Joint Probability:**
+**What Joint Probability is and how it works?**
 
-- Definition: The probability of both Event A and Event B occurring together.
-- Formula (Independent Events): $P(A \text{ and } B) = P(A) \times P(B)$.
-- Formula (Dependent Events): $P(A \text{ and } B) = P(A) \times P(B|A)$, where $P(B|A)$ is the conditional probability of $B$ given $A$.
+- The probability of both Event A and Event B occurring together.
+- For Independent Events: $P(A \text{ and } B) = P(A) \times P(B)$.
+- For Dependent Events: $P(A \text{ and } B) = P(A) \times P(B|A)$, where $P(B|A)$ is the conditional probability of $B$ given $A$.
 - Range: The value lies between $0$ and $1$.
 - Examples:
   - Independent: Flipping a coin twice and getting Heads both times: $P(H1) \times P(H2) = 0.5 \times 0.5 = 0.25$.
@@ -237,8 +238,8 @@ calculated as $P(A|B) = \frac{P(A \cap B)}{P(B)}$, provided $P(B) > 0$.
 
 **Key Concepts and Formula**
 
-- Definition: It measures the probability of event $A$ occurring, knowing that event $B$ has already occurred.
-- Formula: $P(A|B) = \frac{P(A \text{ and } B)}{P(B)}$.
+- It measures the probability of event $A$ occurring, knowing that event $B$ has already occurred.
+- $P(A|B) = \frac{P(A \text{ and } B)}{P(B)}$.
 - Components:
   - $P(A|B)$: Conditional probability of $A$ given $B$.
   - $P(A \cap B)$ or $P(A \text{ and } B)$: Joint probability of both events occurring.
