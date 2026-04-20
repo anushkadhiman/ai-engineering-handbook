@@ -339,7 +339,7 @@ FastAPI supports several security schemes that integrate directly with the inter
 
 - OAuth2 with Password Flow & JWT: The recommended standard for most production web applications. It uses a "password flow" to exchange credentials for a short-lived JSON Web Token (JWT).
 - HTTP Basic Auth: Sends a username and password in every request header. Best for internal tools or quick prototypes. Use HTTPBasic and HTTPBasicCredentials from fastapi.security.
-  API Key Authentication: Involves a static key passed in the header, query parameter, or cookie.
+- API Key Authentication: Involves a static key passed in the header, query parameter, or cookie.
 - OpenID Connect (OIDC): Used for "Login with Google/GitHub" integrations. It acts as an identity layer on top of OAuth2.
 
 **Implementation Workflow**
@@ -408,9 +408,9 @@ In FastAPI, Background Tasks and WebSockets serve different concurrency purposes
 **Background Tasks in FastAPI**
 FastAPI provides a built-in BackgroundTasks class to handle operations that should occur after a request is completed without making the client wait.
 
-- How it works: You define a parameter of type BackgroundTasks in your path operation. After the response is returned to the client, the tasks added to this object are executed.
-- Best Use Cases: Sending email notifications, small database updates, or logging.
-- Limitation: They are tied to the HTTP request-response cycle and do not automatically work with the persistent nature of WebSockets.
+- You define a parameter of type BackgroundTasks in your path operation. After the response is returned to the client, the tasks added to this object are executed.
+- The best use cases is sending email notifications, small database updates, or logging.
+- There are some limitations. They are tied to the HTTP request-response cycle and do not automatically work with the persistent nature of WebSockets.
 
 **WebSockets in FastAPI**
 WebSockets provide a persistent, bidirectional connection between the client and server.

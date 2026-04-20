@@ -12,12 +12,12 @@ Quantization is an optimization technique that reduces the precision of a model'
 We generally choose between two main workflows:
 
 - **Post-Training Quantization (PTQ):** Applied to a model after it has been fully trained. It's fast and doesn't require the original training pipeline, making it the most common choice for deploying pre-trained models.
-  - **Dynamic:** Quantizes weights once, but computes activation ranges "on the fly" during inference.
-  - **Static:** Uses a small "calibration" dataset to pre-calculate activation ranges for even faster execution.
-- **Quantization-Aware Training (QAT):** Simulates quantization effects during the training or fine-tuning process. The model "learns" to compensate for the lost precision, typically resulting in higher final accuracy than PTQ.
+  - **Dynamic:** Quantizes weights once, but computes activation ranges on the fly during inference.
+  - **Static:** Uses a small calibration dataset to pre-calculate activation ranges for even faster execution.
+- **Quantization-Aware Training (QAT):** Simulates quantization effects during the training or fine-tuning process. The model learns to compensate for the lost precision, typically resulting in higher final accuracy than PTQ.
   Here are some popular modern techniques:
   - **GPTQ:** A popular method for LLMs that quantizes weight matrices layer-by-layer to 4-bit precision with minimal accuracy loss.
-  - **AWQ (Activation-aware Weight Quantization):** Identifies and protects "salient" weights (those most important for performance) from heavy quantization based on activation patterns.
+  - **AWQ (Activation-aware Weight Quantization):** Identifies and protects salient weights (those most important for performance) from heavy quantization based on activation patterns.
   - **QLoRA:** Combines 4-bit quantization with Low-Rank Adaptation (LoRA), allowing you to fine-tune massive models on a single GPU.
 
 Most major frameworks provide built-in support for these workflows:
@@ -48,7 +48,7 @@ Quantization can be categorized by when it occurs, how it maps values, and its g
 **Symmetric vs. Asymmetric (Affine):**
 
 - **Symmetric:** The floating-point range is centered around zero, mapping 0.0 directly to the integer 0. It is computationally efficient but can waste precision if data is skewed.
-- **Asymmetric:** Uses a "zero-point" to map the input range to the full integer spectrum. This is more accurate for non-centered distributions, such as ReLU activations.
+- **Asymmetric:** Uses a zero-point to map the input range to the full integer spectrum. This is more accurate for non-centered distributions, such as ReLU activations.
 
 **3. By Granularity (Scope of the conversion)**
 
@@ -72,8 +72,8 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 
 - **Weight Quantization:** This is straightforward because weights are constant. Their range (min/max) is already known, so they can be converted to integers offline before deployment.
 - **Activation Quantization:** Activations change based on the input data. PTQ handles this in two main ways:
-- **Dynamic Quantization:** The range for activations is calculated "on the fly" during inference. This is easy to implement but adds a small computational overhead.
-- **Static Quantization:** The range is pre-calculated during a Calibration phase. A small "representative dataset" (usually 100–500 samples) is run through the frozen model to record typical activation ranges.
+- **Dynamic Quantization:** The range for activations is calculated on the fly during inference. This is easy to implement but adds a small computational overhead.
+- **Static Quantization:** The range is pre-calculated during a Calibration phase. A small representative dataset (usually 100–500 samples) is run through the frozen model to record typical activation ranges.
 
 **Key Benefits**
 
@@ -83,7 +83,7 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 
 **Limitations**
 
-- **Accuracy Loss:** Because the model wasn't "taught" to handle lower precision, PTQ can cause a drop in accuracy, especially in smaller or more sensitive models.
+- **Accuracy Loss:** Because the model wasn't taught to handle lower precision, PTQ can cause a drop in accuracy, especially in smaller or more sensitive models.
 - **Calibration Bias:** If the small calibration dataset isn't truly representative of real-world inputs, the pre-calculated ranges might be wrong, leading to poor performance.
 
 ---
@@ -97,25 +97,25 @@ Unlike Post-Training Quantization (PTQ), which converts a model after it’s fin
 Since actual integer math isn't differentiable (you can't do standard calculus on discrete integers), QAT uses fake quantization modules:
 
 - **Forward Pass:** Weights and activations are rounded to low-precision values (e.g., INT8) to simulate how the model will behave on edge hardware.
-- **Loss Calculation:** The model sees the "damage" caused by rounding and calculates its error based on these degraded values.
+- **Loss Calculation:** The model sees the damage caused by rounding and calculates its error based on these degraded values.
 - **Backward Pass:** The gradients are calculated using high-precision floats (FP32) using a trick called the Straight-Through Estimator (STE). This allows the model to update its weights in a way that minimizes the rounding error.
 
 **Why Use QAT?**
 
-- **Superior Accuracy:** It is the "gold standard" for quantization. Because the model "practices" being low-precision during training, it usually suffers almost zero accuracy loss compared to the original FP32 model.
+- **Superior Accuracy:** It is the gold standard for quantization. Because the model practices being low-precision during training, it usually suffers almost zero accuracy loss compared to the original FP32 model.
 - **Essential for Low Bit-Widths:** If you are trying to compress a model down to 4-bit or 2-bit, PTQ often fails completely. QAT is usually required to keep the model functional at these extreme levels.
-- **Robustness:** It handles "outlier" weights better than PTQ because the model can shift its weight distribution to avoid values that would be clipped or rounded poorly.
+- **Robustness:** It handles outlier weights better than PTQ because the model can shift its weight distribution to avoid values that would be clipped or rounded poorly.
 
 **The Trade-offs**
 
 - **Computationally Expensive:** You are essentially performing a full training or fine-tuning run, which requires GPUs, time, and the original training dataset.
-- **Complexity:** It requires more engineering effort to set up the "fake quantization" layers correctly within the training pipeline.
+- **Complexity:** It requires more engineering effort to set up the fake quantization layers correctly within the training pipeline.
 
 **Popular Tools**
 
 - PyTorch: Offers Quantization-Aware Training APIs that automatically swap standard layers for quantized versions.
-- TensorFlow: The Model Optimization Toolkit provides a simple wrapper to make a model "quantization aware" with a few lines of code.
-- NVIDIA TensorRT: Supports QAT by importing "QDQ" (Quantize/Dequantize) nodes from ONNX models.
+- TensorFlow: The Model Optimization Toolkit provides a simple wrapper to make a model quantization aware with a few lines of code.
+- NVIDIA TensorRT: Supports QAT by importing QDQ (Quantize/Dequantize) nodes from ONNX models.
 
 ---
 
@@ -125,12 +125,12 @@ Mixed Precision Training is a technique that speeds up deep learning by using bo
 It gives you the best of both worlds: the speed of lower precision and the accuracy of higher precision.
 
 - **How It Works:**
-  The key challenge is that 16-bit floats (FP16) have a very narrow range. If a gradient is too small, it becomes zero (underflow); if too large, it becomes "NaN" (overflow).
+  The key challenge is that 16-bit floats (FP16) have a very narrow range. If a gradient is too small, it becomes zero (underflow); if too large, it becomes NaN (overflow).
 
 Mixed precision solves this using three steps:
 
 - **The Half-Precision Pass:** The model performs the heavy math (forward and backward passes) in FP16. This is significantly faster on modern GPUs with NVIDIA Tensor Cores.
-- **The Master Weights:** The optimizer maintains a "master copy" of the weights in FP32. After the FP16 gradients are calculated, they are used to update these high-precision master weights to ensure numerical stability.
+- **The Master Weights:** The optimizer maintains a master copy of the weights in FP32. After the FP16 gradients are calculated, they are used to update these high-precision master weights to ensure numerical stability.
 - **Loss Scaling:** To prevent small gradients from disappearing (underflow), the loss is multiplied by a large scale factor before backpropagation. It is then scaled back down before the weights are updated.
 
 **Why Use It?**
@@ -167,14 +167,14 @@ Weight pruning methods reduce the size and computational load of neural networks
 - **Magnitude-Based:** The most common method; it assumes weights with the smallest absolute values (near-zero) contribute the least to model performance and can be safely removed.
 - **Gradient-Based:** Evaluates weight importance by their sensitivity to the loss function during training; weights with small gradients are considered less significant for optimization.
 - **Activation-Based:** Uses a calibration dataset to estimate importance based on which parts of the model activate the most.
-- **Movement Pruning:** Specifically for transfer learning, this method identifies weights that "shrink" toward zero during fine-tuning on a new task as being less significant than those that grow.
+- **Movement Pruning:** Specifically for transfer learning, this method identifies weights that shrink toward zero during fine-tuning on a new task as being less significant than those that grow.
 
 **3. Timing and Process**
 
 - **One-Shot Pruning:** The model is pruned in a single step after full training, followed by fine-tuning to recover performance.
-- **Iterative Pruning:** A "prune-train-repeat" cycle that gradually increases sparsity, allowing the model to adapt and recover accuracy at each stage.
+- **Iterative Pruning:** A prune-train-repeat cycle that gradually increases sparsity, allowing the model to adapt and recover accuracy at each stage.
 - **Train-Time (Dynamic) Pruning:** Pruning occurs simultaneously with training, often encouraged by regularization techniques (like L1/L2 penalties) that force weights toward zero.
-- **Lottery Ticket Hypothesis:** Proposes that large networks contain "winning ticket" subnetworks that can reach the same accuracy as the original when trained from the same initial state.
+- **Lottery Ticket Hypothesis:** Proposes that large networks contain winning ticket subnetworks that can reach the same accuracy as the original when trained from the same initial state.
 
 ---
 
