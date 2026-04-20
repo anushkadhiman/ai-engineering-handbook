@@ -18,7 +18,7 @@ Both retrievers are advanced LangChain techniques designed to overcome the limit
 
 1. **MultiQueryRetriever (Query Optimization)**
    This retriever solves the problem where a user's question might not perfectly match the way information is written in your database.
-   - **How it works:** It uses an LLM to automatically rephrase your original question into 3–5 different versions from multiple perspectives.
+   - It uses an LLM to automatically rephrase your original question into 3–5 different versions from multiple perspectives.
 
    - **The Process:**
      - The LLM generates alternative queries (e.g., How to fix a car? becomes Car repair steps, Automotive troubleshooting, etc.).
@@ -29,7 +29,7 @@ Both retrievers are advanced LangChain techniques designed to overcome the limit
 
 2. **MultiVectorRetriever (Document Optimization)**
    This retriever decouples the data used for searching from the data sent to the LLM for answering.
-   - **How it works:** It stores multiple vectors for a single parent document. Instead of searching the full text, it might search shorter child chunks or summaries while returning the original, larger document for context.
+   - It stores multiple vectors for a single parent document. Instead of searching the full text, it might search shorter child chunks or summaries while returning the original, larger document for context.
 
    - **Popular Methods:**
      - **Summaries:** You embed a concise summary of a long document. If a query matches the summary, the retriever fetches the full document.
@@ -211,7 +211,7 @@ Rerankers act as a high-precision second pass in RAG pipelines. While initial re
 **1. Cross-Encoder Reranker**
 Standard embedding models (bi-encoders) encode queries and documents separately, which can miss subtle context. A Cross-Encoder processes the query and each document together as a single input string.
 
-- **How it Works:** It uses full self-attention across all tokens in both the query and the document to output a definitive relevance score.
+- It uses full self-attention across all tokens in both the query and the document to output a definitive relevance score.
 - It is best for maximum accuracy where you need to detect negations or complex logical constraints that simple vector similarity might miss.
 
 - **Implementation:** In LangChain, this is typically done using the HuggingFaceCrossEncoder wrapped in a CrossEncoderReranker.

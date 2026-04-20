@@ -19,11 +19,13 @@ The Segment Anything Model (SAM), developed by Meta AI, is a foundational artifi
 SAM uses a high-performance encoder-decoder architecture that separates heavy image processing from lightweight user interaction:
 
 - Image Encoder: A powerful Vision Transformer (ViT) processes the entire image once to create a "dense embedding"—a mathematical representation of the image's features. This part is computationally heavy but only happens once per image.
+
 - Prompt Encoder: This component translates user inputs into "sparse embeddings". It supports:
   - Points: A click on or off an object.
   - Bounding Boxes: A rectangle drawn around an area.
   - Text: Describing the object (though less common in basic versions).
   - Masks: Using an existing rough mask to refine a shape.
+
 - Mask Decoder: A fast, lightweight neural network that combines the image embedding with the prompt embedding. Because it is efficient, it can generate the final segmentation mask in real-time (about 50ms) as you move your mouse or change prompts.
 
 **What are some key strengths?**
@@ -48,15 +50,17 @@ SAM 2 extends the original "Segment Anything" task to the video domain. While th
 
 **What are some core architecture components?**
 
-- Image Encoder (Hiera): It uses a hierarchical Vision Transformer (Hiera) to extract feature embeddings from each video frame one by one. This new encoder is much faster, making SAM 2 roughly 6x faster than the original SAM for image segmentation.
+- Image Encoder: It uses a hierarchical Vision Transformer to extract feature embeddings from each video frame one by one. This new encoder is much faster, making SAM 2 roughly 6x faster than the original SAM for image segmentation.
   - Memory Bank: This is the "secret sauce" of SAM 2. It maintains a FIFO (First-In, First-Out) queue of:
   - Past frame features: Recent frames to track movement.
   - Prompted frames: Information from frames where you specifically clicked or provided a box.
+
 - Memory Attention Module: When a new frame arrives, this module "attends" to the information in the memory bank to understand where the object was and how it looked previously. This allows the model to maintain temporal consistency.
 - Occlusion Head: A specialized component that predicts whether the target object is currently visible or hidden behind something else (occluded). This helps the model "pick up" the object again once it reappears.
+
 - Mask Decoder: This produces the final segmentation mask for the current frame by combining current image features, user prompts, and context from the memory attention module.
 
-**Key Improvements Over SAM 1**
+**What are some key improvements Over SAM 1?**
 
 - Video Tracking: You can click an object in just one frame, and SAM 2 will automatically track and mask it throughout the entire video timeline.
 - Interactive Refinement: If the tracking drifts or makes a mistake, you can simply click on a future frame to correct it. The model will then re-propagate the improved mask forward and backward through the video.

@@ -12,8 +12,6 @@ Most evaluation strategies fall into two broad categories: benchmark-based (usin
 
 - Leaderboards: Platforms like LMSYS Chatbot Arena use crowdsourced human preferences to rank models based on head-to-head comparisons.
 
-##
-
 An LLM evaluation workflow is the structured process of measuring a model’s performance, safety, and alignment before it reaches production. In modern AI engineering, this has evolved from simple "vibe checks" into a rigorous, data-driven pipeline.
 
 ---

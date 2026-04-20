@@ -1159,16 +1159,14 @@ While Reciprocal Rank Fusion (RRF) uses only the rank (1st, 2nd, 3rd) of documen
 
 ## GraphRAG
 
-GraphRAG (Graph Retrieval-Augmented Generation) enhances LLMs by combining semantic search with knowledge graphs, allowing the model to understand relationships between data points rather than just retrieving isolated text snippets. It works by indexing text to build a structured graph of entities and relationships, using this structure to provide richer context for, improving accuracy and reducing hallucinations, especially for complex, multi-hop queries.
+GraphRAG (Graph Retrieval-Augmented Generation) enhances LLMs by combining semantic search with knowledge graphs, allowing the model to understand relationships between data points rather than just retrieving isolated text snippets. It works by indexing text to build a structured graph of entities and relationships, using this structure to provide richer context for, improving accuracy and reducing hallucinations, especially for complex, multi-hop queries. GraphRAG is particularly effective for navigating complex relationships, answering global questions about a dataset, and improving AI reasoning over private data.
 
-**What is GraphRAG Process?**
+**What is the GraphRAG Process?**
 
 - Indexing & Extraction: The system processes raw text to extract entities, relationships, and key claims, building a knowledge graph.
 - Community Detection: It uses algorithms (like Leiden) to detect clusters ("communities") of densely connected nodes, generating summaries at different hierarchical levels for a holistic view of the data.
 - Retrieval & Reasoning: When a user asks a question, GraphRAG performs a dual-channel search: it retrieves relevant text via embeddings and traverses the graph to find connected entities.
 - Generation: The structured graph data (relationships and community summaries) is used to prompt the LLM, resulting in answers that are grounded in structured, relational context rather than just keyword matches.
-
-GraphRAG is particularly effective for navigating complex relationships, answering global questions about a dataset, and improving AI reasoning over private data.
 
 ---
 
@@ -1261,7 +1259,7 @@ Knowledge graphs are typically built using three primary elements
 - Many knowledge graphs utilize triples—a subject-predicate-object format (e.g., Paris -> isCapitalOf -> France)—to create these connections. This format is foundational to the Resource Description Framework (RDF), a standard for interchanging interconnected data.
 
 **The Role of Ontologies**
-An ontology serves as the blueprint or contract for a knowledge graph. While a knowledge graph contains actual data instances (the what is happening), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the what does it mean). For example, in a medical knowledge graph, the ontology defines classes like Pathogen and Drug, while the knowledge graph contains specific instances like COVID-19 and Remdesivir.
+An ontology serves as the blueprint or contract for a knowledge graph. While a knowledge graph contains actual data instances (the what is happening), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the what does it mean).
 
 **What are some key benefits?**
 
