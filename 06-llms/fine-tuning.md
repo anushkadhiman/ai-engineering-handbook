@@ -4,7 +4,7 @@ Fine-tuning an LLM is the process of further training a pre-trained model on a s
 
 **Why do we do Fine-Tuning?**
 
-- Purpose: To specialize a general-purpose model for specific industries (legal, medical) or tasks (chatbots, code generation), improving accuracy and lowering operational costs.
+- To specialize a general-purpose model for specific industries (legal, medical) or tasks (chatbots, code generation), improving accuracy and lowering operational costs.
 
 - Methods:
   - Full Fine-Tuning: Updates all model parameters, which is computationally expensive.
