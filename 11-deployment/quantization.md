@@ -2,7 +2,7 @@
 
 Quantization is an optimization technique that reduces the precision of a model's weights and activations to make it smaller and faster. By converting high-precision numbers (typically 32-bit floating point) into lower-precision formats like 8-bit integers (INT8) or even 4-bit (INT4), you significantly cut down on memory usage and speed up inference, especially on edge devices like smartphones.
 
-**Why Quantize?**
+**Why do we Quantize?**
 
 - **Reduced Memory Footprint:** A model quantized from 32-bit to 8-bit is roughly 4x smaller, allowing large models to fit on consumer hardware.
 - **Faster Inference:** Integer arithmetic is less computationally expensive than floating-point math, leading to quicker response times.

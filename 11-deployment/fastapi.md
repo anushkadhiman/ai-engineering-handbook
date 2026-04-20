@@ -261,17 +261,17 @@ Pydantic is the foundational data handling engine for FastAPI, providing the mec
 
 Asynchronous programming uses `async`/`await` to handle many concurrent requests efficiently.
 
-**Key Concepts**
+**What is Asynchronous Programming and how do we use it?**
 
 - **async def:** Declares an asynchronous function.
 - **await:** Yields control while waiting for I/O.
 - **I/O-bound operations:** Ideal for async (network, disk, DB).
 - **Event loop:** Manages and schedules async tasks.
 
-**Implementation Guide**
+**How do we implement it?**
 
 - I/O-Bound Operations: Use async-compatible libraries to maintain performance.
-  HTTP Requests: Use HTTPX instead of requests.
+- HTTP Requests: Use HTTPX instead of requests.
 - Databases: Use drivers like asyncpg (PostgreSQL) or motor (MongoDB).
 - Mixing Sync and Async: If you must run a blocking function inside an async route, use anyio.to_thread.run_sync or asyncio.to_thread to prevent stalling the event loop.
 - Background Tasks: For tasks that don't need to finish before sending a response (e.g., sending an email), use FastAPI's built-in BackgroundTasks.
@@ -287,7 +287,7 @@ Asynchronous programming uses `async`/`await` to handle many concurrent requests
 - CPU-intensive calculations.
 - Blocking libraries that do not support async.
 
-**Common Pitfalls**
+**What are some common pitfalls?**
 
 - Forgetting await: If you call an async function without await, it returns a coroutine object instead of the result.
 - Blocking the Loop: Using time.sleep() or heavy math inside async def stops FastAPI from handling any other requests until that task is done.
@@ -304,7 +304,7 @@ The most common approach for SQL databases (PostgreSQL, MySQL, SQLite) is using 
 - SQLModel: Designed by the creator of FastAPI, it combines SQLAlchemy and Pydantic into one tool, reducing code duplication.
 - SQLAlchemy: The industry standard for Python ORMs. It allows you to interact with databases using Python classes instead of raw SQL.
 
-**Setup Steps:**
+**How do we setup?**
 
 - Define a Database URL: For example, postgresql://user:password@postgresserver/db.
 - Create an Engine: This is the actual connection to the database.
@@ -321,7 +321,7 @@ For NoSQL options like MongoDB, integration typically uses PyMongo or an asynchr
 - Connect using a client like AsyncMongoClient for non-blocking operations.
 - Manage the connection lifecycle using lifespan events (startup and shutdown) to ensure the database client is correctly initialized and closed.
 
-**Key Best Practices**
+**What are some key best practices?**
 
 - Environment Variables: Never hardcode credentials. Use tools like python-dotenv or the built-in Pydantic Settings to manage DATABASE_URL.
 - Migrations: For production SQL databases, use Alembic to manage schema changes over time.
@@ -334,7 +334,7 @@ For NoSQL options like MongoDB, integration typically uses PyMongo or an asynchr
 
 FastAPI provides a modular security system built on top of Python Type Hints and Dependency Injection, allowing you to implement industry-standard protocols like OAuth2 and JWT with minimal boilerplate.
 
-**Core Authentication Methods**
+**What are some core Authentication Methods?**
 FastAPI supports several security schemes that integrate directly with the interactive OpenAPI documentation (/docs).
 
 - OAuth2 with Password Flow & JWT: The recommended standard for most production web applications. It uses a "password flow" to exchange credentials for a short-lived JSON Web Token (JWT).
@@ -401,32 +401,6 @@ Break large applications into modules for clarity and scale.
 
 ---
 
-## Background Tasks and WebSockets
-
-In FastAPI, Background Tasks and WebSockets serve different concurrency purposes and operate under different lifecycle rules. While standard FastAPI BackgroundTasks are designed to run after an HTTP response is sent, they do not natively integrate with persistent WebSocket connections.
-
-**Background Tasks in FastAPI**
-FastAPI provides a built-in BackgroundTasks class to handle operations that should occur after a request is completed without making the client wait.
-
-- You define a parameter of type BackgroundTasks in your path operation. After the response is returned to the client, the tasks added to this object are executed.
-- The best use cases is sending email notifications, small database updates, or logging.
-- There are some limitations. They are tied to the HTTP request-response cycle and do not automatically work with the persistent nature of WebSockets.
-
-**WebSockets in FastAPI**
-WebSockets provide a persistent, bidirectional connection between the client and server.
-
-- Lifecycle: Unlike HTTP, a WebSocket connection remains open, allowing the server to push updates to the client at any time.
-- Implementation: Defined using the @app.websocket decorator. You must explicitly call await websocket.accept() to establish the handshake.
-
-**Combining Background Work with WebSockets**
-Because the standard BackgroundTasks class won't trigger until a connection "finishes" (which doesn't happen in a persistent WebSocket), you must use alternative methods for concurrent background work.
-
-- Using asyncio.create_task: This is the standard way to run a concurrent task within a WebSocket loop. It allows you to perform actions (like sending heartbeats or processing data) without blocking the main receive loop.
-- External Task Queues (Celery/Redis): For heavy background computation, it is recommended to use tools like Celery or Redis Queue. These run in separate processes and can communicate back to your WebSocket server via a message broker.
-- Broadcasting: To manage multiple connections, use a ConnectionManager class to track active WebSockets and broadcast messages to all of them simultaneously.
-
----
-
 ## Testing and Deploying FastAPI
 
 ### Testing
@@ -444,32 +418,6 @@ Because the standard BackgroundTasks class won't trigger until a connection "fin
 
 ---
 
-## Type hints in FastAPI
-
-FastAPI is built entirely on standard Python type hints (PEP 484), using them for much more than just editor autocompletion.
-
-When you declare types for parameters, FastAPI automatically performs the following:
-
-- Data Validation: Validates incoming request data (path, query, body, headers). If types don't match, it returns a 422 Unprocessable Entity error automatically.
-- Data Conversion: Converts incoming request data to the declared Python type (e.g., a string "5" in a URL to a Python int).
-- Automatic Documentation: Generates OpenAPI schemas used by the interactive Swagger UI (/docs) and ReDoc (/redoc).
-- Editor Support: Enables precise autocompletion and error checking in IDEs like VS Code or PyCharm.
-
-**Some common Type Hint Patterns**
-
-- Simple Types: Use standard types like str, int, float, and bool for basic parameters.
-- Optional Parameters: Use Union[str, None] or the newer str | None (Python 3.10+) to indicate a parameter is not required.
-- Pydantic Models: Define request bodies by inheriting from pydantic.BaseModel. FastAPI will parse the JSON body into an instance of that class.
-- Annotated Metadata: Use Annotated (from typing) to add extra FastAPI-specific validation like string length or regex.
-
-Advanced Usage
-
-- Generic Collections: Use list[str] or dict[str, float] to validate collections of data.
-- Literal Types: Restrict a parameter to a specific set of allowed values using Literal["json", "xml"].
-- Response Models: Use the response_model parameter in your decorator (e.g., @app.get("/", response_model=UserOut)) to filter or format the data returned to the client.
-
----
-
 **References:**
 
-1. https://fastapi.tiangolo.com/
+1. [FastAPI Documentation](https://fastapi.tiangolo.com/)
