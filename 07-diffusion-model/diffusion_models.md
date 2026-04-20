@@ -6,7 +6,7 @@ A diffusion model is a class of generative AI that learns to create high-quality
 The model operates through two distinct phases:
 
 - **Forward Diffusion (Noising):** The model systematically adds Gaussian noise to a training image in a series of small steps. By the end of this Markov chain, the original data is completely "destroyed" and turned into pure random static.
-- **Reverse Diffusion (Denoising):** A neural network—typically a U-Net or Transformer—is trained to predict and remove the noise added at each step. Once trained, the model can start with a sample of pure noise and "denoise" it step-by-step to "hallucinate" a brand-new, high-fidelity image.
+- **Reverse Diffusion (Denoising):** A neural network typically a U-Net or Transformer is trained to predict and remove the noise added at each step. Once trained, the model can start with a sample of pure noise and "denoise" it step-by-step to "hallucinate" a brand-new, high-fidelity image.
 
 **Popular Applications & Models**
 Diffusion models have recently overtaken Generative Adversarial Networks (GANs) in popularity due to their superior stability and output diversity.
@@ -25,7 +25,7 @@ Diffusion models have recently overtaken Generative Adversarial Networks (GANs) 
 
 The intuition behind a diffusion model is to learn how to un-break data. It systematically destroys the structure of an image with noise and then trains a neural network to restore that structure step-by-step.
 
-The model is formulated as a Markov chain—a sequence of steps where each state depends only on the one before it.
+The model is formulated as a Markov chain a sequence of steps where each state depends only on the one before it.
 
 <div style="text-align: center;">
   <img src=".\forward process.PNG" alt="Centered image">
@@ -202,7 +202,7 @@ Inside the U-Net, the image features "look" at the text features. For every pixe
 
 ## ComfyUI
 
-ComfyUI is a powerful, node-based graphical user interface (GUI) and backend for Stable Diffusion that allows us to create custom, complex AI image and video generation workflows locally. It provides fine-grained control over the generation process—including ControlNet and inpainting—by connecting individual functional blocks, or nodes.
+ComfyUI is a powerful, node-based graphical user interface (GUI) and backend for Stable Diffusion that allows us to create custom, complex AI image and video generation workflows locally. It provides fine-grained control over the generation process including ControlNet and inpainting by connecting individual functional blocks, or nodes.
 
 **Why do we use ComfyUI?**
 

@@ -94,7 +94,7 @@ Advanced prompt engineering involves using specialized techniques like Few-Shot 
 
 ## Complexity of a Prompt
 
-The potential complexity of a prompt lies in its ability to transform a simple, high-entropy query into a highly structured, low-entropy instruction set, shifting the AI from simple pattern matching to complex reasoning. While simple prompts are quick and direct, high-complexity prompts, often involving detailed constraints, chain-of-thought (CoT) instructions, and examples—are required to solve sophisticated, multi-step tasks.
+The potential complexity of a prompt lies in its ability to transform a simple, high-entropy query into a highly structured, low-entropy instruction set, shifting the AI from simple pattern matching to complex reasoning. While simple prompts are quick and direct, high-complexity prompts, often involving detailed constraints, chain-of-thought (CoT) instructions, and examples are required to solve sophisticated, multi-step tasks.
 
 **Dimensions of Prompt Complexity**
 Prompt complexity can be broken down into several dimensions that affect how an AI model interprets and processes information:
@@ -106,7 +106,7 @@ Prompt complexity can be broken down into several dimensions that affect how an 
 - **Knowledge Bandwidth:** The breadth or depth of domain-specific knowledge needed.
 
 **The Intricacy of Complexity and Quality**
-Research shows that increasing prompt complexity, particularly through "complexity-based prompting" (using, for example, more detailed, step-by-step reasoning), can significantly boost model accuracy—by up to 18% in tasks like MathQA.
+Research shows that increasing prompt complexity, particularly through "complexity-based prompting" (using, for example, more detailed, step-by-step reasoning), can significantly boost model accuracy by up to 18% in tasks like MathQA.
 
 - Improved Reasoning: Complex prompts help the model avoid shortcuts and encourage logical, step-by-step reasoning.
 - Diminishing Returns: While moving from simple to complex prompts generally increases quality, moving from complex to "highly structured" prompts may only yield marginal gains, often at the cost of significantly longer generation times.
@@ -320,7 +320,7 @@ Try: "Act as a senior marketing copywriter. Write a 100-word promotional email f
 
 ## Prompt caching
 
-Prompt caching is a performance optimization technique for Large Language Models (LLMs) that stores the internal state of a model—specifically the Key-Value (KV) tensors—associated with a specific prompt prefix. When you reuse identical content at the beginning of a prompt, the model "remembers" it, skipping redundant computations.
+Prompt caching is a performance optimization technique for Large Language Models (LLMs) that stores the internal state of a model specifically the Key-Value (KV) tensors associated with a specific prompt prefix. When you reuse identical content at the beginning of a prompt, the model "remembers" it, skipping redundant computations.
 
 **Core Benefits**
 

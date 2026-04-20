@@ -1,6 +1,6 @@
 # Deep learning
 
-Deep learning is a subset of machine learning based on artificial neural networks with multiple layers (hence "deep") that simulate the human brain to process data, identify patterns, and make decisions autonomously. It excels at analyzing large, unstructured datasets—such as images, sound, and text—without requiring manual feature engineering, making it foundational for modern AI, including self-driving cars, chatbots, and medical diagnostics.
+Deep learning is a subset of machine learning based on artificial neural networks with multiple layers (hence "deep") that simulate the human brain to process data, identify patterns, and make decisions autonomously. It excels at analyzing large, unstructured datasets such as images, sound, and text without requiring manual feature engineering, making it foundational for modern AI, including self-driving cars, chatbots, and medical diagnostics.
 
 **What are some key features of Deep Learning?**
 
@@ -485,7 +485,7 @@ Group Normalization (GN) is a technique that normalizes feature channels by divi
 
 ## Activation Function
 
-An activation function is a mathematical formula applied to a neuron's output, determining if it should "fire" based on its input, thus introducing non-linearity into neural networks. Essential for learning complex, non-linear data patterns, these functions—like ReLU, Sigmoid, and Tanh—prevent networks from behaving like simple linear regression models.
+An activation function is a mathematical formula applied to a neuron's output, determining if it should "fire" based on its input, thus introducing non-linearity into neural networks. Essential for learning complex, non-linear data patterns, these functions like ReLU, Sigmoid, and Tanh prevent networks from behaving like simple linear regression models.
 
 **What are some key concepts of Activation Functions?**
 

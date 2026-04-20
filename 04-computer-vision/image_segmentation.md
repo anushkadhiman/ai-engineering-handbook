@@ -18,7 +18,7 @@ The Segment Anything Model (SAM), developed by Meta AI, is a foundational artifi
 **How SAM Works?**
 SAM uses a high-performance encoder-decoder architecture that separates heavy image processing from lightweight user interaction:
 
-- Image Encoder: A powerful Vision Transformer (ViT) processes the entire image once to create a "dense embedding"—a mathematical representation of the image's features. This part is computationally heavy but only happens once per image.
+- Image Encoder: A powerful Vision Transformer (ViT) processes the entire image once to create a "dense embedding" a mathematical representation of the image's features. This part is computationally heavy but only happens once per image.
 
 - Prompt Encoder: This component translates user inputs into "sparse embeddings". It supports:
   - Points: A click on or off an object.

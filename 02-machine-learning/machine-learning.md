@@ -360,7 +360,7 @@ Underfitting does not perform well on training and testing data. It is when the 
 
 1. Unclean training data containing noise or outliers can be a reason for the model not being able to derive patterns from the dataset.
 2. The model has a high bias due to the inability to capture the relationship between the input examples and the target values. This usually happens in the case of varied datasets.
-3. The model is assumed to be too simple—for example, we train a linear model in complex scenarios.
+3. The model is assumed to be too simple for example, we train a linear model in complex scenarios.
 4. Incorrect hyperparameters tuning often leads to underfitting due to under-observing of the features.
 
 **To overcome this,**

@@ -1,6 +1,6 @@
 # Object Detection
 
-Object recognition in image processing is a computer vision technique that identifies and locates specific objects within images or videos, combining classification (what it is) with localization (where it is). It utilizes machine learning and deep learning algorithms to detect patterns—such as edges, colors, and shapes—to enable applications like autonomous driving, robotic vision, medical imaging, and surveillance.
+Object recognition in image processing is a computer vision technique that identifies and locates specific objects within images or videos, combining classification (what it is) with localization (where it is). It utilizes machine learning and deep learning algorithms to detect patterns such as edges, colors, and shapes to enable applications like autonomous driving, robotic vision, medical imaging, and surveillance.
 
 **Process:** It involves analyzing digital images to determine the presence, location, and category of objects. It often uses bounding boxes to mark object locations.
 
@@ -225,7 +225,7 @@ The filter continuously cycles through these two phases for every video frame:
 DeepSORT (Deep Simple Online and Realtime Tracking) is one of the most popular algorithms for Multi-Object Tracking (MOT). It is an evolution of the older SORT algorithm, designed specifically to stop trackers from "forgetting" who an object is when it gets temporarily blocked by something else (occlusion).
 
 **Visual Memory**
-The biggest problem with basic tracking (like SORT) is that it only looks at geometry—it assumes that if a box in Frame 1 is close to a box in Frame 2, it must be the same person. If two people cross paths, the boxes overlap, and the tracker often swaps their IDs.
+The biggest problem with basic tracking (like SORT) is that it only looks at geometry it assumes that if a box in Frame 1 is close to a box in Frame 2, it must be the same person. If two people cross paths, the boxes overlap, and the tracker often swaps their IDs.
 
 **DeepSORT solves this by adding a Deep Appearance Descriptor.**
 The Embedding: Every time an object is detected, a specialized neural network (CNN) looks at the pixels inside the box and creates a unique "fingerprint" (a mathematical vector) of that object’s appearance.

@@ -105,7 +105,7 @@ Here are some common use cases and benefits,
 
 ## Reflection
 
-Reflection is a powerful design pattern where **autonomous agents evaluate, critique, and refine their own generated outputs, code, or plans before finalizing them**. By acting as a self-correcting feedback loop—often using a second "critic" agent—this process significantly improves accuracy, reduces errors in complex tasks like coding or writing, and enables higher-quality, multi-step problem solving.
+Reflection is a powerful design pattern where **autonomous agents evaluate, critique, and refine their own generated outputs, code, or plans before finalizing them**. By acting as a self-correcting feedback loop often using a second "critic" agent this process significantly improves accuracy, reduces errors in complex tasks like coding or writing, and enables higher-quality, multi-step problem solving.
 
 - **The Process:** Instead of simply generating a final answer, an agent produces an initial output, reviews it for errors or weaknesses, and regenerates a better version.
 - **"System 2" Thinking:** This approach mimics human critical thinking, allowing models to move beyond immediate, reactive, or "System 1" responses to more considered, methodical reasoning.
@@ -148,7 +148,7 @@ Agentic AI function calling enables Large Language Models (LLMs) to act as **aut
 
 ## Planning
 
-Planning in Agentic AI is **the process where an AI agent breaks down a complex, high-level goal into a sequence of smaller, manageable steps (sub-goals) before execution**. Unlike reactive AI, these agents use reasoning — often driven by Large Language Models (LLMs) — to anticipate future states, utilize external tools, and adjust strategies iteratively, enhancing reliability and efficiency in complex, multi-step tasks.
+Planning in Agentic AI is **the process where an AI agent breaks down a complex, high-level goal into a sequence of smaller, manageable steps (sub-goals) before execution**. Unlike reactive AI, these agents use reasoning often driven by Large Language Models (LLMs) to anticipate future states, utilize external tools, and adjust strategies iteratively, enhancing reliability and efficiency in complex, multi-step tasks.
 
 Here are some key components and approaches,
 
@@ -198,7 +198,7 @@ Here are some key components of agentic multi-agent systems,
 
 ## Memory Management
 
-Agentic AI memory management involves techniques like **short-term, long-term, and semantic storage (e.g., vector databases, knowledge graphs) to enable AI agents to retain context, learn from past interactions, and make informed decisions**. It operates through a **4-stage pipeline—extraction, storage, update, and retrieval—to overcome limited context windows**, ensuring agents are reliable, personalized, and capable of multi-step reasoning.
+Agentic AI memory management involves techniques like **short-term, long-term, and semantic storage (e.g., vector databases, knowledge graphs) to enable AI agents to retain context, learn from past interactions, and make informed decisions**. It operates through a **4-stage pipeline extraction, storage, update, and retrieval to overcome limited context windows**, ensuring agents are reliable, personalized, and capable of multi-step reasoning.
 
 Here are some key types of agentic memory
 
@@ -323,7 +323,7 @@ Agentic AI operates through a cyclical process rather than a single-shot respons
 
 ## Guardrail and safety techniques
 
-Guardrail and safety techniques in Agentic AI are essential, **multi-layered security measures—including input filtering, output moderation, human-in-the-loop (HITL) checks, and structural constraints—designed to ensure AI agents operate within ethical, compliant, and functional boundaries**. These prevent prompt injections, data leaks, and unauthorized actions.
+Guardrail and safety techniques in Agentic AI are essential, **multi-layered security measures including input filtering, output moderation, human-in-the-loop (HITL) checks, and structural constraints designed to ensure AI agents operate within ethical, compliant, and functional boundaries**. These prevent prompt injections, data leaks, and unauthorized actions.
 
 Here are some guardrail techniques,
 
@@ -431,7 +431,7 @@ Context drift is the **gradual degradation of an AI model's accuracy and relevan
 
 ### Context window overflow
 
-Context window overflow (CWO) occurs **when the total tokens in an LLM prompt—input, system instructions, and RAG data—exceed the model's capacity**. This causes lost information, incoherent responses, and application failures**. It is a **memory limitation issue prevalent in long, multi-step tasks or RAG systems.\*\*
+Context window overflow (CWO) occurs **when the total tokens in an LLM prompt input, system instructions, and RAG data exceed the model's capacity**. This causes lost information, incoherent responses, and application failures**. It is a **memory limitation issue prevalent in long, multi-step tasks or RAG systems.\*\*
 
 **What are some causes of context overflow?**
 
@@ -824,7 +824,7 @@ Pydantic is the leading data validation and settings management library for Pyth
 
 **Why Pydantic is Essential in Production AI Systems?**
 
-Production AI systems—particularly those using Large Language Models (LLMs)—face the challenge of handling messy, unstructured, and unpredictable data. Pydantic acts as the "safety net" between the flexible, chaotic world of LLMs and the structured requirements of backend systems.
+Production AI systems particularly those using Large Language Models (LLMs) face the challenge of handling messy, unstructured, and unpredictable data. Pydantic acts as the "safety net" between the flexible, chaotic world of LLMs and the structured requirements of backend systems.
 
 **1. Structured Output Validation:** LLMs often produce vague or malformed JSON. Pydantic enforces a strict schema, forcing the LLM to return data in a specific, expected format, such as a Pydantic .
 **2. Reduced Hallucinations and Errors:** By enforcing output constraints, Pydantic reduces the likelihood of downstream systems failing due to unexpected data types or missing fields.
@@ -885,7 +885,7 @@ These monitor how agents work together.
 
 **Best Practices for Monitoring**
 
-- Trace Everything: Log the entire "trajectory"—every prompt, response, tool call, and thought—to enable replay and debugging.
+- Trace Everything: Log the entire "trajectory" every prompt, response, tool call, and thought to enable replay and debugging.
 - Use "LLM-as-a-Judge": Use a more capable, specialized LLM to evaluate the outputs and intermediate reasoning steps of your production agents.
 - Set Alerting on Symptoms: Alert when task success drops below a threshold (e.g., &lt;90%) rather than just when an individual API call fails.
 
@@ -922,7 +922,7 @@ To keep the system from becoming "trapped" by its own history or exceeding token
 - Fact Extraction (Long-Term): Instead of storing raw logs, use an asynchronous background task to analyze conversations and extract key entities, preferences, and facts into the structured SQL database.
 - Recency-Weighted Aging: In the vector store, add a timestamp metadata field. When retrieving, use a scoring function that combines semantic similarity with a time-decay factor, prioritizing recent information over outdated context.
 
-By applying these strategies—separating short and long-term memory, using hybrid search for precision, and extracting facts rather than storing raw text—the assistant remains fast, accurate, and secure.
+By applying these strategies separating short and long-term memory, using hybrid search for precision, and extracting facts rather than storing raw text the assistant remains fast, accurate, and secure.
 
 ---
 

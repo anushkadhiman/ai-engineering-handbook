@@ -19,7 +19,7 @@ An LLM evaluation workflow is the structured process of measuring a model’s pe
 ## Evaluation Workflow
 
 **1. Dataset Curation (The "Golden Set")**
-You cannot evaluate what you haven't defined. The first step is creating a **Golden Dataset**—a collection of high-quality examples that represent the "ground truth."
+You cannot evaluate what you haven't defined. The first step is creating a **Golden Dataset** a collection of high-quality examples that represent the "ground truth."
 
 - **Production Logs:** Sampling real user queries (anonymized).
 - **Synthetic Data:** Using a stronger model (like GPT-4o) to generate diverse edge cases.

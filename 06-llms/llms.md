@@ -1,6 +1,6 @@
 # **What is LLM ?**
 
-- A large language model (LLM) is a type of **artificial intelligence (AI) program that can generate human-like text**. LLMs are trained on massive amount of data — hence the name "large." LLMs are built on machine learning: specifically, a type of neural network called a transformer model.
+- A large language model (LLM) is a type of **artificial intelligence (AI) program that can generate human-like text**. LLMs are trained on massive amount of data hence the name "large." LLMs are built on machine learning: specifically, a type of neural network called a transformer model.
 - It has been built on **transformers, they use self-attention mechanisms** to understand relationships between words and phrases, allowing for parallel processing of data.
 - They excel at Natural Language Processing (NLP) tasks such as **summarization, translation, Q&A, and content creation**.
 - They require **significant computational power**, often relying on GPUs, and are trained on vast amounts of text data.
@@ -15,7 +15,7 @@
 
 ## **How do LLM work ?**
 
-- It work by using **transformer architectures**— to interpret vast datasets and predict the most likely next word (or token) in a sequence based on probability. They learn to understand _context_, _relationships_, and _language nuances_ through unsupervised training and _attention mechanisms_.
+- It work by using **transformer architectures** to interpret vast datasets and predict the most likely next word (or token) in a sequence based on probability. They learn to understand _context_, _relationships_, and _language nuances_ through unsupervised training and _attention mechanisms_.
 
 - **What are some core elements and processes:**
   - **Training Data:** Models are trained on massive, diverse datasets (internet text, books, code) to understand language patterns.
@@ -99,7 +99,7 @@ Encoder-only models (e.g., BERT, RoBERTa, DeBERTa) are transformer architectures
 
 ## **Decoder-only models**
 
-Decoder-only models are transformer architectures—like GPT, Llama, and Gemini—that utilize solely decoder blocks to generate text autoregressively. By employing masked self-attention, they predict the next token based only on preceding context. These models excel at generative tasks, are highly efficient to scale, and dominate modern Large Language Models (LLMs).
+Decoder-only models are transformer architectures like GPT, Llama, and Gemini that utilize solely decoder blocks to generate text autoregressively. By employing masked self-attention, they predict the next token based only on preceding context. These models excel at generative tasks, are highly efficient to scale, and dominate modern Large Language Models (LLMs).
 
 **Here are some key characteristics and components**
 
@@ -155,7 +155,7 @@ The training paradigm of Large Language Models (LLMs) consists of a **multi-stag
 
 ## **Responsible Large Language Model (LLM) development**
 
-Responsible Large Language Model (LLM) development and usage involves embedding ethical principles—fairness, transparency, privacy, and safety—throughout the entire AI lifecycle to mitigate risks like bias, hallucinations, and misuse. Key practices include using diverse, audited data for training, implementing robust prompt guardrails, adopting retrieval-augmented generation (RAG) for accuracy, and ensuring human-in-the-loop oversight.
+Responsible Large Language Model (LLM) development and usage involves embedding ethical principles fairness, transparency, privacy, and safety throughout the entire AI lifecycle to mitigate risks like bias, hallucinations, and misuse. Key practices include using diverse, audited data for training, implementing robust prompt guardrails, adopting retrieval-augmented generation (RAG) for accuracy, and ensuring human-in-the-loop oversight.
 
 **Main features of Responsible LLM Development**
 
@@ -183,7 +183,7 @@ Tokenization in LLMs is the crucial process of breaking raw text into smaller un
 
 **Main features of LLM Tokenization**
 
-- Tokens are the fundamental building blocks—parts of words, whole words, or punctuation—that an LLM understands.
+- Tokens are the fundamental building blocks parts of words, whole words, or punctuation that an LLM understands.
 - **The Process:** Raw text is broken down into subword units, which are then converted into numerical IDs, or "tokens," based on a predefined vocabulary.
 
 **Why Subword Tokenization?** It acts as a middle ground, breaking down complex words into smaller, manageable chunks (e.g., "unhappiness" into "un", "happi", "ness") to handle rare words and keep vocabulary sizes reasonable.

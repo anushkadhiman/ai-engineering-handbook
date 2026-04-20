@@ -11,7 +11,7 @@ Natural Language Processing (NLP) is a branch of artificial intelligence (AI) th
 - Natural Language Generation (NLG): Producing human-like text from structured data.
 
 **How It Works**
-NLP combines linguistics (language rules) with machine learning algorithms. It treats language as data, processing inputs through several stages—including phonology, morphology, and pragmatics—to produce meaningful output.
+NLP combines linguistics (language rules) with machine learning algorithms. It treats language as data, processing inputs through several stages including phonology, morphology, and pragmatics to produce meaningful output.
 
 Here are some common applications
 
@@ -636,7 +636,7 @@ Naive Bayes is a widely used probabilistic machine learning algorithm in Natural
 - Bayes’ Theorem: It calculates the probability of a class (e.g., "Spam") given a set of features (words).
 - The "Naive" Assumption: It assumes that the presence of one word in a document is unrelated to the presence of any other word. While linguistically inaccurate (e.g., "San" and "Francisco" are highly related), this simplification makes the algorithm extremely fast and computationally efficient.
 - Bag-of-Words Model: Text is typically represented as a "bag-of-words," where word order is ignored and only frequency counts or presence/absence matter.
-- Laplace Smoothing: To prevent "zero-frequency" problems—where a word not seen in training results in a total probability of zero—a small value (usually 1) is added to every word count.
+- Laplace Smoothing: To prevent "zero-frequency" problems where a word not seen in training results in a total probability of zero a small value (usually 1) is added to every word count.
 
 **What are the variants used in NLP?**
 

@@ -66,7 +66,7 @@ The Time-Weighted Retriever is designed for applications where freshness matters
 
 ## LangChain Memory
 
-In LangChain, Memory is the system component that enables LLMs to remember previous interactions. Since standard language models are stateless—meaning they treat every request as an isolated event—memory is what allows for natural, multi-turn conversations where the AI recalls your name or previous context.
+In LangChain, Memory is the system component that enables LLMs to remember previous interactions. Since standard language models are stateless meaning they treat every request as an isolated event memory is what allows for natural, multi-turn conversations where the AI recalls your name or previous context.
 
 **How it Works**
 Every memory system performs two primary actions during a conversation:
@@ -159,7 +159,7 @@ In LangChain, Vector Stores are the databases that store and search your high-di
 
 **1. Local & Developer-Friendly (In-Memory/Local)**
 
-- **Chroma:** The most popular open-source choice for LangChain. It’s ChromaDB is easy to set up and runs entirely on your local machine—perfect for prototyping.
+- **Chroma:** The most popular open-source choice for LangChain. It’s ChromaDB is easy to set up and runs entirely on your local machine perfect for prototyping.
 - **FAISS (Facebook AI Similarity Search):** A high-performance library from Meta optimized for dense vector sets. Use FAISS when you need blazing-fast local search without the overhead of a full database.
 
 **2. Cloud-Native & Managed (Scale-Ready)**
@@ -317,7 +317,7 @@ In LangChain, Agents use an LLM as a reasoning engine to determine which Tools t
 
 ### Evaluation
 
-To ensure your RAG pipeline actually works, you need more than just vibes—you need Evaluation. This transition from demo to production involves measuring accuracy, hallucinations, and retrieval quality.
+To ensure your RAG pipeline actually works, you need more than just vibes you need Evaluation. This transition from demo to production involves measuring accuracy, hallucinations, and retrieval quality.
 
 **1. Synthetic Data & Frameworks**
 

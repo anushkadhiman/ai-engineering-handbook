@@ -133,8 +133,8 @@ Grouped-Query Attention (GQA) is the modern standard for attention in large-scal
 **The Balanced Architecture**
 GQA divides the many Query heads into a smaller number of Groups. Each group of Query heads shares a single Key and Value head.
 
-- **MHA (Multi-Head):** 1 Query : 1 Key : 1 Value (e.g., 32 Q, 32 K, 32 V) — High quality, heavy cache.
-- **MQA (Multi-Query):** Many Queries : 1 Key : 1 Value (e.g., 32 Q, 1 K, 1 V) — Fastest, but lower quality.
+- **MHA (Multi-Head):** 1 Query : 1 Key : 1 Value (e.g., 32 Q, 32 K, 32 V) High quality, heavy cache.
+- **MQA (Multi-Query):** Many Queries : 1 Key : 1 Value (e.g., 32 Q, 1 K, 1 V) Fastest, but lower quality.
 - **GQA (Grouped-Query)**: Many Queries : Shared Key/Value per Group (e.g., 32 Q divided into 8 groups, each group sharing 1 K and 1 V).
 
 **What are some key benefits?**
@@ -382,7 +382,7 @@ While vLLM is built for high-scale enterprise serving, llama.cpp and Ollama are 
 **llama.cpp:**
 llama.cpp is a low-level, high-performance inference engine written in pure C/C++. It is the "brain" that many other local AI tools use under the hood.
 
-- **Maximum Portability:** It is designed to run on almost anything—your CPU, Apple M-series chips, or standard NVIDIA/AMD GPUs—without needing massive data-center setups.
+- **Maximum Portability:** It is designed to run on almost anything your CPU, Apple M-series chips, or standard NVIDIA/AMD GPUs without needing massive data-center setups.
 - **GGUF Format:** It pioneered the GGUF file format, which allows large models to be compressed (quantized) so they fit into consumer RAM.
 - **The "Bare Metal" Experience:** It is a command-line tool. You have total control over threads, GPU layers, and memory mapping, but it has a steep learning curve.
 - **Performance:** Often faster than wrappers for single-user tasks because it has zero overhead.

@@ -123,7 +123,7 @@ Unlike traditional hard prompts (actual text you write), soft prompts are high-d
 ## Prefix Tuning
 
 Prefix Tuning is a parameter-efficient fine-tuning (PEFT) method that adapts large language models to specific tasks by adding a set of trainable, continuous vectors (called a prefix) to the beginning of the input at every layer of the model.
-While it shares the same goal as prompt tuning—steering a frozen model without retraining all its weights—it is more expressive because its influence goes deeper into the model's architecture.
+While it shares the same goal as prompt tuning steering a frozen model without retraining all its weights it is more expressive because its influence goes deeper into the model's architecture.
 
 **How It Works?**
 

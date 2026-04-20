@@ -739,7 +739,7 @@ Modern RAG systems increasingly use hybrid retrieval, which combines sparse and 
 
 ## Hybrid search
 
-Hybrid search in the context of Retrieval-Augmented Generation (RAG) is a technique that blends semantic search (vector embeddings) with keyword-based search (sparse/lexical search) to identify the most relevant information for an LLM. By combining these two methods, RAG systems overcome the limitations of relying on a single approach—such as semantic search missing precise keywords or keyword search missing synonyms—resulting in higher accuracy and fewer hallucinations.
+Hybrid search in the context of Retrieval-Augmented Generation (RAG) is a technique that blends semantic search (vector embeddings) with keyword-based search (sparse/lexical search) to identify the most relevant information for an LLM. By combining these two methods, RAG systems overcome the limitations of relying on a single approach such as semantic search missing precise keywords or keyword search missing synonyms resulting in higher accuracy and fewer hallucinations.
 
 **How Hybrid Search Works in RAG?**
 Hybrid search works by running two parallel, complementary searches, fusing their results, and often using a third step to refine them.
@@ -798,7 +798,7 @@ Modern approaches like SPLADE help bridge this gap by generating sparse vectors 
 
 ## Fine-tuning embedding models
 
-Fine-tuning embedding models significantly improves RAG retrieval performance—often by up to 60%—by aligning models with domain-specific language, technical jargon, and unique semantic relationships. By training on domain-specific data, these models better rank relevant documents, leading to higher accuracy, reduced hallucination, and more contextually relevant LLM responses.
+Fine-tuning embedding models significantly improves RAG retrieval performance often by up to 60% by aligning models with domain-specific language, technical jargon, and unique semantic relationships. By training on domain-specific data, these models better rank relevant documents, leading to higher accuracy, reduced hallucination, and more contextually relevant LLM responses.
 
 **What are some key benefits of fine-tuning embeddings for RAG?**
 
@@ -877,7 +877,7 @@ Re-ranker models enhance RAG (Retrieval-Augmented Generation) accuracy by evalua
 ## Instruction-following Reranker
 
 An instruction-following reranker is an advanced component in RAG systems that goes beyond simple semantic similarity to reorder retrieved documents based on explicit user-defined criteria.
-Unlike traditional cross-encoder rerankers, which only assess how well a document matches a query, instruction-following rerankers allow developers to embed natural language instructions—such as prioritize recent, internal documents or ignore marketing materials—directly into the ranking process.
+Unlike traditional cross-encoder rerankers, which only assess how well a document matches a query, instruction-following rerankers allow developers to embed natural language instructions such as prioritize recent, internal documents or ignore marketing materials directly into the ranking process.
 
 **Core Capabilities and Advantages**
 
@@ -1009,7 +1009,7 @@ These focus on the physical size of the text segments.
 
 - Character Text Splitter: Splits text into chunks of a fixed character length based on a simple separator like a space or newline. It is fast but may cut sentences mid-thought.
   - Simply counts the number of characters. Once it hits the chunk_size, it looks for the nearest instance of your chosen separator (like a space or newline) to make the cut.
-  - Pros/Cons: Extremely fast and simple to implement. Naive—often cuts in the middle of words or sentences, leading to lost meaning.
+  - Pros/Cons: Extremely fast and simple to implement. Naive often cuts in the middle of words or sentences, leading to lost meaning.
   - It is best for short, unstructured data (like FAQs or chat logs) where speed is more important than perfect grammatical flow.
 
 - Recursive Character Text Splitter: The most popular choice for general text. It uses a hierarchy of separators (e.g., \n\n, \n, , ) to split text at the most natural boundaries possible before resorting to character counts.
@@ -1234,7 +1234,7 @@ The Late Interaction occurs at the very end of the retrieval pipeline, using the
 **Feature Impact**
 
 - No Information Bottleneck By not pooling or averaging tokens into one vector, the model doesn't lose the specific meaning of individual words or their relationships.
-- Scalable Pre-computation Since query and document encoding are independent, you can index millions of documents ahead of time—a feat impossible for standard cross-encoders.
+- Scalable Pre-computation Since query and document encoding are independent, you can index millions of documents ahead of time a feat impossible for standard cross-encoders.
 - Explainability You can visualize exactly which word in the query matched which word in the document to generate the final score.
 
 **What are some practical applications & modern variants?**
@@ -1256,10 +1256,10 @@ Knowledge graphs are typically built using three primary elements
 - Nodes (Entities): Represent the things in a domain, such as a person, product, company, or event.
 - Edges (Relationships): The lines connecting nodes that define how they interact (e.g., Alice works at Company X).
 - Labels/Properties: Attributes that provide extra detail about nodes and edges, such as a person's birthdate or a relationship's start date.
-- Many knowledge graphs utilize triples—a subject-predicate-object format (e.g., Paris -> isCapitalOf -> France)—to create these connections. This format is foundational to the Resource Description Framework (RDF), a standard for interchanging interconnected data.
+- Many knowledge graphs utilize triples a subject-predicate-object format (e.g., Paris -> isCapitalOf -> France) to create these connections. This format is foundational to the Resource Description Framework (RDF), a standard for interchanging interconnected data.
 
 **The Role of Ontologies**
-An ontology serves as the blueprint or contract for a knowledge graph. While a knowledge graph contains actual data instances (the what is happening), the ontology defines the underlying schema—the classes, categories, and rules that determine how that data should be structured (the what does it mean).
+An ontology serves as the blueprint or contract for a knowledge graph. While a knowledge graph contains actual data instances (the what is happening), the ontology defines the underlying schema the classes, categories, and rules that determine how that data should be structured (the what does it mean).
 
 **What are some key benefits?**
 

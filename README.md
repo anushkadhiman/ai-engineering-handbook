@@ -1,6 +1,6 @@
 # AI Engineering Handbook
 
-A structured, end-to-end knowledge base for building modern AI systems —  
+A structured, end-to-end knowledge base for building modern AI systems  
 from foundational concepts (mathematics, Python, ML/DL) to production-grade systems (LLMs, RAG, agents, and deployment).
 
 ---
@@ -28,7 +28,7 @@ Follow the structured path:
 
 ---
 
-### 00 — Maths & Statistics
+### 00) Maths & Statistics
 
 **Sections:** Linear Algebra, Probability, Statistics
 
@@ -49,7 +49,7 @@ Follow the structured path:
 
 ---
 
-### 01 — Python
+### 01) Python
 
 **Sections:** Python
 
@@ -61,7 +61,7 @@ Follow the structured path:
 
 ---
 
-### 02 — Machine Learning
+### 02) Machine Learning
 
 **Sections:** Machine Learning
 
@@ -87,7 +87,7 @@ Follow the structured path:
 
 ---
 
-### 03 — Deep Learning
+### 03) Deep Learning
 
 **Sections:** Deep Learning, Models
 
@@ -115,7 +115,7 @@ Follow the structured path:
 
 ---
 
-### 04 — Computer Vision
+### 04) Computer Vision
 
 **Sections:** CV, Segmentation, Detection
 
@@ -139,7 +139,7 @@ Follow the structured path:
 
 ---
 
-### 05 — NLP
+### 05) NLP
 
 **Sections:** NLP
 
@@ -161,7 +161,7 @@ Follow the structured path:
 
 ---
 
-### 06 — LLMs & Transformers
+### 06) LLMs & Transformers
 
 **Sections:** LLMs, Transformers, VLMs
 
@@ -214,7 +214,7 @@ Follow the structured path:
 
 ---
 
-### 07 — Diffusion Models
+### 07) Diffusion Models
 
 **Sections:** Diffusion
 
@@ -229,7 +229,7 @@ Follow the structured path:
 
 ---
 
-### 08 — RAG Systems
+### 08) RAG Systems
 
 **Sections:** RAG
 
@@ -247,7 +247,7 @@ Follow the structured path:
 
 ---
 
-### 09 — Agentic AI
+### 09) Agentic AI
 
 **Sections:** Agents
 
@@ -265,7 +265,7 @@ Follow the structured path:
 
 ---
 
-### 10 — Reinforcement Learning
+### 10) Reinforcement Learning
 
 **Sections:** RL
 
@@ -275,7 +275,7 @@ Follow the structured path:
 
 ---
 
-### 11 — Deployment
+### 11) Deployment
 
 **Sections:** FastAPI, Quantization
 
@@ -303,11 +303,11 @@ Follow the structured path:
 
 ## Notes
 
-- This is a **living handbook** — continuously updated
+- This is a **living handbook** continuously updated
 - Contributions, suggestions, and improvements are welcome
 
 ---
 
 ## Support
 
-If you find this helpful, consider **starring the repo** — it helps others discover it!
+If you find this helpful, consider **starring the repo** it helps others discover it!

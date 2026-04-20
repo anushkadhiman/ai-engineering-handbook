@@ -5,13 +5,13 @@ The Transformer model is a neural network architecture for sequential data that 
 **Core Structural Blocks**
 The original architecture is a "sequence-to-sequence" model consisting of two primary stacks:
 
-- **Encoder Stack:** Processes the input sequence (e.g., an English sentence) into a "context vector"—a high-dimensional, compressed representation that captures the meaning and relationships of all tokens.
+- **Encoder Stack:** Processes the input sequence (e.g., an English sentence) into a "context vector" a high-dimensional, compressed representation that captures the meaning and relationships of all tokens.
 - **Decoder Stack:** Takes the encoder's output and, one token at a time, generates the output sequence (e.g., a French translation), using previous outputs to inform the next prediction.
 
 **Key Internal Components**
 Within each encoder and decoder layer, several sub-layers perform specific mathematical transformations:
 
-- Self-Attention Mechanism: The most critical feature, allowing the model to weigh the importance of every word in a sequence relative to every other word. It uses three vectors—Query (Q), Key (K), and Value (V)—to determine context dynamically.
+- Self-Attention Mechanism: The most critical feature, allowing the model to weigh the importance of every word in a sequence relative to every other word. It uses three vectors Query (Q), Key (K), and Value (V) to determine context dynamically.
 - Multi-Head Attention: Runs several self-attention operations in parallel, allowing the model to capture different types of relationships simultaneously (e.g., grammar in one head and semantic meaning in another).
 - Positional Encoding: Since Transformers process all words at once, they lack an inherent sense of word order. Positional encodings (often using sine and cosine functions) are added to the input embeddings to inject information about each token's position.
 - Feed-Forward Networks (FFN): Each attention output is passed through a position-wise fully connected network, adding non-linear transformation power to refine the representations of each token independently.
@@ -27,7 +27,7 @@ It enable neural networks to dynamically focus on relevant parts of an input seq
 **Core Concepts and Components**
 
 - **Self-Attention:** The mechanism enables a token to interact with all other tokens in a sequence, allowing it to gather contextual information from far-away words.
-- **Q, K, V Vectors:** For each word, three vectors—Query (what I am looking for), Key (what I offer), and Value (what I actually contain)—are learned during training.
+- **Q, K, V Vectors:** For each word, three vectors Query (what I am looking for), Key (what I offer), and Value (what I actually contain) are learned during training.
 - **Attention Scores & Scaling:** The model computes the similarity between a Query and all Keys via dot product, then scales these scores to avoid large gradients.
 - **Softmax:** The scores are passed through a softmax function to produce normalized probabilities (attention weights) that sum to 1.
 - **Weighted Sum:** These weights are multiplied by the Value vectors to generate the final representation, highlighting crucial information.
