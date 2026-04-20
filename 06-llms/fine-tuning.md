@@ -114,7 +114,7 @@ Unlike traditional hard prompts (actual text you write), soft prompts are high-d
 **Why Choose Prompt Tuning?**
 
 - **Massive Efficiency:** You only store and update a few thousand parameters (kilobytes) instead of gigabytes for a full model copy.
-- **Scalability:** Performance often matches full fine-tuning as models get larger (10B+ parameters).
+- It is scalable. Performance often matches full fine-tuning as models get larger (10B+ parameters).
 - **Stability:** Since the base model is frozen, it won't forget its original abilities (catastrophic forgetting) during the tuning process.
   **Low Data Needs:** It can achieve strong results even with relatively small labeled datasets.
 
@@ -136,7 +136,7 @@ While it shares the same goal as prompt tuning steering a frozen model without r
 
 - **Performance:** Achieves results comparable to full fine-tuning while updating less than 1% of the model's total parameters.
 - **Modularity:** You can store different tiny prefixes for different tasks (e.g., one for translation, one for summarization) and simply swap them out while using the same base model.
-- **Efficiency:** Drastically reduces the computational and storage costs of maintaining multiple task-specific models.
+- It is efficient. Drastically reduces the computational and storage costs of maintaining multiple task-specific models.
 
 ---
 

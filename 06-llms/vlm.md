@@ -67,7 +67,7 @@ patches). Attention is only computed inside these windows. This reduces complexi
 
 **What are some benefits?**
 
-- **Scalability:** It can process high-resolution images (like 1024px) that would crash a standard ViT.
+- It is scalable. It can process high-resolution images (like 1024px) that would crash a standard ViT.
 - **General-Purpose Backbone:** It works "out-of-the-box" for diverse tasks including classification (ImageNet), object detection (COCO), and semantic segmentation (ADE20K).
 - **Inductive Bias:** By re-introducing concepts like locality and hierarchy, it bridges the gap between the flexibility of Transformers and the spatial efficiency of CNNs.
 
@@ -89,8 +89,8 @@ The core idea is to hide most of an image and force the model to predict what is
 **Why it’s a big deal**
 
 - **Speed:** Since the encoder only looks at 25% of the image, training is significantly faster and uses less memory.
-- **No Labels Needed:** It learns from raw images without any human-provided tags (like "cat" or "dog"), making it perfect for utilizing massive, unlabeled datasets.
-- **Superior Features:** Once trained, you throw away the decoder and use the encoder as a "pre-trained brain" for other tasks. It often outperforms models trained directly on labeled data because it understands the "physics" of how objects look.
+- No Labels is needed. It learns from raw images without any human-provided tags (like "cat" or "dog"), making it perfect for utilizing massive, unlabeled datasets.
+- Once trained, you throw away the decoder and use the encoder as a "pre-trained brain" for other tasks. It often outperforms models trained directly on labeled data because it understands the "physics" of how objects look.
 
 **Pros and Cons**
 

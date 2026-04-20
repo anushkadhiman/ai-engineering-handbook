@@ -74,7 +74,7 @@ Diffusion models rely on several key mathematical and structural assumptions to 
 **The Markov Assumption**
 The most fundamental structural assumption is that the diffusion process (both forward and backward) is a Markov Chain.
 
-- Definition: Each state in the process depends only on the state immediately preceding it and not on any earlier history.
+- Each state in the process depends only on the state immediately preceding it and not on any earlier history.
 - Why it matters: This simplifies the joint probability of all diffusion steps into a product of individual transitions, making the math tractable for deep learning.
 
 **The Gaussian Transition Assumption**
@@ -86,8 +86,8 @@ The model assumes that the "jumps" between steps are Gaussian (Normal) distribut
 **The Isotropic Gaussian Prior**
 At the end of the forward process (step), the data is assumed to have evolved into a pure isotropic Gaussian noise distribution.
 
-- Requirement: The variance schedule must be "well-behaved" enough to ensure that the original signal is almost entirely destroyed by step.
-- Application: This allows the model to "start from scratch" during generation by sampling random noise from a standard normal distribution .
+- The variance schedule must be "well-behaved" enough to ensure that the original signal is almost entirely destroyed by step.
+- This allows the model to "start from scratch" during generation by sampling random noise from a standard normal distribution .
 
 **Variance Schedule**
 In standard implementations like DDPM, the variance schedule is typically assumed to be a fixed hyperparameter rather than a learned parameter.
@@ -118,9 +118,9 @@ Instead of just passing the integer (like 452), we transform it into a high-dime
 
 **Why this math?**
 
-- **Uniqueness:** Every timestep gets a unique fingerprint.
-- **Relative Distance:** The model can easily learn that step 450 is close to step 451.
-- **Extrapolation:** It allows the model to handle a range of timesteps it might not have seen perfectly during training.
+- Every timestep gets a unique fingerprint.
+- The model can easily learn that step 450 is close to step 451.
+- It allows the model to handle a range of timesteps it might not have seen perfectly during training.
 
 **Integration into the U-Net**
 
@@ -195,8 +195,8 @@ Inside the U-Net, the image features "look" at the text features. For every pixe
 
 **Benefit**
 
-- **Efficiency:** It brought high-end AI generation to home GPUs (8GB VRAM is often enough).
-- **Versatility:** Because it works in latent space, it is incredibly easy to extend with tools like ControlNet, LoRA (for style training), and Inpainting.
+- It is efficient. It brought high-end AI generation to home GPUs (8GB VRAM is often enough).
+- It is versatile because it works in latent space, it is incredibly easy to extend with tools like ControlNet, LoRA (for style training), and Inpainting.
 
 ---
 

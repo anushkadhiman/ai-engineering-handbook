@@ -251,9 +251,9 @@ Pydantic is the foundational data handling engine for FastAPI, providing the mec
 
 **Key Performance Benefits**
 
-- Rust-Powered Speed: Pydantic V2 is written in Rust, making it one of the fastest data validation libraries available for Python.
-- Type Safety: Because Pydantic is based on standard Python type hints, it provides excellent IDE support, including auto-completion and static analysis, reducing runtime bugs.
-- Seamless Integration: FastAPI is built directly on top of Pydantic, meaning any advanced Pydantic feature (like BaseSettings for configuration management) works natively within the framework.
+- Pydantic V2 is written in Rust, making it one of the fastest data validation libraries available for Python.
+- TBecause Pydantic is based on standard Python type hints, it provides excellent IDE support, including auto-completion and static analysis, reducing runtime bugs.
+- FastAPI is built directly on top of Pydantic, meaning any advanced Pydantic feature (like BaseSettings for configuration management) works natively within the framework.
 
 ---
 

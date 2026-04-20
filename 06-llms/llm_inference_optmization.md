@@ -42,7 +42,7 @@ KV Cache (Key-Value Cache) is an optimization technique used in Transformer-base
 **Why do we use it?**
 
 - **Speed:** It can make inference 5–10x faster by avoiding redundant calculations.
-- **Efficiency:** It reduces the computational complexity of generating a new token from quadratic to linear relative to the sequence length.
+- It is efficient. It reduces the computational complexity of generating a new token from quadratic to linear relative to the sequence length.
 - **Real-time Interaction:** It enables smooth, human-like response times in long, multi-turn conversations.
 
 **How it works mathematically**

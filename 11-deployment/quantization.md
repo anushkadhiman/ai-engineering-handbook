@@ -4,7 +4,7 @@ Quantization is an optimization technique that reduces the precision of a model'
 
 **Why do we Quantize?**
 
-- It reduced Memory Footprint. A model quantized from 32-bit to 8-bit is roughly 4x smaller, allowing large models to fit on consumer hardware.
+- It reduced memory footprint. A model quantized from 32-bit to 8-bit is roughly 4x smaller, allowing large models to fit on consumer hardware.
 - Its faster inference. Integer arithmetic is less computationally expensive than floating-point math, leading to quicker response times.
 - It's energy efficiency. Lower precision requires fewer clock cycles and less power, which is critical for battery-powered devices.
 
@@ -77,7 +77,7 @@ The goal of PTQ is to find the best mapping between high-precision values and lo
 
 **Key Benefits**
 
-- Its ease of use. You don't need the original training code, high-end GPU clusters, or the full dataset. You only need the final model and a few data samples.
+- It's easy to use. You don't need the original training code, high-end GPU clusters, or the full dataset. You only need the final model and a few data samples.
 - It compress significantly moving from 32-bit (FP32) to 8-bit (INT8) reduces the model's memory footprint by 4x.
 - Many low-power chips (like those in phones or IoT devices) are optimized specifically for integer math rather than floating-point math.
 
@@ -102,9 +102,9 @@ Since actual integer math isn't differentiable (you can't do standard calculus o
 
 **Why Use QAT?**
 
-- **Superior Accuracy:** It is the gold standard for quantization. Because the model practices being low-precision during training, it usually suffers almost zero accuracy loss compared to the original FP32 model.
-- **Essential for Low Bit-Widths:** If you are trying to compress a model down to 4-bit or 2-bit, PTQ often fails completely. QAT is usually required to keep the model functional at these extreme levels.
-- **Robustness:** It handles outlier weights better than PTQ because the model can shift its weight distribution to avoid values that would be clipped or rounded poorly.
+- It is the gold standard for quantization. Because the model practices being low-precision during training, it usually suffers almost zero accuracy loss compared to the original FP32 model.
+- It's essential for Low Bit-Widths. If you are trying to compress a model down to 4-bit or 2-bit, PTQ often fails completely. QAT is usually required to keep the model functional at these extreme levels.
+- It's robust to handles outlier weights better than PTQ because the model can shift its weight distribution to avoid values that would be clipped or rounded poorly.
 
 **The Trade-offs**
 
@@ -136,16 +136,16 @@ Mixed precision solves this using three steps:
 
 **Why Use It?**
 
-- **Faster Training:** You can see speedups of 2x to 5x depending on your hardware and model architecture.
-- **Reduced VRAM Usage:** FP16 tensors take up half the memory of FP32, allowing you to double your batch size or train much larger models on the same GPU.
-- **No Accuracy Loss:** When implemented correctly with loss scaling, the final model accuracy is typically identical to full FP32 training.
+- Its faster in training. You can see speedups of 2x to 5x depending on your hardware and model architecture.
+- It reduced VRAM Usage. FP16 tensors take up half the memory of FP32, allowing you to double your batch size or train much larger models on the same GPU.
+- There is no accuracy loss. When implemented correctly with loss scaling, the final model accuracy is typically identical to full FP32 training.
 
 **BF16:** If you are using newer hardware (like NVIDIA A100/H100 or TPU), you likely to use BF16 (Brain Floating Point).
 
 - FP16 has a small range but high precision.
 - BF16 has the same range as FP32 but lower precision.
 
-The Benefit: BF16 is much more stable because it handles large numbers easily, often making Loss Scaling unnecessary.
+The benefit is BF16 is much more stable because it handles large numbers easily, often making Loss Scaling unnecessary.
 
 ---
 

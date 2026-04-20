@@ -10,10 +10,10 @@ RAG operates in two main phases:
 
 **Key Benefits:**
 
-- Accuracy & Reliability: Reduces hallucinations by grounding responses in retrieved, verified data.
-- Real-Time Data: Accesses the most current information, which is critical for dynamic, up-to-date content.
-- Domain Expertise: Connects LLMs to specialized, private data (e.g., medical or legal records) without needing to retrain the model.
-- Use Cases: RAG is used in intelligent chatbots,, search engines, and enterprise AI tools to provide context-aware, trusted information.
+- Reduces hallucinations by grounding responses in retrieved, verified data.
+- Accesses the most current information, which is critical for dynamic, up-to-date content.
+- Connects LLMs to specialized, private data (e.g., medical or legal records) without needing to retrain the model.
+- RAG is used in intelligent chatbots,, search engines, and enterprise AI tools to provide context-aware, trusted information.
 
 ---
 
@@ -80,9 +80,9 @@ Recursive character splitting is a technique for splitting long text into smalle
 
 **What are some benefits?**
 
-- Maintains Context: By trying to split at paragraphs or sentences first, it ensures chunks are more coherent than simple character-count splitting.
-- Respects Structure: It keeps related information together as long as possible.
-- Scalable: Effective for breaking down large documents, legal records, or medical reports.
+- It maintains context by trying to split at paragraphs or sentences first, it ensures chunks are more coherent than simple character-count splitting.
+- It respects structure. It keeps related information together as long as possible.
+- It is scalable. It's effective for breaking down large documents, legal records, or medical reports.
 
 This approach is highly recommended for general text processing to avoid breaking sentences or words in the middle, ensuring better semantic retrieval in AI applications.
 
@@ -114,11 +114,6 @@ This ensures that text chunks perfectly fit within the token limits (context win
 - Cost Control: By tailoring chunks to the exact size the model can handle, it prevents unnecessary API costs incurred by sending bloated, inefficient text blocks.
 - Precision Control: Allows specifying chunk_size and chunk_overlap to maintain context between split chunks, ensuring semantic coherence.
 - Instead of arbitrarily splitting at 1000 characters, a token splitter ensures you split at, for example, exactly 500 tokens, directly aligning with how LLMs interpret text.
-
-**Comparison with Other Splitters**
-
-- vs. CharacterTextSplitter: CharacterTextSplitter is faster but less precise for model limits.
-- vs. RecursiveCharacterTextSplitter: RecursiveCharacterTextSplitter is generally better for keeping paragraphs/sentences together, while TokenTextSplitter is better for strict, hard limits on token counts.
 
 ---
 
@@ -223,8 +218,6 @@ Choosing the right Large Language Model (LLM) for a Retrieval-Augmented Generati
 - Open-Source/Open-Weight (Llama 3, Mistral): Offers maximum flexibility, data privacy, and lower operational costs at high scale, but requires self-hosting infrastructure.
 - Function Calling: If the RAG system requires retrieving data from APIs or databases, select a model with strong, proven function-calling capabilities.
 
-There is key note to follow, RAG systems should be continuously evaluated using metrics like Faithfulness (ensuring the answer is grounded in the retrieved context) and Answer Relevance.
-
 ---
 
 ## Key hyperparameters in a RAG pipeline
@@ -258,7 +251,7 @@ Key hyperparameters in a RAG pipeline optimize retrieval and generation, directl
 
 Reasoning LLMs (e.g., DeepSeek R1, OpenAI o1) enhance RAG by performing autonomous multi-step analysis, self-correction, and handling complex, multi-hop queries, whereas non-reasoning models (e.g., GPT-4o, Claude 3.5 Sonnet) excel in fast, cost-effective retrieval and generation of direct answers. Reasoning models are better for agentic, complex tasks, while non-reasoning models suit simple Q&A.
 
-**Key Differences and Use Cases**
+**What are some key differences and use cases?**
 
 - **Reasoning LLMs (e.g., DeepSeek R1, OpenAI o3)**: Designed for deep, step-by-step thinking, these models are ideal for complex, multi-document synthesis, legal analysis, scientific reasoning, and agentic workflows requiring planning. They are superior at detecting inconsistencies in retrieved data, but have higher latency and cost.
 - **Non-Reasoning LLMs (e.g., GPT-4o, Claude 3.5 Sonnet)**: These models offer immediate, direct responses, making them ideal for high-speed, simple chatbot applications, RAG scenarios with direct retrieval, and straightforward summarization. They are faster and more cost-effective.
@@ -402,7 +395,7 @@ Start with Recursive Character Splitting with an overlap of 10-20% as a baseline
 
 ---
 
-## Poor performance of a RAG retriever
+## How to identify poor performance of a RAG retriever?
 
 Poor performance of a RAG retriever is rarely caused by a single issue, but rather by a combination of weak data, improper processing, and suboptimal search strategies. The retriever is often considered the bottleneck, as it determines the quality of context provided to the LLM.
 
@@ -1290,11 +1283,11 @@ Hierarchical Navigable Small World (HNSW) is a top-performing, graph-based algor
 
 **How does HNSW Indexing works?**
 
-- **Structure**: It combines skip lists (for hierarchical layers) and navigable small-world graphs (for efficient, localized searching).
+- It combines skip lists (for hierarchical layers) and navigable small-world graphs (for efficient, localized searching).
 - **Search Process**: Starts at the top layer, moves greedily toward the closest node, and descends layers until finding the nearest neighbor in the bottom, most dense layer.
-- **Efficiency**: Offers superior speed and accuracy compared to many other algorithms, often used for semantic search, machine learning, and AI applications.
-- **Trade-offs**: High memory overhead is required to maintain the graph structure.
-- **Implementation**: Widely supported in vector databases and extensions like Pinecone, MongoDB Atlas Vector Search, Milvus, and pgvector for PostgreSQL
+- It's effiecient and offers superior speed and accuracy compared to many other algorithms, often used for semantic search, machine learning, and AI applications.
+- It has some trade-offs. High memory overhead is required to maintain the graph structure.
+- How to implement? Widely supported in vector databases and extensions like Pinecone, MongoDB Atlas Vector Search, Milvus, and pgvector for PostgreSQL
 
 **What are the parameters to consider?**
 
@@ -1314,7 +1307,7 @@ Hierarchical Navigable Small World (HNSW) is a top-performing, graph-based algor
 
 To make retrieval faster from vector databases, you can focus on optimizing indexing strategies, using data compression techniques, and improving system architecture and hardware.
 
-### Indexing and Algorithm Optimization
+**Indexing and Algorithm Optimization**
 
 - **Choose the right index type**: Select an indexing algorithm appropriate for your dataset size and performance requirements.
   - Hierarchical Navigable Small World (HNSW) is popular for its high speed and accuracy in large datasets, though it uses more memory.
@@ -1341,7 +1334,7 @@ To make retrieval faster from vector databases, you can focus on optimizing inde
 
 ---
 
-## When Good Retrieval Leads to Bad Answers
+## When Good Retrieval Leads to Bad Answers?
 
 If your RAG system retrieves good context but provides bad answers, the issue lies in the generation (LLM) phase rather than retrieval. Key causes include poor prompt engineering, context overloading (too much noise), hallucination, or using stale/inconsistent data that the model cannot correctly synthesize.
 

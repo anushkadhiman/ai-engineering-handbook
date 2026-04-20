@@ -228,7 +228,7 @@ Jina AI provides powerful, API-based reranking models specifically optimized for
 **3. FlashRank Reranker**
 FlashRank is an ultra-lite and blazing-fast Python library for reranking results locally without a GPU.
 
-- **Efficiency:** Uses tiny (as small as 4MB) but highly optimized cross-encoder models, making it suitable for edge devices or latency-sensitive production environments.
+- It is efficient. Uses tiny (as small as 4MB) but highly optimized cross-encoder models, making it suitable for edge devices or latency-sensitive production environments.
 
 - **LangChain Integration:** Supported via the FlashrankRerank class. It is often used as a Document Compressor to narrow down a large set of initial results to a concise top-N for the LLM.
 
