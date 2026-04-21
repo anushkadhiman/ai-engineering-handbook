@@ -89,6 +89,37 @@ Key evaluation techniques include loss curves, downstream task benchmarks, and c
 
 ---
 
+## What are some key metrics for evaluating RAG retrieval quality?
+
+Key metrics for evaluating RAG retrieval quality focus on the relevance, accuracy, and ranking of retrieved context to ensure the LLM has the right information. Top metrics include Context Precision (accuracy of top results), Context Recall (coverage of needed info), MRR (ranking relevance), and Hit Rate.
+
+**Key Retrieval Metrics**
+
+- Context Precision@k: Measures the accuracy of the top-k retrieved documents, ensuring relevant documents are ranked higher.
+- Context Recall@k: Measures whether the retrieved context contains all the necessary information needed to answer the query, ensuring no critical information is missed.
+
+**Context Relevance/Ranking (MRR & NDCG):**
+
+- Mean Reciprocal Rank (MRR): Focuses on the rank of the first relevant item; higher is better.
+- Normalized Discounted Cumulative Gain (NDCG): Evaluates the ranking quality, rewarding systems that place more relevant documents higher in the list.
+- Hit Rate: Indicates if at least one relevant document appears within the top $k$ retrieved results.
+- Context Relevancy: Measures the overall proportion of relevant information in the retrieved context, reducing noise.
+
+**Key Hybrid Metrics**
+
+- Faithfulness (Groundedness): Evaluates if the generated answer is derived solely from the retrieved context, minimizing hallucinations.
+- Answer Relevance: Evaluates how well the generated answer addresses the original query.
+- Latency: Measures the time taken to retrieve the context, critical for user experience in production.
+
+**Common Evaluation Frameworks**
+
+- RAGAS: Often used for automated, LLM-based evaluation of context, including metrics like faithfulness and answer relevance.
+- ARES: Focuses on using human-annotated data for evaluation, often utilizing metrics like MRR and NDCG.
+
+These metrics are often calculated using LLM-as-a-judge approaches, where a high-performing LLM evaluates the output of the retriever against a query.
+
+---
+
 _Resources:_
 
 1. [Awesome LLM Evaluation (Comprehensive Guide) by Andrei Lopatenko](https://alopatenko.github.io/LLMEvaluation/)
