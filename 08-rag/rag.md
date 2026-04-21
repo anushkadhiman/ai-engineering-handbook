@@ -871,7 +871,7 @@ Hierarchical Navigable Small World (HNSW) is a top-performing, graph-based algor
 
 ---
 
-## How to retrieval faster from vector databases?
+## How to make retrieval faster from vector databases?
 
 To make retrieval faster from vector databases, you can focus on optimizing indexing strategies, using data compression techniques, and improving system architecture and hardware.
 
