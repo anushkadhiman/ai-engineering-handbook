@@ -143,7 +143,7 @@ Follow the structured path:
 
 **Sections:** NLP
 
-**Topics Covered:**
+**Topics to be cover:**
 
 - NLP fundamentals & applications
 - End-to-End NLP Pipeline
@@ -165,7 +165,7 @@ Follow the structured path:
 
 **Sections:** LLMs, Transformers, VLMs
 
-**Topics Covered:**
+**Topics to be cover**
 
 - LLM fundamentals & training paradigm
 - Pre-training vs Fine-tuning
@@ -218,7 +218,7 @@ Follow the structured path:
 
 **Sections:** Diffusion
 
-**Topics Covered:**
+**Topics to be cover:**
 
 - Mathematical intuition
 - Variance scheduling
@@ -251,7 +251,7 @@ Follow the structured path:
 
 **Sections:** Agents
 
-**Topics Covered:**
+**Topics to be cover:**
 
 - Prompt chaining & routing
 - Tool use (function calling)
