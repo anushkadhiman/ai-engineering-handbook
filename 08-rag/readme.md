@@ -5,19 +5,6 @@ covering retrieval, embeddings, chunking, evaluation, and system design.
 
 ---
 
-## What is RAG?
-
-Retrieval-Augmented Generation combines:
-
-- **retrieval** (getting relevant information from external data)
-- **generation** (LLM producing the final answer)
-
-Instead of relying only on model training, RAG allows systems to:
-
-- access up-to-date knowledge
-- reduce hallucinations
-- work with private or domain-specific data
-
 ### What This Section Covers
 
 **Retrieval**
